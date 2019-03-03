@@ -1,1 +1,15 @@
- 
+ATM Class
+
+CashStorage Class
+
+BankManager Class
+
+User Class
+
+Accounts abstract class
+    Debt Account
+        Credit
+        Line of Credit
+    Asset Account
+        Saving
+        Chequing

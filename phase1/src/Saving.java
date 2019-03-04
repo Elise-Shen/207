@@ -1,2 +1,6 @@
-public class Saving {
+public class Saving extends AssetAccounts {
+
+    public AddInterest(){
+
+    }
 }

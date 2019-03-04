@@ -1,2 +1,2 @@
-public class DebtAccounts {
+public class DebtAccounts extends Accounts{
 }

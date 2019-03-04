@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class ATM {
 
-    private static final int Balance = 1;
+    private static final int Balance = 1; //these can be non-static as we never use them without an instance of ATM?
     private static final int Deposit = 2;
 
     private boolean userAuthenticated;

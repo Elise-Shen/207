@@ -1,6 +1,10 @@
-public class ViewBalance {
+public class ViewBalance extends Transactions{
 
-    puobli void execute(){
+    public ViewBalance(){
+
+    }
+
+    public void execute(){
 
     }
 }

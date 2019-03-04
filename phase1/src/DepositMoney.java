@@ -1,2 +1,2 @@
-public class DepositMoney {
+public class DepositMoney extends Transactions{
 }

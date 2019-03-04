@@ -1,2 +1,4 @@
-public class ChangePin {
+public class ChangePin extends UserActions{
+
+
 }

@@ -1,4 +1,6 @@
 package ATM;
+import Actions.*;
+
 
 import java.util.Scanner;
 
@@ -35,14 +37,14 @@ public class ATM {
         while (true) {
 
             while (!userAuthenticated){
-                System.out.println("Welcome!");
+                System.out.println("\nWelcome!");
                 authenticateUser();
 
             }
             doActions();
             userAuthenticated = false;
             currentUserID = 0;
-            System.out.println("GoodBye!");
+            System.out.println("\nGoodBye!");
 
         }
 
@@ -51,10 +53,10 @@ public class ATM {
 
     private void authenticateUser() {
         Scanner input0 = new Scanner(System.in);
-        System.out.println("Please enter your User ID");
+        System.out.println("\nPlease enter your User ID");
         int currentID = input0.nextInt();
         Scanner input1 = new Scanner(System.in);
-        System.out.println("Please enter your password");
+        System.out.println("\nPlease enter your password");
         String pass = input1.nextLine();
 
         userAuthenticated = bankManager.authenticateUser(currentID, pass); //bankmanager needs this method
@@ -87,37 +89,62 @@ public class ATM {
                     exited = true;
                     break;
                 default:
-                    System.out.println("Invalid Input. Please try again");
+                    System.out.println("\nInvalid Input. Please try again");
                     break;
-            }
-        }
-    }
+            }//switch
+        }//while loop ends
+    }//doAction ends
 
     private void doUserAction(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Choose your Action");
-        System.out.println("1 - View Balance Summary");
-        System.out.println("2 - View Previous Transactions");
-        System.out.println("3 - Net Total");
-        System.out.println("4 - Change Password");
-        System.out.println("5 - View Date of Account Creation");
-        System.out.println("6 - Request New Account");
-        int user
+        boolean exited = false;
+        UserActions currentAction = null;
+        while (!exited) { //keeps running until user wants to go back to the previous options
+            Scanner input = new Scanner(System.in);
+            System.out.println("Choose your Action");
+            System.out.println("1 - View Balance Summary");
+            System.out.println("2 - View Previous Transactions");
+            System.out.println("3 - Net Total");
+            System.out.println("4 - Change Password");
+            System.out.println("5 - View Date of Account Creation");
+            System.out.println("6 - Request New Account");
+            System.out.println("0 - Return to previous page");
+            int userChoice = input.nextInt();
 
+            switch (userChoice) {
+                case BALANCE:
+                case PREVIOUS_TRANSACTION:
+                case NET_TOTAL:
+                case CHANGE_PSWD:
+                case CREATION_DATE:
+                case REQ_ACCNT:
+                    currentAction = createUserAction(userChoice);
+                    currentAction.execute();
+                    break;
+                case 0:
+                    exited = true;
+                    System.out.println("\nReturning to previous Options");
+                    break;
+                default:
+                    System.out.println("\nInvalid input. Please try again.");
+                    break;
+            }//switch
+        }//while loop ends
 
-
-
-    }
+    }//doUserAction ends
 
     private void doTransaction(){
+        boolean exited = false;
+        Transactions currentTransaction = null;
+        while(!exited){
+
+        }
 
     }
 
-    public UserActions createUserAction(int type){
-        return null;//place holder
-    }
+    private UserActions createUserAction(int type){
+        return null;
 
-    public Transactions createTransaction(int type){
+    private Transactions createTransaction(int type){
         return null; //placeholder
     }
 

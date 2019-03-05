@@ -1,7 +1,7 @@
 package Accounts;
 import java.util.Date;
 
-public class Account {
+public abstract class Account {
 
     static int numAccount;
     double balance;

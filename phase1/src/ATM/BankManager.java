@@ -1,6 +1,6 @@
 package ATM;
 
-import Accounts.Accounts;
+import Accounts.Account;
 import Accounts.AccountFactory;
 import java.util.Random;
 

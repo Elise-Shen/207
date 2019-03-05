@@ -25,7 +25,7 @@ public class CashStorage {
      *
      * @param amt amount of dollars withdrawn
      */
-    public void dispensCash(int amt){
+    public void dispenseCash(int amt){
 
 
 

@@ -2,7 +2,7 @@ package ATM;
 
 import java.util.Scanner;
 
-public class ATM {
+public class ATM_Machine {
 
     private final int UserAction
 

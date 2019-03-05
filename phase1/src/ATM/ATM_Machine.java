@@ -15,8 +15,10 @@ public class ATM_Machine {
     private final int CHANGE_PSWD = 4;
     private final int CREATION_DATE = 5;//
     private final int REQ_ACCNT = 6;
-    private final int DEPOSIT = 2;
-    private final int WITHDRAW = 3;
+    private final int DEPOSIT = 1;
+    private final int WITHDRAW = 2;
+    private final int PAYBILL = 3;
+    private final int TRANSFERMONEY = 4;
 
     private final int EXIT = 0;
 
@@ -70,6 +72,10 @@ public class ATM_Machine {
 
     }
 
+    /**
+     * User chooses whether to do User Actions or Transactions
+     * Keeps running until use chooses to exit to the previous list of options
+     */
     private void doActions(){
 
         boolean exited = false;
@@ -98,6 +104,11 @@ public class ATM_Machine {
         }//while loop ends
     }//doAction ends
 
+    /**
+     * Does User Actions
+     * keeps running until user choose to exit
+     * exits to doActions()
+     */
     private void doUserAction(){
         boolean exited = false;
         UserActions currentAction = null;
@@ -139,11 +150,41 @@ public class ATM_Machine {
         boolean exited = false;
         Transactions currentTransaction = null;
         while(!exited){
+            Scanner input = new Scanner(System.int)
+            System.out.println("\nChoose your transaction");
+            System.out.println("1 - Deposit");
+            System.out.println("2 - Withdrawal");
+            System.out.println("3 - Pay Bills"); //to non-user accounts
+            System.out.println("4 - Transfer Money");//user-user transactions. can be between the same user
+            System.out.println("0 - EXIT");
+            int transactionChoice = input.nextInt();
+
+            switch(transactionChoice){
+                case DEPOSIT:
+                case WITHDRAW:
+                case PAYBILL:
+                case TRANSFERMONEY:
+                    currentTransaction = createTransaction(transactionChoice);
+                    currentTransaction.execute();
+                    break;
+                case EXIT:
+                    exited = true;
+                    System.out.println("\nReturning to previous options");
+                default:
+                    System.out.println("\nInvalid input. Please try again!");
+            }
+
+
 
         }
 
     }
 
+    /**
+     *
+     * @param type gets int from doUserAction()
+     * @return the specific User Action object
+     */
     private UserActions createUserAction(int type) {
         UserActions temp = null;
         switch (type){
@@ -165,11 +206,27 @@ public class ATM_Machine {
             case REQ_ACCNT:
                 temp = new Request_Account(currentUserID, bankManager);
         }
-        return null;
+        return temp;
     }
 
-    private Transactions createTransaction(int type){
-        return null; //placeholder
+    private Transactions createTransaction(int type) {
+        Transactions temp = null;
+        switch(type){
+            case DEPOSIT:
+                temp = new DepositMoney(currentUserID, bankManager, cashStorage);
+                break;
+            case WITHDRAW:
+                temp = new WithdrawMoney(currentUserID, bankManager, cashStorage);
+                break;
+            case PAYBILL:
+                temp = new PayBills(currentUserID, bankManager);
+                break;
+            case TRANSFERMONEY:
+                temp = new AccountToAccount(currentUserID, bankManager);
+                break;
+        }
+
+        return temp; //placeholder
     }
 
 }

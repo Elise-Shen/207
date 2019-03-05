@@ -3,17 +3,17 @@ package ATM;
 import Accounts.Accounts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Date;
 
 public class User {
     private int userID;
     // transRecord: Map Date to an ArrayList
-    private HashMap <Date, ArrayList> trasRecord = new HashMap <Date,ArrayList>();
-    private ArrayList<Accounts> accounts = new ArrayList<Accounts>;
-    private Account primaryAccount;
-    private int password;
-    public User (int userID, int password){
+    private LinkedHashMap <Date, ArrayList> trasRecord = new LinkedHashMap <Date,ArrayList>();
+    private ArrayList<Accounts> accounts = new ArrayList<Accounts>();
+    private Accounts primaryAccount;
+    private String password;
+    public User (int userID, String password){
         this.userID = userID;
         this.password = password;
     }
@@ -21,21 +21,22 @@ public class User {
     public int getUserID(){
         return this.userID;
     }
-    public void setPassword(int newPassword){
+    public void setPassword(String newPassword){
         this.password = newPassword;
+        System.out.println("The password is reset (in user.java)");
     }
-    public int getPassword(){
+    public String getPassword(){
         return this.password;
     }
 
-    public Account getPrimaryAccount() {
+    public Accounts getPrimaryAccount() {
         return primaryAccount;
     }
 // view account
 
-    public addAcc(Accounts account){
-        accounts.add(account);
-
-    }
+//    public addAcc(Accounts account){
+//        accounts.add(account);
+//
+//    }
 
 }

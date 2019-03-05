@@ -55,6 +55,7 @@ public class ATM_Machine {
 
     private void authenticateUser() {
         Scanner input0 = new Scanner(System.in);
+        // check password
         System.out.println("\nPlease enter your User ID");
         int currentID = input0.nextInt();
         Scanner input1 = new Scanner(System.in);

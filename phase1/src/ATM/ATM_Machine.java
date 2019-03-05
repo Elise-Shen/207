@@ -4,7 +4,7 @@ import Actions.*;
 
 import java.util.Scanner;
 
-public class ATM {
+public class ATM_Machine {
 
     private final int USERACTION = 1;
     private final int TRANSACTION = 2;

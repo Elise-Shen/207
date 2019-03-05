@@ -2,20 +2,24 @@ import java.util.Scanner;
 
 public class ATM {
 
-    private static final int Balance = 1; //these can be non-static as we never use them without an instance of ATM?
-    private static final int Deposit = 2;
+    private final int UserAction
+
+    private final int Balance = 1; //these can be non-static as we never use them without an instance of ATM?
+    private final int Deposit = 2;
+    private final int WITHDRAW = 3;
 
     private boolean userAuthenticated;
-    private int currendUserID;
+    private int currentUserID;
     private CashStorage cashStorage;
-    private BankManager bankmanager;
+    private BankManager bankManager;
 
 
     public ATM(){
 
-
-
-
+        userAuthenticated = false;
+        currentUserID = 0;
+        cashStorage = new CashStorage();
+        bankManager = new BankManager();
     }
 
     public void run(){
@@ -23,69 +27,41 @@ public class ATM {
         while (true) {
 
             while (!userAuthenticated){
-                System.out.println("Welcome user " + currendUserID + "!");
+                System.out.println("Welcome!");
                 authenticateUser();
 
             }
-
-            doTransactions();
+            doActions();
             userAuthenticated = false;
-            currendUserID = 0;
+            currentUserID = 0;
+            System.out.println("GoodBye!");
 
         }
 
 
     }
 
-    public boolean authenticateUser() {
-
-        Scanner input = new Scanner(System.in);
+    private void authenticateUser() {
+        Scanner input0 = new Scanner(System.in);
+        System.out.println("Please enter your User ID");
+        int currentID = input0.nextInt();
+        Scanner input1 = new Scanner(System.in);
         System.out.println("Please enter your password");
-        String pass = input.nextLine();
+        String pass = input1.nextLine();
 
-        return bankManager.authenticateUser(currendUserID, pass);
-    }
+        userAuthenticated = bankManager.authenticateUser(currentID, pass); //bankmanger needs this method
 
-    public void doActions(){
-
-        Action currAction = null; //current action
-        boolean exited = false;
-
-        while (!exited){
-
-            System.out.println("Choose your action");
-            System.out.println("1 - View Balance");
-            System.out.println("2 - Deposit");
-            System.out.println("0 - exit");
-
-            Scanner input = new Scanner(System.in);
-            System.out.println("Enter your choice");
-            int type = input.nextInt();
-
-            switch (type){
-                case Balance:
-                    currAction = new ViewBalance(currendUserID, bankmanager);
-                    break;
-
-                case Deposit:
-                    currAction = new DepositMoney(currendUserID, bankmanager, cashStorage);
-                    break;
-
-                case 0:
-                    exited = true;
-
-                    default:
-                        System.out.println("please enter again");
-
-            }
-
-            currAction.exucute();
-
-
-        }
+        if (userAuthenticated){
+            currentUserID = currentID;
+        }else{System.out.println("Wrong Password!");}
 
     }
 
+    private void doActions(){
+        System.out.println("User Action or Transaction?");
+        System.out.println("1. User Action");
+        System.out.println("2. Transaction");
     }
+
 }
 

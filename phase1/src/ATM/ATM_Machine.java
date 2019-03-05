@@ -69,6 +69,10 @@ public class ATM_Machine {
 
     }
 
+    /**
+     * User chooses whether to do User Actions or Transactions
+     * Keeps running until use chooses to exit to the previous list of options
+     */
     private void doActions(){
 
         boolean exited = false;
@@ -97,6 +101,11 @@ public class ATM_Machine {
         }//while loop ends
     }//doAction ends
 
+    /**
+     * Does User Actions
+     * keeps running until user choose to exit
+     * exits to doActions()
+     */
     private void doUserAction(){
         boolean exited = false;
         UserActions currentAction = null;
@@ -138,11 +147,22 @@ public class ATM_Machine {
         boolean exited = false;
         Transactions currentTransaction = null;
         while(!exited){
+            System.out.println("\nChoose your transaction");
+            System.out.println("1 - Deposit");
+            System.out.println("2 - Withdrawal");
+            System.out.println("3 - Pay Bills");
+            System.out.println("4 - Transfer Money");
+
 
         }
 
     }
 
+    /**
+     *
+     * @param type gets int from
+     * @return
+     */
     private UserActions createUserAction(int type) {
         UserActions temp = null;
         switch (type){

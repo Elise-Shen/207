@@ -40,4 +40,5 @@ public class User {
 //
 //    }
 
+    public ArrayList<Account> getAccounts(){ return accounts;}
 }

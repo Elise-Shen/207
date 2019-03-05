@@ -20,5 +20,6 @@ public class RequestAccount extends UserActions {
     @Override
     public void execute() {
         bm.createAccount(user, AccountType);
+        System.out.println("Requested an " + AccountType + " account.");
     }
 }

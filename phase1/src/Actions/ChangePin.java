@@ -18,5 +18,6 @@ public class ChangePin extends UserActions {
     @Override
     public void execute() {
         user.setPassword(password);
+        System.out.println("The passward is changed.");
     }
 }

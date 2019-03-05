@@ -1,4 +1,7 @@
 package Actions;
 
-public class UserActions {
+public abstract class UserActions {
+
+    public abstract void execute();
+
 }

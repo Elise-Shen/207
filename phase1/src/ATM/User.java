@@ -1,6 +1,7 @@
 package ATM;
 
-import Accounts.Accounts;
+import Accounts.Account;
+import Actions.Transactions;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -9,9 +10,9 @@ import java.util.Date;
 public class User {
     private int userID;
     // transRecord: Map Date to an ArrayList
-    private LinkedHashMap <Date, ArrayList> trasRecord = new LinkedHashMap <Date,ArrayList>();
-    private ArrayList<Accounts> accounts = new ArrayList<Accounts>();
-    private Accounts primaryAccount;
+    private LinkedHashMap <Date, ArrayList<Transactions>> trasRecord = new LinkedHashMap <Date,ArrayList<Transactions>>();
+    private ArrayList<Account> accounts = new ArrayList<Account>();
+    private Account primaryAccount;
     private String password;
     public User (int userID, String password){
         this.userID = userID;
@@ -29,7 +30,7 @@ public class User {
         return this.password;
     }
 
-    public Accounts getPrimaryAccount() {
+    public Account getPrimaryAccount() {
         return primaryAccount;
     }
 // view account

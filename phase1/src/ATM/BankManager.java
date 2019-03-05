@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class BankManager {
 
     private ArrayList<User>  userArrayList = new ArrayList<User>();
+    private ArrayList<Account>  accountArrayList = new ArrayList<Account>();
     private AccountFactory accountFactory = new AccountFactory();
     public int userNumExample=3;
 
@@ -47,8 +48,8 @@ public class BankManager {
 //    public ArrayList<User> getUsers() {
 //        return users;
 //    }
-    public void undoTransaction (Transactions ){
-        //
+    public void undoTransaction (){
+
     }
 
 

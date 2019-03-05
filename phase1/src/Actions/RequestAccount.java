@@ -6,7 +6,7 @@ public class RequestAccount extends UserActions {
 
     private User user;
     private BankManager bm;
-    String AccountType;
+    private String AccountType;
 
     public RequestAccount(User user, BankManager bm, String AccountType){
         this.user = user;

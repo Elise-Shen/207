@@ -6,17 +6,19 @@ import java.util.Scanner;
 
 public class ATM_Machine {
 
-    private final int USERACTION = 1;
-    private final int TRANSACTION = 2;
+    private static final int USERACTION = 1;
+    private static final int TRANSACTION = 2;
 
-    private final int BALANCE = 1; //these can be non-static as we never use them without an instance of ATM?
+    private final int BALANCE = 1;
     private final int PREVIOUS_TRANSACTION = 2;
     private final int NET_TOTAL = 3;
     private final int CHANGE_PSWD = 4;
-    private final int CREATION_DATE = 5;
+    private final int CREATION_DATE = 5;//
     private final int REQ_ACCNT = 6;
     private final int DEPOSIT = 2;
     private final int WITHDRAW = 3;
+
+    private final int EXIT = 0;
 
     private boolean userAuthenticated;
     private int currentUserID;
@@ -59,7 +61,7 @@ public class ATM_Machine {
         System.out.println("\nPlease enter your password");
         String pass = input1.nextLine();
 
-        userAuthenticated = bankManager.authenticateUser(currentID, pass); //bankmanager needs this method
+        userAuthenticated = bankManager.checkPassword(currentID, pass); //bankmanager needs this method
 
         if (userAuthenticated){
             currentUserID = currentID;
@@ -79,13 +81,13 @@ public class ATM_Machine {
             int actionChoice = input.nextInt();
 
             switch (actionChoice) {
-                case 1:
+                case USERACTION:
                     doUserAction();
                     break;
-                case 2:
+                case TRANSACTION:
                     doTransaction();
                     break;
-                case 0:
+                case EXIT:
                     exited = true;
                     break;
                 default:
@@ -120,7 +122,7 @@ public class ATM_Machine {
                     currentAction = createUserAction(userChoice);
                     currentAction.execute();
                     break;
-                case 0:
+                case EXIT:
                     exited = true;
                     System.out.println("\nReturning to previous Options");
                     break;
@@ -141,8 +143,29 @@ public class ATM_Machine {
 
     }
 
-    private UserActions createUserAction(int type){
+    private UserActions createUserAction(int type) {
+        UserActions temp = null;
+        switch (type){
+            case BALANCE:
+                temp = new ViewBalance(currentUserID, bankManager);
+                break;
+            case PREVIOUS_TRANSACTION:
+                temp = new ViewMostRecentTransaction(currentUserID, bankManager);
+                break;
+            case NET_TOTAL:
+                temp = new Net_Total(currentUserID, bankManager);
+                break;
+            case CHANGE_PSWD:
+                temp = new ChangePin(currentUserID, bankManager);
+                break;
+            case CREATION_DATE:
+                temp = new ViewCreationDate(currentUserID, bankManager);
+                break;
+            case REQ_ACCNT:
+                temp = new Request_Account(currentUserID, bankManager);
+        }
         return null;
+    }
 
     private Transactions createTransaction(int type){
         return null; //placeholder

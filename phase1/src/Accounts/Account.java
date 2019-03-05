@@ -4,11 +4,11 @@ import java.util.Date;
 public class Account {
 
     static int numAccount;
-    private double balance;
+    double balance;
     private int accountID;
     private Date dateOfCreation;
 
-    public Account(dateOfCreation: Date) {
+    public Account(Date dateOfCreation) {
         numAccount += 1;
         this.accountID = numAccount;
         this.dateOfCreation = dateOfCreation;
@@ -18,11 +18,11 @@ public class Account {
         return this.balance;
     }
 
-    void increaseBalance(double money) {
+    public void increaseBalance(double money) {
         this.balance += money;
     }
 
-    void increaseBalance(double money) {
+    public void decreaseBalance(double money) {
         this.balance -= money;
     }
 

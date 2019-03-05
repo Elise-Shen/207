@@ -1,4 +1,4 @@
 package Accounts;
 
-public class Chequing extends AssetAccounts {
+public class Chequing extends AssetAccount {
 }

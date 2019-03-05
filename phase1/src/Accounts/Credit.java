@@ -1,4 +1,4 @@
 package Accounts;
 
-public class Credit extends DebtAccounts {
+public class Credit extends DebtAccount {
 }

@@ -1,6 +1,6 @@
 package Accounts;
 
-public class Saving extends AssetAccounts {
+public class Saving extends AssetAccount {
 
     public AddInterest(){
 

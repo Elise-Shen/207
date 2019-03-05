@@ -1,3 +1,5 @@
+package ATM;
+
 /**
  * Simulates the cash storage component of the ATM
  */

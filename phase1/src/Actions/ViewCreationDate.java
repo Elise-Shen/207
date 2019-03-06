@@ -1,13 +1,15 @@
 package Actions;
 
+import ATM.*;
 import Accounts.Account;
+
+import java.util.ArrayList;
 
 public class ViewCreationDate extends UserActions {
 
-    private Account account;
 
-    public ViewCreationDate(Account account){
-        this.account = account;
+    public ViewCreationDate(int userID, BankManager bm){
+        super(userID, bm);
     }
 
     /**
@@ -15,6 +17,11 @@ public class ViewCreationDate extends UserActions {
      */
     @Override
     public void execute() {
-        System.out.println("Account ID: " + account.getID() + " Date of Creation: " + account.getDateOfCreation());
+        BankManager bankManager = getBankManager();
+        User currentUser = bankManager.getUser(getUserID());
+        ArrayList<Account> currentAccounts = currentUser.getAccountList();
+        for(Account a: currentAccounts){
+            System.out.println("\nAccount ID" + a.getAccountID() + "was created on " + a.getDateOfCreation() +".");
+        }
     }
 }

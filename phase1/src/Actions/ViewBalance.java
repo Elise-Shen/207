@@ -34,8 +34,9 @@ public class ViewBalance extends UserActions {
             accountChoice = input.nextInt();
             if(currentUser.getAccount(accountChoice) != null){
                 validInput = true;
-            }
+            }else{System.out.println("Invalid Input. Please try again!");}
         }
+
         currentAccount = currentUser.getAccount(accountChoice);
         double balance = currentAccount.getBalance();
         System.out.println("Account id: " + accountChoice + " has balance $" + balance);

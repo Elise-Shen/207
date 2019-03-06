@@ -30,8 +30,7 @@ public class ViewBalance extends UserActions {
         int accountChoice = input.nextInt();
         account = currentUser.getAccount(accountChoice);
         double balance = account.getBalance();
-        int accountId = account.getAccountID();
-        System.out.println("Account id: " + accountId + " has balance " + balance);
+        System.out.println("Account id: " + accountChoice + " has balance $" + balance);
         System.out.println("Working");
     }
 

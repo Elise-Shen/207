@@ -35,15 +35,11 @@ public class User {
     }
 // view account
 
-//    public addAcc(Accounts account){
-//        accounts.add(account);
-//
-//    }
 
     public ArrayList<Account> getAccounts(){ return accounts;}
 
-    /** 
-    Given account ID -> Accout obj. correspond to this accountID
+    /**
+     *Given account ID -> Accout obj. correspond to this accountID
      */
     public Account getAccount(int accountID){
         Account result = null;
@@ -55,5 +51,12 @@ public class User {
         }
         return result;
 
+    }
+
+    /**
+     * Add an Account to this User's account list.
+     */
+    public void addAccount(Account account) {
+        this.accounts.add(account);
     }
 }

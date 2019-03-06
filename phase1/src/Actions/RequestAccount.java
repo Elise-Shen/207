@@ -2,11 +2,13 @@ package Actions;
 
 import ATM.*;
 
-public class RequestAccount extends UserActions {
+import java.util.Scanner;
 
-    private User user;
-    private BankManager bm;
-    private int AccountType;
+public class RequestAccount extends UserActions {
+    private static final int CHEQUING = 1;
+    private static final int SAVINGS = 2;
+    private static final int CREDIT = 3;
+    private static final int LINE_OF_CREDIT = 4;
 
     public RequestAccount(int userID, BankManager bm){
         super(userID, bm);
@@ -17,7 +19,51 @@ public class RequestAccount extends UserActions {
      */
     @Override
     public void execute() {
-        bm.createAccount(user, AccountType);
-        System.out.println("Requested an " + AccountType + " account.");
+        boolean userExited = false;
+        while (!userExited) {
+            int accountType = 0;
+            boolean isValid = false;
+            String typeString = null;
+            BankManager bankManager = getBankManager();
+            while (!isValid) {
+                Scanner input = new Scanner(System.in);
+                System.out.println("\nWhat type of account do you wish to create?");
+                System.out.println("1 - Chequing");
+                System.out.println("2 - Savings");
+                System.out.println("3 - Credit");
+                System.out.println("4 - Line of Credit");
+                System.out.println("0 - Exit");
+                int typeChoice = input.nextInt();
+                if (typeChoice <= 4 && typeChoice >= 0) {
+                    accountType = typeChoice;
+                    isValid = true;
+                } else {
+                    System.out.println("Invalid input. Please try again!");
+                }
+            }
+
+            switch (accountType) {
+                case CHEQUING:
+                    typeString = "Chequing";
+                    break;
+                case SAVINGS:
+                    typeString = "Saving";
+                    break;
+                case CREDIT:
+                    typeString = "Credit";
+                    break;
+                case LINE_OF_CREDIT:
+                    typeString = "Line of Credit";
+                    break;
+                case 0:
+                    userExited = true;
+                    break;
+
+            }
+
+            bankManager.createAccount(getUserID(), accountType);
+            System.out.println("\nRequested an " + typeString + " account.");
+
+        }
     }
 }

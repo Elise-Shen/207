@@ -29,18 +29,18 @@ public class User {
     public String getPassword(){
         return this.password;
     }
-
+    public void setPrimaryAccount(Account a){
+        primaryAccount=a;
+    }
     public Account getPrimaryAccount() {
         return primaryAccount;
     }
-// view account
 
-//    public addAcc(Accounts account){
-//        accounts.add(account);
-//
-//    }
-
-    public ArrayList<Account> getAccounts(){ return accounts;}
+    /**
+     *
+     * return the Array list of account
+     */
+    public ArrayList<Account> getAccountList(){ return accounts;}
 
     /** 
     Given account ID -> Accout obj. correspond to this accountID
@@ -55,5 +55,14 @@ public class User {
         }
         return result;
 
+    }
+
+    /**
+     * Add new account to account list.
+     * @param a
+     */
+
+    public void addAccount(Account a){
+        accounts.add(a);
     }
 }

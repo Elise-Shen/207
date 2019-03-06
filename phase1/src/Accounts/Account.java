@@ -29,7 +29,7 @@ public abstract class Account {
         this.balance -= money;
     }
 
-    public int getID() {
+    public int getAccountID() {
         return accountID;
     }
 

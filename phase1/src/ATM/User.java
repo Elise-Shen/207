@@ -42,9 +42,18 @@ public class User {
 
     public ArrayList<Account> getAccounts(){ return accounts;}
 
-    public Account getAccount(){
+    /** 
+    Given account ID -> Accout obj. correspond to this accountID
+     */
+    public Account getAccount(int accountID){
+        Account result = null;
+        for(Account a: accounts){
+            if (a.getAccountID()==accountID){
+                result = a;
+                break;
+            }
+        }
+        return result;
 
-
-        return null;//place holder
     }
 }

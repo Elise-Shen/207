@@ -1,15 +1,13 @@
 package Actions;
 
+import ATM.BankManager;
 import ATM.User;
 
 public class ChangePin extends UserActions {
 
-    private User user;
-    private String password;
 
-    public ChangePin(User user, String password){
-        this.user = user;
-        this.password = password;
+    public ChangePin(int userID, BankManager bm){
+        super(userID, bm);
     }
 
     /**
@@ -17,7 +15,12 @@ public class ChangePin extends UserActions {
      */
     @Override
     public void execute() {
-        user.setPassword(password);
+        BankManager bankManager = getBankManager();
+        User currentUser = bankManager.getUser(getUserID());
+
+        System.out.println("Enter a new password.");
+
+        currentUser.setPassword(password);
         System.out.println("The passward is changed.");
     }
 }

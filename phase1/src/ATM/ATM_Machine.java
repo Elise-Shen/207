@@ -200,7 +200,7 @@ public class ATM_Machine {
                 temp = new ViewMostRecentTransaction(currentUserID, bankManager);
                 break;
             case NET_TOTAL:
-                temp = new Net_Total(currentUserID, bankManager);
+                temp = new NetTotal(currentUserID, bankManager);
                 break;
             case CHANGE_PSWD:
                 temp = new ChangePin(currentUserID, bankManager);

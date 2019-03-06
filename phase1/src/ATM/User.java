@@ -17,6 +17,7 @@ public class User {
     private Account primaryAccount;
     private String password;
     //for transaction purpose
+
     private Account recentTransaction_from;
     private Account recentTransaction_to;
     private double recentTransaction_amount;
@@ -45,13 +46,12 @@ public class User {
     }
 
     /**
-     *
-     * return the Array list of account
+     * Return the Array list of account.
      */
     public ArrayList<Account> getAccountList(){ return accounts;}
 
-    /** 
-    Given account ID -> Accout obj. correspond to this accountID
+    /**
+     * Given account ID, return the corresponding account.
      */
     public Account getAccount(int accountID){
         Account result = null;
@@ -80,9 +80,8 @@ public class User {
 
     /**
      * Add new account to account list.
-     * @param a
+     * @param a the account to be added
      */
-
     public void addAccount(Account a){
         accounts.add(a);
     }

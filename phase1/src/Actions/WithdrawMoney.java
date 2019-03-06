@@ -5,12 +5,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WithdrawMoney extends Transactions {
+
+    /**
+     * The CashStorage of the ATM that performs this action.
+     */
     CashStorage cashStorage;
     public WithdrawMoney(int userid, BankManager bm, CashStorage cs) {
         super(userid, bm);
         this.cashStorage = cs;
     }
 
+    /**
+     * Withdraw money from the chosen account of current user, if applicable.
+     */
+    @Override
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());

@@ -22,8 +22,8 @@ public class ChangePin extends UserActions {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter a new password.");
-        String newpass = input.nextLine();
-        currentUser.setPassword(newpass);
-        System.out.println("The passward is changed.");
+        String newPass = input.nextLine();
+        currentUser.setPassword(newPass);
+        System.out.println("The password is changed.");
     }
 }

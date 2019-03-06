@@ -6,12 +6,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DepositMoney extends Transactions {
+    /**
+     * The CashStorage of the ATM that performs this action.
+     */
     CashStorage cashStorage;
-    public DepositMoney(int userid, BankManager bm, CashStorage cs) {
-        super(userid, bm);
+
+    /**
+     * Create an instance of DepositMoney action.
+     * @param userID the ID of the current user
+     * @param bm the BankManager of the ATM
+     * @param cs the CashStorage of the ATM
+     */
+    public DepositMoney(int userID, BankManager bm, CashStorage cs) {
+        super(userID, bm);
         this.cashStorage = cs;
     }
 
+    /**
+     * Deposit money into the chosen account of current user, if applicable.
+     */
+    @Override
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());

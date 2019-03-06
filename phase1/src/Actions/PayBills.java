@@ -22,7 +22,7 @@ public class PayBills extends Transactions{
         for(Account a: currentUserAccounts){
             System.out.println( a.getAccountID() + " - " + a.getAccountType());
         }
-        System.out.println("\nType in the ID of the account you want to used to pay bill");
+        System.out.println("\nType in the ID of the account you want to use to pay bill");
         // reduce the ammount of account
         int accountID = input.nextInt();
         Account account = currentUser.getAccount(accountID);
@@ -30,7 +30,7 @@ public class PayBills extends Transactions{
         int amount = input.nextInt();
 
         account.increaseBalance(amount);
-        System.out.println("A bill of $"+amount+" is paid from accountID "+ accountID);
+        System.out.println("A bill of $" + amount + " is paid from accountID " + accountID);
 
     }
 

@@ -1,1 +1,2 @@
-Date (yyyy-mm-dd), UserID, AccountID, Cash or cheque, amt
+Cash/Cheque, amt(if cheque) and #5dollar bills (if cash), #10$ bills, #20$ bills, ..., #100$ bills
+Enter in the information below.

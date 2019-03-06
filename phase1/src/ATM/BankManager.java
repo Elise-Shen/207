@@ -62,14 +62,12 @@ public class BankManager {
         user.setPassword(newPassword);
     }
 
-//    public void createAccount(User user, int type) {
-//
-//        if (approveAccount()){
-//            Accounts newAcc = accountFactory.create(type);
-//            user.addAcc(newAcc);
-//
-//        }
-//    }
+    public void createAccount(int userID, int accountType) {
+        AccountFactory accountFactory = new AccountFactory();
+        User user = getUser(userID);
+        user.addAccount(accountFactory.getAccount(accountType));
+    }
+
 //
 //    private boolean approveAccount(){return true;}
 

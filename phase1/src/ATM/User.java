@@ -43,8 +43,10 @@ public class User {
     public ArrayList<Account> getAccounts(){ return accounts;}
 
     public Account getAccount(){
-
-
         return null;//place holder
+    }
+
+    public void addAccount(Account account) {
+        accounts.add(account);
     }
 }

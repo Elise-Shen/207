@@ -28,7 +28,7 @@ public class ATM_Machine {
     private BankManager bankManager;
 
 
-    public ATM(){
+    public ATM_Machine(){
 
         userAuthenticated = false;
         currentUserID = 0;
@@ -150,7 +150,7 @@ public class ATM_Machine {
         boolean exited = false;
         Transactions currentTransaction = null;
         while(!exited){
-            Scanner input = new Scanner(System.int)
+            Scanner input = new Scanner(System.in);
             System.out.println("\nChoose your transaction");
             System.out.println("1 - Deposit");
             System.out.println("2 - Withdrawal");

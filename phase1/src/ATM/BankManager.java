@@ -32,7 +32,7 @@ public class BankManager {
         user.setPassword(newPassword);
     }
 
-//    public void createAccount(User user, String type) {
+//    public void createAccount(User user, int type) {
 //
 //        if (approveAccount()){
 //            Accounts newAcc = accountFactory.create(type);

@@ -3,6 +3,7 @@ ATM Class
 CashStorage Class
 
 BankManager Class
+Needs getUser method
 
 
 User Class

@@ -1,17 +1,21 @@
 package Accounts;
+import java.time.LocalDate;
 import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class Account {
 
     static int numAccount;
     double balance;
     private int accountID;
-    private Date dateOfCreation;
+    private LocalDate dateOfCreation;
+    private int accountType;
 
-    public Account(Date dateOfCreation) {
+    public Account(int type) {
+        this.accountType = type;
         numAccount += 1;
         this.accountID = numAccount;
-        this.dateOfCreation = dateOfCreation;
+        this.dateOfCreation = LocalDate.now();
     }
 
     public double getBalance() {
@@ -30,7 +34,7 @@ public abstract class Account {
         return accountID;
     }
 
-    public Date getDateOfCreation() {
+    public LocalDate getDateOfCreation() {
         return this.dateOfCreation;
     }
 }

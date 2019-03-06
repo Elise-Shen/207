@@ -15,3 +15,14 @@ Accounts abstract class
     Asset Account
         Saving
         Chequing
+
+Things left to do before submission:
+1. Implement class cashStorage(algorithm is important)
+2. Handle Time, Date, Restart issues.
+3. Check details (e.g. what should be included in outgoing.txt and alert.txt?) with instructors.
+4. Go over the code in three packages to make sure they are correct, and they can handle as many cases as possible.
+5. Add comments to fields and methods.
+5. Run the entire program; Test its basic functionality.
+5. Draw UML diagram according to the code.
+6. Submit code, UML, deposits.txt, (outgoing.txt, alert.txt??)
+

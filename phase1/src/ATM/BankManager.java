@@ -9,10 +9,40 @@ import java.util.ArrayList;
 public class BankManager {
 
     private ArrayList<User>  userArrayList = new ArrayList<User>();
-    private ArrayList<Account>  accountArrayList = new ArrayList<Account>();
     private AccountFactory accountFactory = new AccountFactory();
     public int userNumExample=3;
+    //for transaction purpose
+    private Account recentTransaction_from;
+    private Account recentTransaction_to;
+    private double recentTransaction_amount;
 
+    public void set_recentTransaction_from(Account from){
+        recentTransaction_from = from;
+    }
+    public void set_recentTransaction_to(Account to){
+        recentTransaction_to = to;
+    }
+    public void set_recentTransaction_amount(int amount){
+        recentTransaction_amount = amount;
+    }
+
+    public User getUser(int userID){
+        // given userID -> return the user object
+        User result = null;
+        for(User u: userArrayList){
+            if (u.getUserID()==userID){
+                result = u;
+                break;
+            }
+        }
+        return result;
+    }
+    public ArrayList<Account> getAccountArrayList(User user) {
+        // given user obj -> return a list of account in correspond to theuser
+        return user.getAccounts();
+    }
+
+    // constructor
     public BankManager(){
         // create 3 users for testing purpose
         createUserExample(userNumExample);
@@ -48,8 +78,14 @@ public class BankManager {
 //    public ArrayList<User> getUsers() {
 //        return users;
 //    }
-    public void undoTransaction (){
 
+    public void undoTransaction (){
+        // recentTransaction_to -> recentTransaction_from
+        // bills can't undo
+        // this 2 variables are updated in every transaction
+        recentTransaction_from.increaseBalance(recentTransaction_amount);
+        recentTransaction_to.decreaseBalance(recentTransaction_amount);
+        System.out.println("Transaction is Undo");
     }
 
 

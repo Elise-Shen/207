@@ -209,7 +209,7 @@ public class ATM_Machine {
                 temp = new ViewCreationDate(currentUserID, bankManager);
                 break;
             case REQ_ACCNT:
-                temp = new Request_Account(currentUserID, bankManager);
+                temp = new RequestAccount(currentUserID, bankManager);
             case ACCNT_SUMMARY:
                 temp = new AccountSummary(currentUserID, bankManager);
         }

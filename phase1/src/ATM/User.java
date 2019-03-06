@@ -14,7 +14,6 @@ public class User {
     private ArrayList<Account> accounts = new ArrayList<Account>();
     private Account primaryAccount;
     private String password;
-
     public User (int userID, String password){
         this.userID = userID;
         this.password = password;
@@ -23,7 +22,6 @@ public class User {
     public int getUserID(){
         return this.userID;
     }
-
     public void setPassword(String newPassword){
         this.password = newPassword;
         System.out.println("The password is reset (in user.java)");
@@ -31,28 +29,20 @@ public class User {
     public String getPassword(){
         return this.password;
     }
-
     public void setPrimaryAccount(Account a){
-        primaryAccount = a;
+        primaryAccount=a;
     }
     public Account getPrimaryAccount() {
         return primaryAccount;
     }
-// view account
-
-//    public addAcc(Accounts account){
-//        accounts.add(account);
-//
-//    }
 
     /**
-     * return a list of account for this user
+     *
+     * return the Array list of account
      */
-    public ArrayList<Account> getAccounts(){
-        return accounts;
-    }
+    public ArrayList<Account> getAccountList(){ return accounts;}
 
-    /**
+    /** 
     Given account ID -> Accout obj. correspond to this accountID
      */
     public Account getAccount(int accountID){
@@ -65,5 +55,14 @@ public class User {
         }
         return result;
 
+    }
+
+    /**
+     * Add new account to account list.
+     * @param a
+     */
+
+    public void addAccount(Account a){
+        accounts.add(a);
     }
 }

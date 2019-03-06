@@ -27,11 +27,12 @@ public class ViewBalance extends UserActions {
         User currentUser = bankManager.getUser(getUserID());
         ArrayList<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
         Scanner input = new Scanner(System.in);
-        System.out.println("\nWhich account's balance do you want to view?");
+        System.out.println("\nType in the ID of the account you want to view");
         for(Account a: currentUserAccounts){
             System.out.println( a.getID() + " - " + a.getAccountType());
         }
         int accountChoice = input.nextInt();
+        account = currentUser.getAccount(accountChoice);
         double balance = account.getBalance();
         int accountId = account.getID();
         System.out.println("Account id: " + accountId + " has balance " + balance);

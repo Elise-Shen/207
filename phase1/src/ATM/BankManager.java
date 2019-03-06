@@ -2,14 +2,17 @@ package ATM;
 
 import Accounts.Account;
 import Accounts.AccountFactory;
+import Actions.Transactions;
+
 import java.util.Random;
 
 import java.util.ArrayList;
 
 public class BankManager {
 
-    private ArrayList<User>  userArrayList = new ArrayList<User>();
+    private ArrayList<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
+    private ArrayList<Transactions> listOfTransactions = new ArrayList<>();
     public int userNumExample=3;
 
 
@@ -57,14 +60,6 @@ public class BankManager {
         user.addAccount(accountFactory.getAccount(accountType));
     }
 
-//
-//    private boolean approveAccount(){return true;}
-
-
-
-//    public ArrayList<User> getUsers() {
-//        return users;
-//    }
 
     public void undoTransaction (int userID){
         // recentTransaction_to -> recentTransaction_from
@@ -109,6 +104,10 @@ public class BankManager {
             }
         }
         return result;
+    }
+
+    public void addTransaction(Transactions t){
+        listOfTransactions.add(0, t);
     }
 
 }

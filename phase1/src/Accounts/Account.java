@@ -1,7 +1,10 @@
 package Accounts;
+import Actions.Transactions;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.time.LocalDate;
+import java.util.*;
 
 public abstract class Account {
 
@@ -10,11 +13,20 @@ public abstract class Account {
     private int accountID;
     private LocalDate dateOfCreation;
     private int accountType;
+    private Map<LocalDate, Transactions> listOfTransactions = new LinkedHashMap<>();
 
     public Account() {
         numAccount += 1;
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
+    }
+
+    public void addTransaction(Transactions t){
+        listOfTransactions.put(LocalDate.now(), t);
+    }
+
+    public Map<LocalDate, Transactions> getTransactionsList(){
+        return listOfTransactions;
     }
 
     public double getBalance() {

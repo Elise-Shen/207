@@ -1,5 +1,5 @@
 package Actions;
 
-public class PayBills {
+public class PayBills extends Transactions{
 
 }

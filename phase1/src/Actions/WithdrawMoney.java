@@ -1,4 +1,4 @@
 package Actions;
 
-public class WithdrawMoney {
+public class WithdrawMoney extends Transactions {
 }

@@ -1,4 +1,4 @@
 package Actions;
 
-public class AccountToAccount {
+public class AccountToAccount extends Transactions{
 }

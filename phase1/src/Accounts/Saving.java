@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class Saving extends AssetAccount {
     int accountType;
-    public Saving(Date creationDate) {
+    public Saving() {
         accountType = 2;
     }
 

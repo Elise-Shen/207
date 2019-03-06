@@ -7,6 +7,11 @@ public abstract class DebtAccount extends Account {
 
     }
 
+    @Override
+    public int getAccountType() {
+        return 0;
+    }
+
     public double getBalance() {
         return 0 - balance;
     }

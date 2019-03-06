@@ -1,6 +1,6 @@
 package Actions;
 
-import ATM.BankManager;
+import ATM.*;
 import Accounts.*;
 
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ public class ViewBalance extends UserActions {
 
     public ViewBalance(int currentId, BankManager bankManager){
         super(currentId, bankManager);
-        //this.account = account;
     }
 
     /**
@@ -25,12 +24,15 @@ public class ViewBalance extends UserActions {
     @Override
     public void execute(){
         BankManager bankManager = getBankManager();
-        ArrayList<Account> currentUserAccounts = bankManager.getAccounts(getUserID());//want to return a list of all accounts
+        User currentUser = bankManager.getUser(getUserID());
+        ArrayList<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
         Scanner input = new Scanner(System.in);
-        System.out.println("\nWhich account's balance do you want to view?");
+        System.out.println("\nType in the ID of the account you want to view");
         for(Account a: currentUserAccounts){
-            System.out.println(a.getID() + " - " + a.getType());
+            System.out.println( a.getID() + " - " + a.getAccountType());
         }
+        int accountChoice = input.nextInt();
+        account = currentUser.getAccount(accountChoice);
         double balance = account.getBalance();
         int accountId = account.getID();
         System.out.println("Account id: " + accountId + " has balance " + balance);

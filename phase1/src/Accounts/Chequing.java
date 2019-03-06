@@ -10,6 +10,7 @@ public class Chequing extends AssetAccount {
     }
 
 
+
     public void decreaseBalance(double money) {
         if (balance - money < -100) {
             balance -= money;

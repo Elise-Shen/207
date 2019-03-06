@@ -2,8 +2,8 @@ package Accounts;
 import java.util.Date;
 
 public class Saving extends AssetAccount {
-    int accountType;
-    public Saving(Date creationDate) {
+    private int accountType;
+    public Saving() {
         accountType = 2;
     }
 

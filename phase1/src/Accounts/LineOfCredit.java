@@ -10,6 +10,11 @@ public class LineOfCredit extends DebtAccount {
     }
 
     @Override
+    public String toString() {
+        return "Line of Credit";
+    }
+
+    @Override
     public int getAccountType() {
         return accountType;
     }

@@ -12,6 +12,11 @@ public abstract class DebtAccount extends Account {
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return null;
+    }
+
     public double getBalance() {
         return 0 - balance;
     }

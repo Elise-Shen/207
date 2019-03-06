@@ -11,4 +11,9 @@ public class Credit extends DebtAccount {
     public int getAccountType() {
         return accountType;
     }
+
+    @Override
+    public String toString() {
+        return "Credit";
+    }
 }

@@ -14,6 +14,11 @@ public class User {
     private ArrayList<Account> accounts = new ArrayList<Account>();
     private Account primaryAccount;
     private String password;
+    //for transaction purpose
+    private Account recentTransaction_from;
+    private Account recentTransaction_to;
+    private double recentTransaction_amount;
+
     public User (int userID, String password){
         this.userID = userID;
         this.password = password;
@@ -65,4 +70,19 @@ public class User {
     public void addAccount(Account a){
         accounts.add(a);
     }
+
+    // recent transaction record
+    public void set_recentTransaction_from(Account from){
+        recentTransaction_from = from;
+    }
+    public void set_recentTransaction_to(Account to){
+        recentTransaction_to = to;
+    }
+    public void set_recentTransaction_amount(int amount){
+        recentTransaction_amount = amount;
+    }
+    public Account getRecentTransaction_from(){return recentTransaction_from;}
+    public Account getRecentTransaction_to(){return recentTransaction_to;}
+    public double getRecentTransaction_amount(){return recentTransaction_amount;}
 }
+

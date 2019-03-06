@@ -220,7 +220,7 @@ public class ATM_Machine {
                 temp = new WithdrawMoney(currentUserID, bankManager, cashStorage);
                 break;
             case PAYBILL:
-                temp = new PayBills(currentUserID, bankManager);
+                temp = new PayBills(currentUserID, bankManager );
                 break;
             case TRANSFERMONEY:
                 temp = new AccountToAccount(currentUserID, bankManager);

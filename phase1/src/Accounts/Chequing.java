@@ -9,7 +9,14 @@ public class Chequing extends AssetAccount {
         accountType = 1;
     }
 
+    @Override
+    public int getAccountType() {
+        return accountType;
+    }
 
+    public String toString(){
+        return "Chequing";
+    }
 
     public void decreaseBalance(double money) {
         if (balance - money < -100) {

@@ -12,6 +12,11 @@ public class Saving extends AssetAccount {
         return accountType;
     }
 
+    @Override
+    public String toString() {
+        return "Savings";
+    }
+
     public void AddInterest(){
         balance = balance * (1 + 0.001);
     }

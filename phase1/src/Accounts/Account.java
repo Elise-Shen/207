@@ -33,6 +33,8 @@ public abstract class Account {
         return accountID;
     }
 
+    public abstract String toString();
+
     public abstract int getAccountType();
 
     public LocalDate getDateOfCreation() {

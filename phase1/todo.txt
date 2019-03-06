@@ -23,6 +23,6 @@ Things left to do before submission:
 4. Go over the code in three packages to make sure they are correct, and they can handle as many cases as possible.
 5. Add comments to fields and methods.
 5. Run the entire program; Test its basic functionality.
-5. Draw UML diagram according to the code.
-6. Submit code, UML, deposits.txt, (outgoing.txt, alert.txt??)
+6. Draw UML diagram according to the code.
+7. Submit code, UML, deposits.txt, README.txt (outgoing.txt, alert.txt??)
 

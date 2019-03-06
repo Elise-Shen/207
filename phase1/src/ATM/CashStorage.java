@@ -9,7 +9,6 @@ public class CashStorage {
     private int numTen; // number of ten dollar bills in ATM
     private int numTwenty; // Number of twenty dollar bills in ATM
     private int numFifty; // number of fifty dollar bills in ATM
-    private int numHun; // number of hundred dollar bills in ATM
     public final int MAXSTOCK = 1000;//maximum stock of each type of bills the ATM can hold
 
     public CashStorage(){
@@ -18,7 +17,6 @@ public class CashStorage {
         numTen = MAXSTOCK;
         numTwenty = MAXSTOCK;
         numFifty = MAXSTOCK;
-        numHun = MAXSTOCK;
     }
 
     /**

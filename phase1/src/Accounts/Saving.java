@@ -2,9 +2,14 @@ package Accounts;
 import java.util.Date;
 
 public class Saving extends AssetAccount {
-
+    int accountType;
     public Saving(Date creationDate) {
-        super(creationDate);
+        accountType = 2;
+    }
+
+    @Override
+    public int getAccountType() {
+        return accountType;
     }
 
     public void AddInterest(){

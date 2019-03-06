@@ -3,9 +3,12 @@ import java.util.Date;
 
 public class Chequing extends AssetAccount {
 
-    public Chequing(int type) {
-        super(type);
+    private int accountType;
+
+    public Chequing() {
+        accountType = 1;
     }
+
 
     public void decreaseBalance(double money) {
         if (balance - money < -100) {

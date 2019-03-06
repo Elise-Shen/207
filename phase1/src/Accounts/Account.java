@@ -34,6 +34,11 @@ public abstract class Account {
         return accountID;
     }
 
+    public String getAccountType(){
+
+        return null;
+    }
+
     public LocalDate getDateOfCreation() {
         return this.dateOfCreation;
     }

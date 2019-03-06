@@ -3,8 +3,8 @@ import java.util.Date;
 
 public class Chequing extends AssetAccount {
 
-    public Chequing(Date creationDate) {
-        super(creationDate);
+    public Chequing(int type) {
+        super(type);
     }
 
     public void decreaseBalance(double money) {

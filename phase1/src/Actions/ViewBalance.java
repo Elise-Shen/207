@@ -3,6 +3,7 @@ package Actions;
 import ATM.BankManager;
 import Accounts.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewBalance extends UserActions {
@@ -24,41 +25,16 @@ public class ViewBalance extends UserActions {
     @Override
     public void execute(){
         BankManager bankManager = getBankManager();
-        int currentUser = getUserID();
+        ArrayList<Account> currentUserAccounts = bankManager.getAccounts(getUserID());//want to return a list of all accounts
         Scanner input = new Scanner(System.in);
         System.out.println("\nWhich account's balance do you want to view?");
-        System.out.println("1 - Chequing");
-        System.out.println("2 - Savings");
-        System.out.println("3 - Credit");
-        System.out.println("4 - Line of Credit");
-        int accountChoice = input.nextInt();
-
-        switch (accountChoice){
-            case CHEQUING:
-                account = chooseChequingAccount();
-                //account = bankManager.getUser(currentUser).getAccount();
-                break;
-            case SAVING:
-                account = chooseSavingsAccount();
+        for(Account a: currentUserAccounts){
+            System.out.println(a.getID() + " - " + a.type);
         }
-
         double balance = account.getBalance();
         int accountId = account.getID();
         System.out.println("Account id: " + accountId + " has balance " + balance);
         System.out.println("Working");
     }
 
-    public Account chooseChequingAccount(){
-
-        //if number of chequing accounts >= 2
-        //then ask them which account they want to choose
-        //return the account
-        //else, return the only account
-        return null;//placeholder
-    }
-
-    public Account chooseSavingsAccount(){
-        //same idea as chooseChequingAccount
-        return null;
-    }
 }

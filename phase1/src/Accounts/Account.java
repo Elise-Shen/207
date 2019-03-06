@@ -11,8 +11,7 @@ public abstract class Account {
     private LocalDate dateOfCreation;
     private int accountType;
 
-    public Account(int type) {
-        this.accountType = type;
+    public Account() {
         numAccount += 1;
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
@@ -34,10 +33,7 @@ public abstract class Account {
         return accountID;
     }
 
-    public String getAccountType(){
-
-        return null;
-    }
+    public abstract int getAccountType();
 
     public LocalDate getDateOfCreation() {
         return this.dateOfCreation;

@@ -1,10 +1,14 @@
 package Accounts;
-import java.util.Date;
 
 public class Credit extends DebtAccount {
 
-    public Credit(Date creationDate) {
-        super(creationDate);
+    int accountType;
+    public Credit() {
+        accountType = 3;
     }
 
+    @Override
+    public int getAccountType() {
+        return accountType;
+    }
 }

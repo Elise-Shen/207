@@ -1,10 +1,10 @@
 package Accounts;
 import java.util.Date;
 
-public class DebtAccount extends Account {
+public abstract class DebtAccount extends Account {
 
-    public DebtAccount(Date creationDate) {
-        super(creationDate);
+    public DebtAccount() {
+
     }
 
     public double getBalance() {

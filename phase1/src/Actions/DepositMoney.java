@@ -1,4 +1,67 @@
 package Actions;
-// variable amount for deposit,
+import java.io.*;
+import ATM.*;
+import Accounts.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class DepositMoney extends Transactions {
+    CashStorage cashStorage;
+    public DepositMoney(int userid, BankManager bm, CashStorage cs) {
+        super(userid, bm);
+        this.cashStorage = cs;
+    }
+
+    public void execute() {
+        BankManager bankManager = getBankManager();
+        User currentUser = bankManager.getUser(getUserID());
+        boolean validInput = false;
+        int accountChoice = 0;
+        ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
+        while (!validInput) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("\nPlease type in the ID of the account what you want to deposit money in.");
+            for (Account a : currentUserAccounts) {
+                System.out.println(a.getAccountID() + " - " + a.toString());
+            }
+            accountChoice = input.nextInt();
+            Account myAccount = currentUser.getAccount(accountChoice);
+            if (myAccount != null && myAccount.getAccountType() != 3 && myAccount.getAccountType() != 4) {
+                validInput = true;
+            } else {
+                System.out.println("Invalid input. Please try again!");
+            }
+            Account currentAccount = currentUser.getAccount(accountChoice);
+            boolean validInput1 = false;
+            while (!validInput1) {
+                BufferedReader deposit = new BufferedReader(new FileReader("Actions/desposits.txt"));
+                String line = "";
+                String previous_line = "";
+                while (line != null) {
+                    previous_line = line;
+                    line = deposit.readLine();
+                }
+                previous_line.replaceAll("\\s+", "");
+                String[] split = previous_line.split(",");
+                if (split[0].equalsIgnoreCase("Cash")) {
+                    int numFive = Integer.valueOf(split[1]);
+                    int numTen = Integer.valueOf(split[2]);
+                    int numTwenty = Integer.valueOf(split[3]);
+                    int numFifty = Integer.valueOf(split[4]);
+                    currentAccount.increaseBalance(numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50);
+                    cashStorage.addBills(5, numFive);
+                    cashStorage.addBills(10, numTen);
+                    cashStorage.addBills(20, numTwenty);
+                    cashStorage.addBills(50, numFifty);
+                    validInput1 = true;
+                } else if (split[0].equalsIgnoreCase("Cheque")) {
+                    currentAccount.increaseBalance(Integer.valueOf(split[1]));
+                    validInput1 = true;
+                } else {
+                    System.out.println("Invalid input.Please enter again in deposits.txt.");
+                }
+            }
+        }
+    }
+
 }

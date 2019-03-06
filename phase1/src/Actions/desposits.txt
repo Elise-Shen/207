@@ -1,0 +1,6 @@
+Cash/Cheque, Amount of money if depositing cheque or #5$ bills if cash, (if cash)#10$ bills, (if cash)#20$ bills, (if cash)#50$ bills
+Enter in the information below.
+Examples:
+Cash, 2, 2, 2, 2
+Cheque, 100
+Please enter below:

@@ -6,12 +6,10 @@ public class RequestAccount extends UserActions {
 
     private User user;
     private BankManager bm;
-    private String AccountType;
+    private int AccountType;
 
-    public RequestAccount(User user, BankManager bm, String AccountType){
-        this.user = user;
-        this.bm = bm;
-        this.AccountType = AccountType;
+    public RequestAccount(int userID, BankManager bm){
+        super(userID, bm);
     }
 
     /**

@@ -165,6 +165,7 @@ public class ATM_Machine {
                 case PAYBILL:
                 case TRANSFERMONEY:
                     currentTransaction = createTransaction(transactionChoice);
+                    bankManager.addTransaction(currentTransaction);
                     currentTransaction.execute();
                     break;
                 case EXIT:

@@ -29,7 +29,7 @@ public class ViewBalance extends UserActions {
         Scanner input = new Scanner(System.in);
         System.out.println("\nWhich account's balance do you want to view?");
         for(Account a: currentUserAccounts){
-            System.out.println(a.getID() + " - " + a.type);
+            System.out.println(a.getID() + " - " + a.getType());
         }
         double balance = account.getBalance();
         int accountId = account.getID();

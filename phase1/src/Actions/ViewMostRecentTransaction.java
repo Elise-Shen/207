@@ -1,4 +1,4 @@
 package Actions;
 
-public class ViewMostRecentTransaction {
+public class ViewMostRecentTransaction extends UserActions {
 }

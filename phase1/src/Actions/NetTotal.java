@@ -1,5 +1,6 @@
 package Actions;
 
+import ATM.BankManager;
 import ATM.User;
 import Accounts.*;
 
@@ -7,10 +8,8 @@ import java.util.ArrayList;
 
 public class NetTotal extends UserActions {
 
-    private User user;
-
-    public NetTotal(User user){
-        this.user = user;
+    public NetTotal(int userID, BankManager bm){
+        super(userID, bm);
     }
 
     /**
@@ -18,7 +17,9 @@ public class NetTotal extends UserActions {
      */
     @Override
     public void execute() {
-        ArrayList<Account> accounts = user.getAccounts();
+        BankManager bankManager = getBankManager();
+        User currentUser = bankManager.getUser(getUserID());
+        ArrayList<Account> accounts = currentUser.getAccountList();
         int netTotal = 0;
         for(Account account: accounts){
             if (account instanceof AssetAccount) {

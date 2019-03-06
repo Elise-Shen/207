@@ -15,6 +15,7 @@ public class ATM_Machine {
     private final int CHANGE_PSWD = 4;
     private final int CREATION_DATE = 5;//
     private final int REQ_ACCNT = 6;
+    private final int ACCNT_SUMMARY = 7;
     private final int DEPOSIT = 1;
     private final int WITHDRAW = 2;
     private final int PAYBILL = 3;
@@ -121,6 +122,7 @@ public class ATM_Machine {
             System.out.println("4 - Change Password");
             System.out.println("5 - View Date of Account Creation");
             System.out.println("6 - Request New Account");
+            System.out.println("7 - View Account Summary");
             System.out.println("0 - Return to previous page");
             int userChoice = input.nextInt();
 
@@ -131,8 +133,10 @@ public class ATM_Machine {
                 case CHANGE_PSWD:
                 case CREATION_DATE:
                 case REQ_ACCNT:
+                case ACCNT_SUMMARY:
                     currentAction = createUserAction(userChoice);
                     currentAction.execute();
+                    //remember to add action and transaction to list in bankmanager
                     break;
                 case EXIT:
                     exited = true;
@@ -206,6 +210,8 @@ public class ATM_Machine {
                 break;
             case REQ_ACCNT:
                 temp = new Request_Account(currentUserID, bankManager);
+            case ACCNT_SUMMARY:
+                temp = new AccountSummary(currentUserID, bankManager);
         }
         return temp;
     }

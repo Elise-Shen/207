@@ -39,7 +39,7 @@ public class BankManager {
     }
     public ArrayList<Account> getAccountArrayList(User user) {
         // given user obj -> return a list of account in correspond to theuser
-        return user.getAccounts();
+        return user.getAccountList();
     }
 
     // constructor

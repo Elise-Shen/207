@@ -19,7 +19,6 @@ public class ChangePin extends UserActions {
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        boolean validInput = false;
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter a new password.");

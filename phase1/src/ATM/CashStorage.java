@@ -12,7 +12,7 @@ public class CashStorage {
     private int numTen; // number of ten dollar bills in ATM
     private int numTwenty; // Number of twenty dollar bills in ATM
     private int numFifty; // number of fifty dollar bills in ATM
-    public final int MAXSTOCK = 1000;//maximum stock of each type of bills the ATM can hold
+    private final int MAXSTOCK = 1000;//maximum stock of each type of bills the ATM can hold
 
     public CashStorage(){
 
@@ -23,18 +23,18 @@ public class CashStorage {
     }
 
     /**
-     * 1. check if money is enouth
-     * called from withdrawl
-     * @param amount
-     * @return
+     * 1. check if money is enough
+     * called from withdrawal
+     * @param amount is the amount of money user want to withdrawal
+     * @return whether the ATM has enough bill to give
      */
-    public boolean checkAmount(int amount){
+    private boolean checkAmount(int amount){
         int sum = numFifty*50+numTwenty*20+numTen*10+numFive*5;
         if(sum>=amount && amount%5 == 0){
             return true;
         }
         else{
-            System.out.println("Sorry, no available");// amout%5==0 or storage not enough
+            System.out.println("Sorry, no available");// amount is not a multiple of 5 or storage not enough
             return false;
         }
     }
@@ -51,20 +51,20 @@ public class CashStorage {
         if (validAmount){
             num50 = amount / 50;
             makeup = checkBillStorage(num50,numFifty);
+            num50 -= makeup;
             rest = amount %50+makeup*50;
             if (rest != 0){
                 num20 = amount/20;
                 makeup = checkBillStorage(num20,numTwenty);
+                num20 -= makeup;
                 rest = amount %20+makeup*20;
                 if (rest != 0){
                     num10 = amount/10;
                     makeup = checkBillStorage(num10,numTen);
+                    num10 -= makeup;
                     rest = amount %10+makeup*10;
                     if (rest != 0){
                         num5 = amount/5;
-                        makeup = checkBillStorage(num5,numFive);
-                        rest = amount %5+makeup*5;
-                        rest = amount % 5;
                     }
                 }
             }
@@ -73,40 +73,19 @@ public class CashStorage {
         numFive = numFive-num5;
         numTen = numTen-num10;
         numTwenty=numTwenty-num20;
-        numFifty=num5-num50;
+        numFifty=numFifty-num50;
         System.out.println("You will get: ");
         System.out.println("num of $50:" + num50+",num of $20: "+num20+",num of $10:"+num10+",num of 5:"+num5);
         return validAmount;
     }
-    public int checkBillStorage(int numBill,int numBillLeft){
+
+    private int checkBillStorage(int numBill, int numBillLeft){
         //numBill: needed numBillLeft: current storage in ATM
         if (numBill>numBillLeft)
             return (numBill-numBillLeft);
         else
             return 0;
     }
-
-    /**
-     *
-     * @param type type of bill
-     * @param amt amt of dollars
-     * @return whether the atm has enough bills
-     */
-    public boolean enoughBills(int type, int amt){
-
-        return true;//place holder
-
-    }
-
-    /**
-     *
-     * @param type type of bill
-     * @return return (number of type of bill) > 20
-     */
-    public boolean enoughBills(int type){
-        return true;//placeholder
-    }
-
 
     private boolean NotEnough5(){ return numFive < 20; }
 
@@ -119,8 +98,8 @@ public class CashStorage {
     /**
      * adds more bills
      * called when User deposits bills
-     * @param type
-     * @param amt
+     * @param type the type of bill added to ATM
+     * @param amt the amount of that type of bill
      */
     public void addBills(int type, int amt){
         switch (type){

@@ -2,6 +2,9 @@ package ATM;
 
 /**
  * Simulates the cash storage component of the ATM
+ * 1. check amount & multiple of 5
+ * 2. withdrawl
+ * 3. check if amount to add
  */
 public class CashStorage {
 
@@ -20,13 +23,66 @@ public class CashStorage {
     }
 
     /**
-     *
-     * @param amt amount of dollars withdrawn
+     * 1. check if money is enouth
+     * called from withdrawl
+     * @param amount
+     * @return
      */
-    public void dispenseCash(int amt){
+    public boolean checkAmount(int amount){
+        int sum = numFifty*50+numTwenty*20+numTen*10+numFive*5;
+        if(sum>=amount and amount%5 == 0){
+            return true;
+        }
+        else{
+            System.out.println("Sorry, no available");// amout%5==0 or storage not enough
+            return false;
+        }
+    }
+    /**
+     * 2. withdrawl money
+     * reduce cash storage
+     */
+    public void withDrawl(int amount){
+        int num50=0,num20=0,num10=0,num5=0;
+        int makeup;
+        int rest;
+        // calculate bills
+        if (checkAmount(amount)){
+            num50 = amount / 50;//2
+            makeup = checkBillStorage(num50,numFifty);//1
+            rest = amount %50+makeup*50;//35+50=85
+            if (rest != 0){
+                num20 = amount/20;//4
+                makeup = checkBillStorage(num20,numTwenty)//3
+                rest = amount %20+makeup*20;//5+60=65
+                if (rest != 0){
+                    num10 = amount/10;
+                    makeup = checkBillStorage(num10,numTen)
+                    rest = amount %10+makeup*10;
+                    if (rest != 0){
+                        num5 = amount/5;
+                        makeup = checkBillStorage(num5,numFive)
+                        rest = amount %5+makeup*5;
+                        rest = amount % 5;
+                    }
+                }
+            }
+        }
+        // change storage
+        numFive = numFive-num5;
+        numTen = numTen-num10;
+        numTwenty=numTwenty-num20;
+        numFifty=num5-num50;
+        System.out.println("You will get: ");
+        System.out.println("num of $50:" + num50+",num of $20: "+num20+",num of $10:"+num10+",num of 5:"+num5);
 
-
-
+    }
+    public int checkBillStorage(int numBill,int numBillLeft){
+        //numBill: needed numBillLeft: current storage in ATM
+        if (numBill>numBillLeft)
+            return (numBill-numBillLeft);
+        else
+            return 0;
     }
 
     /**
@@ -50,15 +106,53 @@ public class CashStorage {
         return true;//placeholder
     }
 
+
+    private boolean NotEnough5(){ return numFive < 20; }
+
+    private boolean NotEnough10() { return numTen < 20; }
+
+    private boolean NotEnough20() { return numTwenty < 20; }
+
+    private boolean NotEnough50() {return numFifty < 20; }
+
     /**
      * adds more bills
      * called when User deposits bills
-     * or when BankManager restocks the bills
      * @param type
      * @param amt
      */
     public void addBills(int type, int amt){
+        switch (type){
+            case 5:
+                numFive += amt;
+                System.out.println("Added 5 dollar bills.");
+                break;
+            case 10:
+                numTen += amt;
+                System.out.println("Added 10 dollar bills.");
+                break;
+            case 20:
+                numTwenty += amt;
+                System.out.println("Added 20 dollar bills.");
+                break;
+            case 50:
+                numFifty += amt;
+                System.out.println("Added 50 dollar bills.");
+                break;
+            default:
+                System.out.println("No bill is added.");
+        }
+    }
 
+    /**
+     * add bills under 20 to MAXSTOCK.
+     * called when BankManager restocks the bills.
+     */
+    public void setToMaxStock(){
+        if (NotEnough5()) { numFive = MAXSTOCK; }
+        if (NotEnough10()) { numTen = MAXSTOCK; }
+        if (NotEnough20()) { numTwenty = MAXSTOCK; }
+        if (NotEnough50()) { numFifty = MAXSTOCK;}
     }
 
 }

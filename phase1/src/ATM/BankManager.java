@@ -16,6 +16,12 @@ public class BankManager {
     public int userNumExample=3;
 
 
+    public BankManager(){
+        // create 3 users for testing purpose
+        User user1 = new User(1, "abc123");
+        userArrayList.add(user1);
+        //createUserExample(userNumExample);
+    }
 
 
     public User getUser(int userID){
@@ -32,12 +38,6 @@ public class BankManager {
     public ArrayList<Account> getAccountArrayList(User user) {
         // given user obj -> return a list of account in correspond to theuser
         return user.getAccountList();
-    }
-
-    // constructor
-    public BankManager(){
-        // create 3 users for testing purpose
-        createUserExample(userNumExample);
     }
 
     private void createUserExample(int userNum){
@@ -95,7 +95,7 @@ public class BankManager {
         }
         // check password
         if (currentUser != null) {
-            if (currentUser.getPassword() == inputPassword) {
+            if (currentUser.getPassword().equals(inputPassword)) {
                 System.out.println("Successful Login");
                 result = true;
             } else {

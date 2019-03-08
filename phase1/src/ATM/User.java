@@ -1,6 +1,7 @@
 package ATM;
 
 import Accounts.Account;
+import Accounts.Chequing;
 import Actions.Transactions;
 
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class User {
     public User (int userID, String password){
         this.userID = userID;
         this.password = password;
+        Account account1 = new Chequing();
+        accounts.add(account1);
     }
 // getter and setter
 

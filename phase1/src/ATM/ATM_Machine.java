@@ -214,10 +214,13 @@ public class ATM_Machine {
                 break;
             case REQ_ACCNT:
                 temp = new RequestAccount(currentUserID, bankManager);
+                break;
             case ACCNT_SUMMARY:
                 temp = new AccountSummary(currentUserID, bankManager);
+                break;
             case SET_PRIM_ACCNT:
                 temp = new SetPrimaryAccount(currentUserID, bankManager);
+                break;
         }
         return temp;
     }

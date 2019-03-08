@@ -30,7 +30,7 @@ public class CashStorage {
      */
     public boolean checkAmount(int amount){
         int sum = numFifty*50+numTwenty*20+numTen*10+numFive*5;
-        if(sum>=amount and amount%5 == 0){
+        if(sum>=amount && amount%5 == 0){
             return true;
         }
         else{
@@ -48,20 +48,20 @@ public class CashStorage {
         int rest;
         // calculate bills
         if (checkAmount(amount)){
-            num50 = amount / 50;//2
-            makeup = checkBillStorage(num50,numFifty);//1
-            rest = amount %50+makeup*50;//35+50=85
+            num50 = amount / 50;
+            makeup = checkBillStorage(num50,numFifty);
+            rest = amount %50+makeup*50;
             if (rest != 0){
-                num20 = amount/20;//4
-                makeup = checkBillStorage(num20,numTwenty)//3
-                rest = amount %20+makeup*20;//5+60=65
+                num20 = amount/20;
+                makeup = checkBillStorage(num20,numTwenty);
+                rest = amount %20+makeup*20;
                 if (rest != 0){
                     num10 = amount/10;
-                    makeup = checkBillStorage(num10,numTen)
+                    makeup = checkBillStorage(num10,numTen);
                     rest = amount %10+makeup*10;
                     if (rest != 0){
                         num5 = amount/5;
-                        makeup = checkBillStorage(num5,numFive)
+                        makeup = checkBillStorage(num5,numFive);
                         rest = amount %5+makeup*5;
                         rest = amount % 5;
                     }

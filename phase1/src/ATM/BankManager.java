@@ -55,7 +55,6 @@ public class BankManager {
     }
 
     public void createAccount(int userID, int accountType) {
-        AccountFactory accountFactory = new AccountFactory();
         User user = getUser(userID);
         user.addAccount(accountFactory.getAccount(accountType));
     }

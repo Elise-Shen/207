@@ -3,7 +3,7 @@ package ATM;
 /**
  * Simulates the cash storage component of the ATM
  * 1. check amount & multiple of 5
- * 2. withdrawl
+ * 2. withdrawal
  * 3. check if amount to add
  */
 public class CashStorage {

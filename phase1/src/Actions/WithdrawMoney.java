@@ -23,7 +23,6 @@ public class WithdrawMoney extends Transactions {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
         boolean validInput = false;
-        int accountChoice = 0;
         ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
             Scanner input = new Scanner(System.in);
@@ -31,7 +30,7 @@ public class WithdrawMoney extends Transactions {
             for (Account a : currentUserAccounts) {
                 System.out.println(a.getAccountID() + " - " + a.toString());
             }
-            accountChoice = input.nextInt();
+            int accountChoice = input.nextInt();
             Account myAccount = currentUser.getAccount(accountChoice);
             if (myAccount != null && myAccount.getAccountType() != 3 && myAccount.getAccountType() != 4) {
                 validInput = true;
@@ -46,12 +45,18 @@ public class WithdrawMoney extends Transactions {
                 double balance = currentAccount.getBalance();
                 int cashWithdrawn = input1.nextInt();
                 if (currentAccount.getAccountType() == 2 && (balance - cashWithdrawn) > -1) {
-                    currentAccount.decreaseBalance(cashWithdrawn);
-                    validInput1 = true;
-                } else if (currentAccount.getAccountType() == 1) {
-                    if (balance > -1 && balance - cashWithdrawn > -101) {
+                    boolean withdrawn = cashStorage.withdrawl(cashWithdrawn);
+                    if (withdrawn) {
                         currentAccount.decreaseBalance(cashWithdrawn);
                         validInput1 = true;
+                    }
+                } else if (currentAccount.getAccountType() == 1) {
+                    if (balance > -1 && balance - cashWithdrawn > -101) {
+                        boolean withdrawn = cashStorage.withdrawl(cashWithdrawn);
+                        if (withdrawn) {
+                            currentAccount.decreaseBalance(cashWithdrawn);
+                            validInput1 = true;
+                        }
                     } else {
                         System.out.println("Insufficient balance. Please enter again!");
                     }
@@ -60,4 +65,4 @@ public class WithdrawMoney extends Transactions {
         }
     }
 
-}
+

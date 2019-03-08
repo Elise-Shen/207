@@ -12,3 +12,4 @@ Things left to do before submission:
 
 Outgoing.txt
 Date Stuff
+Make program more user-friendly

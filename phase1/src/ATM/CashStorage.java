@@ -39,15 +39,16 @@ public class CashStorage {
         }
     }
     /**
-     * 2. withdrawl money
+     * 2. withdrawal money
      * reduce cash storage
      */
-    public void withDrawl(int amount){
+    public boolean withdrawal(int amount){
         int num50=0,num20=0,num10=0,num5=0;
         int makeup;
         int rest;
+        boolean validAmount = checkAmount(amount);
         // calculate bills
-        if (checkAmount(amount)){
+        if (validAmount){
             num50 = amount / 50;
             makeup = checkBillStorage(num50,numFifty);
             rest = amount %50+makeup*50;
@@ -75,7 +76,7 @@ public class CashStorage {
         numFifty=num5-num50;
         System.out.println("You will get: ");
         System.out.println("num of $50:" + num50+",num of $20: "+num20+",num of $10:"+num10+",num of 5:"+num5);
-
+        return validAmount;
     }
     public int checkBillStorage(int numBill,int numBillLeft){
         //numBill: needed numBillLeft: current storage in ATM

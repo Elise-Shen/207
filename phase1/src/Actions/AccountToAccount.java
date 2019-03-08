@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class AccountToAccount extends Transactions {
     // Transfer money from one account to another
     // ask user to input 2 account numbers
+    private int currentAccountID;
+
     public AccountToAccount(int currentId, BankManager bankManager){
         super(currentId,bankManager);
     }
@@ -27,6 +29,7 @@ public class AccountToAccount extends Transactions {
 
         int accountID_from = input.nextInt();
         Account account_from = currentUser.getAccount(accountID_from);
+        currentAccountID = accountID_from;
 
         System.out.println("\nType in the accountID money transfer out to");
         int accountID_to = input.nextInt();
@@ -45,9 +48,16 @@ public class AccountToAccount extends Transactions {
 
         System.out.println("A transaction of amount $"+ amount+" is completed");
         System.out.println("from accountID "+ account_from+" to accountID "+ account_to);
+    }
 
+    @Override
+    public int getAccountID() {
+        return currentAccountID;
+    }
 
-
+    @Override
+    public String toString() {
+        return "Money Transfer";
     }
 }
 

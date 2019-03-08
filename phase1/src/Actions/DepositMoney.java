@@ -12,6 +12,8 @@ public class DepositMoney extends Transactions {
      * The CashStorage of the ATM that performs this action.
      */
     CashStorage cashStorage;
+    private int currentAccountID;
+    private String depositType;
 
     /**
      * Create an instance of DepositMoney action.
@@ -45,6 +47,7 @@ public class DepositMoney extends Transactions {
             Account myAccount = currentUser.getAccount(accountChoice);
             if (myAccount != null && myAccount.getAccountType() != 3 && myAccount.getAccountType() != 4) {
                 currentAccount = currentUser.getAccount(accountChoice);
+                currentAccountID = accountChoice;
                 validInput = true;
             } else {
                 System.out.println("Invalid input. Please try again!");
@@ -65,6 +68,7 @@ public class DepositMoney extends Transactions {
             System.out.println(Arrays.toString(lastLine));
             validInput1 = true;
             if (lastLine[0].equalsIgnoreCase("Cash")) {
+                depositType = "Cash";
                 int numFive = Integer.valueOf(lastLine[1]);
                 int numTen = Integer.valueOf(lastLine[2]);
                 int numTwenty = Integer.valueOf(lastLine[3]);
@@ -76,6 +80,7 @@ public class DepositMoney extends Transactions {
                 cashStorage.addBills(50, numFifty);
                 validInput1 = true;
             } else if (lastLine[0].equalsIgnoreCase("Cheque")) {
+                depositType = "Cheque";
                 currentAccount.increaseBalance(Integer.valueOf(lastLine[1]));
                 validInput1 = true;
             } else {
@@ -102,5 +107,15 @@ public class DepositMoney extends Transactions {
         }
 
         return deposits;
+    }
+
+    @Override
+    public int getAccountID() {
+        return currentAccountID;
+    }
+
+    @Override
+    public String toString() {
+        return depositType +" Deposit";
     }
 }

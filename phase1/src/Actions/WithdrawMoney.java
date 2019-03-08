@@ -9,6 +9,8 @@ public class WithdrawMoney extends Transactions {
     /**
      * The CashStorage of the ATM that performs this action.
      */
+    public int currentAccountID;
+
     CashStorage cashStorage;
     public WithdrawMoney(int userid, BankManager bm, CashStorage cs) {
         super(userid, bm);
@@ -34,6 +36,7 @@ public class WithdrawMoney extends Transactions {
             Account myAccount = currentUser.getAccount(accountChoice);
             if (myAccount != null && myAccount.getAccountType() != 3 && myAccount.getAccountType() != 4) {
                 validInput = true;
+                currentAccountID = accountChoice;
             } else {
                 System.out.println("Invalid input. Please try again!");
             }
@@ -63,6 +66,16 @@ public class WithdrawMoney extends Transactions {
                 }
             }
         }
+    }
+
+    @Override
+    public int getAccountID() {
+        return currentAccountID;
+    }
+
+    @Override
+    public String toString() {
+        return "Withdrawal";
     }
 }
 

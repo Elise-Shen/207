@@ -1,9 +1,11 @@
 package Actions;
-import java.io.*;
 import ATM.*;
+import java.io.*;
 import Accounts.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.nio.file.*;
+import java.nio.charset.StandardCharsets;
+
 
 public class DepositMoney extends Transactions {
     /**
@@ -29,6 +31,7 @@ public class DepositMoney extends Transactions {
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
+        Account currentAccount = null;
         boolean validInput = false;
         int accountChoice = 0;
         ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
@@ -41,57 +44,63 @@ public class DepositMoney extends Transactions {
             accountChoice = input.nextInt();
             Account myAccount = currentUser.getAccount(accountChoice);
             if (myAccount != null && myAccount.getAccountType() != 3 && myAccount.getAccountType() != 4) {
+                currentAccount = currentUser.getAccount(accountChoice);
                 validInput = true;
             } else {
                 System.out.println("Invalid input. Please try again!");
             }
-            Account currentAccount = currentUser.getAccount(accountChoice);
-            boolean validInput1 = false;
-            while (!validInput1) {
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new FileReader("deposits.txt"));
-                    String line = "";
-                    String previous_line = "";
-                    while (line != null) {
-                        previous_line = line;
-                        line = bufferedReader.readLine();
-                        previous_line.replaceAll("\\s+", "");
-                        String[] split = previous_line.split(",");
-                        if (split[0].equalsIgnoreCase("Cash")) {
-                            int numFive = Integer.valueOf(split[1]);
-                            int numTen = Integer.valueOf(split[2]);
-                            int numTwenty = Integer.valueOf(split[3]);
-                            int numFifty = Integer.valueOf(split[4]);
-                            currentAccount.increaseBalance(numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50);
-                            cashStorage.addBills(5, numFive);
-                            cashStorage.addBills(10, numTen);
-                            cashStorage.addBills(20, numTwenty);
-                            cashStorage.addBills(50, numFifty);
-                            validInput1 = true;
-                        } else if (split[0].equalsIgnoreCase("Cheque")) {
-                            currentAccount.increaseBalance(Integer.valueOf(split[1]));
-                            validInput1 = true;
-                        } else {
-                            System.out.println("Invalid input.Please enter again in deposits.txt.");
-                        }
-                        bufferedReader.close();
-                    }
-                }
-                catch(FileNotFoundException ex) {
-                    System.out.println(
-                            "Unable to open file '" +
-                                    "deposits.txt" + "'");
-                }
-                catch(IOException ex) {
-                    System.out.println(
-                            "Error reading file '"
-                                    + "deposits.txt" + "'");
-                }
+        }
+        System.out.println("Please enter things into deposits.txt");
+        //currentAccount = currentUser.getAccount(accountChoice); moved up to previous if statement
+        boolean validInput1 = false;
+        while (!validInput1) {
 
-
-
+            List<String[]> deposits = readFromCSV("phase1\\deposits.txt");
+            String[] lastLine = null;
+            // let's print all the person read from CSV file
+            for (String[] s : deposits) {
+                lastLine = s;
 
             }
+            System.out.println(Arrays.toString(lastLine));
+            validInput1 = true;
+            if (lastLine[0].equalsIgnoreCase("Cash")) {
+                int numFive = Integer.valueOf(lastLine[1]);
+                int numTen = Integer.valueOf(lastLine[2]);
+                int numTwenty = Integer.valueOf(lastLine[3]);
+                int numFifty = Integer.valueOf(lastLine[4]);
+                currentAccount.increaseBalance(numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50);
+                cashStorage.addBills(5, numFive);
+                cashStorage.addBills(10, numTen);
+                cashStorage.addBills(20, numTwenty);
+                cashStorage.addBills(50, numFifty);
+                validInput1 = true;
+            } else if (lastLine[0].equalsIgnoreCase("Cheque")) {
+                currentAccount.increaseBalance(Integer.valueOf(lastLine[1]));
+                validInput1 = true;
+            } else {
+                System.out.println("Invalid input.Please enter again in deposits.txt.");
+            }
         }
+    }
+
+    private static List<String[]> readFromCSV(String fileName) {
+        List<String[]> deposits = new ArrayList<>();
+        Path pathToFile = Paths.get(fileName);
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+            String line = br.readLine();
+            while (line != null) {
+                String[] attributes = line.split(",");
+                for (int i = 0; i < attributes.length; i++){
+                    attributes[i] = attributes[i].replaceAll("\\s+","");
+                }
+                deposits.add(attributes);
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        return deposits;
     }
 }

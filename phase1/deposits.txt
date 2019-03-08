@@ -4,3 +4,5 @@ Examples:
 Cash, 2, 2, 2, 2
 Cheque, 100
 Please enter below:
+Cheque, 100
+Cash, 5, 5, 5, 5

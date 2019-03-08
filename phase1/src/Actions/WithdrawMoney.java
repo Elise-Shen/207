@@ -45,14 +45,14 @@ public class WithdrawMoney extends Transactions {
                 double balance = currentAccount.getBalance();
                 int cashWithdrawn = input1.nextInt();
                 if (currentAccount.getAccountType() == 2 && (balance - cashWithdrawn) > -1) {
-                    boolean withdrawn = cashStorage.withdrawl(cashWithdrawn);
+                    boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
                     if (withdrawn) {
                         currentAccount.decreaseBalance(cashWithdrawn);
                         validInput1 = true;
                     }
                 } else if (currentAccount.getAccountType() == 1) {
                     if (balance > -1 && balance - cashWithdrawn > -101) {
-                        boolean withdrawn = cashStorage.withdrawl(cashWithdrawn);
+                        boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
                         if (withdrawn) {
                             currentAccount.decreaseBalance(cashWithdrawn);
                             validInput1 = true;
@@ -64,5 +64,6 @@ public class WithdrawMoney extends Transactions {
             }
         }
     }
+}
 
 

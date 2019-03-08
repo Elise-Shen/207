@@ -1,20 +1,4 @@
-ATM Class
 
-CashStorage Class
-
-BankManager Class
-Needs getUser method
-
-
-User Class
-
-Accounts abstract class
-    Debt Account
-        Credit
-        Line of Credit
-    Asset Account
-        Saving
-        Chequing
 
 Things left to do before submission:
 1. Implement class cashStorage(algorithm is important)
@@ -26,3 +10,5 @@ Things left to do before submission:
 6. Draw UML diagram according to the code.
 7. Submit code, UML, deposits.txt, README.txt (outgoing.txt, alert.txt??)
 
+Outgoing.txt
+Date Stuff

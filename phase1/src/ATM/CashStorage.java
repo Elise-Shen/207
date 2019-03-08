@@ -50,15 +50,53 @@ public class CashStorage {
         return true;//placeholder
     }
 
+
+    private boolean NotEnough5(){ return numFive < 20; }
+
+    private boolean NotEnough10() { return numTen < 20; }
+
+    private boolean NotEnough20() { return numTwenty < 20; }
+
+    private boolean NotEnough50() {return numFifty < 20; }
+
     /**
      * adds more bills
      * called when User deposits bills
-     * or when BankManager restocks the bills
      * @param type
      * @param amt
      */
     public void addBills(int type, int amt){
+        switch (type){
+            case 5:
+                numFive += amt;
+                System.out.println("Added 5 dollar bills.");
+                break;
+            case 10:
+                numTen += amt;
+                System.out.println("Added 10 dollar bills.");
+                break;
+            case 20:
+                numTwenty += amt;
+                System.out.println("Added 20 dollar bills.");
+                break;
+            case 50:
+                numFifty += amt;
+                System.out.println("Added 50 dollar bills.");
+                break;
+            default:
+                System.out.println("No bill is added.");
+        }
+    }
 
+    /**
+     * add bills under 20 to MAXSTOCK.
+     * called when BankManager restocks the bills.
+     */
+    public void setToMaxStock(){
+        if (NotEnough5()) { numFive = MAXSTOCK; }
+        if (NotEnough10()) { numTen = MAXSTOCK; }
+        if (NotEnough20()) { numTwenty = MAXSTOCK; }
+        if (NotEnough50()) { numFifty = MAXSTOCK;}
     }
 
 }

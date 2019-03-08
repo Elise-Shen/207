@@ -29,7 +29,9 @@ public class ViewAccount extends UserActions {
             Scanner input = new Scanner(System.in);
             System.out.println("\nType in the ID of the account you want to view");
             for (Account a : currentUserAccounts) {
-                System.out.println(a.getAccountID() + " - " + a.toString());
+                if(a != null){
+                    System.out.println(a.getAccountID() + " - " + a.toString());
+                }
             }
             accountChoice = input.nextInt();
             currentAccount = currentUser.getAccount(accountChoice);

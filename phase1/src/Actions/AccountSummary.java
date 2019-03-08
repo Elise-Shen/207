@@ -24,8 +24,10 @@ public class AccountSummary extends UserActions {
         int accountNum = 0;
         for (Account account : accounts) {
             accountNum++;
-            System.out.println("Account Number " + accountNum + ": Account ID: " + account.getAccountID()
-                    + " balance: " + account.getBalance());
+            if (account != null){
+                System.out.println("Account Number " + accountNum + ": Account ID: " + account.getAccountID()
+                       + " balance: " + account.getBalance());
+            }
         }
     }
 }

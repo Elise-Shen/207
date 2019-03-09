@@ -47,7 +47,7 @@ public class AccountToAccount extends Transactions {
         currentUser.set_recentTransaction_to(account_to);
 
         System.out.println("A transaction of amount $"+ amount+" is completed");
-        System.out.println("from accountID "+ account_from+" to accountID "+ account_to);
+        System.out.println("from " + accountID_from + account_from+" to " + accountID_to + account_to);
     }
 
     @Override

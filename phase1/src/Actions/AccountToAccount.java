@@ -6,6 +6,9 @@ import Accounts.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Can only transfer to own accounts, or other user's chequing accounts.
+ */
 public class AccountToAccount extends Transactions {
     // Transfer money from one account to another
     // ask user to input 2 account numbers
@@ -20,6 +23,7 @@ public class AccountToAccount extends Transactions {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
         ArrayList<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
+        ArrayList<Account> allAccounts = bankManager.getAllAccounts();
 
         Scanner input = new Scanner(System.in);
         for (Account a : currentUserAccounts) {
@@ -33,9 +37,13 @@ public class AccountToAccount extends Transactions {
         Account account_from = currentUser.getAccount(accountID_from);
         currentAccountID = accountID_from;
 
+
+        for (Account a : allAccounts){
+            System.out.println(a.getAccountID() + " - User " + a.getOwnerID() + "'s " + a);
+        }
         System.out.println("\nType in the accountID money transfer out to");
         int accountID_to = input.nextInt();
-        Account account_to = currentUser.getAccount(accountID_to);
+        Account account_to = bankManager.getOneAccount(accountID_to);
 
         System.out.println("\nType in the amount of money to transfer");
         int amount = input.nextInt();

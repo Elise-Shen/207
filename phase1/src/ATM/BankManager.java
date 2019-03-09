@@ -4,6 +4,7 @@ import Accounts.Account;
 import Accounts.AccountFactory;
 import Actions.Transactions;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 
 import java.util.ArrayList;
@@ -11,19 +12,31 @@ import java.util.Scanner;
 
 public class BankManager {
 
+    private String bankName;
+
     private ArrayList<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
-    private ArrayList<Transactions> listOfTransactions = new ArrayList<>();
-    public int userNumExample=3;
+    private ArrayList<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
+    private ArrayList<Account> allAccounts = new ArrayList<>();
 
+    public BankManager(String bankName){
+        this.bankName = bankName;
 
-    public BankManager(){
         // create 3 users for testing purpose
-        User user1 = new User(1, "abc123");
+        User user1 = new User(1, "abc123", this);
+        User user2 = new User(2, "abc123", this);
         userArrayList.add(user1);
+        userArrayList.add(user2);
         //createUserExample(userNumExample);
     }
 
+    public void addAllAccountsList(Account a){
+        allAccounts.add(a);
+    }
+
+    public String getBankName(){
+        return this.bankName;
+    }
 
     public User getUser(int userID){
         User result = null;
@@ -40,23 +53,34 @@ public class BankManager {
         return user.getAccountList();
     }
 
-    private void createUserExample(int userNum){
-        for (int i=1;i<=userNum;i++){
-            int userID = 100000+i;
-            Random rand = new Random();
-            int password = rand.nextInt(50);
-            User user = new User (userID,Integer.toString(password));
-            userArrayList.add(user);
-        }
-
+    public ArrayList<Account> getAllAccounts(){
+        return allAccounts;
     }
+
+    public Account getOneAccount(int id){
+        Account temp = null;
+        for (Account a: allAccounts){
+            if (a.getAccountID() == id){
+                temp = a;
+                break;
+            }
+        }
+        return temp;
+    }
+
     public void setPassword(User user, String newPassword){
         user.setPassword(newPassword);
     }
 
     public void createAccount(int userID, int accountType) {
         User user = getUser(userID);
-        user.addAccount(accountFactory.getAccount(accountType));
+        Account newAccount = accountFactory.getAccount(accountType);
+        newAccount.setOwnerID(userID);
+        user.addAccount(newAccount);
+        if (accountType == 1) {
+            user.getBankManager().addAllAccountsList(newAccount);
+        }
+
     }
 
 
@@ -87,6 +111,7 @@ public class BankManager {
         boolean validInput0 = false;
         boolean validInput1 = false;
         while (!validInput0) {
+            try{
             Scanner input0 = new Scanner(System.in);
             System.out.println("\nPlease enter your User ID");
             currentID = input0.nextInt();
@@ -108,10 +133,15 @@ public class BankManager {
                     }
                 }
             }
+        }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again!");}
         }
         return currentID;
     }
 
+    /**
+     * Used for part 2
+     * @param t transaction
+     */
     public void addTransaction(Transactions t){
         listOfTransactions.add(0, t);
     }

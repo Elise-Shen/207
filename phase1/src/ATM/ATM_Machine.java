@@ -36,14 +36,14 @@ public class ATM_Machine {
         userAuthenticated = false;
         currentUserID = 0;
         cashStorage = new CashStorage();
-        bankManager = new BankManager();
+        bankManager = new BankManager("TD Bank");
     }
 
     public void run(){
 
         while (true) {
             while (!userAuthenticated){
-                System.out.println("\nWelcome!");
+                System.out.println("\nWelcome to " + bankManager.getBankName() +"'s ATM!");
                 currentUserID = bankManager.checkLogin();
                 userAuthenticated = true;
             }
@@ -158,6 +158,7 @@ public class ATM_Machine {
                 case EXIT:
                     exited = true;
                     System.out.println("\nReturning to previous options");
+                    break;
                 default:
                     System.out.println("\nInvalid input. Please try again!");
             }

@@ -32,8 +32,15 @@ public abstract class Account {
     private Map<LocalDate, Transactions> listOfTransactions = new LinkedHashMap<>();
 
     /**
+     * Ownder's user ID
+     */
+    private int ownerID;
+
+
+    /**
      * Creates an account with unique ID.
      */
+
     public Account() {
         numAccount += 1;
         this.accountID = numAccount;
@@ -95,6 +102,14 @@ public abstract class Account {
      * Return an integer representing a specific account type.
      */
     public abstract int getAccountType();
+
+    public void setOwnerID(int i){
+        ownerID = i;
+    }
+
+    public int getOwnerID(){
+        return ownerID;
+    }
 
     /**
      * Return the creation date of this account.

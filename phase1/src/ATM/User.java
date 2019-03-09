@@ -16,33 +16,42 @@ public class User {
     private ArrayList<Account> accounts = new ArrayList<>();
     private Account primaryAccount;
     private String password;
+    private BankManager bankManager;
     //for transaction purpose
 
     private Account recentTransaction_from;
     private Account recentTransaction_to;
     private double recentTransaction_amount;
 
-    public User (int userID, String password){
+    public User (int userID, String password, BankManager bm){
         this.userID = userID;
         this.password = password;
+        this.bankManager = bm;
         Account account1 = new Chequing();
+        account1.setOwnerID(this.userID);
         accounts.add(account1);
+        this.bankManager.addAllAccountsList(account1);
     }
 // getter and setter
+
 
     public int getUserID(){
         return this.userID;
     }
+
     public void setPassword(String newPassword){
         this.password = newPassword;
         System.out.println("The password is reset (in user.java)");
     }
+
     public String getPassword(){
         return this.password;
     }
+
     public void setPrimaryAccount(Account a){
         primaryAccount=a;
     }
+
     public Account getPrimaryAccount() {
         return primaryAccount;
     }
@@ -65,6 +74,10 @@ public class User {
         }
         return result;
 
+    }
+
+    public BankManager getBankManager(){
+        return this.bankManager;
     }
 
     /**

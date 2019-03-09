@@ -1,6 +1,13 @@
 package Accounts;
 
 public class AccountFactory {
+
+    /**
+     * Return a new account according to accountType.
+     *
+     * @param accountType the integer corresponding to a specific type of account.
+     */
+
     public Account getAccount(int accountType) {
         if (accountType == 1) {
             return new Chequing();

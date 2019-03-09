@@ -2,14 +2,17 @@ package Accounts;
 import java.util.Date;
 
 public class Saving extends AssetAccount {
-    private int accountType;
+
+    /**
+     * Creates a Savings Account.
+     */
     public Saving() {
-        accountType = 2;
+        super();
     }
 
     @Override
     public int getAccountType() {
-        return accountType;
+        return 2;
     }
 
     @Override
@@ -17,6 +20,9 @@ public class Saving extends AssetAccount {
         return "Savings";
     }
 
+    /**
+     * Make this savings account's balance increase by a factor of 0.1%.
+     */
     public void AddInterest(){
         balance = balance * (1 + 0.001);
     }

@@ -3,21 +3,24 @@ import java.util.Date;
 
 public class Chequing extends AssetAccount {
 
-    private int accountType;
-
+    /**
+     * Creates a Chequing Account.
+     */
     public Chequing() {
-        accountType = 1;
+        super();
     }
 
     @Override
     public int getAccountType() {
-        return accountType;
+        return 1;
     }
 
+    @Override
     public String toString(){
         return "Chequing";
     }
 
+    @Override
     public void decreaseBalance(double money) {
         balance -= money;
     }

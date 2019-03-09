@@ -2,14 +2,16 @@ package Accounts;
 
 public class Credit extends DebtAccount {
 
-    int accountType;
+    /**
+     * Creates a Credit Card Account.
+     */
     public Credit() {
-        accountType = 3;
+        super();
     }
 
     @Override
     public int getAccountType() {
-        return accountType;
+        return 3;
     }
 
     @Override

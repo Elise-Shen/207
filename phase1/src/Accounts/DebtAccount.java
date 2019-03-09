@@ -3,8 +3,11 @@ import java.util.Date;
 
 public abstract class DebtAccount extends Account {
 
+    /**
+     * Creates a Debt Account.
+     */
     public DebtAccount() {
-
+        super();
     }
 
     @Override
@@ -17,6 +20,7 @@ public abstract class DebtAccount extends Account {
         return null;
     }
 
+    @Override
     public double getBalance() {
         return 0 - balance;
     }

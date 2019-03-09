@@ -3,8 +3,11 @@ import java.util.Date;
 import java.time.LocalDate;
 public class AssetAccount extends Account {
 
+    /**
+     * Creates an Asset Account.
+     */
     public AssetAccount() {
-
+        super();
     }
 
     @Override

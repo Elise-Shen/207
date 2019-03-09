@@ -3,10 +3,11 @@ import java.util.Date;
 
 public class LineOfCredit extends DebtAccount {
 
-    int accountType;
-
+    /**
+     * Creates a Line of Credit account.
+     */
     public LineOfCredit() {
-        accountType = 4;
+        super();
     }
 
     @Override
@@ -16,6 +17,6 @@ public class LineOfCredit extends DebtAccount {
 
     @Override
     public int getAccountType() {
-        return accountType;
+        return 4;
     }
 }

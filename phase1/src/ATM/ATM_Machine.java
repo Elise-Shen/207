@@ -93,7 +93,7 @@ public class ATM_Machine {
      */
     private void doUserAction(){
         boolean exited = false;
-        UserActions currentAction = null;
+        UserActions currentAction;
         while (!exited) { //keeps running until user wants to go back to the previous options
             Scanner input = new Scanner(System.in);
             System.out.println("Choose your Action");
@@ -135,7 +135,7 @@ public class ATM_Machine {
 
     private void doTransaction(){
         boolean exited = false;
-        Transactions currentTransaction = null;
+        Transactions currentTransaction;
         while(!exited){
             Scanner input = new Scanner(System.in);
             System.out.println("\nChoose your transaction");

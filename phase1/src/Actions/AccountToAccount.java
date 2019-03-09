@@ -23,7 +23,9 @@ public class AccountToAccount extends Transactions {
 
         Scanner input = new Scanner(System.in);
         for(Account a: currentUserAccounts){
-            System.out.println( a.getAccountID() + " - " + a.getAccountType());
+            if (a != null) {
+                System.out.println( a.getAccountID() + " - " + a.getAccountType());
+            }
         }
         System.out.println("\nType in the accountID money transfer out from");
 

@@ -18,7 +18,5 @@ public class ViewBalance extends ViewAccount {
         int currentId = currentAccount.getAccountID();
         double balance = currentAccount.getBalance();
         System.out.println("Account id: " + currentId + " has balance $" + balance);
-        System.out.println("Working");
     }
-
 }

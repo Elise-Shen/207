@@ -24,7 +24,7 @@ public class ViewAccount extends UserActions {
         int accountChoice;
         BankManager bankManager = getBankManager();
         currentUser = bankManager.getUser(getUserID());
-        ArrayList<Account> currentUserAccounts = currentUser.getAccountList();//want to return a list of all accounts
+        ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
             Scanner input = new Scanner(System.in);
             System.out.println("\nType in the ID of the account you want to view");

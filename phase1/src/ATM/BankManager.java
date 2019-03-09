@@ -26,10 +26,9 @@ public class BankManager {
 
 
     public User getUser(int userID){
-        // given userID -> return the user object
         User result = null;
-        for(User u: userArrayList){
-            if (u.getUserID()==userID){
+        for (User u: userArrayList) {
+            if (u.getUserID() == userID) {
                 result = u;
                 break;
             }
@@ -81,15 +80,16 @@ public class BankManager {
     /**
      * Determine whether the user successfully login according to the password entered.
      */
-    void checkLogin () {
+    int checkLogin () {
         User currentUser;
         // check if user exist
+        int currentID = 0;
         boolean validInput0 = false;
         boolean validInput1 = false;
         while (!validInput0) {
             Scanner input0 = new Scanner(System.in);
             System.out.println("\nPlease enter your User ID");
-            int currentID = input0.nextInt();
+            currentID = input0.nextInt();
             currentUser = checkUserID(currentID);
             if (currentUser == null) {
                 System.out.println("User does not exist. Please try again.");
@@ -109,6 +109,7 @@ public class BankManager {
                 }
             }
         }
+        return currentID;
     }
 
     public void addTransaction(Transactions t){

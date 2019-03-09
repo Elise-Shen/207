@@ -44,7 +44,7 @@ public class ATM_Machine {
         while (true) {
             while (!userAuthenticated){
                 System.out.println("\nWelcome!");
-                bankManager.checkLogin();
+                currentUserID = bankManager.checkLogin();
                 userAuthenticated = true;
             }
             doActions();

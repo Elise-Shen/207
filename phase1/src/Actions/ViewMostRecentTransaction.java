@@ -25,11 +25,8 @@ public class ViewMostRecentTransaction extends ViewAccount {
             entry = entries.next();
             mapkey = entry.getKey();
             //keeps iterating until the last item
-            //sets mapkey to last item
+            //sets map-key to last item
         }
         System.out.println("THe most recent transaction is: " + recent.get(mapkey).toString() + " on " + mapkey);
-        //System.out.println(currentAccount.getAccountID());
-
-
     }
 }

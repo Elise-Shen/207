@@ -22,9 +22,9 @@ public class AccountToAccount extends Transactions {
         ArrayList<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
 
         Scanner input = new Scanner(System.in);
-        for(Account a: currentUserAccounts){
-            if (a != null) {
-                System.out.println( a.getAccountID() + " - " + a.getAccountType());
+        for (Account a : currentUserAccounts) {
+            if (a != null){
+                System.out.println(a.getAccountID() + " - " + a);
             }
         }
         System.out.println("\nType in the accountID money transfer out from");

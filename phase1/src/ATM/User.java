@@ -59,7 +59,7 @@ public class User {
     public Account getAccount(int accountID){
         Account result = null;
         for(Account a: accounts){
-            if (a.getAccountID()==accountID){
+            if (a != null && a.getAccountID() == accountID) {
                 result = a;
                 break;
             }

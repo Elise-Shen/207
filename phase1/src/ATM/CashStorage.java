@@ -30,13 +30,15 @@ public class CashStorage {
      */
     private boolean checkAmount(int amount){
         int sum = numFifty*50+numTwenty*20+numTen*10+numFive*5;
-        if(sum>=amount && amount%5 == 0){
+        if (sum >= amount && amount%5 == 0) {
             return true;
+        } else if (sum < amount){
+            System.out.println("Money Withdrawal is not available due to insufficient cash storage." +
+                    "\nWe are sorry for the inconvenience");// amount is not a multiple of 5 or storage not enough
+        } else if (amount%5 != 0) {
+            System.out.println("The amount of money to withdraw should be a multiple of 5. Please enter again.");
         }
-        else{
-            System.out.println("Sorry, no available");// amount is not a multiple of 5 or storage not enough
-            return false;
-        }
+        return false;
     }
     /**
      * 2. withdrawal money
@@ -75,7 +77,7 @@ public class CashStorage {
         numTwenty=numTwenty-num20;
         numFifty=numFifty-num50;
         System.out.println("You will get: ");
-        System.out.println("num of $50:" + num50+",num of $20: "+num20+",num of $10:"+num10+",num of 5:"+num5);
+        System.out.println(num50+" 50$ bills, "+num20+" 20$ bills, " + num10+" 10$ bills, "+num5 + " 5$ bills");
         return validAmount;
     }
 

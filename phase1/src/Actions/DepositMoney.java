@@ -42,7 +42,7 @@ public class DepositMoney extends Transactions {
             System.out.println("\nPlease type in the ID of the account what you want to deposit money in.");
             for (Account a : currentUserAccounts) {
                 if (a != null){
-                    System.out.println(a.getAccountID() + " - " + a.toString());
+                    System.out.println(a.getAccountID() + " - " + a);
                 }
             }
             accountChoice = input.nextInt();

@@ -77,10 +77,7 @@ public class BankManager {
         Account newAccount = accountFactory.getAccount(accountType);
         newAccount.setOwnerID(userID);
         user.addAccount(newAccount);
-        if (accountType == 1) {
-            user.getBankManager().addAllAccountsList(newAccount);
-        }
-
+        user.getBankManager().addAllAccountsList(newAccount);
     }
 
 

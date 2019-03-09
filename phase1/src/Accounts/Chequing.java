@@ -1,5 +1,4 @@
 package Accounts;
-import java.util.Date;
 
 public class Chequing extends AssetAccount {
 

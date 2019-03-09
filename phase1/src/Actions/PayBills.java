@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PayBills extends Transactions{
-    //PayBills(currentUserID, bankManager );
-    // pay a bill to non user account
-    // transaction can't undo -> don't update recent transaction for user
     private int currentAccountID;
 
     public PayBills(int currentId, BankManager bankManager){
@@ -34,7 +31,7 @@ public class PayBills extends Transactions{
         System.out.println("\nType in the amount of bill");
         int amount = input.nextInt();
 
-        account.increaseBalance(amount);
+        account.decreaseBalance(amount);
         System.out.println("A bill of $" + amount + " is paid from accountID " + accountID);
 
     }

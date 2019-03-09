@@ -7,6 +7,7 @@ import Actions.Transactions;
 import java.util.Random;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BankManager {
 
@@ -77,36 +78,54 @@ public class BankManager {
     }
 
 
-    public boolean checkPassword (int userID, String inputPassword) {
-        // pre: user exist, inputPassword is string
-        // check if the password inputted from keyboard eq. to the user's password
-        // find user obj.
-        User currentUser = null;
-        boolean result = false;
+    /**
+     * Determine whether the user successfully login according to the password entered.
+     */
+    void checkLogin () {
+        User currentUser;
         // check if user exist
-        for (int counter = 0; counter < userArrayList.size(); counter++) {
-            if (userArrayList.get(counter).getUserID() == userID) {
-                currentUser = userArrayList.get(counter);
+        boolean validInput0 = false;
+        boolean validInput1 = false;
+        while (!validInput0) {
+            Scanner input0 = new Scanner(System.in);
+            System.out.println("\nPlease enter your User ID");
+            int currentID = input0.nextInt();
+            currentUser = checkUserID(currentID);
+            if (currentUser == null) {
+                System.out.println("User does not exist. Please try again.");
             } else {
-                System.out.println("User not exist");
+                validInput0 = true;
+                while (!validInput1) {
+                    // check if password is correct.
+                    Scanner input1 = new Scanner(System.in);
+                    System.out.println("\nPlease enter your password");
+                    String pass = input1.nextLine();
+                    if (currentUser.getPassword().equals(pass)) {
+                        System.out.println("Successfully Login!");
+                        validInput1 = true;
+                    } else {
+                        System.out.println("Wrong Password. Please try again.");
+                    }
+                }
             }
-
         }
-        // check password
-        if (currentUser != null) {
-            if (currentUser.getPassword().equals(inputPassword)) {
-                System.out.println("Successful Login");
-                result = true;
-            } else {
-                System.out.println("Wrong Password");
-
-            }
-        }
-        return result;
     }
 
     public void addTransaction(Transactions t){
         listOfTransactions.add(0, t);
+    }
+
+    /**
+     * Check if the user with ID userID exists.
+     * @param userID the ID to check.
+     */
+    private User checkUserID(int userID) {
+        for (int counter = 0; counter < userArrayList.size(); counter++) {
+            if (userArrayList.get(counter).getUserID() == userID) {
+                return userArrayList.get(counter);
+            }
+        }
+        return null;
     }
 
 }

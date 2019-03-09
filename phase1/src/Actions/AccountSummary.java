@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class AccountSummary extends UserActions {
 
-
     public AccountSummary(int userID, BankManager bm) {
         super(userID, bm);
     }

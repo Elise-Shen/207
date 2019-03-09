@@ -42,37 +42,16 @@ public class ATM_Machine {
     public void run(){
 
         while (true) {
-
             while (!userAuthenticated){
                 System.out.println("\nWelcome!");
-                authenticateUser();
-
+                bankManager.checkLogin();
+                userAuthenticated = true;
             }
             doActions();
             userAuthenticated = false;
             currentUserID = 0;
             System.out.println("\nGoodBye!");
-
         }
-
-
-    }
-
-    private void authenticateUser() {
-        Scanner input0 = new Scanner(System.in);
-        // check password
-        System.out.println("\nPlease enter your User ID");
-        int currentID = input0.nextInt();
-        Scanner input1 = new Scanner(System.in);
-        System.out.println("\nPlease enter your password");
-        String pass = input1.nextLine();
-
-        userAuthenticated = bankManager.checkPassword(currentID, pass); //bankmanager needs this method
-
-        if (userAuthenticated){
-            currentUserID = currentID;
-        }else{System.out.println("Wrong Password!");}
-
     }
 
     /**

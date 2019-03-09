@@ -6,7 +6,7 @@ public abstract class Transactions {
     private int userID;
     private BankManager bankManager;
     public Transactions(int userID, BankManager bm){
-        userID = userID;
+        this.userID = userID;
         bankManager = bm;
     }
 

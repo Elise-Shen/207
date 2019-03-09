@@ -7,7 +7,7 @@ public abstract class UserActions {
     private BankManager bankManager;
 
     public UserActions(int userID, BankManager bm){
-        userID = userID;
+        this.userID = userID;
         bankManager = bm;
     }
 

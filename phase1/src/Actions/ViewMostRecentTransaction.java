@@ -27,6 +27,10 @@ public class ViewMostRecentTransaction extends ViewAccount {
             //keeps iterating until the last item
             //sets map-key to last item
         }
-        System.out.println("THe most recent transaction is: " + recent.get(mapkey) + " on " + mapkey);
+        if (recent.get(mapkey) == null) {
+            System.out.println("No transaction recently.");
+        } else {
+            System.out.println("THe most recent transaction is: " + recent.get(mapkey) + " on " + mapkey);
+        }
     }
 }

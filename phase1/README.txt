@@ -19,6 +19,7 @@ How to run this program:
                             - Exit to Main Menu
 
     Exit: Logs user out of ATM, will return to step 2 above.
+4. After action is completed, the user is brought back to the previous menu for further transactions.
 
 
 Menu items:

@@ -18,6 +18,8 @@ How to run this program:
                             - Transfer Money between Accounts
                             - Exit to Main Menu
 
+    Exit: Logs user out of ATM, will return to step 2 above.
+
 
 Menu items:
     View Balance Summary: Prompt the user to choose an Account which the Account ID and Balance will be printed to screen.
@@ -45,4 +47,5 @@ Transactions:
     Transfer Money: Prompts user for Account to transfer from, recipient AccountID, and amount.
         This will transfer the amount specified to recipient's account and will print a success message on successful completion.
         Ex. Transfer from: 1 , Transfer to: 2, Amount: 50
+
 

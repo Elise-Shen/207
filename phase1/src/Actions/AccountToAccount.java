@@ -27,7 +27,7 @@ public class AccountToAccount extends Transactions {
 
         Scanner input = new Scanner(System.in);
         for (Account a : currentUserAccounts) {
-            if (a != null){
+            if (a != null && !(a instanceof Credit)){
                 System.out.println(a.getAccountID() + " - " + a);
             }
         }

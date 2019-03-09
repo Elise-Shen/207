@@ -6,8 +6,8 @@ public abstract class UserActions {
     private int userID;
     private BankManager bankManager;
 
-    public UserActions(int userid, BankManager bm){
-        userID = userid;
+    public UserActions(int userID, BankManager bm){
+        userID = userID;
         bankManager = bm;
     }
 

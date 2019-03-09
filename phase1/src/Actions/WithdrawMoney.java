@@ -7,11 +7,14 @@ import java.util.Scanner;
 public class WithdrawMoney extends Transactions {
 
     /**
+     * The current account ID.
+     */
+    private int currentAccountID;
+
+    /**
      * The CashStorage of the ATM that performs this action.
      */
-    public int currentAccountID;
-
-    CashStorage cashStorage;
+    private CashStorage cashStorage;
     public WithdrawMoney(int userID, BankManager bm, CashStorage cs) {
         super(userID, bm);
         this.cashStorage = cs;

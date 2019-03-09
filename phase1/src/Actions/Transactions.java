@@ -2,11 +2,11 @@ package Actions;
 
 import ATM.BankManager;
 public abstract class Transactions {
-// remember to update bankmanagement.recent transaction from/to/amount 3 variables
+// remember to update bank manager.recent transaction from/to/amount 3 variables
     private int userID;
     private BankManager bankManager;
-    public Transactions(int userid, BankManager bm){
-        userID = userid;
+    public Transactions(int userID, BankManager bm){
+        userID = userID;
         bankManager = bm;
     }
 

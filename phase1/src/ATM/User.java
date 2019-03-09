@@ -7,14 +7,13 @@ import Actions.Transactions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Date;
 import java.time.LocalDate;
 
 public class User {
     private int userID;
     // transRecord: Map Date to an ArrayList
     private LinkedHashMap <LocalDate, Transactions> transRecord = new LinkedHashMap <>();
-    private ArrayList<Account> accounts = new ArrayList<Account>();
+    private ArrayList<Account> accounts = new ArrayList<>();
     private Account primaryAccount;
     private String password;
     //for transaction purpose
@@ -69,7 +68,7 @@ public class User {
     }
 
     /**
-     * Adds the transaction to the linked hashmap
+     * Adds the transaction to the linked HashMap
      * @param t current transaction
      */
     public void addTransactions(Transactions t){

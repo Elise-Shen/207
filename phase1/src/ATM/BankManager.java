@@ -36,7 +36,7 @@ public class BankManager {
         return result;
     }
     public ArrayList<Account> getAccountArrayList(User user) {
-        // given user obj -> return a list of account in correspond to theuser
+        // given user obj -> return a list of account in correspond to the user
         return user.getAccountList();
     }
 
@@ -121,9 +121,9 @@ public class BankManager {
      * @param userID the ID to check.
      */
     private User checkUserID(int userID) {
-        for (int counter = 0; counter < userArrayList.size(); counter++) {
-            if (userArrayList.get(counter).getUserID() == userID) {
-                return userArrayList.get(counter);
+        for (User user : userArrayList) {
+            if (user.getUserID() == userID) {
+                return user;
             }
         }
         return null;

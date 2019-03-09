@@ -11,8 +11,16 @@ public class DepositMoney extends Transactions {
     /**
      * The CashStorage of the ATM that performs this action.
      */
-    CashStorage cashStorage;
+    private CashStorage cashStorage;
+
+    /**
+     * The current account ID.
+     */
     private int currentAccountID;
+
+    /**
+     * The type of money deposited.
+     */
     private String depositType;
 
     /**
@@ -35,7 +43,7 @@ public class DepositMoney extends Transactions {
         User currentUser = bankManager.getUser(getUserID());
         Account currentAccount = null;
         boolean validInput = false;
-        int accountChoice = 0;
+        int accountChoice;
         ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
             Scanner input = new Scanner(System.in);

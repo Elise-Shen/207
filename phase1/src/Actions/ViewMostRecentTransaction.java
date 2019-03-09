@@ -20,17 +20,17 @@ public class ViewMostRecentTransaction extends ViewAccount {
         recent = currentAccount.getTransactionsList();
         Iterator<Map.Entry<LocalDate, Transactions>> entries = recent.entrySet().iterator();
         Map.Entry<LocalDate, Transactions> entry;
-        LocalDate mapkey = null;
+        LocalDate mapKey = null;
         while(entries.hasNext()){
             entry = entries.next();
-            mapkey = entry.getKey();
+            mapKey = entry.getKey();
             //keeps iterating until the last item
             //sets map-key to last item
         }
-        if (recent.get(mapkey) == null) {
+        if (recent.get(mapKey) == null) {
             System.out.println("No transaction recently.");
         } else {
-            System.out.println("THe most recent transaction is: " + recent.get(mapkey) + " on " + mapkey);
+            System.out.println("THe most recent transaction is: " + recent.get(mapKey) + " on " + mapKey);
         }
     }
 }

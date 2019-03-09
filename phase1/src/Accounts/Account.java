@@ -19,12 +19,12 @@ public abstract class Account {
     /**
      * The Id of this account.
      */
-    private int accountID;
+    private final int accountID;
 
     /**
      * The date of creation of this account.
      */
-    private LocalDate dateOfCreation;
+    private final LocalDate dateOfCreation;
 
     /**
      * The transaction record of this account.

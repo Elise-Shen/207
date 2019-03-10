@@ -23,7 +23,7 @@ public class DepositMoney extends Transactions {
      */
     private String depositType;
 
-    private int ammountDeposited;
+    private int amountDeposited;
 
     /**
      * Create an instance of DepositMoney action.
@@ -85,7 +85,8 @@ public class DepositMoney extends Transactions {
                 int numTen = Integer.valueOf(lastLine[2]);
                 int numTwenty = Integer.valueOf(lastLine[3]);
                 int numFifty = Integer.valueOf(lastLine[4]);
-                currentAccount.increaseBalance(numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50);
+                amountDeposited = numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50;
+                currentAccount.increaseBalance(amountDeposited);
                 cashStorage.addBills(5, numFive);
                 cashStorage.addBills(10, numTen);
                 cashStorage.addBills(20, numTwenty);
@@ -93,7 +94,8 @@ public class DepositMoney extends Transactions {
                 validInput1 = true;
             } else if (lastLine[0].equalsIgnoreCase("Cheque")) {
                 depositType = "Cheque";
-                currentAccount.increaseBalance(Integer.valueOf(lastLine[1]));
+                amountDeposited = Integer.valueOf(lastLine[1]);
+                currentAccount.increaseBalance(amountDeposited);
                 validInput1 = true;
             } else {
                 System.out.println("Invalid input.Please enter again in deposits.txt.");
@@ -127,7 +129,7 @@ public class DepositMoney extends Transactions {
     }
 
     public int getAmountDeposited(){
-        return ammountDeposited;
+        return amountDeposited;
     }
 
     @Override

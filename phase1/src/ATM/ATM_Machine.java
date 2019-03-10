@@ -131,7 +131,7 @@ public class ATM_Machine {
 
     private void doAdminActions(){
         boolean exited = false;
-        AdminAction currentAdminAction = null;
+        AdminAction currentAdminAction;
         while(!exited) {
             try {
                 Scanner input = new Scanner(System.in);

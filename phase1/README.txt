@@ -1,5 +1,7 @@
 How to run this program:
+As a customer:
 1. Run Main.java in ATM folder
+2. The terminal prompts for choice of Customer or BankManager(for instructions for BankManager, skip to line 56)
 2. The terminal should prompt for a UserID and Password, an example User has been set up with UserID: 1 Password: abc123
 3. After successful login, the user should prompted with the choice of User Action, Transaction or Exit.
     User Actions include:   - View Balance Summary
@@ -50,3 +52,14 @@ Transactions:
         Ex. Transfer from: 1 , Transfer to: 2, Amount: 50
 
 
+
+As Bank Manager:
+1. Run Main.java in ATM folder
+2. The terminal prompts for choice of Customer or BankManager (For customer instructions, see above)
+2. The terminal should prompt for a password, an example BankManager has been set up with Password: abc123
+3. After successful login, the user should prompted with the choice of View Account Creation Requests, View Undo Transaction Requests, Restock ATOM or Exit.
+
+Menu items:
+    View Account Creation Requests: Allows the bank manager to approve or reject requests from customer to create a new account.
+    View Undo Transaction Requests: Allows the bank manager to undo transactions that may have been a mistake or fraudulent.
+    Restock this ATM: Allows the bank manager to restock the ATM with bills when running low. See alerts.txt for alerts about low stock.

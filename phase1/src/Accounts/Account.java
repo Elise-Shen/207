@@ -7,6 +7,8 @@ import java.util.*;
 
 public abstract class Account implements Serializable {
 
+    private static final long serialVersionUID = -4907187760305421196L;
+
     /**
      * The total number of accounts created.
      */

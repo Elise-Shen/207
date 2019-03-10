@@ -9,6 +9,8 @@ import java.util.*;
 import java.time.*;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = 1163641386372217670L;
+
     private int userID;
     // transRecord: Map Date to an ArrayList
     private Map <LocalDate, Transactions> transRecord = new LinkedHashMap <>();

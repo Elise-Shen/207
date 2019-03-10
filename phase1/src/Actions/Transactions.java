@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public abstract class Transactions implements Serializable{
 // remember to update bank manager.recent transaction from/to/amount 3 variables
+    private static final long serialVersionUID = 1942709330913532485L;
+
     private int userID;
     private BankManager bankManager;
     public Transactions(int userID, BankManager bm){

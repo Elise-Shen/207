@@ -17,6 +17,8 @@ import java.util.Scanner;
 
 public class BankManager implements Serializable {
 
+    private static final long serialVersionUID = 474692929576172322L;
+
     private String bankName;
     private Map<Integer, Integer> accountRequests = new HashMap<>();
     private Map<Integer, Transactions> undoTransactionRequest = new HashMap<>();

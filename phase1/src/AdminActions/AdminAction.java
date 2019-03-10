@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public abstract class AdminAction implements Serializable {
 
+    private static final long serialVersionUID = 6249042975266438798L;
+
     private BankManager bankManager;
 
     public AdminAction(BankManager bankManager){

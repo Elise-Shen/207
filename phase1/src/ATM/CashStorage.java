@@ -9,6 +9,7 @@ import java.io.*;
  * 3. check if amount to add
  */
 public class CashStorage implements Serializable{
+    private static final long serialVersionUID = 2949556827559248847L;
 
     private int numFive; //number of five dollar bills in ATM
     private int numTen; // number of ten dollar bills in ATM

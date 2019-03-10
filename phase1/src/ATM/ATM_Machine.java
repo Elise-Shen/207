@@ -69,8 +69,8 @@ public class ATM_Machine {
         bankManager = new BankManager("TD Bank", "abc123");
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
     void run(){
-
         while (true) {
             boolean isValid = false;
             System.out.println("\nATM Starting Up");

@@ -45,7 +45,7 @@ Transactions:
 
     Pay Bills: Prompts user for Account to pay from, and for amount paid.
         This will pay the specified amount from Account entered if it is a valid transaction.
-        Ex.
+        Ex. Pay: $50
 
     Transfer Money: Prompts user for Account to transfer from, recipient AccountID, and amount.
         This will transfer the amount specified to recipient's account and will print a success message on successful completion.

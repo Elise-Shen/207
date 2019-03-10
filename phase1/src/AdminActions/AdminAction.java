@@ -14,9 +14,9 @@ public abstract class AdminAction implements Serializable {
 
     public abstract void execute();
 
-    public String getBankName(){
-        return this.bankManager.getBankName();
-    }
+    //public String getBankName(){
+        //return this.bankManager.getBankName();
+    //}
 
     public BankManager getBankManager(){
         return this.bankManager;

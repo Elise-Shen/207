@@ -71,7 +71,6 @@ public class ATM_Machine {
         bankManager = getBankManager("phase1/BankManager.ser");
     }
 
-    @SuppressWarnings("InfiniteLoopStatement")
     void run(){
         while (true) {
             boolean isValid = false;

@@ -7,12 +7,7 @@ import Actions.DepositMoney;
 import Actions.Transactions;
 import Actions.WithdrawMoney;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
 import java.util.InputMismatchException;
 
 import java.util.*;
@@ -253,28 +248,9 @@ public class BankManager {
 
     }
 
-    private boolean alertExists() {
+    
 
-    }
 
-    private static List<String[]> readFromCSV(String fileName) {
-        List<String[]> alert = new ArrayList<>();
-        Path pathToFile = Paths.get(fileName);
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
-            String line = br.readLine();
-            while (line != null) {
-                String[] attributes = line.split(",");
-                for (int i = 0; i < attributes.length; i++){
-                    attributes[i] = attributes[i].replaceAll("\\s+","");
-                }
-                alert.add(attributes);
-                line = br.readLine();
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
 
-        return alert;
-    }
 }
 

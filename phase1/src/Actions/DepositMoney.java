@@ -72,7 +72,7 @@ public class DepositMoney extends Transactions {
 
             List<String[]> deposits = readFromCSV("phase1/deposits.txt");
             String[] lastLine = null;
-            // let's print all the person read from CSV file
+            // let's print all the deposits read from CSV file
             for (String[] s : deposits) {
                 lastLine = s;
 

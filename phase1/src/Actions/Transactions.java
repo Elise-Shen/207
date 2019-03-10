@@ -24,4 +24,6 @@ public abstract class Transactions implements Serializable{
     }
 
     public abstract void execute();
+
+    public int getRecipientAccountID(){return 0;}
 }

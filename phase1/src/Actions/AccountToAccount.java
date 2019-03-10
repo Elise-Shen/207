@@ -66,6 +66,7 @@ public class AccountToAccount extends Transactions {
         return currentAccountID;
     }
 
+    @Override
     public int getRecipientAccountID(){
         return recipientAccountID;
     }

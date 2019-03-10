@@ -121,6 +121,6 @@ public abstract class Account {
     /**
      * Add interest to this account.
      */
-    public abstract void addInterest();
+    public void addInterest() {};
 }
 

@@ -58,22 +58,17 @@ public class PayBills extends Transactions{
      * Write to outgoing.txt.
      */
     private void writeToOutGoingFile(String result) {
-        BufferedWriter writer = null;
+        BufferedWriter writer;
         try {
             File outgoing = new File("outgoing.txt");
 
-            writer = new BufferedWriter(new FileWriter(outgoing));
+            writer = new BufferedWriter(new FileWriter(outgoing, true));
             writer.write(result);
+            writer.close();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // Close the writer regardless of what happens...
-                writer.close();
-            } catch (Exception e) {
-            }
         }
-
     }
+
 }
 

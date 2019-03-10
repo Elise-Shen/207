@@ -128,26 +128,26 @@ public class BankManager {
         // recentTransaction_to -> recentTransaction_from
         // bills can't undo
         // this 2 variables are updated in every transaction
-        int ammountMoved = 0;
+        int amountMoved = 0;
         // search user
         Account currentAccount = getOneAccount(t.getCurrentAccountID());
         // get recent transaction of this user
         if(t instanceof WithdrawMoney){
-            ammountMoved = ((WithdrawMoney) t).getAmountWithdrawn();
-            currentAccount.increaseBalance(ammountMoved);
-            System.out.println("Returned $" + ammountMoved +" to the account");
+            amountMoved = ((WithdrawMoney) t).getAmountWithdrawn();
+            currentAccount.increaseBalance(amountMoved);
+            System.out.println("Returned $" + amountMoved +" to the account");
         }else if(t instanceof DepositMoney){
-            ammountMoved = ((DepositMoney) t).getAmountDeposited();
-            currentAccount.decreaseBalance(ammountMoved);
+            amountMoved = ((DepositMoney) t).getAmountDeposited();
+            currentAccount.decreaseBalance(amountMoved);
             System.out.println("Removed money from the account");
 
         }else if (t instanceof AccountToAccount){
 
             int recipientID = ((AccountToAccount) t).getRecipientAccountID();
             Account recipientAccount = getOneAccount(recipientID);
-            ammountMoved = ((AccountToAccount) t).getAmmountTransferred();
-            currentAccount.increaseBalance(ammountMoved);
-            recipientAccount.decreaseBalance(ammountMoved);
+            amountMoved = ((AccountToAccount) t).getAmmountTransferred();
+            currentAccount.increaseBalance(amountMoved);
+            recipientAccount.decreaseBalance(amountMoved);
             System.out.println("Returned money to original account");
         }
         System.out.println("Transaction is Undone");

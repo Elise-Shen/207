@@ -1,9 +1,9 @@
 package ATM;
 import Actions.*;
 import AdminActions.*;
-import jdk.internal.util.xml.impl.Input;
 
-
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -62,6 +62,7 @@ public class ATM_Machine {
         while (true) {
             boolean isValid = false;
             System.out.println("\nATM Starting Up");
+            System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             System.out.println("\nAre you a Customer or a Bank Manager?");
             System.out.println("\n1 - Customer");
             System.out.println("2 - Bank Manager");

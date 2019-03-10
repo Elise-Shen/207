@@ -5,7 +5,7 @@ import Accounts.Chequing;
 import Actions.Transactions;
 
 import java.util.*;
-import java.time.LocalDate;
+import java.time.*;
 
 public class User {
     private int userID;
@@ -20,6 +20,8 @@ public class User {
     private Account recentTransaction_from;
     private Account recentTransaction_to;
     private double recentTransaction_amount;
+
+    private int accountRequestCount = 0;
 
     public User (int userID, String password, BankManager bm){
         this.userID = userID;
@@ -112,5 +114,17 @@ public class User {
     public Account getRecentTransaction_from(){return recentTransaction_from;}
     public Account getRecentTransaction_to(){return recentTransaction_to;}
     public double getRecentTransaction_amount(){return recentTransaction_amount;}
+
+    public void incrementCount(){
+        accountRequestCount += 1;
+    }
+
+    public void resetCount(){
+        accountRequestCount = 0;
+    }
+
+    public int getCount(){
+        return accountRequestCount;
+    }
 }
 

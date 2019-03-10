@@ -67,8 +67,9 @@ public class ATM_Machine {
         bankManagerAuthenticated = false;
         currentUserID = 0;
         cashStorage = new CashStorage();
-        bankManager = new BankManager("TD Bank", "abc123");
-        //bankManager = getBankManager("phase1/BankManager.ser");
+        //bankManager = new BankManager("TD Bank", "abc123");
+        bankManager = getBankManager("phase1/BankManager1.ser");
+
     }
 
     void run(){
@@ -102,7 +103,7 @@ public class ATM_Machine {
             addToSavingsAccounts();
             cashStorage.sendAlert(currentDate.toString());
             try {
-                update();
+                updateData();
                 System.out.println("Data Saved");
             }catch (IOException ex){ex.printStackTrace();}
         }
@@ -385,8 +386,12 @@ public class ATM_Machine {
         return LocalTime.now() == LocalTime.MIDNIGHT;
     }
 
-    private void update() throws  IOException{
-        String filePath = "phase1/BankManager.ser";
+    /**
+     * Updates serialization file data for bankmanager related to file.
+     * @throws IOException
+     */
+    private void updateData() throws  IOException{
+        String filePath = "phase1/BankManager1.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
@@ -407,9 +412,12 @@ public class ATM_Machine {
             //fileIn.close();
         }catch (IOException ex){
             ex.printStackTrace();
+            temp = new BankManager("TD Bank", "abc123");
+            System.out.print("Ser file not found. Creating blank manager");
         }catch(ClassNotFoundException ex){
             System.out.print("Bank manager not found!");
             ex.printStackTrace();
+            //bankManager = new BankManager("TD Bank", "abc123");
         }
 
         return temp;

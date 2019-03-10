@@ -68,7 +68,7 @@ public class DepositMoney extends Transactions {
         boolean validInput1 = false;
         while (!validInput1) {
 
-            List<String[]> deposits = readFromCSV("deposits.txt");
+            List<String[]> deposits = readFromCSV("phase1/deposits.txt");
             String[] lastLine = null;
             // let's print all the person read from CSV file
             for (String[] s : deposits) {

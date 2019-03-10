@@ -1,14 +1,28 @@
 package ATM;
 import Actions.*;
+import AdminActions.*;
+import jdk.internal.util.xml.impl.Input;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ATM_Machine {
 
-    private static final int USERACTION = 1;
-    private static final int TRANSACTION = 2;
+    private static final int CUSTOMER = 1;
+    private static final int BANK_MANAGER = 2;
+    /**
+     * Admin Actions
+     */
+    private final int VIEW_ACCOUNT_REQUEST = 1;
+    private final int VIEW_UNDO_TRANSAC = 2;
+    private final int RESTOCK = 3;
 
+    private static final int USER_ACTION = 1;
+    private static final int TRANSACTION = 2;
+    /**
+     * All userActions identifiers
+     */
     private final int BALANCE = 1;
     private final int PREVIOUS_TRANSACTION = 2;
     private final int NET_TOTAL = 3;
@@ -17,15 +31,18 @@ public class ATM_Machine {
     private final int REQ_ACCNT = 6;
     private final int ACCNT_SUMMARY = 7;
     private final int SET_PRIM_ACCNT = 8;
-
+    /**
+     * All transaction identifiers
+     */
     private final int DEPOSIT = 1;
     private final int WITHDRAW = 2;
-    private final int PAYBILL = 3;
-    private final int TRANSFERMONEY = 4;
+    private final int PAY_BILL = 3;
+    private final int TRANSFER_MONEY = 4;
 
     private final int EXIT = 0;
 
     private boolean userAuthenticated;
+    private boolean bankManagerAuthenticated;
     private int currentUserID;
     private CashStorage cashStorage;
     private BankManager bankManager;
@@ -34,24 +51,101 @@ public class ATM_Machine {
     public ATM_Machine(){
 
         userAuthenticated = false;
+        bankManagerAuthenticated = false;
         currentUserID = 0;
         cashStorage = new CashStorage();
-        bankManager = new BankManager("TD Bank");
+        bankManager = new BankManager("TD Bank", "abc123");
     }
 
-    public void run(){
+    void run(){
 
         while (true) {
-            while (!userAuthenticated){
-                System.out.println("\nWelcome to " + bankManager.getBankName() +"'s ATM!");
-                currentUserID = bankManager.checkLogin();
-                userAuthenticated = true;
+            boolean isValid = false;
+            System.out.println("\nATM Starting Up");
+            System.out.println("\nAre you a Customer or a Bank Manager?");
+            System.out.println("\n1 - Customer");
+            System.out.println("2 - Bank Manager");
+            while(!isValid){
+                try {
+                    Scanner bmOrCust = new Scanner(System.in);
+                    int choice = bmOrCust.nextInt();
+                    switch (choice){
+                        case CUSTOMER:
+                            customerLogin();
+                            isValid = true;
+                            break;
+                        case BANK_MANAGER:
+                            bankManagerLogin();
+                            isValid = true;
+                            break;
+                        default:
+                            System.out.println("Invalid input. Please try again");
+                            break;
+                    }
+                }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
+
             }
-            doActions();
-            userAuthenticated = false;
-            currentUserID = 0;
-            System.out.println("\nGoodBye!");
+
         }
+    }
+
+    private void customerLogin(){
+        while (!userAuthenticated){
+            System.out.println("\nWelcome to " + bankManager.getBankName() +"'s ATM!");
+            currentUserID = bankManager.checkLogin();
+            userAuthenticated = true;
+        }
+        doActions();
+        userAuthenticated = false;
+        currentUserID = 0;
+        System.out.println("\nGoodBye!");
+    }
+
+    private void bankManagerLogin(){
+        Scanner pass = new Scanner(System.in);
+        while (!bankManagerAuthenticated){
+            System.out.println("Please enter your password");
+            String input = pass.nextLine();
+            if (bankManager.getPassword().equals(input)){
+                bankManagerAuthenticated = true;
+            }
+        }
+        doAdminActions();
+        bankManagerAuthenticated = false;
+
+    }
+
+    private void doAdminActions(){
+        boolean exited = false;
+        AdminAction currentAdminAction = null;
+        while(!exited) {
+            try {
+                Scanner input = new Scanner(System.in);
+                System.out.println("\nChoose your action");
+                System.out.println("\n1 - View Account Creation Requests");
+                System.out.println("2 - View Undo Transaction Requests");
+                System.out.println("3 - Restock this ATM");
+                System.out.println("0 - Exit");
+                int choice = input.nextInt();
+
+                switch (choice){
+                    case VIEW_ACCOUNT_REQUEST:
+                    case VIEW_UNDO_TRANSAC:
+                    case RESTOCK:
+                        currentAdminAction = createAdminAction(choice);
+                        currentAdminAction.execute();
+                        break;
+                    case EXIT:
+                        exited = true;
+                        System.out.println("Exiting");
+                        break;
+                    default:
+                        System.out.println("Invalid input. Please try again");
+                }
+            }catch (InputMismatchException ex){System.out.println("Invalid input. Please try again.");}
+        }
+
+
     }
 
     /**
@@ -62,27 +156,29 @@ public class ATM_Machine {
 
         boolean exited = false;
         while (!exited){
-            Scanner input = new Scanner(System.in);
-            System.out.println("User Action or Transaction?");
-            System.out.println("1 - User Action");
-            System.out.println("2 - Transaction");
-            System.out.println("0 - Exit");
-            int actionChoice = input.nextInt();
+            try {
+                Scanner input = new Scanner(System.in);
+                System.out.println("\nUser Action or Transaction?");
+                System.out.println("1 - User Action");
+                System.out.println("2 - Transaction");
+                System.out.println("0 - Exit");
+                int actionChoice = input.nextInt();
 
-            switch (actionChoice) {
-                case USERACTION:
-                    doUserAction();
-                    break;
-                case TRANSACTION:
-                    doTransaction();
-                    break;
-                case EXIT:
-                    exited = true;
-                    break;
-                default:
-                    System.out.println("\nInvalid Input. Please try again");
-                    break;
-            }//switch
+                switch (actionChoice) {
+                    case USER_ACTION:
+                        doUserAction();
+                        break;
+                    case TRANSACTION:
+                        doTransaction();
+                        break;
+                    case EXIT:
+                        exited = true;
+                        break;
+                    default:
+                        System.out.println("\nInvalid Input. Please try again");
+                        break;
+                }//switch
+            }catch (InputMismatchException ex){System.out.println("Invalid Input. Please try again.");}
         }//while loop ends
     }//doAction ends
 
@@ -95,40 +191,42 @@ public class ATM_Machine {
         boolean exited = false;
         UserActions currentAction;
         while (!exited) { //keeps running until user wants to go back to the previous options
-            Scanner input = new Scanner(System.in);
-            System.out.println("Choose your Action");
-            System.out.println("1 - View Balance Summary");
-            System.out.println("2 - View Previous Transactions");
-            System.out.println("3 - Net Total");
-            System.out.println("4 - Change Password");
-            System.out.println("5 - View Date of Account Creation");
-            System.out.println("6 - Request New Account");
-            System.out.println("7 - View Account Summary");
-            System.out.println("8 - Set Primary Account");
-            System.out.println("0 - Return to previous page");
-            int userChoice = input.nextInt();
+            try {
+                Scanner input = new Scanner(System.in);
+                System.out.println("Choose your Action");
+                System.out.println("1 - View Balance Summary");
+                System.out.println("2 - View Previous Transactions");
+                System.out.println("3 - Net Total");
+                System.out.println("4 - Change Password");
+                System.out.println("5 - View Date of Account Creation");
+                System.out.println("6 - Request New Account");
+                System.out.println("7 - View Account Summary");
+                System.out.println("8 - Set Primary Account");
+                System.out.println("0 - Return to previous page");
+                int userChoice = input.nextInt();
 
-            switch (userChoice) {
-                case BALANCE:
-                case PREVIOUS_TRANSACTION:
-                case NET_TOTAL:
-                case CHANGE_PSWD:
-                case CREATION_DATE:
-                case REQ_ACCNT:
-                case ACCNT_SUMMARY:
-                case SET_PRIM_ACCNT:
-                    currentAction = createUserAction(userChoice);
-                    currentAction.execute();
-                    //remember to add action and transaction to list in bankmanager
-                    break;
-                case EXIT:
-                    exited = true;
-                    System.out.println("\nReturning to previous Options");
-                    break;
-                default:
-                    System.out.println("\nInvalid input. Please try again.");
-                    break;
-            }//switch
+                switch (userChoice) {
+                    case BALANCE:
+                    case PREVIOUS_TRANSACTION:
+                    case NET_TOTAL:
+                    case CHANGE_PSWD:
+                    case CREATION_DATE:
+                    case REQ_ACCNT:
+                    case ACCNT_SUMMARY:
+                    case SET_PRIM_ACCNT:
+                        currentAction = createUserAction(userChoice);
+                        currentAction.execute();
+                        //remember to add action and transaction to list in bankmanager
+                        break;
+                    case EXIT:
+                        exited = true;
+                        System.out.println("\nReturning to previous Options");
+                        break;
+                    default:
+                        System.out.println("\nInvalid input. Please try again.");
+                        break;
+                }//switch
+            }catch (InputMismatchException ex){System.out.println("Invalid Input. Please try again.");}
         }//while loop ends
 
     }//doUserAction ends
@@ -137,36 +235,51 @@ public class ATM_Machine {
         boolean exited = false;
         Transactions currentTransaction;
         while(!exited){
-            Scanner input = new Scanner(System.in);
-            System.out.println("\nChoose your transaction");
-            System.out.println("1 - Deposit");
-            System.out.println("2 - Withdrawal");
-            System.out.println("3 - Pay Bills"); //to non-user accounts
-            System.out.println("4 - Transfer Money");//user-user transactions. can be between the same user
-            System.out.println("0 - EXIT");
-            int transactionChoice = input.nextInt();
+            try {
+                Scanner input = new Scanner(System.in);
+                System.out.println("\nChoose your transaction");
+                System.out.println("1 - Deposit");
+                System.out.println("2 - Withdrawal");
+                System.out.println("3 - Pay Bills"); //to non-user accounts
+                System.out.println("4 - Transfer Money");//user-user transactions. can be between the same user
+                System.out.println("0 - EXIT");
+                int transactionChoice = input.nextInt();
 
-            switch(transactionChoice){
-                case DEPOSIT:
-                case WITHDRAW:
-                case PAYBILL:
-                case TRANSFERMONEY:
-                    currentTransaction = createTransaction(transactionChoice);
-                    currentTransaction.execute();
-                    bankManager.getUser(currentUserID).getAccount(currentTransaction.getAccountID()).addTransaction(currentTransaction);
-                    break;
-                case EXIT:
-                    exited = true;
-                    System.out.println("\nReturning to previous options");
-                    break;
-                default:
-                    System.out.println("\nInvalid input. Please try again!");
-            }
-
-
-
+                switch (transactionChoice) {
+                    case DEPOSIT:
+                    case WITHDRAW:
+                    case PAY_BILL:
+                    case TRANSFER_MONEY:
+                        currentTransaction = createTransaction(transactionChoice);
+                        currentTransaction.execute();
+                        bankManager.getUser(currentUserID).getAccount(currentTransaction.getAccountID()).addTransaction(currentTransaction);
+                        break;
+                    case EXIT:
+                        exited = true;
+                        System.out.println("\nReturning to previous options");
+                        break;
+                    default:
+                        System.out.println("\nInvalid input. Please try again!");
+                }
+            }catch (InputMismatchException ex){System.out.println("Invalid Input. Please try again");}
         }
 
+    }
+
+    private AdminAction createAdminAction(int type){
+        AdminAction temp = null;
+        switch (type){
+            case VIEW_ACCOUNT_REQUEST:
+                temp = new ViewAccountRequests(bankManager);
+                break;
+            case VIEW_UNDO_TRANSAC:
+                temp = new ViewAccountRequests(bankManager);
+                break;
+            case RESTOCK:
+                temp = new RestockATM(bankManager, cashStorage);
+                break;
+        }
+        return temp;
     }
 
     /**
@@ -214,10 +327,10 @@ public class ATM_Machine {
             case WITHDRAW:
                 temp = new WithdrawMoney(currentUserID, bankManager, cashStorage);
                 break;
-            case PAYBILL:
+            case PAY_BILL:
                 temp = new PayBills(currentUserID, bankManager );
                 break;
-            case TRANSFERMONEY:
+            case TRANSFER_MONEY:
                 temp = new AccountToAccount(currentUserID, bankManager);
                 break;
         }

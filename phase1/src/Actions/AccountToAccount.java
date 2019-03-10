@@ -3,7 +3,7 @@ package Actions;
 import ATM.*;
 import Accounts.*;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Scanner;
 
 /**
@@ -23,7 +23,7 @@ public class AccountToAccount extends Transactions {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
         ArrayList<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
-        ArrayList<Account> allAccounts = bankManager.getAllAccounts();
+        List<Account> allAccounts = bankManager.getAllAccounts();
 
         Scanner input = new Scanner(System.in);
         for (Account a : currentUserAccounts) {

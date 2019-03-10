@@ -5,22 +5,23 @@ import Accounts.AccountFactory;
 import Actions.Transactions;
 
 import java.util.InputMismatchException;
-import java.util.Random;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Scanner;
 
 public class BankManager {
 
     private String bankName;
-
-    private ArrayList<User>  userArrayList = new ArrayList<>();
+    private Map<Integer, Integer> accountRequests = new HashMap<>();
+    private List<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
-    private ArrayList<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
-    private ArrayList<Account> allAccounts = new ArrayList<>();
+    private List<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
+    private List<Account> allAccounts = new ArrayList<>();
+    private String password;
 
-    public BankManager(String bankName){
+    public BankManager(String bankName, String password){
         this.bankName = bankName;
+        this.password = password;
 
         // create 3 users for testing purpose
         User user1 = new User(1, "abc123", this);
@@ -53,7 +54,7 @@ public class BankManager {
         return user.getAccountList();
     }
 
-    public ArrayList<Account> getAllAccounts(){
+    public List<Account> getAllAccounts(){
         return allAccounts;
     }
 
@@ -68,16 +69,38 @@ public class BankManager {
         return temp;
     }
 
+    public String getPassword(){
+        return this.password;
+    }
+
     public void setPassword(User user, String newPassword){
         user.setPassword(newPassword);
     }
 
+    public void requestAccount(int userID, int accountType){
+        accountRequests.put(userID, accountType);
+    }
+
     public void createAccount(int userID, int accountType) {
-        User user = getUser(userID);
         Account newAccount = accountFactory.getAccount(accountType);
+
+        addAccount(userID, newAccount);
+    }
+
+    /**
+     * Not private because may use this for other reasons in Phase 2
+     * @param userID
+     * @param newAccount
+     */
+    public void addAccount(int userID, Account newAccount){
+        User user = getUser(userID);
         newAccount.setOwnerID(userID);
         user.addAccount(newAccount);
-        user.getBankManager().addAllAccountsList(newAccount);
+        addAllAccountsList(newAccount);
+    }
+
+    public Map<Integer, Integer> getAccountRequests(){
+        return accountRequests;
     }
 
 

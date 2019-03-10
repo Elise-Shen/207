@@ -68,7 +68,7 @@ public class ATM_Machine {
         currentUserID = 0;
         cashStorage = new CashStorage();
         //bankManager = new BankManager("TD Bank", "abc123");
-        bankManager = getBankManager("Bankmanager1.ser");
+        bankManager = getBankManager("Bankmanager2.ser");
 
     }
 
@@ -391,7 +391,7 @@ public class ATM_Machine {
      * @throws IOException
      */
     private void updateData() throws  IOException{
-        String filePath = "Bankmanager1.ser";
+        String filePath = "Bankmanager2.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);

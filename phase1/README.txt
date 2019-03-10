@@ -1,5 +1,5 @@
 How to run this program:
-As a customer:
+As a customer:(for instructions for BankManager, skip to line 56)
 1. Run Main.java in ATM folder
 2. The terminal prompts for choice of Customer or BankManager(for instructions for BankManager, skip to line 56)
 2. The terminal should prompt for a UserID and Password, an example User has been set up with UserID: 1 Password: abc123
@@ -53,9 +53,9 @@ Transactions:
 
 
 
-As Bank Manager:
+As Bank Manager: (for customer instructions, see above)
 1. Run Main.java in ATM folder
-2. The terminal prompts for choice of Customer or BankManager (For customer instructions, see above)
+2. The terminal prompts for choice of Customer or BankManager (for customer instructions, see above)
 2. The terminal should prompt for a password, an example BankManager has been set up with Password: abc123
 3. After successful login, the user should prompted with the choice of View Account Creation Requests, View Undo Transaction Requests, Restock ATOM or Exit.
 

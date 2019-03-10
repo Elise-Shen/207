@@ -373,5 +373,12 @@ public class ATM_Machine {
         }
     }
 
+    /**
+     * Check if the current time is midnight.
+     */
+    boolean isMidnight() {
+        return LocalTime.now() == LocalTime.MIDNIGHT;
+    }
+
 }
 

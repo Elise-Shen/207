@@ -45,9 +45,14 @@ public abstract class Account implements Serializable {
      */
 
     public Account() {
-        numAccount += 1;
+        //numAccount += 1;
+        incrementNumAccount();
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
+    }
+
+    public void incrementNumAccount(){
+        numAccount += 1;
     }
 
     /**

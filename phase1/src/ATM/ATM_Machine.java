@@ -67,8 +67,8 @@ public class ATM_Machine {
         bankManagerAuthenticated = false;
         currentUserID = 0;
         cashStorage = new CashStorage();
-        //bankManager = new BankManager("TD Bank", "abc123");
-        bankManager = getBankManager("phase1/BankManager.ser");
+        bankManager = new BankManager("TD Bank", "abc123");
+        //bankManager = getBankManager("phase1/BankManager.ser");
     }
 
     void run(){

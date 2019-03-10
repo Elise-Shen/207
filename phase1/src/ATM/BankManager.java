@@ -96,6 +96,7 @@ public class BankManager implements Serializable {
     }
 
     public void createAccount(int userID, int accountType) {
+
         Account newAccount = accountFactory.getAccount(accountType);
 
         addAccount(userID, newAccount);

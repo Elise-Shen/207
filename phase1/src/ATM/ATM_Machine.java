@@ -61,6 +61,7 @@ public class ATM_Machine {
     private LocalDate currentDate = LocalDate.now();
 
 
+
     public ATM_Machine(){
 
         userAuthenticated = false;
@@ -106,6 +107,13 @@ public class ATM_Machine {
                 updateData();
                 System.out.println("Data Saved");
             }catch (IOException ex){ex.printStackTrace();}
+            if (isMidnight()) {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    //
+                }
+            }
         }
     }
 

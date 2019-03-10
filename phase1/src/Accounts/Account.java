@@ -119,7 +119,7 @@ public abstract class Account {
     }
 
     /**
-     * Make this savings account's balance increase by a factor of 0.1%.
+     * Add interest to this account.
      */
     public abstract void addInterest();
 }

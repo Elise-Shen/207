@@ -349,12 +349,17 @@ public class ATM_Machine {
         return temp; //placeholder
     }
 
+    /**
+     * Return if the current day is the end of the current month.
+     */
     private boolean isEndOfMonth() {
         LocalDate end = currentDate.withDayOfMonth(currentDate.lengthOfMonth());
         return currentDate.equals(end);
     }
 
-
+    /**
+     * Call Manager to add interest to all savings accounts on the last day of the every month.
+     */
     private void addToSavingsAccounts() {
         if (isEndOfMonth() && !interestAdded) {
             bankManager.addInterestToSavingsAccounts();
@@ -364,8 +369,5 @@ public class ATM_Machine {
             interestAdded = false;
         }
     }
-
-
-
 }
 

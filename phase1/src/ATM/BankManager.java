@@ -179,6 +179,9 @@ public class BankManager {
         return null;
     }
 
+    /**
+     * Add interest to all savings accounts in this BankManager's account list.
+     */
     void addInterestToSavingsAccounts() {
         for (Account a : allAccounts) {
             if (a != null && a.getAccountType() == 2) {

@@ -1,6 +1,8 @@
 package Accounts;
 
-public class AccountFactory {
+import java.io.Serializable;
+
+public class AccountFactory implements Serializable {
 
     /**
      * Return a new account according to accountType.

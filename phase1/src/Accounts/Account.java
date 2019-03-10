@@ -1,10 +1,11 @@
 package Accounts;
 import Actions.Transactions;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
-public abstract class Account {
+public abstract class Account implements Serializable {
 
     /**
      * The total number of accounts created.

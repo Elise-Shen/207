@@ -56,9 +56,6 @@ public class AccountToAccount extends Transactions {
         account_from.decreaseBalance(amount);
         account_to.increaseBalance(amount);
         // update recent transaction
-        currentUser.set_recentTransaction_amount(amount);
-        currentUser.set_recentTransaction_from(account_from);
-        currentUser.set_recentTransaction_to(account_to);
 
         System.out.println("A transaction of amount $"+ amount+" is completed");
         System.out.println("from " + accountID_from + account_from+" to " + accountID_to + account_to);

@@ -1,7 +1,10 @@
 package Actions;
 
 import ATM.BankManager;
-public abstract class Transactions {
+
+import java.io.Serializable;
+
+public abstract class Transactions implements Serializable{
 // remember to update bank manager.recent transaction from/to/amount 3 variables
     private int userID;
     private BankManager bankManager;

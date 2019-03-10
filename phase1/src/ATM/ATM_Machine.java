@@ -4,6 +4,7 @@ package ATM;
 import Actions.*;
 import AdminActions.*;
 
+import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
@@ -66,7 +67,8 @@ public class ATM_Machine {
         bankManagerAuthenticated = false;
         currentUserID = 0;
         cashStorage = new CashStorage();
-        bankManager = new BankManager("TD Bank", "abc123");
+        //bankManager = new BankManager("TD Bank", "abc123");
+        bankManager = getBankManager("phase1/BankManager.ser");
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
@@ -100,6 +102,10 @@ public class ATM_Machine {
             }
             addToSavingsAccounts();
             cashStorage.sendAlert(currentDate.toString());
+            try {
+                update();
+                System.out.println("Data Saved");
+            }catch (IOException ex){ex.printStackTrace();}
         }
     }
 
@@ -378,6 +384,37 @@ public class ATM_Machine {
      */
     boolean isMidnight() {
         return LocalTime.now() == LocalTime.MIDNIGHT;
+    }
+
+    private void update() throws  IOException{
+        String filePath = "phase1/BankManager.ser";
+        OutputStream file = new FileOutputStream(filePath);
+        OutputStream buffer = new BufferedOutputStream(file);
+        ObjectOutput output = new ObjectOutputStream(buffer);
+
+        // serialize the Map
+        output.writeObject(bankManager);
+        output.close();
+    }
+
+    private BankManager getBankManager(String filePath){
+        BankManager temp = null;
+        try {
+            InputStream fileIn = new FileInputStream(filePath);
+            InputStream buffer = new BufferedInputStream(fileIn);
+            ObjectInput input = new ObjectInputStream(buffer);
+            temp = (BankManager) input.readObject();
+            input.close();
+            //fileIn.close();
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex){
+            System.out.print("Bank manager not found!");
+            ex.printStackTrace();
+        }
+
+        return temp;
+
     }
 
 }

@@ -2,7 +2,9 @@ package Actions;
 
 import ATM.BankManager;
 
-public abstract class UserActions {
+import java.io.Serializable;
+
+public abstract class UserActions implements Serializable {
     private int userID;
     private BankManager bankManager;
 

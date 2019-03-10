@@ -8,7 +8,7 @@ import java.io.*;
  * 2. withdrawal
  * 3. check if amount to add
  */
-public class CashStorage {
+public class CashStorage implements Serializable{
 
     private int numFive; //number of five dollar bills in ATM
     private int numTen; // number of ten dollar bills in ATM

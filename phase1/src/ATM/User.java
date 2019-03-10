@@ -4,10 +4,11 @@ import Accounts.Account;
 import Accounts.Chequing;
 import Actions.Transactions;
 
+import java.io.Serializable;
 import java.util.*;
 import java.time.*;
 
-public class User {
+public class User implements Serializable {
     private int userID;
     // transRecord: Map Date to an ArrayList
     private Map <LocalDate, Transactions> transRecord = new LinkedHashMap <>();
@@ -15,11 +16,8 @@ public class User {
     private Account primaryAccount;
     private String password;
     private BankManager bankManager;
-    //for transaction purpose
 
-    private Account recentTransaction_from;
-    private Account recentTransaction_to;
-    private double recentTransaction_amount;
+
 
     private int accountRequestCount = 0;
 
@@ -102,18 +100,7 @@ public class User {
     }
 
     // recent transaction record
-    public void set_recentTransaction_from(Account from){
-        recentTransaction_from = from;
-    }
-    public void set_recentTransaction_to(Account to){
-        recentTransaction_to = to;
-    }
-    public void set_recentTransaction_amount(int amount){
-        recentTransaction_amount = amount;
-    }
-    public Account getRecentTransaction_from(){return recentTransaction_from;}
-    public Account getRecentTransaction_to(){return recentTransaction_to;}
-    public double getRecentTransaction_amount(){return recentTransaction_amount;}
+
 
     public void incrementCount(){
         accountRequestCount += 1;

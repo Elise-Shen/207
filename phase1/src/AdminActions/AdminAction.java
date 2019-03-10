@@ -2,7 +2,9 @@ package AdminActions;
 
 import ATM.BankManager;
 
-public abstract class AdminAction {
+import java.io.Serializable;
+
+public abstract class AdminAction implements Serializable {
 
     private BankManager bankManager;
 

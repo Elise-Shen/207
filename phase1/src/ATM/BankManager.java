@@ -15,14 +15,14 @@ import java.util.Scanner;
 
 
 
-public class BankManager {
+public class BankManager implements Serializable {
 
     private String bankName;
     private Map<Integer, Integer> accountRequests = new HashMap<>();
     private Map<Integer, Transactions> undoTransactionRequest = new HashMap<>();
     private List<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
-    private List<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
+    //private List<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
     private List<Account> allAccounts = new ArrayList<>();
     private String password;
 
@@ -196,9 +196,9 @@ public class BankManager {
      * Used for part 2
      * @param t transaction
      */
-    public void addTransaction(Transactions t){
-        listOfTransactions.add(0, t);
-    }
+   //public void addTransaction(Transactions t){
+        //listOfTransactions.add(0, t);
+    //}
 
     /**
      * Check if the user with ID userID exists.
@@ -245,7 +245,6 @@ public class BankManager {
     }
 
     public void updateData(){
-
     }
 
 

@@ -59,10 +59,12 @@ As Bank Manager: (for customer instructions, see above)
 2. The terminal prompts for choice of Customer or BankManager (for customer instructions, see above)
 2. The terminal should prompt for a password, an example BankManager has been set up with Password: abc123
 3. After successful login, the bank manager should be prompted with the choice of View Account Creation Requests, View Undo Transaction Requests, Restock ATM or Exit.
-4. Bank manager is assumed to view account all kinds of requests every day.
+4. Bank manager is assumed to view all kinds of requests every day.
 5. Bank manager should check alert.txt before doing any actions. If there is an unhandled alert, restocking the ATM should take place right away.
 
 Menu items:
     View Account Creation Requests: Allows the bank manager to approve or reject requests from customer to create a new account.
     View Undo Transaction Requests: Allows the bank manager to undo transactions that may have been a mistake or fraudulent.
     Restock this ATM: Allows the bank manager to restock the ATM with bills when running low. See alerts.txt for alerts about low stock.
+
+Note: serialized files path may need to be changed

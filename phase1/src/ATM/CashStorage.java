@@ -1,5 +1,7 @@
 package ATM;
 
+import java.io.*;
+
 /**
  * Simulates the cash storage component of the ATM
  * 1. check amount & multiple of 5
@@ -89,13 +91,13 @@ public class CashStorage {
             return 0;
     }
 
-    private boolean NotEnough5(){ return numFive < 20; }
+    private boolean notEnough5(){ return numFive < 20; }
 
-    private boolean NotEnough10() { return numTen < 20; }
+    private boolean notEnough10() { return numTen < 20; }
 
-    private boolean NotEnough20() { return numTwenty < 20; }
+    private boolean notEnough20() { return numTwenty < 20; }
 
-    private boolean NotEnough50() {return numFifty < 20; }
+    private boolean notEnough50() {return numFifty < 20; }
 
     /**
      * adds more bills
@@ -131,10 +133,36 @@ public class CashStorage {
      * called when BankManager restocks the bills.
      */
     public void setToMaxStock(){
-        if (NotEnough5()) { numFive = MAXSTOCK; }
-        if (NotEnough10()) { numTen = MAXSTOCK; }
-        if (NotEnough20()) { numTwenty = MAXSTOCK; }
-        if (NotEnough50()) { numFifty = MAXSTOCK;}
+        if (notEnough5()) { numFive = MAXSTOCK; }
+        if (notEnough10()) { numTen = MAXSTOCK; }
+        if (notEnough20()) { numTwenty = MAXSTOCK; }
+        if (notEnough50()) { numFifty = MAXSTOCK;}
+    }
+
+    /**
+     * Send alert information to alert.txt when the amount of any denomination goes below 20.
+     */
+    public void sendAlert(String currentDate) {
+        if (checkAlert()) {
+            BufferedWriter writer;
+            try {
+                File outgoing = new File("alert.txt");
+
+                writer = new BufferedWriter(new FileWriter(outgoing, true));
+                String result = currentDate + ": Cash is insufficient!";
+                writer.write(result);
+                writer.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Check if an alert message should be sent to alert.txt.
+     */
+    private boolean checkAlert() {
+        return notEnough5() || notEnough10() || notEnough20() || notEnough50();
     }
 
 }

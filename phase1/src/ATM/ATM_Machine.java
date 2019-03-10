@@ -80,8 +80,8 @@ public class ATM_Machine {
             System.out.println("2 - Bank Manager");
             while(!isValid){
                 try {
-                    Scanner bmOrCust = new Scanner(System.in);
-                    int choice = bmOrCust.nextInt();
+                    Scanner bmOrCustomer = new Scanner(System.in);
+                    int choice = bmOrCustomer.nextInt();
                     switch (choice){
                         case CUSTOMER:
                             customerLogin();
@@ -99,6 +99,7 @@ public class ATM_Machine {
 
             }
             addToSavingsAccounts();
+            cashStorage.sendAlert(currentDate.toString());
         }
     }
 

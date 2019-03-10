@@ -118,5 +118,10 @@ public abstract class Account {
         return this.dateOfCreation;
     }
 
+    /**
+     * Add interest to this account.
+     */
+    public void addInterest() {};
+
 }
 

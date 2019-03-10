@@ -47,7 +47,8 @@ public class DepositMoney extends Transactions {
         ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
             Scanner input = new Scanner(System.in);
-            System.out.println("\nPlease type in the ID of the account what you want to deposit money in.");
+            System.out.println("\nPlease type in the ID of the account that you want to deposit money in and \nmake sure" +
+                    " the amount to be deposited is entered in deposits.txt.");
             for (Account a : currentUserAccounts) {
                 if (a != null){
                     System.out.println(a.getAccountID() + " - " + a);
@@ -63,12 +64,11 @@ public class DepositMoney extends Transactions {
                 System.out.println("Invalid input. Please try again!");
             }
         }
-        System.out.println("Please enter things into deposits.txt");
         //currentAccount = currentUser.getAccount(accountChoice); moved up to previous if statement
         boolean validInput1 = false;
         while (!validInput1) {
 
-            List<String[]> deposits = readFromCSV("phase1\\deposits.txt");
+            List<String[]> deposits = readFromCSV("deposits.txt");
             String[] lastLine = null;
             // let's print all the person read from CSV file
             for (String[] s : deposits) {

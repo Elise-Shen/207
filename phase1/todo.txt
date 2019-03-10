@@ -13,4 +13,4 @@ Things left to do before submission:
 Outgoing.txt
 Date Stuff
 Make program more user-friendly
-Remember to to some touch up on serialization.
+Remember to to some touch up on serialization. ie create another class for it

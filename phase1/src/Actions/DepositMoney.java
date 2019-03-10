@@ -134,6 +134,6 @@ public class DepositMoney extends Transactions {
 
     @Override
     public String toString() {
-        return depositType +" Deposit";
+        return "Deposit " + depositType + " of amount $" + amountDeposited + " to Asset account " + currentAccountID;
     }
 }

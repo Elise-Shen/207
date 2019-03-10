@@ -129,7 +129,7 @@ public class BankManager implements Serializable {
         // recentTransaction_to -> recentTransaction_from
         // bills can't undo
         // this 2 variables are updated in every transaction
-        int amountMoved = 0;
+        int amountMoved;
         // search user
         Account currentAccount = getOneAccount(t.getCurrentAccountID());
         // get recent transaction of this user
@@ -140,13 +140,13 @@ public class BankManager implements Serializable {
         }else if(t instanceof DepositMoney){
             amountMoved = ((DepositMoney) t).getAmountDeposited();
             currentAccount.decreaseBalance(amountMoved);
-            System.out.println("Removed money from the account");
+            System.out.println("Removed $" + amountMoved + " from the account");
 
         }else if (t instanceof AccountToAccount){
 
             int recipientID = ((AccountToAccount) t).getRecipientAccountID();
             Account recipientAccount = getOneAccount(recipientID);
-            amountMoved = ((AccountToAccount) t).getAmmountTransferred();
+            amountMoved = ((AccountToAccount) t).getAmountTransferred();
             currentAccount.increaseBalance(amountMoved);
             recipientAccount.decreaseBalance(amountMoved);
             System.out.println("Returned money to original account");

@@ -14,7 +14,7 @@ public class AccountToAccount extends Transactions {
     // ask user to input 2 account numbers
     private int currentAccountID;
     private int recipientAccountID;
-    private int ammountTransferred;
+    private int amountTransferred;
 
     public AccountToAccount(int currentId, BankManager bankManager){
         super(currentId,bankManager);
@@ -50,7 +50,7 @@ public class AccountToAccount extends Transactions {
 
         System.out.println("\nType in the amount of money to transfer");
         int amount = input.nextInt();
-        ammountTransferred = amount;
+        amountTransferred = amount;
 
         // increase, decrease amount
         account_from.decreaseBalance(amount);
@@ -66,17 +66,19 @@ public class AccountToAccount extends Transactions {
         return currentAccountID;
     }
 
+    @Override
     public int getRecipientAccountID(){
         return recipientAccountID;
     }
 
-    public int getAmmountTransferred(){
-        return  ammountTransferred;
+    public int getAmountTransferred(){
+        return  amountTransferred;
     }
 
     @Override
     public String toString() {
-        return "Money Transfer";
+        return "Transfer $" + amountTransferred + "from account " +
+                currentAccountID + " to account " + recipientAccountID;
     }
 }
 

@@ -8,6 +8,8 @@ import java.io.*;
 
 public class PayBills extends Transactions{
     private int currentAccountID;
+    private int amountPaid;
+    private String recipientID;
 
     public PayBills(int currentId, BankManager bankManager){
         super(currentId,bankManager);
@@ -31,14 +33,14 @@ public class PayBills extends Transactions{
 
         Scanner input1 = new Scanner(System.in);
         System.out.println("\nType in the ID of the non-user account that you want to pay the bill to.");
-        String nonUserAccountID = input1.nextLine();
+        recipientID = input1.nextLine();
 
         System.out.println("\nType in the amount of bill");
-        int amount = input.nextInt();
+        amountPaid = input.nextInt();
         // reduce the balance of the account
-        account.decreaseBalance(amount);
-        String result = "A bill of $" + amount + " is paid from user account " + accountID +
-                " to non-user account " + nonUserAccountID;
+        account.decreaseBalance(amountPaid);
+        String result = "A bill of $" + amountPaid + " is paid from user account " + accountID +
+                " to non-user account " + recipientID;
         writeToOutGoingFile(result);
         System.out.println(result);
 
@@ -51,7 +53,8 @@ public class PayBills extends Transactions{
 
     @Override
     public String toString() {
-        return "Pay Bill";
+        return "Pay bills of amount $" + amountPaid + "from user account " + currentAccountID +
+                " to non-user account " + recipientID;
     }
 
     /**

@@ -26,7 +26,8 @@ As a customer:(for instructions for BankManager, skip to line 56)
 
 Menu items:
     View Balance Summary: Prompt the user to choose an Account which the Account ID and Balance will be printed to screen.
-    View Previous Transactions: Prompt the user to choose an Account which the last transaction with type and date printed to screen.
+    View Previous Transactions: Prompt the user to choose an Account which related information of the last transaction will be printed to screen.
+                                Prompt the user to choose whether to undo the most recent transaction.
     Net Total: This will print out the net total balance of the user, as a sum of all balances between all of the user's accounts.
     Change Password: Allows the user to change password
     View Account Creation Date: Prompt the user to choose an Account which the Account creation date will be printed to screen.
@@ -57,7 +58,9 @@ As Bank Manager: (for customer instructions, see above)
 1. Run Main.java in ATM folder
 2. The terminal prompts for choice of Customer or BankManager (for customer instructions, see above)
 2. The terminal should prompt for a password, an example BankManager has been set up with Password: abc123
-3. After successful login, the user should prompted with the choice of View Account Creation Requests, View Undo Transaction Requests, Restock ATOM or Exit.
+3. After successful login, the bank manager should be prompted with the choice of View Account Creation Requests, View Undo Transaction Requests, Restock ATM or Exit.
+4. Bank manager is assumed to view account all kinds of requests every day.
+5. Bank manager should check alert.txt before doing any actions. If there is an unhandled alert, restocking the ATM should take place right away.
 
 Menu items:
     View Account Creation Requests: Allows the bank manager to approve or reject requests from customer to create a new account.

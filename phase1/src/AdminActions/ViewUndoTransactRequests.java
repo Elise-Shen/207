@@ -62,7 +62,7 @@ public class ViewUndoTransactRequests extends AdminAction{
         }//while loop end
 
         if(undoRequests.isEmpty()) {
-            System.out.println("\nThere are no account requests at the moment");
+            System.out.println("\nThere are no undo transaction requests at the moment");
         }else{
             System.out.println("Exited");
         }

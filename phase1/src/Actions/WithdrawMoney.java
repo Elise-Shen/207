@@ -11,10 +11,12 @@ public class WithdrawMoney extends Transactions {
      */
     private int currentAccountID;
 
+    private int amountWithdrawn;
     /**
      * The CashStorage of the ATM that performs this action.
      */
     private CashStorage cashStorage;
+
     public WithdrawMoney(int userID, BankManager bm, CashStorage cs) {
         super(userID, bm);
         this.cashStorage = cs;
@@ -51,6 +53,7 @@ public class WithdrawMoney extends Transactions {
                     System.out.println("Please enter the amount of money that you want to withdraw.");
                     double balance = currentAccount.getBalance();
                     int cashWithdrawn = input1.nextInt();
+                    amountWithdrawn = cashWithdrawn;
                     if (currentAccount.getAccountType() == 2 && (balance - cashWithdrawn) > -1) {
                         boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
                         if (withdrawn) {
@@ -75,8 +78,12 @@ public class WithdrawMoney extends Transactions {
     }
 
     @Override
-    public int getAccountID() {
+    public int getCurrentAccountID() {
         return currentAccountID;
+    }
+
+    public int getAmountWithdrawn(){
+        return amountWithdrawn;
     }
 
     @Override

@@ -23,6 +23,8 @@ public class DepositMoney extends Transactions {
      */
     private String depositType;
 
+    private int ammountDeposited;
+
     /**
      * Create an instance of DepositMoney action.
      * @param userID the ID of the current user
@@ -120,8 +122,12 @@ public class DepositMoney extends Transactions {
     }
 
     @Override
-    public int getAccountID() {
+    public int getCurrentAccountID() {
         return currentAccountID;
+    }
+
+    public int getAmmountDeposited(){
+        return ammountDeposited;
     }
 
     @Override

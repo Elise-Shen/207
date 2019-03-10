@@ -14,7 +14,7 @@ public abstract class Transactions {
         return userID;
     }
 
-    public abstract int getAccountID();
+    public abstract int getCurrentAccountID();
     public abstract String toString();
     public BankManager getBankManager(){
         return bankManager;

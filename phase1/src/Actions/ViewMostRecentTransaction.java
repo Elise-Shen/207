@@ -46,7 +46,7 @@ public class ViewMostRecentTransaction extends ViewAccount {
                 int yesNo = input.nextInt();
                 if(yesNo == 1){
                     bankManager.addUndoTransactionRequest(getUserID(), previousTransaction);
-                    System.out.println("Sent request to bank manager to undo this transaction");
+                    System.out.println("Sent request to bank manager to undo this transaction\n");
                 }else{System.out.println("Returning to previous page");}
             }catch (InputMismatchException ex) {
                 System.out.println("Invalid Input. Try Again");

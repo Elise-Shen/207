@@ -263,7 +263,7 @@ public class ATM_Machine {
                     case TRANSFER_MONEY:
                         currentTransaction = createTransaction(transactionChoice);
                         currentTransaction.execute();
-                        bankManager.getUser(currentUserID).getAccount(currentTransaction.getAccountID()).addTransaction(currentTransaction);
+                        bankManager.getUser(currentUserID).getAccount(currentTransaction.getCurrentAccountID()).addTransaction(currentTransaction);
                         break;
                     case EXIT:
                         exited = true;

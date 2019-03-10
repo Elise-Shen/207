@@ -2,7 +2,10 @@ package ATM;
 
 import Accounts.Account;
 import Accounts.AccountFactory;
+import Actions.AccountToAccount;
+import Actions.DepositMoney;
 import Actions.Transactions;
+import Actions.WithdrawMoney;
 
 import java.util.InputMismatchException;
 
@@ -121,20 +124,33 @@ public class BankManager {
     }
 
 
-    public void undoTransaction (Transactions transactions){
+    public void undoTransaction (Transactions t){
         // recentTransaction_to -> recentTransaction_from
         // bills can't undo
         // this 2 variables are updated in every transaction
-
+        int ammountMoved = 0;
         // search user
-        User user =  getUser(userID);
+        Account currentAccount = getOneAccount(t.getCurrentAccountID());
         // get recent transaction of this user
-        Account from = user.getRecentTransaction_from();
-        Account to = user.getRecentTransaction_to();
-        double amount = user.getRecentTransaction_amount();
-        from.increaseBalance(amount);
-        to.decreaseBalance(amount);
-        System.out.println("Transaction is Undo");
+        if(t instanceof WithdrawMoney){
+            ammountMoved = ((WithdrawMoney) t).getAmountWithdrawn();
+            currentAccount.increaseBalance(ammountMoved);
+            System.out.println("Returned $" + ammountMoved +" to the account");
+        }else if(t instanceof DepositMoney){
+            ammountMoved = ((DepositMoney) t).getAmmountDeposited();
+            currentAccount.decreaseBalance(ammountMoved);
+            System.out.println("Removed money from the account");
+
+        }else if (t instanceof AccountToAccount){
+
+            int recipientID = ((AccountToAccount) t).getRecipientAccountID();
+            Account recipientAccount = getOneAccount(recipientID);
+            ammountMoved = ((AccountToAccount) t).getAmmountTransferred();
+            currentAccount.increaseBalance(ammountMoved);
+            recipientAccount.decreaseBalance(ammountMoved);
+            System.out.println("Returned money to original account");
+        }
+        System.out.println("Transaction is Undone");
     }
 
 

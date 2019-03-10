@@ -13,6 +13,8 @@ public class AccountToAccount extends Transactions {
     // Transfer money from one account to another
     // ask user to input 2 account numbers
     private int currentAccountID;
+    private int recipientAccountID;
+    private int ammountTransferred;
 
     public AccountToAccount(int currentId, BankManager bankManager){
         super(currentId,bankManager);
@@ -43,10 +45,12 @@ public class AccountToAccount extends Transactions {
         }
         System.out.println("\nType in the accountID money transfer out to");
         int accountID_to = input.nextInt();
+        recipientAccountID = accountID_to;
         Account account_to = bankManager.getOneAccount(accountID_to);
 
         System.out.println("\nType in the amount of money to transfer");
         int amount = input.nextInt();
+        ammountTransferred = amount;
 
         // increase, decrease amount
         account_from.decreaseBalance(amount);
@@ -61,8 +65,16 @@ public class AccountToAccount extends Transactions {
     }
 
     @Override
-    public int getAccountID() {
+    public int getCurrentAccountID() {
         return currentAccountID;
+    }
+
+    public int getRecipientAccountID(){
+        return recipientAccountID;
+    }
+
+    public int getAmmountTransferred(){
+        return  ammountTransferred;
     }
 
     @Override

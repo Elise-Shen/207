@@ -37,7 +37,7 @@ public class PayBills extends Transactions{
     }
 
     @Override
-    public int getAccountID() {
+    public int getCurrentAccountID() {
         return currentAccountID;
     }
 

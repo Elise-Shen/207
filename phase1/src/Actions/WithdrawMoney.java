@@ -88,7 +88,7 @@ public class WithdrawMoney extends Transactions {
 
     @Override
     public String toString() {
-        return "Withdrawal";
+        return "Withdrawal $" + amountWithdrawn + "from account " + currentAccountID;
     }
 }
 

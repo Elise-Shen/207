@@ -76,7 +76,8 @@ public class AccountToAccount extends Transactions {
 
     @Override
     public String toString() {
-        return "Money Transfer";
+        return "Transfer $" + amountTransferred + "from account " +
+                currentAccountID + " to account " + recipientAccountID;
     }
 }
 

@@ -140,7 +140,7 @@ public class BankManager implements Serializable {
         }else if(t instanceof DepositMoney){
             amountMoved = ((DepositMoney) t).getAmountDeposited();
             currentAccount.decreaseBalance(amountMoved);
-            System.out.println("Removed money from the account");
+            System.out.println("Removed $" + amountMoved + " from the account");
 
         }else if (t instanceof AccountToAccount){
 

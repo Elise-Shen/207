@@ -15,8 +15,7 @@ public class ViewAccountRequests extends AdminAction {
     public void execute(){
 
         BankManager bankManager = getBankManager();
-        Map<Integer, Integer> accountRequests;
-        accountRequests = bankManager.getAccountRequests();
+        Map<Integer, Integer> accountRequests = bankManager.getAccountRequests();
         boolean exited = false;
         while (!exited) {
             if (!accountRequests.isEmpty()) {

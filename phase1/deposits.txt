@@ -6,3 +6,4 @@ Cheque, 100
 Please enter below:
 Cheque, 100
 Cash, 5, 5, 5, 5
+Cheque, 1000

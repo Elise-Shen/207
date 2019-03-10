@@ -15,6 +15,7 @@ public class BankManager {
 
     private String bankName;
     private Map<Integer, Integer> accountRequests = new HashMap<>();
+    private Map<Integer, Transactions> undoTransactionRequest = new HashMap<>();
     private List<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
     private List<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
@@ -111,8 +112,16 @@ public class BankManager {
         return accountRequests;
     }
 
+    public Map<Integer, Transactions> getUndoTransactionRequest(){
+        return undoTransactionRequest;
+    }
 
-    public void undoTransaction (int userID){
+    public void addUndoTransactionRequest(int userID, Transactions t){
+        undoTransactionRequest.put(userID, t);
+    }
+
+
+    public void undoTransaction (Transactions transactions){
         // recentTransaction_to -> recentTransaction_from
         // bills can't undo
         // this 2 variables are updated in every transaction
@@ -205,6 +214,7 @@ public class BankManager {
         }
         return name;
     }
+
 
     /**
      * Add interest to all savings accounts in this BankManager's account list.

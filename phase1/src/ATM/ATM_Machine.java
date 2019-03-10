@@ -284,7 +284,7 @@ public class ATM_Machine {
                 temp = new ViewAccountRequests(bankManager);
                 break;
             case VIEW_UNDO_TRANSAC:
-                temp = new ViewAccountRequests(bankManager);
+                temp = new ViewUndoTransactRequests(bankManager);
                 break;
             case RESTOCK:
                 temp = new RestockATM(bankManager, cashStorage);

@@ -23,12 +23,12 @@ public class RequestAccount extends UserActions {
     @Override
     public void execute() {
         BankManager bankManager = getBankManager();
-        User currenUser = bankManager.getUser(getUserID());
-        int currentCount = currenUser.getCount();
+        User currentUser = bankManager.getUser(getUserID());
+        int currentCount = currentUser.getCount();
         LocalTime currentTime = LocalTime.now();
         LocalTime countResetTime = LocalTime.MIDNIGHT;
         if(currentTime == countResetTime){
-            currenUser.resetCount();
+            currentUser.resetCount();
         }
         if(currentCount < LIMIT ) {
             int accountType = 0;
@@ -67,7 +67,7 @@ public class RequestAccount extends UserActions {
                     break;
             }
             if (accountType != 0) {
-                currenUser.incrementCount();
+                currentUser.incrementCount();
                 bankManager.requestAccount(getUserID(), accountType);
                 System.out.println("\nRequested an " + typeString + " account.");
             } else {

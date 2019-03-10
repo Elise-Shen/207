@@ -137,7 +137,7 @@ public class BankManager {
             currentAccount.increaseBalance(ammountMoved);
             System.out.println("Returned $" + ammountMoved +" to the account");
         }else if(t instanceof DepositMoney){
-            ammountMoved = ((DepositMoney) t).getAmmountDeposited();
+            ammountMoved = ((DepositMoney) t).getAmountDeposited();
             currentAccount.decreaseBalance(ammountMoved);
             System.out.println("Removed money from the account");
 

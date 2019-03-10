@@ -126,7 +126,7 @@ public class DepositMoney extends Transactions {
         return currentAccountID;
     }
 
-    public int getAmmountDeposited(){
+    public int getAmountDeposited(){
         return ammountDeposited;
     }
 

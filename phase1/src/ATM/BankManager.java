@@ -102,8 +102,8 @@ public class BankManager {
 
     /**
      * Not private because may use this for other reasons in Phase 2
-     * @param userID
-     * @param newAccount
+     * @param userID the ID of the user
+     * @param newAccount the Account object of account being requested
      */
     public void addAccount(int userID, Account newAccount){
         User user = getUser(userID);

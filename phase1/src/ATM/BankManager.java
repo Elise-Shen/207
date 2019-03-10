@@ -9,6 +9,8 @@ import java.util.InputMismatchException;
 import java.util.*;
 import java.util.Scanner;
 
+
+
 public class BankManager {
 
     private String bankName;
@@ -18,6 +20,11 @@ public class BankManager {
     private List<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
     private List<Account> allAccounts = new ArrayList<>();
     private String password;
+
+    private final int CHEQUING = 1;
+    private final int SAVINGS = 2;
+    private final int CREDIT = 3;
+    private final int LINE_OF_CREDIT = 4;
 
     public BankManager(String bankName, String password){
         this.bankName = bankName;
@@ -85,6 +92,7 @@ public class BankManager {
         Account newAccount = accountFactory.getAccount(accountType);
 
         addAccount(userID, newAccount);
+        System.out.println("Created a new " + newAccount + " for User " + userID + ".");
     }
 
     /**
@@ -177,6 +185,25 @@ public class BankManager {
             }
         }
         return null;
+    }
+
+    public String getAccountName(int type){
+        String name= "";
+        switch (type){
+            case CHEQUING:
+                name = "Chequing";
+                break;
+            case SAVINGS:
+                name = "Savings";
+                break;
+            case CREDIT:
+                name = "Credit";
+                break;
+            case LINE_OF_CREDIT:
+                name = "Line of Credit";
+                break;
+        }
+        return name;
     }
 
 }

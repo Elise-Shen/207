@@ -7,10 +7,11 @@ import java.util.*;
 public class ViewAccountRequests extends AdminAction {
 
 
+
+
     public ViewAccountRequests(BankManager bankManager){
         super(bankManager);
     }
-
     public void execute(){
 
         BankManager bankManager = getBankManager();
@@ -29,7 +30,8 @@ public class ViewAccountRequests extends AdminAction {
                     count++;
                     entry = entries.next();
                     mapKey = entry.getKey();
-                    System.out.println("\n" + count + " - User " + mapKey + " requested a " + accountRequests.get(mapKey) + " account.");
+                    System.out.println("\n" + count + " - User " + mapKey + " requested a " +
+                            bankManager.getAccountName(accountRequests.get(mapKey)) + " account.");
                     //keeps iterating until the last item
                     //sets map-key to last item
                 }
@@ -49,9 +51,7 @@ public class ViewAccountRequests extends AdminAction {
                             }
                             bankManager.createAccount(mapKey, accountRequests.get(mapKey));
                             bankManager.getAccountRequests().remove(mapKey);
-                            System.out.println("Created a new Account");
                         }else if(choice == 0){
-                            exited = true;
                             break;
                         }else {
                             System.out.println("Invalid input. Please try again");

@@ -32,7 +32,7 @@ public abstract class Account {
     private Map<LocalDate, Transactions> listOfTransactions = new LinkedHashMap<>();
 
     /**
-     * Ownder's user ID
+     * Owner's user ID
      */
     private int ownerID;
 
@@ -117,5 +117,6 @@ public abstract class Account {
     public LocalDate getDateOfCreation() {
         return this.dateOfCreation;
     }
+
 }
 

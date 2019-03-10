@@ -47,6 +47,16 @@ public class ATM_Machine {
     private CashStorage cashStorage;
     private BankManager bankManager;
 
+    /**
+     * Indicates whether the interest is added to all savings account at the end of every month.
+     */
+    private boolean interestAdded = false;
+
+    /**
+     * The current date when this ATM is running.
+     */
+    private LocalDate currentDate = LocalDate.now();
+
 
     public ATM_Machine(){
 
@@ -86,7 +96,7 @@ public class ATM_Machine {
                 }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
 
             }
-
+            addToSavingsAccounts();
         }
     }
 
@@ -338,6 +348,24 @@ public class ATM_Machine {
 
         return temp; //placeholder
     }
+
+    private boolean isEndOfMonth() {
+        LocalDate end = currentDate.withDayOfMonth(currentDate.lengthOfMonth());
+        return currentDate.equals(end);
+    }
+
+
+    private void addToSavingsAccounts() {
+        if (isEndOfMonth() && !interestAdded) {
+            bankManager.addInterestToSavingsAccounts();
+            interestAdded = true;
+        }
+        if (!isEndOfMonth()) {
+            interestAdded = false;
+        }
+    }
+
+
 
 }
 

@@ -19,10 +19,8 @@ public class Saving extends AssetAccount {
         return "Savings";
     }
 
-    /**
-     * Make this savings account's balance increase by a factor of 0.1%.
-     */
-    public void AddInterest(){
+    @Override
+    public void addInterest(){
         balance = balance * (1 + 0.001);
     }
 }

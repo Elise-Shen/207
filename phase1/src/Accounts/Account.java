@@ -117,5 +117,10 @@ public abstract class Account {
     public LocalDate getDateOfCreation() {
         return this.dateOfCreation;
     }
+
+    /**
+     * Make this savings account's balance increase by a factor of 0.1%.
+     */
+    public abstract void addInterest();
 }
 

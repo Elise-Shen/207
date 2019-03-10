@@ -179,5 +179,12 @@ public class BankManager {
         return null;
     }
 
+    void addInterestToSavingsAccounts() {
+        for (Account a : allAccounts) {
+            if (a != null && a.getAccountType() == 2) {
+                a.addInterest();
+             }
+        }
+    }
 }
 

@@ -242,5 +242,9 @@ public class BankManager {
              }
         }
     }
+
+    public void updateData(){
+
+    }
 }
 

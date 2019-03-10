@@ -419,7 +419,6 @@ public class ATM_Machine {
             ex.printStackTrace();
             //bankManager = new BankManager("TD Bank", "abc123");
         }
-
         return temp;
 
     }

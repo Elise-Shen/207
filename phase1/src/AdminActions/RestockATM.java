@@ -14,6 +14,6 @@ public class RestockATM extends AdminAction {
 
     @Override
     public void execute() {
-
+        cashStorage.setToMaxStock();
     }
 }

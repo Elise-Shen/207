@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Accounts</OriginalElement>
+  <nodes>
+    <node x="243.00000000000003" y="0.0">Accounts.Account</node>
+    <node x="101.0" y="476.0">Accounts.DebtAccount</node>
+    <node x="202.0" y="632.0">Accounts.Credit</node>
+    <node x="538.75" y="487.0">Accounts.AssetAccount</node>
+    <node x="404.0" y="621.0">Accounts.Chequing</node>
+    <node x="0.0" y="632.0">Accounts.LineOfCredit</node>
+    <node x="651.0" y="621.0">Accounts.Saving</node>
+    <node x="0.0" y="761.0">Accounts.AccountFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Accounts.LineOfCredit" target="Accounts.DebtAccount">
+      <point x="0.0" y="-36.5" />
+      <point x="91.0" y="596.0" />
+      <point x="146.5" y="596.0" />
+      <point x="-45.5" y="47.5" />
+    </edge>
+    <edge source="Accounts.DebtAccount" target="Accounts.Account">
+      <point x="0.0" y="-47.5" />
+      <point x="192.0" y="451.0" />
+      <point x="329.75" y="451.0" />
+      <point x="-86.75" y="213.0" />
+    </edge>
+    <edge source="Accounts.Saving" target="Accounts.AssetAccount">
+      <point x="0.0" y="-47.5" />
+      <point x="742.0" y="596.0" />
+      <point x="675.25" y="596.0" />
+      <point x="45.5" y="36.5" />
+    </edge>
+    <edge source="Accounts.AssetAccount" target="Accounts.Account">
+      <point x="0.0" y="-36.5" />
+      <point x="629.75" y="451.0" />
+      <point x="503.25" y="451.0" />
+      <point x="86.75" y="213.0" />
+    </edge>
+    <edge source="Accounts.Credit" target="Accounts.DebtAccount">
+      <point x="0.0" y="-36.5" />
+      <point x="293.0" y="596.0" />
+      <point x="237.5" y="596.0" />
+      <point x="45.5" y="47.5" />
+    </edge>
+    <edge source="Accounts.Chequing" target="Accounts.AssetAccount">
+      <point x="0.0" y="-47.5" />
+      <point x="517.5" y="596.0" />
+      <point x="584.25" y="596.0" />
+      <point x="-45.5" y="36.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="580.5" y="546.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

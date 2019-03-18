@@ -5,6 +5,7 @@ import ATM.User;
 import Accounts.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NetTotal extends UserActions {
 
@@ -19,7 +20,7 @@ public class NetTotal extends UserActions {
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        ArrayList<Account> accounts = currentUser.getAccountList();
+        List<Account> accounts = currentUser.getAccountList();
         int netTotal = 0;
         for(Account account: accounts){
             if (account instanceof AssetAccount) {

@@ -5,6 +5,7 @@ import ATM.User;
 import Accounts.Account;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AccountSummary extends UserActions {
 
@@ -19,7 +20,7 @@ public class AccountSummary extends UserActions {
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        ArrayList<Account> accounts = currentUser.getAccountList();
+        List<Account> accounts = currentUser.getAccountList();
         int accountNum = 0;
         for (Account account : accounts) {
             accountNum++;

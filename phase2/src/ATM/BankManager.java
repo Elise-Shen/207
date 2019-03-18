@@ -63,7 +63,7 @@ public class BankManager implements Serializable {
         }
         return result;
     }
-    public ArrayList<Account> getAccountArrayList(User user) {
+    public List<Account> getAccountArrayList(User user) {
         // given user obj -> return a list of account in correspond to the user
         return user.getAccountList();
     }

@@ -46,7 +46,7 @@ public class DepositMoney extends Transactions {
         Account currentAccount = null;
         boolean validInput = false;
         int accountChoice;
-        ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
+        List<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
             Scanner input = new Scanner(System.in);
             System.out.println("\nPlease type in the ID of the account that you want to deposit money in and \nmake sure" +

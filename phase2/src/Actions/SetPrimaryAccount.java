@@ -5,6 +5,7 @@ import ATM.User;
 import Accounts.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SetPrimaryAccount extends UserActions {
@@ -21,7 +22,7 @@ public class SetPrimaryAccount extends UserActions {
         Account newPrimary = null;
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        ArrayList<Account> currentAccounts = currentUser.getAccountList();
+        List<Account> currentAccounts = currentUser.getAccountList();
         boolean isValid = false;
         while(!isValid){
             Scanner input = new Scanner(System.in);

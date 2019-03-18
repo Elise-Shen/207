@@ -2,6 +2,7 @@ package Actions;
 import ATM.*;
 import Accounts.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class WithdrawMoney extends Transactions {
@@ -30,7 +31,7 @@ public class WithdrawMoney extends Transactions {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
         boolean validInput = false;
-        ArrayList<Account> currentUserAccounts = currentUser.getAccountList();
+        List<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
             Scanner input = new Scanner(System.in);
             System.out.println("\nPlease type in the ID of the account that you want to withdraw money from.");

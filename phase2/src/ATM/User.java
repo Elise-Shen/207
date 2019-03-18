@@ -14,7 +14,7 @@ public class User implements Serializable {
     private int userID;
     // transRecord: Map Date to an ArrayList
     private Map <LocalDate, Transactions> transRecord = new LinkedHashMap <>();
-    private ArrayList<Account> accounts = new ArrayList<>();
+    private List<Account> accounts = new ArrayList<>();
     private Account primaryAccount;
     private String password;
     private BankManager bankManager;
@@ -59,7 +59,7 @@ public class User implements Serializable {
     /**
      * Return the Array list of account.
      */
-    public ArrayList<Account> getAccountList(){ return accounts;}
+    public List<Account> getAccountList(){ return accounts;}
 
     /**
      * Given account ID, return the corresponding account.

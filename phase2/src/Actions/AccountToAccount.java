@@ -24,7 +24,7 @@ public class AccountToAccount extends Transactions {
     public void execute(){
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        ArrayList<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
+        List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
         List<Account> allAccounts = bankManager.getAllAccounts();
 
         Scanner input = new Scanner(System.in);

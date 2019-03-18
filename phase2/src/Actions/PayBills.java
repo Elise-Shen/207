@@ -3,6 +3,7 @@ import ATM.*;
 import Accounts.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
@@ -18,7 +19,7 @@ public class PayBills extends Transactions{
     public void execute(){
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        ArrayList<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
+        List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
 
         Scanner input = new Scanner(System.in);
         System.out.println("\nType in the ID of the account you want to use to pay bill.");

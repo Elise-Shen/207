@@ -1,6 +1,5 @@
 package BankProducts;
 
-import ATM.BankManager;
 import Accounts.*;
 
 public abstract class MortgageProduct extends BankProduct{

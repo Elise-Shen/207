@@ -3,6 +3,7 @@ package Actions;
 import ATM.*;
 import Accounts.*;
 
+import javax.money.MonetaryAmount;
 import java.util.*;
 
 
@@ -52,8 +53,8 @@ public class AccountToAccount extends Transactions {
         amountTransferred = amount;
 
         // increase, decrease amount
-        account_from.decreaseBalance(amount);
-        account_to.increaseBalance(amount);
+        account_from.decreaseCurrencyBalance(createMoney(amount));
+        account_to.increaseCurrencyBalance(createMoney(amount));
         // update recent transaction
 
         System.out.println("A transaction of amount $"+ amount+" is completed");
@@ -70,8 +71,8 @@ public class AccountToAccount extends Transactions {
         return recipientAccountID;
     }
 
-    public int getAmountTransferred(){
-        return  amountTransferred;
+    public MonetaryAmount getAmountTransferred(){
+        return  createMoney(amountTransferred);
     }
 
     @Override

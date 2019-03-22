@@ -1,8 +1,13 @@
 package Actions;
 import ATM.*;
 import Accounts.*;
+import org.javamoney.moneta.Money;
 
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
+import javax.money.MonetaryAmount;
 import java.util.List;
+import java.util.Locale;
 
 public class WithdrawMoney extends Transactions {
 
@@ -56,14 +61,14 @@ public class WithdrawMoney extends Transactions {
                     if (currentAccount.getAccountType() == 2 && (balance - cashWithdrawn) > -1) {
                         boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
                         if (withdrawn) {
-                            currentAccount.decreaseBalance(cashWithdrawn);
+                            currentAccount.decreaseCurrencyBalance(createMoney(amountWithdrawn));
                             validInput1 = true;
                         }
                     } else if (currentAccount.getAccountType() == 1) {
                         if (balance > -1 && balance - cashWithdrawn > -101) {
                             boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
                             if (withdrawn) {
-                                currentAccount.decreaseBalance(cashWithdrawn);
+                                currentAccount.decreaseCurrencyBalance(createMoney(amountWithdrawn));
                                 validInput1 = true;
                             }
                         } else {
@@ -81,8 +86,8 @@ public class WithdrawMoney extends Transactions {
         return currentAccountID;
     }
 
-    public int getAmountWithdrawn(){
-        return amountWithdrawn;
+    public MonetaryAmount getAmountWithdrawn(){
+        return createMoney(amountWithdrawn);
     }
 
     @Override

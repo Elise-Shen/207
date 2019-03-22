@@ -7,6 +7,12 @@ import java.util.*;
 
 public class ViewAccountRequests extends AdminAction {
 
+<<<<<<< HEAD
+=======
+    int mapKey = 0;
+    int count = 0;
+
+>>>>>>> c42a3c5f01523d185fecc5bddeb0383c40745d75
     public ViewAccountRequests(BankManager bankManager){
         super(bankManager);
     }
@@ -16,7 +22,28 @@ public class ViewAccountRequests extends AdminAction {
         boolean exited = false;
         while (!exited) {
             if (!accountRequests.isEmpty()) {
+<<<<<<< HEAD
                 int count = displayAccountCreationRequests(bankManager);
+=======
+                Iterator<Map.Entry<Integer, Integer>> entries = accountRequests.entrySet().iterator();
+                Iterator<Map.Entry<Integer, Integer>> entries2 = accountRequests.entrySet().iterator();
+
+                Map.Entry<Integer, Integer> entry;
+                mapKey = 0;
+                count = 0;
+
+                System.out.println("\nCurrent Requests");
+                while (entries.hasNext()) {
+                    count++;
+                    entry = entries.next();
+                    mapKey = entry.getKey();
+                    System.out.println("\n" + count + " - User " + mapKey + " requested a " +
+                            bankManager.getAccountName(accountRequests.get(mapKey)) + " account.");
+                    //keeps iterating until the last item
+                    //sets map-key to last item
+                }
+
+>>>>>>> c42a3c5f01523d185fecc5bddeb0383c40745d75
                 boolean isValid = false;
                 while (!isValid) {
                     try {
@@ -46,6 +73,7 @@ public class ViewAccountRequests extends AdminAction {
 
     }
 
+<<<<<<< HEAD
     /**
      * Display all the account creation requests.
      */
@@ -55,6 +83,14 @@ public class ViewAccountRequests extends AdminAction {
         Map.Entry<Integer, Integer> entry;
         Integer mapKey;
         int count = 0;
+=======
+
+    private void ListRequests(Iterator<Map.Entry<Integer, Integer>> entries){
+        BankManager bankManager = getBankManager();
+        Map<Integer, Integer> accountRequests = bankManager.getAccountRequests();
+        Map.Entry<Integer, Integer> entry;
+
+>>>>>>> c42a3c5f01523d185fecc5bddeb0383c40745d75
         System.out.println("\nCurrent Requests");
         while (entries.hasNext()) {
             count++;
@@ -65,6 +101,7 @@ public class ViewAccountRequests extends AdminAction {
             //keeps iterating until the last item
             //sets map-key to last item
         }
+<<<<<<< HEAD
         return count;
     }
 
@@ -86,4 +123,8 @@ public class ViewAccountRequests extends AdminAction {
         bankManager.getAccountRequests().remove(mapKey);
     }
 
+=======
+
+    }
+>>>>>>> c42a3c5f01523d185fecc5bddeb0383c40745d75
 }

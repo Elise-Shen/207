@@ -1,11 +1,16 @@
 package Actions;
 import ATM.*;
 import Accounts.*;
+import org.javamoney.moneta.Money;
 
 
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
+import javax.money.MonetaryAmount;
 import java.util.List;
 
 import java.io.*;
+import java.util.Locale;
 
 public class PayBills extends Transactions{
     private int currentAccountID;
@@ -35,7 +40,7 @@ public class PayBills extends Transactions{
 
         amountPaid = keyPad.getIntInput("\nType in the amount of bill");
         // reduce the balance of the account
-        account.decreaseBalance(amountPaid);
+        account.decreaseCurrencyBalance(createMoney(amountPaid));
         String result = "A bill of $" + amountPaid + " is paid from user account " + accountID +
                 " to non-user account " + recipientID;
         writeToOutGoingFile(result);

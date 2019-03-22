@@ -15,13 +15,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*CurrencyUnit usd = Monetary.getCurrency(new Locale("en", "US"));
+     /*   CurrencyUnit usd = Monetary.getCurrency(new Locale("en", "US"));
         CurrencyUnit cad = Monetary.getCurrency(Locale.getDefault());
         System.out.println(usd.getDefaultFractionDigits() + " " + usd.getNumericCode());
         MonetaryAmount amt = Monetary.getDefaultAmountFactory().setCurrency(usd).setNumber(200.03).create();
-
         Money usdMoney = Money.of(1.00, usd);
-        Money cadMoney = Money.of(1.00, cad);
+
+        Money cadMoney = Money.of(0, cad);
+        Money added = Money.of(1000, cad);
+        cadMoney = cadMoney.add(added);
+        System.out.println(cadMoney);
 
         CurrencyConversion conversionCAD = MonetaryConversions.getConversion(cad);
 

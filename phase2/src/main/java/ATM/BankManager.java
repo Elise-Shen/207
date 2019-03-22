@@ -7,6 +7,7 @@ import Actions.DepositMoney;
 import Actions.Transactions;
 import Actions.WithdrawMoney;
 
+import javax.money.MonetaryAmount;
 import java.io.*;
 import java.util.InputMismatchException;
 
@@ -132,17 +133,17 @@ public class BankManager implements Serializable {
         // recentTransaction_to -> recentTransaction_from
         // bills can't undo
         // this 2 variables are updated in every transaction
-        int amountMoved;
+        MonetaryAmount amountMoved;
         // search user
         Account currentAccount = getOneAccount(t.getCurrentAccountID());
         // get recent transaction of this user
         if(t instanceof WithdrawMoney){
             amountMoved = ((WithdrawMoney) t).getAmountWithdrawn();
-            currentAccount.increaseBalance(amountMoved);
+            currentAccount.increaseCurrencyBalance(amountMoved);
             System.out.println("Returned $" + amountMoved +" to the account");
         }else if(t instanceof DepositMoney){
             amountMoved = ((DepositMoney) t).getAmountDeposited();
-            currentAccount.decreaseBalance(amountMoved);
+            currentAccount.decreaseCurrencyBalance(amountMoved);
             System.out.println("Removed $" + amountMoved + " from the account");
 
         }else if (t instanceof AccountToAccount){
@@ -150,8 +151,8 @@ public class BankManager implements Serializable {
             int recipientID = ((AccountToAccount) t).getRecipientAccountID();
             Account recipientAccount = getOneAccount(recipientID);
             amountMoved = ((AccountToAccount) t).getAmountTransferred();
-            currentAccount.increaseBalance(amountMoved);
-            recipientAccount.decreaseBalance(amountMoved);
+            currentAccount.increaseCurrencyBalance(amountMoved);
+            recipientAccount.decreaseCurrencyBalance(amountMoved);
             System.out.println("Returned money to original account");
         }
         System.out.println("Transaction is Undone");

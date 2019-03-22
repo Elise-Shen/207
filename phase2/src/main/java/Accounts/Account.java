@@ -1,6 +1,9 @@
 package Accounts;
 import Actions.Transactions;
+import org.javamoney.moneta.Money;
 
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
@@ -18,6 +21,8 @@ public abstract class Account implements Serializable {
      * The balance of this account.
      */
     double balance;
+    CurrencyUnit primaryCurrency;
+    Money currencyBalance;
 
     /**
      * The Id of this account.
@@ -49,6 +54,7 @@ public abstract class Account implements Serializable {
         incrementNumAccount();
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
+        primaryCurrency = Monetary.getCurrency(Locale.getDefault());
     }
 
     public void incrementNumAccount(){

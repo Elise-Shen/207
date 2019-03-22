@@ -399,7 +399,7 @@ public class ATM_Machine {
      * @throws IOException
      */
     private void updateData() throws  IOException{
-        String filePath = "Bankmanager2.ser";
+        String filePath = "phase2/Bankmanager2.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);

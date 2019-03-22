@@ -7,34 +7,16 @@ import java.util.*;
 
 public class ViewAccountRequests extends AdminAction {
 
-
-
-
     public ViewAccountRequests(BankManager bankManager){
         super(bankManager);
     }
     public void execute(){
-
         BankManager bankManager = getBankManager();
         Map<Integer, Integer> accountRequests = bankManager.getAccountRequests();
         boolean exited = false;
         while (!exited) {
             if (!accountRequests.isEmpty()) {
-                Iterator<Map.Entry<Integer, Integer>> entries = accountRequests.entrySet().iterator();
-                Iterator<Map.Entry<Integer, Integer>> entries2 = accountRequests.entrySet().iterator();
-                Map.Entry<Integer, Integer> entry;
-                Integer mapKey = 0;
-                int count = 0;
-                System.out.println("\nCurrent Requests");
-                while (entries.hasNext()) {
-                    count++;
-                    entry = entries.next();
-                    mapKey = entry.getKey();
-                    System.out.println("\n" + count + " - User " + mapKey + " requested a " +
-                            bankManager.getAccountName(accountRequests.get(mapKey)) + " account.");
-                    //keeps iterating until the last item
-                    //sets map-key to last item
-                }
+                int count = displayAccountCreationRequests(bankManager);
                 boolean isValid = false;
                 while (!isValid) {
                     try {
@@ -42,15 +24,8 @@ public class ViewAccountRequests extends AdminAction {
                         int choice = keyPad.getIntInput("Enter the number of the request you wish to " +
                                 "approve or enter 0 to exit");
                         if (choice > 0 && choice <= count) {
-                            int choiceCount = 0;
+                            handleAccountCreationRequests(bankManager, choice);
                             isValid = true;
-                            while (entries2.hasNext() && choiceCount != choice) {
-                                choiceCount++;
-                                entry = entries2.next();
-                                mapKey = entry.getKey();
-                            }
-                            bankManager.createAccount(mapKey, accountRequests.get(mapKey));
-                            bankManager.getAccountRequests().remove(mapKey);
                         }else if(choice == 0){
                             break;
                         }else {
@@ -70,4 +45,45 @@ public class ViewAccountRequests extends AdminAction {
         }
 
     }
+
+    /**
+     * Display all the account creation requests.
+     */
+    private int displayAccountCreationRequests(BankManager bankManager) {
+        Map<Integer, Integer> accountRequests = bankManager.getAccountRequests();
+        Iterator<Map.Entry<Integer, Integer>> entries = accountRequests.entrySet().iterator();
+        Map.Entry<Integer, Integer> entry;
+        Integer mapKey;
+        int count = 0;
+        System.out.println("\nCurrent Requests");
+        while (entries.hasNext()) {
+            count++;
+            entry = entries.next();
+            mapKey = entry.getKey();
+            System.out.println("\n" + count + " - User " + mapKey + " requested a " +
+                    bankManager.getAccountName(accountRequests.get(mapKey)) + " account.");
+            //keeps iterating until the last item
+            //sets map-key to last item
+        }
+        return count;
+    }
+
+    /**
+     * Handles the account creation requests.
+     */
+    private void handleAccountCreationRequests(BankManager bankManager, int choice) {
+        Map<Integer, Integer> accountRequests = bankManager.getAccountRequests();
+        Iterator<Map.Entry<Integer, Integer>> entries = accountRequests.entrySet().iterator();
+        Map.Entry<Integer, Integer> entry;
+        Integer mapKey = 0;
+        int choiceCount = 0;
+        while (entries.hasNext() && choiceCount != choice) {
+            choiceCount++;
+            entry = entries.next();
+            mapKey = entry.getKey();
+        }
+        bankManager.createAccount(mapKey, accountRequests.get(mapKey));
+        bankManager.getAccountRequests().remove(mapKey);
+    }
+
 }

@@ -69,7 +69,7 @@ public class ATM_Machine {
         currentUserID = 0;
         cashStorage = new CashStorage();
         //bankManager = new BankManager("TD Bank", "abc123");
-        bankManager = getBankManager("phase2/Bankmanager2.ser");
+        bankManager = getBankManager("Bankmanager2.ser");
 
     }
 

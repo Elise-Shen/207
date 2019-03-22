@@ -19,21 +19,7 @@ public class ViewUndoTransactRequests extends AdminAction{
         boolean exited = false;
         while(!exited){
             if(!undoRequests.isEmpty()){
-                Iterator<Map.Entry<Integer, Transactions>> entries = undoRequests.entrySet().iterator();
-                Iterator<Map.Entry<Integer, Transactions>> entries2 = undoRequests.entrySet().iterator();
-                Map.Entry<Integer, Transactions> entry;
-                Integer mapKey = 0;
-                int count = 0;
-                System.out.println("\nCurrent Requests");
-                while (entries.hasNext()) {
-                    count++;
-                    entry = entries.next();
-                    mapKey = entry.getKey();
-                    System.out.println("\n" + count + " - User " + mapKey + " requested to undo" +
-                            " their previous transaction: " + undoRequests.get(mapKey));
-                    //keeps iterating until the last item
-                    //sets map-key to last item
-                }
+                int count = displayRequests(bankManager);
                 boolean isValid = false;
                 System.out.println();
                 while (!isValid) {
@@ -42,15 +28,8 @@ public class ViewUndoTransactRequests extends AdminAction{
                         int choice = keyPad.getIntInput("Enter the number of the request you wish to " +
                                 "approve or enter 0 to exit");
                         if (choice > 0 && choice <= count) {
-                            int choiceCount = 0;
+                            handleRequests(bankManager, choice);
                             isValid = true;
-                            while (entries2.hasNext() && choiceCount != choice) {
-                                choiceCount++;
-                                entry = entries2.next();
-                                mapKey = entry.getKey();
-                            }
-                            bankManager.undoTransaction(undoRequests.get(mapKey));
-                            bankManager.getUndoTransactionRequest().remove(mapKey);
                         }else if(choice == 0){
                             break;
                         }else {
@@ -68,7 +47,45 @@ public class ViewUndoTransactRequests extends AdminAction{
         }else{
             System.out.println("Exited");
         }
+    }
 
+    /**
+     * Display all the account creation requests.
+     */
+    private int displayRequests(BankManager bankManager) {
+        Map<Integer, Transactions> undoRequests = bankManager.getUndoTransactionRequest();
+        Iterator<Map.Entry<Integer, Transactions>> entries = undoRequests.entrySet().iterator();
+        Map.Entry<Integer, Transactions> entry;
+        Integer mapKey;
+        int count = 0;
+        System.out.println("\nCurrent Requests");
+        while (entries.hasNext()) {
+            count++;
+            entry = entries.next();
+            mapKey = entry.getKey();
+            System.out.println("\n" + count + " - User " + mapKey + " requested to undo" +
+                    " their previous transaction: " + undoRequests.get(mapKey));
+            //keeps iterating until the last item
+            //sets map-key to last item
+        }
+        return count;
+    }
 
+    /**
+     * Handles the account creation requests.
+     */
+    private void handleRequests(BankManager bankManager, int choice) {
+        Map<Integer, Transactions> undoRequests = bankManager.getUndoTransactionRequest();
+        Iterator<Map.Entry<Integer, Transactions>> entries = undoRequests.entrySet().iterator();
+        Map.Entry<Integer, Transactions> entry;
+        Integer mapKey=0;
+        int choiceCount = 0;
+        while (entries.hasNext() && choiceCount != choice) {
+            choiceCount++;
+            entry = entries.next();
+            mapKey = entry.getKey();
+        }
+        bankManager.undoTransaction(undoRequests.get(mapKey));
+        bankManager.getUndoTransactionRequest().remove(mapKey);
     }
 }

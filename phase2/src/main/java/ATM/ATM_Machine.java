@@ -8,7 +8,6 @@ import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class ATM_Machine {
 
@@ -78,12 +77,13 @@ public class ATM_Machine {
             boolean isValid = false;
             while(!isValid){
                 try {
-                    Keypad keyPad = new Keypad();
-                    int choice = keyPad.getIntInput("\nATM Starting Up" +
-                            "\nLocalDateTime.now().format(DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm\"))" +
+                    String message = "\nATM Starting Up\n" +
+                            LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) +
                             "\nAre you a Customer or a Bank Manager?" +
                             "\n1 - Customer" +
-                            "\n2 - Bank Manager");
+                            "\n2 - Bank Manager";
+                    Keypad keyPad = new Keypad();
+                    int choice = keyPad.getIntInput(message);
                     switch (choice){
                         case CUSTOMER:
                             customerLogin();
@@ -147,12 +147,13 @@ public class ATM_Machine {
         AdminAction currentAdminAction;
         while(!exited) {
             try {
-                Keypad keyPad = new Keypad();
-                int choice = keyPad.getIntInput("\nChoose your action" +
+                String message = "\nChoose your action" +
                         "\n1 - View Account Creation Requests" +
                         "\n2 - View Undo Transaction Requests" +
                         "\n3 - Restock this ATM" +
-                        "\n0 - Exit");
+                        "\n0 - Exit";
+                Keypad keyPad = new Keypad();
+                int choice = keyPad.getIntInput(message);
                 switch (choice){
                     case VIEW_ACCOUNT_REQUEST:
                     case VIEW_UNDO_TRANSAC:
@@ -182,13 +183,12 @@ public class ATM_Machine {
         boolean exited = false;
         while (!exited){
             try {
-                Scanner input = new Scanner(System.in);
-                System.out.println("\nUser Action or Transaction?");
-                System.out.println("1 - User Action");
-                System.out.println("2 - Transaction");
-                System.out.println("0 - Exit");
-                int actionChoice = input.nextInt();
-
+                String message = "\nUser Action or Transaction?" +
+                        "\n1 - User Action" +
+                        "\n2 - Transaction" +
+                        "\n0 - Exit";
+                Keypad keyPad = new Keypad();
+                int actionChoice = keyPad.getIntInput(message);
                 switch (actionChoice) {
                     case USER_ACTION:
                         doUserAction();
@@ -217,19 +217,18 @@ public class ATM_Machine {
         UserActions currentAction;
         while (!exited) { //keeps running until user wants to go back to the previous options
             try {
-                Scanner input = new Scanner(System.in);
-                System.out.println("Choose your Action");
-                System.out.println("1 - View Balance Summary");
-                System.out.println("2 - View Previous Transactions");
-                System.out.println("3 - Net Total");
-                System.out.println("4 - Change Password");
-                System.out.println("5 - View Date of Account Creation");
-                System.out.println("6 - Request New Account");
-                System.out.println("7 - View Account Summary");
-                System.out.println("8 - Set Primary Account");
-                System.out.println("0 - Return to previous page");
-                int userChoice = input.nextInt();
-
+                String message = "Choose your Action" +
+                        "\n1 - View Balance Summary" +
+                        "\n2 - View Previous Transactions" +
+                        "\n3 - Net Total" +
+                        "\n4 - Change Password" +
+                        "\n5 - View Date of Account Creation" +
+                        "\n6 - Request New Account" +
+                        "\n7 - View Account Summary" +
+                        "\n8 - Set Primary Account" +
+                        "\n0 - Return to previous page";
+                Keypad keyPad = new Keypad();
+                int userChoice = keyPad.getIntInput(message);
                 switch (userChoice) {
                     case BALANCE:
                     case PREVIOUS_TRANSACTION:
@@ -261,14 +260,14 @@ public class ATM_Machine {
         Transactions currentTransaction;
         while(!exited){
             try {
-                Scanner input = new Scanner(System.in);
-                System.out.println("\nChoose your transaction");
-                System.out.println("1 - Deposit");
-                System.out.println("2 - Withdrawal");
-                System.out.println("3 - Pay Bills"); //to non-user accounts
-                System.out.println("4 - Transfer Money");//user-user transactions. can be between the same user
-                System.out.println("0 - EXIT");
-                int transactionChoice = input.nextInt();
+                String message = "\nChoose your transaction" +
+                        "\n1 - Deposit" +
+                        "\n2 - Withdrawal" +
+                        "\n3 - Pay Bills" +
+                        "\n4 - Transfer Money" +
+                        "\n0 - EXIT";
+                Keypad keyPad = new Keypad();
+                int transactionChoice = keyPad.getIntInput(message);
 
                 switch (transactionChoice) {
                     case DEPOSIT:

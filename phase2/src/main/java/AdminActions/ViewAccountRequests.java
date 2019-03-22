@@ -7,8 +7,8 @@ import java.util.*;
 
 public class ViewAccountRequests extends AdminAction {
 
-
-
+    int mapKey = 0;
+    int count = 0;
 
     public ViewAccountRequests(BankManager bankManager){
         super(bankManager);
@@ -22,9 +22,11 @@ public class ViewAccountRequests extends AdminAction {
             if (!accountRequests.isEmpty()) {
                 Iterator<Map.Entry<Integer, Integer>> entries = accountRequests.entrySet().iterator();
                 Iterator<Map.Entry<Integer, Integer>> entries2 = accountRequests.entrySet().iterator();
+
                 Map.Entry<Integer, Integer> entry;
-                Integer mapKey = 0;
-                int count = 0;
+                mapKey = 0;
+                count = 0;
+
                 System.out.println("\nCurrent Requests");
                 while (entries.hasNext()) {
                     count++;
@@ -35,6 +37,7 @@ public class ViewAccountRequests extends AdminAction {
                     //keeps iterating until the last item
                     //sets map-key to last item
                 }
+
                 boolean isValid = false;
                 while (!isValid) {
                     try {
@@ -67,6 +70,25 @@ public class ViewAccountRequests extends AdminAction {
             System.out.println("\nThere are no account requests at the moment");
         }else{
             System.out.println("Exited");
+        }
+
+    }
+
+
+    private void ListRequests(Iterator<Map.Entry<Integer, Integer>> entries){
+        BankManager bankManager = getBankManager();
+        Map<Integer, Integer> accountRequests = bankManager.getAccountRequests();
+        Map.Entry<Integer, Integer> entry;
+
+        System.out.println("\nCurrent Requests");
+        while (entries.hasNext()) {
+            count++;
+            entry = entries.next();
+            mapKey = entry.getKey();
+            System.out.println("\n" + count + " - User " + mapKey + " requested a " +
+                    bankManager.getAccountName(accountRequests.get(mapKey)) + " account.");
+            //keeps iterating until the last item
+            //sets map-key to last item
         }
 
     }

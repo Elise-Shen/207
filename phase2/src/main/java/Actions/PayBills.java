@@ -2,9 +2,9 @@ package Actions;
 import ATM.*;
 import Accounts.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Scanner;
+
 import java.io.*;
 
 public class PayBills extends Transactions{
@@ -21,23 +21,18 @@ public class PayBills extends Transactions{
         User currentUser = bankManager.getUser(getUserID());
         List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("\nType in the ID of the account you want to use to pay bill.");
         for(Account a: currentUserAccounts){
             if (a != null) {
                 System.out.println( a.getAccountID() + " - " + a);
             }
         }
-        int accountID = input.nextInt();
+        int accountID = keyPad.getIntInput("\nType in the ID of the account you want to use to pay bill.");
         Account account = currentUser.getAccount(accountID);
         currentAccountID = accountID;
 
-        Scanner input1 = new Scanner(System.in);
-        System.out.println("\nType in the ID of the non-user account that you want to pay the bill to.");
-        recipientID = input1.nextLine();
+        recipientID = keyPad.getStringInput("\nType in the ID of the non-user account that you want to pay the bill to.");
 
-        System.out.println("\nType in the amount of bill");
-        amountPaid = input.nextInt();
+        amountPaid = keyPad.getIntInput("\nType in the amount of bill");
         // reduce the balance of the account
         account.decreaseBalance(amountPaid);
         String result = "A bill of $" + amountPaid + " is paid from user account " + accountID +

@@ -4,7 +4,7 @@ import ATM.*;
 import Accounts.*;
 
 import java.util.*;
-import java.util.Scanner;
+
 
 /**
  * Can only transfer to own accounts, or other user's chequing accounts.
@@ -27,15 +27,14 @@ public class AccountToAccount extends Transactions {
         List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
         List<Account> allAccounts = bankManager.getAllAccounts();
 
-        Scanner input = new Scanner(System.in);
+
         for (Account a : currentUserAccounts) {
             if (a != null && !(a instanceof Credit)){
                 System.out.println(a.getAccountID() + " - " + a);
             }
         }
-        System.out.println("\nType in the accountID money transfer out from");
 
-        int accountID_from = input.nextInt();
+        int accountID_from = keyPad.getIntInput("\nType in the accountID money transfer out from");
         Account account_from = currentUser.getAccount(accountID_from);
         currentAccountID = accountID_from;
 
@@ -43,13 +42,12 @@ public class AccountToAccount extends Transactions {
         for (Account a : allAccounts){
             System.out.println(a.getAccountID() + " - User " + a.getOwnerID() + "'s " + a);
         }
-        System.out.println("\nType in the accountID money transfer out to");
-        int accountID_to = input.nextInt();
+
+        int accountID_to = keyPad.getIntInput("\nType in the accountID money transfer out to");
         recipientAccountID = accountID_to;
         Account account_to = bankManager.getOneAccount(accountID_to);
 
-        System.out.println("\nType in the amount of money to transfer");
-        int amount = input.nextInt();
+        int amount = keyPad.getIntInput("\nType in the amount of money to transfer");
         amountTransferred = amount;
 
         // increase, decrease amount

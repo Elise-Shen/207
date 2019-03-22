@@ -3,7 +3,7 @@ package Actions;
 import ATM.BankManager;
 import ATM.User;
 
-import java.util.Scanner;
+
 
 public class ChangePin extends UserActions {
 
@@ -19,10 +19,7 @@ public class ChangePin extends UserActions {
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Enter a new password.");
-        String newPass = input.nextLine();
+        String newPass = keyPad.getStringInput("Enter a new password.");
         currentUser.setPassword(newPass);
         System.out.println("The password is changed.");
     }

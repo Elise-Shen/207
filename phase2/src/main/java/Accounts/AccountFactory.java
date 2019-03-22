@@ -1,8 +1,6 @@
 package Accounts;
 
-import java.io.Serializable;
-
-public class AccountFactory implements Serializable {
+public class AccountFactory {
     private static final long serialVersionUID = 5062984395789419811L;
 
     /**

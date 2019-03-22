@@ -96,6 +96,7 @@ public class DepositMoney extends Transactions {
                 depositType = "Cheque";
                 amountDeposited = Integer.valueOf(lastLine[1]);
                 currentAccount.increaseBalance(amountDeposited);
+                currentAccount.increaseCurrencyBalance(amountDeposited);
                 validInput1 = true;
             } else {
                 System.out.println("Invalid input.Please enter again in deposits.txt.");

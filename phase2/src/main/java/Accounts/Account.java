@@ -54,7 +54,9 @@ public abstract class Account implements Serializable {
         incrementNumAccount();
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
-        primaryCurrency = Monetary.getCurrency(Locale.getDefault());
+
+        this.primaryCurrency = Monetary.getCurrency(Locale.getDefault());
+        this.currencyBalance = Money.of(0, primaryCurrency);
     }
 
     public void incrementNumAccount(){
@@ -84,6 +86,21 @@ public abstract class Account implements Serializable {
         return this.balance;
     }
 
+    public Money getCurrencyBalance(){
+        return this.currencyBalance;
+    }
+
+    public void increaseCurrencyBalance(double money){
+        CurrencyUnit tempcur = Monetary.getCurrency(Locale.getDefault());
+        Money tempmoney = Money.of(money, tempcur);
+        this.currencyBalance.add(tempmoney);
+    }
+
+    public void decreaseCurrencyBalance(double money){
+        CurrencyUnit tempcur = Monetary.getCurrency(Locale.getDefault());
+        Money tempmoney = Money.of(money, tempcur);
+        this.currencyBalance.subtract(tempmoney);
+    }
     /**
      * Increase the balance of this account.
      *

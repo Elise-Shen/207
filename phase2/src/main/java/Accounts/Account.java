@@ -60,6 +60,10 @@ public abstract class Account implements Serializable {
         this.currencyBalance = Money.of(0, primaryCurrency);
     }
 
+    public void setPrimaryCurrency(String unit){
+        this.primaryCurrency = Monetary.getCurrency(unit);
+    }
+
     public void incrementNumAccount(){
         numAccount += 1;
     }

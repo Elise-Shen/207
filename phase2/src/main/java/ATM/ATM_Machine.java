@@ -76,15 +76,14 @@ public class ATM_Machine {
     void run(){
         while (true) {
             boolean isValid = false;
-            System.out.println("\nATM Starting Up");
-            System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-            System.out.println("\nAre you a Customer or a Bank Manager?");
-            System.out.println("\n1 - Customer");
-            System.out.println("2 - Bank Manager");
             while(!isValid){
                 try {
-                    Scanner bmOrCustomer = new Scanner(System.in);
-                    int choice = bmOrCustomer.nextInt();
+                    Keypad keyPad = new Keypad();
+                    int choice = keyPad.getIntInput("\nATM Starting Up" +
+                            "\nLocalDateTime.now().format(DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm\"))" +
+                            "\nAre you a Customer or a Bank Manager?" +
+                            "\n1 - Customer" +
+                            "\n2 - Bank Manager");
                     switch (choice){
                         case CUSTOMER:
                             customerLogin();
@@ -130,10 +129,10 @@ public class ATM_Machine {
     }
 
     private void bankManagerLogin(){
-        Scanner pass = new Scanner(System.in);
+
         while (!bankManagerAuthenticated){
-            System.out.println("Please enter your password");
-            String input = pass.nextLine();
+            Keypad keyPad = new Keypad();
+            String input = keyPad.getStringInput("Please enter your password");
             if (bankManager.getPassword().equals(input)){
                 bankManagerAuthenticated = true;
             }
@@ -148,14 +147,12 @@ public class ATM_Machine {
         AdminAction currentAdminAction;
         while(!exited) {
             try {
-                Scanner input = new Scanner(System.in);
-                System.out.println("\nChoose your action");
-                System.out.println("\n1 - View Account Creation Requests");
-                System.out.println("2 - View Undo Transaction Requests");
-                System.out.println("3 - Restock this ATM");
-                System.out.println("0 - Exit");
-                int choice = input.nextInt();
-
+                Keypad keyPad = new Keypad();
+                int choice = keyPad.getIntInput("\nChoose your action" +
+                        "\n1 - View Account Creation Requests" +
+                        "\n2 - View Undo Transaction Requests" +
+                        "\n3 - Restock this ATM" +
+                        "\n0 - Exit");
                 switch (choice){
                     case VIEW_ACCOUNT_REQUEST:
                     case VIEW_UNDO_TRANSAC:

@@ -4,9 +4,7 @@ import ATM.BankManager;
 import ATM.User;
 import Accounts.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class SetPrimaryAccount extends UserActions {
 
@@ -25,15 +23,13 @@ public class SetPrimaryAccount extends UserActions {
         List<Account> currentAccounts = currentUser.getAccountList();
         boolean isValid = false;
         while(!isValid){
-            Scanner input = new Scanner(System.in);
-            System.out.println("Which chequing account do you wish to set as Primary");
             for(Account a: currentAccounts){
                 if(a instanceof Chequing){
                     System.out.println(a.getAccountID() + " - " + a.toString());
                 }
             }
 
-            int accountChoice = input.nextInt();
+            int accountChoice = keyPad.getIntInput("Which chequing account do you wish to set as Primary");
             if (currentUser.getAccount(accountChoice) instanceof Chequing){
                 newPrimary = currentUser.getAccount(accountChoice);
                 isValid = true;

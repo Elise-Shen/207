@@ -1,9 +1,8 @@
 package Actions;
 import ATM.*;
 import Accounts.*;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Scanner;
 
 public class WithdrawMoney extends Transactions {
 
@@ -33,14 +32,13 @@ public class WithdrawMoney extends Transactions {
         boolean validInput = false;
         List<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
-            Scanner input = new Scanner(System.in);
-            System.out.println("\nPlease type in the ID of the account that you want to withdraw money from.");
             for (Account a : currentUserAccounts) {
                 if (a != null) {
                     System.out.println(a.getAccountID() + " - " + a);
                 }
             }
-            int accountChoice = input.nextInt();
+            int accountChoice = keyPad.getIntInput("\nPlease type in the ID of the account that you want " +
+                    "to withdraw money from.");
             Account myAccount = currentUser.getAccount(accountChoice);
             if (myAccount == null || myAccount.getAccountType() == 3 || myAccount.getAccountType() == 4) {
                 System.out.println("Invalid input. You can only withdraw money from Asset Accounts.");
@@ -50,10 +48,9 @@ public class WithdrawMoney extends Transactions {
                 Account currentAccount = currentUser.getAccount(accountChoice);
                 boolean validInput1 = false;
                 while (!validInput1) {
-                    Scanner input1 = new Scanner(System.in);
-                    System.out.println("Please enter the amount of money that you want to withdraw.");
                     double balance = currentAccount.getBalance();
-                    int cashWithdrawn = input1.nextInt();
+                    int cashWithdrawn = keyPad.getIntInput("Please enter the amount of money that you " +
+                            "want to withdraw.");
                     amountWithdrawn = cashWithdrawn;
                     if (currentAccount.getAccountType() == 2 && (balance - cashWithdrawn) > -1) {
                         boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);

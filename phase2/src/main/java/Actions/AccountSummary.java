@@ -4,7 +4,6 @@ import ATM.BankManager;
 import ATM.User;
 import Accounts.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AccountSummary extends UserActions {
@@ -26,7 +25,7 @@ public class AccountSummary extends UserActions {
             accountNum++;
             if (account != null){
                 System.out.println("Account Number " + accountNum + ": Account ID: " + account.getAccountID()
-                       + " balance: " + account.getBalance());
+                       + " balance: " + account.getCurrencyBalance());
             }
         }
     }

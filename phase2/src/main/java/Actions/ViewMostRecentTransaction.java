@@ -1,13 +1,14 @@
 package Actions;
 
 import ATM.BankManager;
+import ATM.Keypad;
 import Accounts.*;
 
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Scanner;
+
 
 public class ViewMostRecentTransaction extends ViewAccount {
 
@@ -40,12 +41,10 @@ public class ViewMostRecentTransaction extends ViewAccount {
         boolean recipientIsCredit = (previousTransaction instanceof AccountToAccount)
                 && recipientIsCredit(previousTransaction);
         if(!(previousTransaction instanceof PayBills) && !recipientIsCredit){
-            System.out.println("\nDo you wish to undo this transaction?");
-            Scanner input = new Scanner(System.in);
-            System.out.println("1 - Yes");
-            System.out.println("2 - No");
             try{
-                int yesNo = input.nextInt();
+                Keypad keyPad = new Keypad();
+                int yesNo = keyPad.getIntInput("\nDo you wish to undo this transaction?" +
+                        "\n1 - Yes\n2 - No");
                 if(yesNo == 1){
                     bankManager.addUndoTransactionRequest(getUserID(), previousTransaction);
                     System.out.println("Sent request to bank manager to undo this transaction\n");

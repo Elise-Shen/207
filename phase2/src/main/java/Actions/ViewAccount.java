@@ -3,9 +3,8 @@ package Actions;
 import ATM.*;
 import Accounts.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class ViewAccount extends UserActions {
 
@@ -27,14 +26,13 @@ public class ViewAccount extends UserActions {
         currentUser = bankManager.getUser(getUserID());
         List<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
-            Scanner input = new Scanner(System.in);
-            System.out.println("\nType in the ID of the account you want to view");
             for (Account a : currentUserAccounts) {
                 if(a != null){
                     System.out.println(a.getAccountID() + " - " + a.toString());
                 }
             }
-            accountChoice = input.nextInt();
+            Keypad keyPad = new Keypad();
+            accountChoice = keyPad.getIntInput("\nType in the ID of the account you want to view");
             currentAccount = currentUser.getAccount(accountChoice);
             if (currentAccount != null) {
                 validInput = true;

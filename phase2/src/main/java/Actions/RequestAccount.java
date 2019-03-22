@@ -2,7 +2,6 @@ package Actions;
 
 import ATM.*;
 
-import java.util.Scanner;
 import java.time.*;
 
 public class RequestAccount extends UserActions {
@@ -35,14 +34,10 @@ public class RequestAccount extends UserActions {
             boolean isValid = false;
             String typeString = null;
             while (!isValid) {
-                Scanner input = new Scanner(System.in);
-                System.out.println("\nWhat type of account do you wish to create?");
-                System.out.println("1 - Chequing");
-                System.out.println("2 - Savings");
-                System.out.println("3 - Credit");
-                System.out.println("4 - Line of Credit");
-                System.out.println("0 - Exit");
-                int typeChoice = input.nextInt();
+
+                Keypad keyPad = new Keypad();
+                int typeChoice = keyPad.getIntInput("\nWhat type of account do you wish to create?" +
+                        "\n1 - Chequing\n2 - Savings\n3 - Credit\n4 - Line of Credit\n0 - Exit");
                 if (typeChoice <= 4 && typeChoice >= 0) {
                     accountType = typeChoice;
                     isValid = true;

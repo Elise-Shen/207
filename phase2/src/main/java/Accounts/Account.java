@@ -4,6 +4,7 @@ import org.javamoney.moneta.Money;
 
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
+import javax.money.MonetaryAmount;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
@@ -21,8 +22,8 @@ public abstract class Account implements Serializable {
      * The balance of this account.
      */
     double balance;
-    CurrencyUnit primaryCurrency;
-    Money currencyBalance;
+    private CurrencyUnit primaryCurrency;
+    private Money currencyBalance;
 
     /**
      * The Id of this account.
@@ -54,7 +55,9 @@ public abstract class Account implements Serializable {
         incrementNumAccount();
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
-        primaryCurrency = Monetary.getCurrency(Locale.getDefault());
+
+        this.primaryCurrency = Monetary.getCurrency(Locale.getDefault());
+        this.currencyBalance = Money.of(0, primaryCurrency);
     }
 
     public void incrementNumAccount(){
@@ -84,6 +87,17 @@ public abstract class Account implements Serializable {
         return this.balance;
     }
 
+    public Money getCurrencyBalance(){
+        return this.currencyBalance;
+    }
+
+    public void increaseCurrencyBalance(MonetaryAmount amount){
+        this.currencyBalance = this.currencyBalance.add(amount);
+    }
+
+    public void decreaseCurrencyBalance(MonetaryAmount amount){
+        this.currencyBalance = this.currencyBalance.subtract(amount);
+    }
     /**
      * Increase the balance of this account.
      *

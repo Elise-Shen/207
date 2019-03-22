@@ -2,12 +2,19 @@ package Actions;
 import ATM.*;
 import java.io.*;
 import Accounts.*;
+import org.javamoney.moneta.Money;
+
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
+import javax.money.MonetaryAmount;
 import java.util.*;
 import java.nio.file.*;
 import java.nio.charset.StandardCharsets;
 
 
 public class DepositMoney extends Transactions {
+
+    private static final long serialVersionUID = -7327508682925434206L;
     /**
      * The CashStorage of the ATM that performs this action.
      */
@@ -23,7 +30,7 @@ public class DepositMoney extends Transactions {
      */
     private String depositType;
 
-    private int amountDeposited;
+    private double amountDeposited;
 
     /**
      * Create an instance of DepositMoney action.
@@ -48,15 +55,14 @@ public class DepositMoney extends Transactions {
         int accountChoice;
         List<Account> currentUserAccounts = currentUser.getAccountList();
         while (!validInput) {
-            Scanner input = new Scanner(System.in);
-            System.out.println("\nPlease type in the ID of the account that you want to deposit money in and \nmake sure" +
-                    " the amount to be deposited is entered in deposits.txt.");
             for (Account a : currentUserAccounts) {
                 if (a != null){
                     System.out.println(a.getAccountID() + " - " + a);
                 }
             }
-            accountChoice = input.nextInt();
+            Keypad keyPad = new Keypad();
+            accountChoice = keyPad.getIntInput("\nPlease type in the ID of the account that you want to deposit money in and \nmake sure" +
+                    " the amount to be deposited is entered in deposits.txt.");
             Account myAccount = currentUser.getAccount(accountChoice);
             if (myAccount != null && myAccount.getAccountType() != 3 && myAccount.getAccountType() != 4) {
                 currentAccount = currentUser.getAccount(accountChoice);
@@ -86,7 +92,7 @@ public class DepositMoney extends Transactions {
                 int numTwenty = Integer.valueOf(lastLine[3]);
                 int numFifty = Integer.valueOf(lastLine[4]);
                 amountDeposited = numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50;
-                currentAccount.increaseBalance(amountDeposited);
+                currentAccount.increaseCurrencyBalance(createMoney(amountDeposited));
                 cashStorage.addBills(5, numFive);
                 cashStorage.addBills(10, numTen);
                 cashStorage.addBills(20, numTwenty);
@@ -95,7 +101,7 @@ public class DepositMoney extends Transactions {
             } else if (lastLine[0].equalsIgnoreCase("Cheque")) {
                 depositType = "Cheque";
                 amountDeposited = Integer.valueOf(lastLine[1]);
-                currentAccount.increaseBalance(amountDeposited);
+                currentAccount.increaseCurrencyBalance(createMoney(amountDeposited));
                 validInput1 = true;
             } else {
                 System.out.println("Invalid input.Please enter again in deposits.txt.");
@@ -128,8 +134,8 @@ public class DepositMoney extends Transactions {
         return currentAccountID;
     }
 
-    public int getAmountDeposited(){
-        return amountDeposited;
+    public MonetaryAmount getAmountDeposited(){
+        return createMoney(amountDeposited);
     }
 
     @Override

@@ -2,6 +2,7 @@ package Actions;
 
 import ATM.BankManager;
 import Accounts.Account;
+import org.javamoney.moneta.Money;
 
 public class ViewBalance extends ViewAccount {
 
@@ -16,7 +17,7 @@ public class ViewBalance extends ViewAccount {
     public void execute(){
         Account currentAccount = readCurrentAccount();
         int currentId = currentAccount.getAccountID();
-        double balance = currentAccount.getBalance();
-        System.out.println("Account id: " + currentId + " has balance $" + balance);
+        Money currencyBalance = currentAccount.getCurrencyBalance();
+        System.out.println("Account id: " + currentId + " has balance of " + currencyBalance);
     }
 }

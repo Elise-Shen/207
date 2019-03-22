@@ -1,6 +1,7 @@
 package AdminActions;
 
 import ATM.BankManager;
+import ATM.Keypad;
 import Actions.Transactions;
 
 import java.util.*;
@@ -34,11 +35,12 @@ public class ViewUndoTransactRequests extends AdminAction{
                     //sets map-key to last item
                 }
                 boolean isValid = false;
-                System.out.println("Enter the number of the request you wish to approve or enter 0 to exit");
+                System.out.println();
                 while (!isValid) {
                     try {
-                        Scanner input = new Scanner(System.in);
-                        int choice = input.nextInt();
+                        Keypad keyPad = new Keypad();
+                        int choice = keyPad.getIntInput("Enter the number of the request you wish to " +
+                                "approve or enter 0 to exit");
                         if (choice > 0 && choice <= count) {
                             int choiceCount = 0;
                             isValid = true;

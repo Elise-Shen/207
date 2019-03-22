@@ -1,8 +1,13 @@
 package Actions;
 
 import ATM.BankManager;
+import org.javamoney.moneta.Money;
 
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
+import javax.money.MonetaryAmount;
 import java.io.Serializable;
+import java.util.Locale;
 
 public abstract class Transactions implements Serializable{
 // remember to update bank manager.recent transaction from/to/amount 3 variables
@@ -18,7 +23,6 @@ public abstract class Transactions implements Serializable{
     public int getUserID(){
         return userID;
     }
-
     public abstract int getCurrentAccountID();
     public abstract String toString();
     public BankManager getBankManager(){
@@ -26,6 +30,11 @@ public abstract class Transactions implements Serializable{
     }
 
     public abstract void execute();
+
+    public MonetaryAmount createMoney(double amount){
+        CurrencyUnit currencyUnit = Monetary.getCurrency(Locale.getDefault());
+        return Money.of(amount, currencyUnit);
+    }
 
     public int getRecipientAccountID(){return 0;}
 }

@@ -34,6 +34,7 @@ public class AccountToAccount extends Transactions {
             }
         }
 
+        Keypad keyPad = new Keypad();
         int accountID_from = keyPad.getIntInput("\nType in the accountID money transfer out from");
         Account account_from = currentUser.getAccount(accountID_from);
         currentAccountID = accountID_from;

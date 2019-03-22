@@ -1,6 +1,7 @@
 package Actions;
 
 import ATM.BankManager;
+import ATM.Keypad;
 import ATM.User;
 
 
@@ -19,6 +20,7 @@ public class ChangePin extends UserActions {
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
+        Keypad keyPad = new Keypad();
         String newPass = keyPad.getStringInput("Enter a new password.");
         currentUser.setPassword(newPass);
         System.out.println("The password is changed.");

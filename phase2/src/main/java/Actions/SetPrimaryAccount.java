@@ -1,6 +1,7 @@
 package Actions;
 
 import ATM.BankManager;
+import ATM.Keypad;
 import ATM.User;
 import Accounts.*;
 
@@ -29,6 +30,7 @@ public class SetPrimaryAccount extends UserActions {
                 }
             }
 
+            Keypad keyPad = new Keypad();
             int accountChoice = keyPad.getIntInput("Which chequing account do you wish to set as Primary");
             if (currentUser.getAccount(accountChoice) instanceof Chequing){
                 newPrimary = currentUser.getAccount(accountChoice);

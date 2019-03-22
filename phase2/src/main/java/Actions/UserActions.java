@@ -1,7 +1,6 @@
 package Actions;
 
 import ATM.BankManager;
-import ATM.Keypad;
 
 import java.io.Serializable;
 
@@ -10,7 +9,6 @@ public abstract class UserActions implements Serializable {
 
     private int userID;
     private BankManager bankManager;
-    Keypad keyPad = new Keypad();
 
     public UserActions(int userID, BankManager bm){
         this.userID = userID;

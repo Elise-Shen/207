@@ -37,6 +37,7 @@ public class WithdrawMoney extends Transactions {
                     System.out.println(a.getAccountID() + " - " + a);
                 }
             }
+            Keypad keyPad = new Keypad();
             int accountChoice = keyPad.getIntInput("\nPlease type in the ID of the account that you want " +
                     "to withdraw money from.");
             Account myAccount = currentUser.getAccount(accountChoice);

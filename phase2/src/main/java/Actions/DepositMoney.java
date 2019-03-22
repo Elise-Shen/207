@@ -53,6 +53,7 @@ public class DepositMoney extends Transactions {
                     System.out.println(a.getAccountID() + " - " + a);
                 }
             }
+            Keypad keyPad = new Keypad();
             accountChoice = keyPad.getIntInput("\nPlease type in the ID of the account that you want to deposit money in and \nmake sure" +
                     " the amount to be deposited is entered in deposits.txt.");
             Account myAccount = currentUser.getAccount(accountChoice);

@@ -1,6 +1,7 @@
 package Actions;
 
 import ATM.BankManager;
+import ATM.Keypad;
 import Accounts.*;
 
 import java.time.LocalDate;
@@ -41,6 +42,7 @@ public class ViewMostRecentTransaction extends ViewAccount {
                 && recipientIsCredit(previousTransaction);
         if(!(previousTransaction instanceof PayBills) && !recipientIsCredit){
             try{
+                Keypad keyPad = new Keypad();
                 int yesNo = keyPad.getIntInput("\nDo you wish to undo this transaction?" +
                         "\n1 - Yes\n2 - No");
                 if(yesNo == 1){

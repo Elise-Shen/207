@@ -4,7 +4,6 @@ import ATM.BankManager;
 import ATM.User;
 import Accounts.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AccountSummary extends UserActions {

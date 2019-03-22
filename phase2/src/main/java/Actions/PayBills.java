@@ -26,6 +26,7 @@ public class PayBills extends Transactions{
                 System.out.println( a.getAccountID() + " - " + a);
             }
         }
+        Keypad keyPad = new Keypad();
         int accountID = keyPad.getIntInput("\nType in the ID of the account you want to use to pay bill.");
         Account account = currentUser.getAccount(accountID);
         currentAccountID = accountID;

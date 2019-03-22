@@ -31,6 +31,7 @@ public class ViewAccount extends UserActions {
                     System.out.println(a.getAccountID() + " - " + a.toString());
                 }
             }
+            Keypad keyPad = new Keypad();
             accountChoice = keyPad.getIntInput("\nType in the ID of the account you want to view");
             currentAccount = currentUser.getAccount(accountChoice);
             if (currentAccount != null) {

@@ -13,6 +13,8 @@ import java.nio.charset.StandardCharsets;
 
 
 public class DepositMoney extends Transactions {
+
+    private static final long serialVersionUID = -7327508682925434206L;
     /**
      * The CashStorage of the ATM that performs this action.
      */

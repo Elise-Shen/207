@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CurrencyUnit usd = Monetary.getCurrency(new Locale("en", "USA"));
+        CurrencyUnit usd = Monetary.getCurrency(new Locale("en", "US"));
         CurrencyUnit cad = Monetary.getCurrency(Locale.getDefault());
         System.out.println(usd.getDefaultFractionDigits() + " " + usd.getNumericCode());
         MonetaryAmount amt = Monetary.getDefaultAmountFactory().setCurrency(usd).setNumber(200.03).create();

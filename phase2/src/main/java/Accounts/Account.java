@@ -151,5 +151,9 @@ public abstract class Account implements Serializable {
      */
     public void addInterest() {}
 
+    public CurrencyUnit getPrimaryCurrency(){
+        return this.primaryCurrency;
+    }
+
 }
 

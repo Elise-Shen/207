@@ -16,7 +16,7 @@ public class WithdrawMoney extends Transactions {
      */
     private int currentAccountID;
 
-    private int amountWithdrawn;
+    private MonetaryAmount amountWithdrawn;
     /**
      * The CashStorage of the ATM that performs this action.
      */
@@ -54,21 +54,23 @@ public class WithdrawMoney extends Transactions {
                 Account currentAccount = currentUser.getAccount(accountChoice);
                 boolean validInput1 = false;
                 while (!validInput1) {
-                    double balance = currentAccount.getBalance();
+                    MonetaryAmount balance = currentAccount.getCurrencyBalance();
                     int cashWithdrawn = keyPad.getIntInput("Please enter the amount of money that you " +
                             "want to withdraw.");
-                    amountWithdrawn = cashWithdrawn;
-                    if (currentAccount.getAccountType() == 2 && (balance - cashWithdrawn) > -1) {
+                    amountWithdrawn = createMoney(cashWithdrawn);
+                    if (currentAccount.getAccountType() == 2 &&
+                            (balance.subtract(amountWithdrawn)).isGreaterThanOrEqualTo(createMoney(0))) {
                         boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
                         if (withdrawn) {
-                            currentAccount.decreaseCurrencyBalance(createMoney(amountWithdrawn));
+                            currentAccount.decreaseCurrencyBalance(amountWithdrawn);
                             validInput1 = true;
                         }
                     } else if (currentAccount.getAccountType() == 1) {
-                        if (balance > -1 && balance - cashWithdrawn > -101) {
+                        if (balance.isGreaterThanOrEqualTo(createMoney(0)) &&
+                                balance.subtract(amountWithdrawn).isGreaterThanOrEqualTo(createMoney(-100))) {
                             boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
                             if (withdrawn) {
-                                currentAccount.decreaseCurrencyBalance(createMoney(amountWithdrawn));
+                                currentAccount.decreaseCurrencyBalance(amountWithdrawn);
                                 validInput1 = true;
                             }
                         } else {
@@ -87,7 +89,7 @@ public class WithdrawMoney extends Transactions {
     }
 
     public MonetaryAmount getAmountWithdrawn(){
-        return createMoney(amountWithdrawn);
+        return amountWithdrawn;
     }
 
     @Override

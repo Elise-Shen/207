@@ -31,8 +31,8 @@ public abstract class Transactions implements Serializable{
 
     public abstract void execute();
 
-    public MonetaryAmount createMoney(double amount){
-        CurrencyUnit currencyUnit = Monetary.getCurrency(Locale.getDefault());
+    MonetaryAmount createMoney(double amount){
+        CurrencyUnit currencyUnit = getBankManager().getOneAccount(getCurrentAccountID()).getPrimaryCurrency();
         return Money.of(amount, currencyUnit);
     }
 

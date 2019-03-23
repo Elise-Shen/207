@@ -45,17 +45,14 @@ public abstract class Account implements Serializable {
      */
     private int ownerID;
 
-
     /**
      * Creates an account with unique ID.
      */
-
     public Account() {
         //numAccount += 1;
         incrementNumAccount();
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
-
         this.primaryCurrency = Monetary.getCurrency(Locale.getDefault());
         this.currencyBalance = Money.of(0, primaryCurrency);
     }

@@ -1,156 +1,98 @@
 package ATM;
-
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Map;
+import java.util.HashMap;
 import java.io.*;
+import javax.money.Monetary;
+
 
 /**
- * Simulates the cash storage component of the ATM
- * 1. check amount & multiple of 5
- * 2. withdrawal
- * 3. check if amount to add
+ * The storage of all kinds of cash.
  */
-public class CashStorage implements Serializable{
-    private static final long serialVersionUID = 2949556827559248847L;
+public class CashStorage {
 
-    private int numFive; //number of five dollar bills in ATM
-    private int numTen; // number of ten dollar bills in ATM
-    private int numTwenty; // Number of twenty dollar bills in ATM
-    private int numFifty; // number of fifty dollar bills in ATM
-    private final int MAXSTOCK = 1000;//maximum stock of each type of bills the ATM can hold
+    /**
+     * Stores a map mapping from currency type to its storage.
+     */
+    private Map<String, CurrencyStorage> cashStorage;
 
-    public CashStorage(){
+    /**
+     * The ISO 4217 currency code for the local currency.
+     */
+    private String localCurrency = Monetary.getCurrency(Locale.getDefault()).toString();
 
-        numFive = MAXSTOCK;
-        numTen = MAXSTOCK;
-        numTwenty = MAXSTOCK;
-        numFifty = MAXSTOCK;
+
+
+    /**
+     * Constructs a Cash Storage.
+     * The default currency type is CAD.
+     */
+    public CashStorage() {
+        cashStorage = new HashMap<>();
+        CurrencyStorage currencyStorage = new CurrencyStorage();
+        currencyStorage.setDefault();
+        cashStorage.put(localCurrency, currencyStorage);
+    }
+
+
+    /**
+     * Add a new type of currency to this Cash Storage with specified denomination and amount.
+     */
+    public void addBills(String currencyType, Integer cashType, Integer amount) {
+        if (hasCurrency(currencyType)) {
+            CurrencyStorage currencyStorage1 = cashStorage.get(currencyType);
+            currencyStorage1.addCash(cashType, amount);
+            cashStorage.put(currencyType, currencyStorage1);
+        } else {
+            CurrencyStorage currencyStorage2 = new CurrencyStorage();
+            currencyStorage2.addCash(cashType, amount);
+            cashStorage.put(currencyType, currencyStorage2);
+        }
     }
 
     /**
-     * 1. check if money is enough
-     * called from withdrawal
-     * @param amount is the amount of money user want to withdrawal
-     * @return whether the ATM has enough bill to give
+     * Withdraw currency from this Cash Storage if possible.
      */
-    private boolean checkAmount(int amount){
-        int sum = numFifty*50+numTwenty*20+numTen*10+numFive*5;
-        if (sum >= amount && amount%5 == 0) {
-            return true;
-        } else if (sum < amount){
-            System.out.println("Money Withdrawal is not available due to insufficient cash storage." +
-                    "\nWe are sorry for the inconvenience");// amount is not a multiple of 5 or storage not enough
-        } else if (amount%5 != 0) {
-            System.out.println("The amount of money to withdraw should be a multiple of 5. Please enter again.");
+    public boolean withdrawal(String currency, int amount) {
+        if (hasCurrency(currency)) {
+            CurrencyStorage currencyStorage = cashStorage.get(currency);
+            Integer firstKey = currencyStorage.getLargestDenomination();
+            if (firstKey != null) {
+                return currencyStorage.withdrawCash(firstKey, amount);
+            }
         }
         return false;
     }
+
+
     /**
-     * 2. withdrawal money
-     * reduce cash storage
+     * Returns whether the Cash Storage has this type of currency.
      */
-    public boolean withdrawal(int amount){
-        int num50=0,num20=0,num10=0,num5=0;
-        int makeup;
-        int rest;
-        boolean validAmount = checkAmount(amount);
-        // calculate bills
-        if (validAmount){
-            num50 = amount / 50;
-            makeup = checkBillStorage(num50,numFifty);
-            num50 -= makeup;
-            rest = amount %50+makeup*50;
-            if (rest != 0){
-                num20 = amount/20;
-                makeup = checkBillStorage(num20,numTwenty);
-                num20 -= makeup;
-                rest = amount %20+makeup*20;
-                if (rest != 0){
-                    num10 = amount/10;
-                    makeup = checkBillStorage(num10,numTen);
-                    num10 -= makeup;
-                    rest = amount %10+makeup*10;
-                    if (rest != 0){
-                        num5 = amount/5;
-                    }
-                }
+    private boolean hasCurrency(String currencyType) {
+        Iterator<Map.Entry<String, CurrencyStorage>> entries = cashStorage.entrySet().iterator();
+        Map.Entry<String, CurrencyStorage> entry;
+        String mapKey;
+        while (entries.hasNext()) {
+            entry = entries.next();
+            mapKey = entry.getKey();
+            if (mapKey.equals(currencyType)) {
+                return true;
             }
         }
-        // change storage
-        numFive = numFive-num5;
-        numTen = numTen-num10;
-        numTwenty=numTwenty-num20;
-        numFifty=numFifty-num50;
-        System.out.println("You will get: ");
-        System.out.println(num50+" 50$ bills, "+num20+" 20$ bills, " + num10+" 10$ bills, "+num5 + " 5$ bills");
-        return validAmount;
-    }
-
-    private int checkBillStorage(int numBill, int numBillLeft){
-        //numBill: needed numBillLeft: current storage in ATM
-        if (numBill>numBillLeft)
-            return (numBill-numBillLeft);
-        else
-            return 0;
-    }
-
-    private boolean notEnough5(){ return numFive < 20; }
-
-    private boolean notEnough10() { return numTen < 20; }
-
-    private boolean notEnough20() { return numTwenty < 20; }
-
-    private boolean notEnough50() {return numFifty < 20; }
-
-    /**
-     * adds more bills
-     * called when User deposits bills
-     * @param type the type of bill added to ATM
-     * @param amt the amount of that type of bill
-     */
-    public void addBills(int type, int amt){
-        switch (type){
-            case 5:
-                numFive += amt;
-                System.out.println("Added 5 dollar bills.");
-                break;
-            case 10:
-                numTen += amt;
-                System.out.println("Added 10 dollar bills.");
-                break;
-            case 20:
-                numTwenty += amt;
-                System.out.println("Added 20 dollar bills.");
-                break;
-            case 50:
-                numFifty += amt;
-                System.out.println("Added 50 dollar bills.");
-                break;
-            default:
-                System.out.println("No bill is added.");
-        }
+        return false;
     }
 
     /**
-     * add bills under 20 to MAXSTOCK.
-     * called when BankManager restocks the bills.
+     * Send alert information to alert.txt when the amount of any denomination in local currency goes below 20.
      */
-    public void setToMaxStock(){
-        if (notEnough5()) { numFive = MAXSTOCK; }
-        if (notEnough10()) { numTen = MAXSTOCK; }
-        if (notEnough20()) { numTwenty = MAXSTOCK; }
-        if (notEnough50()) { numFifty = MAXSTOCK;}
-    }
-
-    /**
-     * Send alert information to alert.txt when the amount of any denomination goes below 20.
-     */
-    public void sendAlert(String currentDate) {
-        if (checkAlert()) {
+    void sendAlert(String currentDate) {
+        if (hasAlert()) {
             BufferedWriter writer;
             try {
                 File outgoing = new File("alert.txt");
-
                 writer = new BufferedWriter(new FileWriter(outgoing, true));
-                String result = currentDate + ": Cash is insufficient!";
+                String result = currentDate + ": " + localCurrency + "is insufficient!";
                 writer.write(result);
                 writer.close();
             } catch (Exception e) {
@@ -159,11 +101,28 @@ public class CashStorage implements Serializable{
         }
     }
 
+
     /**
-     * Check if an alert message should be sent to alert.txt.
+     * Check if Canadian dollar has enough storage.
      */
-    private boolean checkAlert() {
-        return notEnough5() || notEnough10() || notEnough20() || notEnough50();
+    private boolean hasAlert() {
+        if (hasCurrency(localCurrency)) {
+            CurrencyStorage cs = cashStorage.get(localCurrency);
+            if (cs.hasEnoughStorage()) {
+                return false;
+            }
+        }
+        return false;
     }
 
+    /**
+     * Enable the Bank Manager to set Canadian Dollar to max stock.
+     */
+    public void setToMaxStock() {
+        if (hasCurrency(localCurrency)) {
+            CurrencyStorage cs = cashStorage.get(localCurrency);
+            cs.setToMaxStock();
+        }
+    }
 }
+

@@ -45,6 +45,11 @@ public abstract class Account implements Serializable {
      */
     private int ownerID;
 
+    /**
+     * Interest Rate
+     */
+    private double interestRate;
+
 
     /**
      * Creates an account with unique ID.
@@ -168,6 +173,9 @@ public abstract class Account implements Serializable {
     public CurrencyUnit getPrimaryCurrency(){
         return this.primaryCurrency;
     }
+
+    public void setInterestRate(double rate){interestRate = rate;}
+    public double getInterestRate(){return interestRate;}
 
 }
 

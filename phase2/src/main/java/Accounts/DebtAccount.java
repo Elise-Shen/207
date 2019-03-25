@@ -17,6 +17,7 @@ public abstract class DebtAccount extends Account {
     public DebtAccount(String currency) {
         super(currency);
         maximalDebt = Money.of(50000, getPrimaryCurrency());
+        setInterestRate(1.20);
     }
 
     @Override

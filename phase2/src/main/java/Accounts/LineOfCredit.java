@@ -1,6 +1,8 @@
 package Accounts;
 
 
+import javax.money.MonetaryAmount;
+
 public class LineOfCredit extends DebtAccount {
 
     /**
@@ -18,5 +20,11 @@ public class LineOfCredit extends DebtAccount {
     @Override
     public int getAccountType() {
         return 4;
+    }
+
+    @Override
+    public void addInterest() {
+        MonetaryAmount newBalance = getCurrencyBalance().multiply(getInterestRate());
+        setCurrencyBalance(newBalance);
     }
 }

@@ -12,6 +12,7 @@ public class Saving extends AssetAccount {
      */
     public Saving(String currency) {
         super(currency);
+        setInterestRate(1.001);
     }
 
     @Override
@@ -26,7 +27,8 @@ public class Saving extends AssetAccount {
 
     @Override
     public void addInterest(){
-        balance = balance * (1 + 0.001);
+        MonetaryAmount newBalance = getCurrencyBalance().multiply(getInterestRate());
+        setCurrencyBalance(newBalance);
     }
 
     @Override

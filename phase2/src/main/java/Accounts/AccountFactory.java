@@ -20,6 +20,8 @@ public class AccountFactory implements Serializable {
             return new Credit(currency);
         } else if (accountType == 4) {
             return new LineOfCredit(currency);
+        } else if (accountType == 5){
+            return new StudentLoan(currency);
         }
         return null;
     }

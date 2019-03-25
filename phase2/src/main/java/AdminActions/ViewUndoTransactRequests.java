@@ -7,7 +7,7 @@ import Actions.Transactions;
 import java.util.*;
 
 public class ViewUndoTransactRequests extends AdminAction{
-    BankManager bankManager = getBankManager();
+    private BankManager bankManager = getBankManager();
 
     public ViewUndoTransactRequests(BankManager bankManager){
         super(bankManager);

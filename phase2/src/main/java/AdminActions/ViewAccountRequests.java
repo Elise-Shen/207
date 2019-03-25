@@ -6,7 +6,7 @@ import ATM.Keypad;
 import java.util.*;
 
 public class ViewAccountRequests extends AdminAction {
-    BankManager bankManager = getBankManager();
+    private BankManager bankManager = getBankManager();
 
     public ViewAccountRequests(BankManager bankManager){
         super(bankManager);

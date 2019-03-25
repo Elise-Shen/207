@@ -35,15 +35,15 @@ public abstract class DebtAccount extends Account {
     }
 
     @Override
-    public Money getCurrencyBalance(){
-        Money currencyBalance = super.getCurrencyBalance();
+    public MonetaryAmount getCurrencyBalance(){
+        MonetaryAmount currencyBalance = super.getCurrencyBalance();
         return currencyBalance.negate();
     }
 
     @Override
     public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
-        Money currencyBalance = getCurrencyBalance();
-        Money newDebt = currencyBalance.add(amount);
+        MonetaryAmount currencyBalance = getCurrencyBalance();
+        MonetaryAmount newDebt = currencyBalance.add(amount);
         if (newDebt.isLessThanOrEqualTo(maximalDebt)) {
             setCurrencyBalance(newDebt);
             return true;

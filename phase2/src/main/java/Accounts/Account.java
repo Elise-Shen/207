@@ -108,7 +108,7 @@ public abstract class Account implements Serializable {
         return true;
     }
 
-    void setCurrencyBalance(Money money) {
+    void setCurrencyBalance(MonetaryAmount money) {
         this.currencyBalance = money;
     }
 

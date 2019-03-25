@@ -31,12 +31,12 @@ public class Saving extends AssetAccount {
 
     @Override
     public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
-        Money currencyBalance = getCurrencyBalance();
+        MonetaryAmount currencyBalance = getCurrencyBalance();
         CurrencyUnit unit = getPrimaryCurrency();
         if (currencyBalance.isLessThan(Money.of(0, unit))) {
             return false;
         } else if (currencyBalance.isGreaterThanOrEqualTo(amount)) {
-            Money newBalance = currencyBalance.subtract(amount);
+            MonetaryAmount newBalance = currencyBalance.subtract(amount);
             setCurrencyBalance(newBalance);
         }
         return false;

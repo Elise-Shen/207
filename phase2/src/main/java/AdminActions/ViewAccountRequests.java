@@ -6,17 +6,17 @@ import ATM.Keypad;
 import java.util.*;
 
 public class ViewAccountRequests extends AdminAction {
+    BankManager bankManager = getBankManager();
 
     public ViewAccountRequests(BankManager bankManager){
         super(bankManager);
     }
     public void execute(){
-        BankManager bankManager = getBankManager();
         Map<Integer, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
         boolean exited = false;
         while (!exited) {
             if (!accountRequests.isEmpty()) {
-                int count = displayAccountCreationRequests(bankManager);
+                int count = displayAccountCreationRequests();
                 boolean isValid = false;
                 while (!isValid) {
                     try {
@@ -24,7 +24,7 @@ public class ViewAccountRequests extends AdminAction {
                         int choice = keyPad.getIntInput("Enter the number of the request you wish to " +
                                 "approve or enter 0 to exit");
                         if (choice > 0 && choice <= count) {
-                            handleAccountCreationRequests(bankManager, choice);
+                            handleAccountCreationRequests(choice);
                             isValid = true;
                         }else if(choice == 0){
                             break;
@@ -51,7 +51,7 @@ public class ViewAccountRequests extends AdminAction {
     /**
      * Display all the account creation requests.
      */
-    private int displayAccountCreationRequests(BankManager bankManager) {
+    private int displayAccountCreationRequests() {
         Map<Integer, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
         Iterator<Map.Entry<Integer, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
         Map.Entry<Integer, Map<String, Integer>> entry;
@@ -92,7 +92,7 @@ public class ViewAccountRequests extends AdminAction {
     /**
      * Handles the account creation requests.
      */
-    private void handleAccountCreationRequests(BankManager bankManager, int choice) {
+    private void handleAccountCreationRequests(int choice) {
         Map<Integer, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
         Iterator<Map.Entry<Integer, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
         Map.Entry<Integer, Map<String, Integer>> entry;

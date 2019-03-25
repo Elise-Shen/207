@@ -10,7 +10,7 @@ import javax.money.Monetary;
 /**
  * The storage of all kinds of cash.
  */
-public class CashStorage {
+public class CashStorage implements Serializable {
 
     /**
      * Stores a map mapping from currency type to its storage.

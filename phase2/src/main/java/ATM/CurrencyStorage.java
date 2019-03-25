@@ -1,5 +1,6 @@
 package ATM;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -8,7 +9,7 @@ import java.util.TreeMap;
 /**
  * The storage of one type of currency.
  */
-class CurrencyStorage {
+class CurrencyStorage implements Serializable {
 
     /**
      * The storage of one type of currency.

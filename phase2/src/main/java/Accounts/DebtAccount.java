@@ -5,8 +5,8 @@ public abstract class DebtAccount extends Account {
     /**
      * Creates a Debt Account.
      */
-    public DebtAccount() {
-        super();
+    public DebtAccount(String currency) {
+        super(currency);
     }
 
     @Override

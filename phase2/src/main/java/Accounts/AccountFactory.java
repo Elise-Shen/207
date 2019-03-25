@@ -11,15 +11,15 @@ public class AccountFactory implements Serializable {
      * @param accountType the integer corresponding to a specific type of account.
      */
 
-    public Account getAccount(int accountType) {
+    public Account getAccount(int accountType, String currency) {
         if (accountType == 1) {
-            return new Chequing();
+            return new Chequing(currency);
         } else if (accountType == 2) {
-            return new Saving();
+            return new Saving(currency);
         } else if (accountType == 3) {
-            return new Credit();
+            return new Credit(currency);
         } else if (accountType == 4) {
-            return new LineOfCredit();
+            return new LineOfCredit(currency);
         }
         return null;
     }

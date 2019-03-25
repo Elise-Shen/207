@@ -16,7 +16,7 @@ public abstract class Account implements Serializable {
     /**
      * The total number of accounts created.
      */
-    private static int numAccount;
+    static int numAccount;
 
     /**
      * The balance of this account.
@@ -50,21 +50,21 @@ public abstract class Account implements Serializable {
      * Creates an account with unique ID.
      */
 
-    public Account() {
+    public Account(String currency) {
         //numAccount += 1;
         incrementNumAccount();
         this.accountID = numAccount;
         this.dateOfCreation = LocalDate.now();
 
-        this.primaryCurrency = Monetary.getCurrency(Locale.getDefault());
-        this.currencyBalance = Money.of(0, primaryCurrency);
+        setPrimaryCurrency(currency);
+        this.currencyBalance = Money.of(0, this.primaryCurrency);
     }
 
     public void setPrimaryCurrency(String unit){
         this.primaryCurrency = Monetary.getCurrency(unit);
     }
 
-    public void incrementNumAccount(){
+    private void incrementNumAccount(){
         numAccount += 1;
     }
 

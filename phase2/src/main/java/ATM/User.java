@@ -27,7 +27,7 @@ public class User implements Serializable {
         this.userID = userID;
         this.password = password;
         this.bankManager = bm;
-        Account account1 = new Chequing();
+        Account account1 = new Chequing("USD");
         account1.setOwnerID(this.userID);
         accounts.add(account1);
         this.bankManager.addAllAccountsList(account1);

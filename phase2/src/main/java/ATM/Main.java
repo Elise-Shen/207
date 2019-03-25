@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-     /*   CurrencyUnit usd = Monetary.getCurrency(new Locale("en", "US"));
+        /*CurrencyUnit usd = Monetary.getCurrency("USD");
         CurrencyUnit cad = Monetary.getCurrency(Locale.getDefault());
         System.out.println(usd.getDefaultFractionDigits() + " " + usd.getNumericCode());
         MonetaryAmount amt = Monetary.getDefaultAmountFactory().setCurrency(usd).setNumber(200.03).create();
@@ -30,8 +30,8 @@ public class Main {
 
         MonetaryAmount converted = usdMoney.with(conversionCAD);
 
-        System.out.println(converted.toString());*/
-
+        System.out.println(converted.toString());
+*/
         ATM_Machine atm = new ATM_Machine();
         atm.run();
 

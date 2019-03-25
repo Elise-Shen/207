@@ -6,8 +6,8 @@ public class LineOfCredit extends DebtAccount {
     /**
      * Creates a Line of Credit account.
      */
-    public LineOfCredit() {
-        super();
+    public LineOfCredit(String currency) {
+        super(currency);
     }
 
     @Override

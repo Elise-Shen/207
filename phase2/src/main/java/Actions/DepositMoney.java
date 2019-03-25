@@ -93,11 +93,11 @@ public class DepositMoney extends Transactions {
                 int numFifty = Integer.valueOf(lastLine[4]);
                 amountDeposited = numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50;
                 currentAccount.increaseCurrencyBalance(createMoney(amountDeposited));
-                CurrencyUnit cu = currentAccount.getPrimaryCurrency();
-                cashStorage.addBills("CAD", 5, numFive);
-                cashStorage.addBills("CAD", 10, numTen);
-                cashStorage.addBills("CAD", 20, numTwenty);
-                cashStorage.addBills("CAD", 50, numFifty);
+                String cu = currentAccount.getPrimaryCurrency().toString();
+                cashStorage.addBills(cu, 5, numFive);
+                cashStorage.addBills(cu, 10, numTen);
+                cashStorage.addBills(cu, 20, numTwenty);
+                cashStorage.addBills(cu, 50, numFifty);
                 validInput1 = true;
             } else if (lastLine[0].equalsIgnoreCase("Cheque")) {
                 depositType = "Cheque";
@@ -144,3 +144,4 @@ public class DepositMoney extends Transactions {
         return "Deposit " + depositType + " of amount $" + amountDeposited + " to Asset account " + currentAccountID;
     }
 }
+

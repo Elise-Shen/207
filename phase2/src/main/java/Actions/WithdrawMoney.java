@@ -22,6 +22,9 @@ public class WithdrawMoney extends Transactions {
      */
     private CashStorage cashStorage;
 
+    /**
+     * Construct a WithdrawMoney action instance.
+     */
     public WithdrawMoney(int userID, BankManager bm, CashStorage cs) {
         super(userID, bm);
         this.cashStorage = cs;
@@ -52,36 +55,18 @@ public class WithdrawMoney extends Transactions {
                 validInput = true;
                 currentAccountID = accountChoice;
                 Account currentAccount = currentUser.getAccount(accountChoice);
-                boolean validInput1 = false;
-                while (!validInput1) {
-                    MonetaryAmount balance = currentAccount.getCurrencyBalance();
-                    int cashWithdrawn = keyPad.getIntInput("Please enter the amount of money that you " +
-                            "want to withdraw.");
-                    amountWithdrawn = createMoney(cashWithdrawn);
-                    if (currentAccount.getAccountType() == 2 &&
-                            (balance.subtract(amountWithdrawn)).isGreaterThanOrEqualTo(createMoney(0))) {
-                        boolean withdrawn = cashStorage.withdrawal("CAD", cashWithdrawn);
-                        if (withdrawn) {
-                            currentAccount.decreaseCurrencyBalance(amountWithdrawn);
-                            validInput1 = true;
-                        }
-                    } else if (currentAccount.getAccountType() == 1) {
-                        if (balance.isGreaterThanOrEqualTo(createMoney(0)) &&
-                                balance.subtract(amountWithdrawn).isGreaterThanOrEqualTo(createMoney(-100))) {
-                            boolean withdrawn = cashStorage.withdrawal("CAD", cashWithdrawn);
-                            if (withdrawn) {
-                                currentAccount.decreaseCurrencyBalance(amountWithdrawn);
-                                validInput1 = true;
-                            }
-                        } else {
-                            System.out.println("Insufficient balance. Please enter again!");
-                        }
-                    }
-
+                int cashWithdrawn = keyPad.getIntInput("Please enter the amount of money that you " +
+                        "want to withdraw.");
+                amountWithdrawn = createMoney(cashWithdrawn);
+                boolean enoughBalance = currentAccount.decreaseCurrencyBalance(cashWithdrawn);
+                boolean enoughCash = cashStorage.withdrawal(currentAccount.getPrimaryCurrency().toString(), cashWithdrawn);
+                if (!enoughBalance || !enoughCash) {
+                    System.out.println("Transaction failed.");
                 }
             }
         }
     }
+
 
     @Override
     public int getCurrentAccountID() {
@@ -97,5 +82,6 @@ public class WithdrawMoney extends Transactions {
         return "Withdrawal $" + amountWithdrawn + "from account " + currentAccountID;
     }
 }
+
 
 

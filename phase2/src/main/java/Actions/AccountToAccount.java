@@ -17,12 +17,12 @@ public class AccountToAccount extends Transactions {
     private int recipientAccountID;
     private int amountTransferred;
 
-    public AccountToAccount(int currentId, BankManager bankManager){
-        super(currentId,bankManager);
+    public AccountToAccount(int currentId, BankManager bankManager) {
+        super(currentId, bankManager);
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
         List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
@@ -30,7 +30,7 @@ public class AccountToAccount extends Transactions {
 
 
         for (Account a : currentUserAccounts) {
-            if (a != null && !(a instanceof Credit)){
+            if (a != null && !(a instanceof Credit)) {
                 System.out.println(a.getAccountID() + " - " + a);
             }
         }
@@ -41,7 +41,7 @@ public class AccountToAccount extends Transactions {
         currentAccountID = accountID_from;
 
 
-        for (Account a : allAccounts){
+        for (Account a : allAccounts) {
             System.out.println(a.getAccountID() + " - User " + a.getOwnerID() + "'s " + a);
         }
 
@@ -49,16 +49,19 @@ public class AccountToAccount extends Transactions {
         recipientAccountID = accountID_to;
         Account account_to = bankManager.getOneAccount(accountID_to);
 
+
         int amount = keyPad.getIntInput("\nType in the amount of money to transfer");
         amountTransferred = amount;
+        if (account_from.decreaseCurrencyBalance(amount)) {
+            // increase, decrease amount
+            account_to.increaseCurrencyBalance(createMoney(amount));
+            // update recent transaction
+            System.out.println("A transaction of amount $" + amount + " is completed");
+            System.out.println("from " + accountID_from + account_from + " to " + accountID_to + account_to);
+        } else {
+            System.out.println("Transaction failed.");
+        }
 
-        // increase, decrease amount
-        account_from.decreaseCurrencyBalance(createMoney(amount));
-        account_to.increaseCurrencyBalance(createMoney(amount));
-        // update recent transaction
-
-        System.out.println("A transaction of amount $"+ amount+" is completed");
-        System.out.println("from " + accountID_from + account_from+" to " + accountID_to + account_to);
     }
 
     @Override
@@ -67,12 +70,12 @@ public class AccountToAccount extends Transactions {
     }
 
     @Override
-    public int getRecipientAccountID(){
+    public int getRecipientAccountID() {
         return recipientAccountID;
     }
 
-    public MonetaryAmount getAmountTransferred(){
-        return  createMoney(amountTransferred);
+    public MonetaryAmount getAmountTransferred() {
+        return createMoney(amountTransferred);
     }
 
     @Override

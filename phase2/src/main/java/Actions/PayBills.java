@@ -40,11 +40,17 @@ public class PayBills extends Transactions{
 
         amountPaid = keyPad.getIntInput("\nType in the amount of bill");
         // reduce the balance of the account
-        account.decreaseCurrencyBalance(createMoney(amountPaid));
-        String result = "A bill of $" + amountPaid + " is paid from user account " + accountID +
-                " to non-user account " + recipientID;
-        writeToOutGoingFile(result);
-        System.out.println(result);
+
+        boolean valid = account.decreaseCurrencyBalance(amountPaid);
+        if (valid) {
+            String result = "A bill of $" + amountPaid + " is paid from user account " + accountID +
+                    " to non-user account " + recipientID;
+            writeToOutGoingFile(result);
+            System.out.println(result);
+        } else {
+            System.out.println("Transaction failed");
+        }
+
 
     }
 

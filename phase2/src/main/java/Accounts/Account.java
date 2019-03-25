@@ -99,9 +99,15 @@ public abstract class Account implements Serializable {
         this.currencyBalance = this.currencyBalance.add(amount);
     }
 
-    public void decreaseCurrencyBalance(MonetaryAmount amount){
-        this.currencyBalance = this.currencyBalance.subtract(amount);
+    public boolean decreaseCurrencyBalance(int amount){
+        this.currencyBalance = this.currencyBalance.subtract(Money.of(amount, primaryCurrency));
+        return true;
     }
+
+    void setCurrencyBalance(Money money) {
+        this.currencyBalance = money;
+    }
+
     /**
      * Increase the balance of this account.
      *

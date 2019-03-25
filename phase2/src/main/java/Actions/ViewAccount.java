@@ -28,7 +28,7 @@ public class ViewAccount extends UserActions {
         while (!validInput) {
             for (Account a : currentUserAccounts) {
                 if(a != null){
-                    System.out.println(a.getAccountID() + " - " + a.toString());
+                    System.out.println(a.getAccountID() + " - " + a);
                 }
             }
             Keypad keyPad = new Keypad();

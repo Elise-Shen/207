@@ -146,7 +146,7 @@ public class BankManager implements Serializable {
             System.out.println("Returned $" + amountMoved +" to the account");
         }else if(t instanceof DepositMoney){
             amountMoved = ((DepositMoney) t).getAmountDeposited();
-            currentAccount.decreaseCurrencyBalance(amountMoved);
+            //currentAccount.decreaseCurrencyBalance(amountMoved);
             System.out.println("Removed $" + amountMoved + " from the account");
 
         }else if (t instanceof AccountToAccount){
@@ -155,7 +155,7 @@ public class BankManager implements Serializable {
             Account recipientAccount = getOneAccount(recipientID);
             amountMoved = ((AccountToAccount) t).getAmountTransferred();
             currentAccount.increaseCurrencyBalance(amountMoved);
-            recipientAccount.decreaseCurrencyBalance(amountMoved);
+            //recipientAccount.decreaseCurrencyBalance(amountMoved);
             System.out.println("Returned money to original account");
         }
         System.out.println("Transaction is Undone");

@@ -24,13 +24,20 @@ public class PayBills extends Transactions{
     public void execute(){
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
+        Account account = null;
+        int accountID = 0;
         List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
         Keypad keyPad = new Keypad();
         ViewAccount.printAccounts(currentUserAccounts);
-        int accountID = keyPad.getIntInput("\nType in the ID of the account you want to use to pay bill.");
-        Account account = currentUser.getAccount(accountID);
-        currentAccountID = accountID;
-
+        boolean isValid = false;
+        while(!isValid) {
+            accountID = keyPad.getIntInput("\nType in the ID of the account you want to use to pay bill.");
+            account = currentUser.getAccount(accountID);
+            if(account != null){
+                currentAccountID = accountID;
+                isValid = true;
+            }else{System.out.println("Try Again");}
+        }
         recipientID = keyPad.getStringInput("\nType in the ID of the non-user account that you want to pay the bill to.");
 
         amountPaid = keyPad.getIntInput("\nType in the amount of bill");

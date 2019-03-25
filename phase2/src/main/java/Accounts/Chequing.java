@@ -5,7 +5,6 @@ import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
 
 public class Chequing extends AssetAccount {
-
     /**
      * Creates a Chequing Account.
      */

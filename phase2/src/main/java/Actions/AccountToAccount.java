@@ -52,7 +52,7 @@ public class AccountToAccount extends Transactions {
 
         int amount = keyPad.getIntInput("\nType in the amount of money to transfer");
         amountTransferred = amount;
-        if (account_from.decreaseCurrencyBalance(amount)) {
+        if (account_from.decreaseCurrencyBalance(createMoney(amount))) {
             // increase, decrease amount
             account_to.increaseCurrencyBalance(createMoney(amount));
             // update recent transaction

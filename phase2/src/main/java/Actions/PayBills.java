@@ -25,13 +25,8 @@ public class PayBills extends Transactions{
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
         List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
-
-        for(Account a: currentUserAccounts){
-            if (a != null) {
-                System.out.println( a.getAccountID() + " - " + a);
-            }
-        }
         Keypad keyPad = new Keypad();
+        ViewAccount.printAccounts(currentUserAccounts);
         int accountID = keyPad.getIntInput("\nType in the ID of the account you want to use to pay bill.");
         Account account = currentUser.getAccount(accountID);
         currentAccountID = accountID;
@@ -41,7 +36,7 @@ public class PayBills extends Transactions{
         amountPaid = keyPad.getIntInput("\nType in the amount of bill");
         // reduce the balance of the account
 
-        boolean valid = account.decreaseCurrencyBalance(amountPaid);
+        boolean valid = account.decreaseCurrencyBalance(createMoney(amountPaid));
         if (valid) {
             String result = "A bill of $" + amountPaid + " is paid from user account " + accountID +
                     " to non-user account " + recipientID;

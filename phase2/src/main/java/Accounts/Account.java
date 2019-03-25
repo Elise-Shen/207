@@ -23,7 +23,7 @@ public abstract class Account implements Serializable {
      */
     double balance;
     private CurrencyUnit primaryCurrency;
-    private Money currencyBalance;
+    private MonetaryAmount currencyBalance;
 
     /**
      * The Id of this account.
@@ -91,7 +91,11 @@ public abstract class Account implements Serializable {
         return this.balance;
     }
 
-    public Money getCurrencyBalance(){
+    public MonetaryAmount createMoney(double amount){
+        return Money.of(amount, primaryCurrency);
+    }
+
+    public MonetaryAmount getCurrencyBalance(){
         return this.currencyBalance;
     }
 
@@ -99,8 +103,8 @@ public abstract class Account implements Serializable {
         this.currencyBalance = this.currencyBalance.add(amount);
     }
 
-    public boolean decreaseCurrencyBalance(int amount){
-        this.currencyBalance = this.currencyBalance.subtract(Money.of(amount, primaryCurrency));
+    public boolean decreaseCurrencyBalance(MonetaryAmount amount){
+        this.currencyBalance = this.currencyBalance.subtract(amount);
         return true;
     }
 

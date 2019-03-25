@@ -1,6 +1,7 @@
 package Accounts;
 import org.javamoney.moneta.Money;
 import javax.money.CurrencyUnit;
+import javax.money.MonetaryAmount;
 
 
 public abstract class DebtAccount extends Account {
@@ -8,7 +9,7 @@ public abstract class DebtAccount extends Account {
     /**
      * The maximal debt this account can incur.
      */
-    private Money maximalDebt;
+    private MonetaryAmount maximalDebt;
 
     /**
      * Creates a Debt Account.
@@ -40,10 +41,9 @@ public abstract class DebtAccount extends Account {
     }
 
     @Override
-    public boolean decreaseCurrencyBalance(int amount) {
+    public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
         Money currencyBalance = getCurrencyBalance();
-        CurrencyUnit unit = getPrimaryCurrency();
-        Money newDebt = currencyBalance.add(Money.of(amount, unit));
+        Money newDebt = currencyBalance.add(amount);
         if (newDebt.isLessThanOrEqualTo(maximalDebt)) {
             setCurrencyBalance(newDebt);
             return true;

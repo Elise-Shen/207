@@ -39,13 +39,9 @@ public class WithdrawMoney extends Transactions {
         User currentUser = bankManager.getUser(getUserID());
         boolean validInput = false;
         List<Account> currentUserAccounts = currentUser.getAccountList();
+        Keypad keyPad = new Keypad();
         while (!validInput) {
-            for (Account a : currentUserAccounts) {
-                if (a != null) {
-                    System.out.println(a.getAccountID() + " - " + a);
-                }
-            }
-            Keypad keyPad = new Keypad();
+            ViewAccount.printAccounts(currentUserAccounts);
             int accountChoice = keyPad.getIntInput("\nPlease type in the ID of the account that you want " +
                     "to withdraw money from.");
             Account myAccount = currentUser.getAccount(accountChoice);
@@ -58,7 +54,7 @@ public class WithdrawMoney extends Transactions {
                 int cashWithdrawn = keyPad.getIntInput("Please enter the amount of money that you " +
                         "want to withdraw.");
                 amountWithdrawn = createMoney(cashWithdrawn);
-                boolean enoughBalance = currentAccount.decreaseCurrencyBalance(cashWithdrawn);
+                boolean enoughBalance = currentAccount.decreaseCurrencyBalance(amountWithdrawn);
                 boolean enoughCash = cashStorage.withdrawal(currentAccount.getPrimaryCurrency().toString(), cashWithdrawn);
                 if (!enoughBalance || !enoughCash) {
                     System.out.println("Transaction failed.");

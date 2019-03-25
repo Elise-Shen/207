@@ -2,6 +2,7 @@ package Accounts;
 
 import org.javamoney.moneta.Money;
 import javax.money.CurrencyUnit;
+import javax.money.MonetaryAmount;
 
 public class Chequing extends AssetAccount {
 
@@ -28,13 +29,13 @@ public class Chequing extends AssetAccount {
     }
 
     @Override
-    public boolean decreaseCurrencyBalance(int amount) {
+    public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
         Money currencyBalance = getCurrencyBalance();
         CurrencyUnit unit = getPrimaryCurrency();
         if (currencyBalance.isLessThan(Money.of(0, unit))) {
             return false;
-        } else if (currencyBalance.isGreaterThanOrEqualTo(Money.of(amount - 100, unit))) {
-            Money newBalance = currencyBalance.subtract(Money.of(amount, unit));
+        } else if (currencyBalance.isGreaterThanOrEqualTo(amount.subtract(Money.of(100, unit)))) {
+            Money newBalance = currencyBalance.subtract(amount);
             setCurrencyBalance(newBalance);
             return true;
         }

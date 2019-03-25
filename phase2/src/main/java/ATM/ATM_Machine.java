@@ -54,12 +54,6 @@ public class ATM_Machine {
      */
     private boolean interestAdded = false;
 
-    /**
-     * The current date when this ATM is running.
-     */
-    private LocalDate currentDate = LocalDate.now();
-
-
 
     public ATM_Machine(){
 
@@ -101,7 +95,7 @@ public class ATM_Machine {
 
             }
             addToSavingsAccounts();
-            cashStorage.sendAlert(currentDate.toString());
+            cashStorage.sendAlert(LocalDate.now().toString());
             try {
                 updateData();
                 System.out.println("Data Saved");
@@ -366,8 +360,8 @@ public class ATM_Machine {
      * Return if the current day is the end of the current month.
      */
     private boolean isEndOfMonth() {
-        LocalDate end = currentDate.withDayOfMonth(currentDate.lengthOfMonth());
-        return currentDate.equals(end);
+        LocalDate end = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
+        return LocalDate.now().equals(end);
     }
 
     /**

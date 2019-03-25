@@ -5,8 +5,8 @@ public class Credit extends DebtAccount {
     /**
      * Creates a Credit Card Account.
      */
-    public Credit() {
-        super();
+    public Credit(String currency) {
+        super(currency);
     }
 
     @Override

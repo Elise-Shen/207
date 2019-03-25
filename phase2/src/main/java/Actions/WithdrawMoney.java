@@ -60,7 +60,7 @@ public class WithdrawMoney extends Transactions {
                     amountWithdrawn = createMoney(cashWithdrawn);
                     if (currentAccount.getAccountType() == 2 &&
                             (balance.subtract(amountWithdrawn)).isGreaterThanOrEqualTo(createMoney(0))) {
-                        boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
+                        boolean withdrawn = cashStorage.withdrawal("CAD", cashWithdrawn);
                         if (withdrawn) {
                             currentAccount.decreaseCurrencyBalance(amountWithdrawn);
                             validInput1 = true;
@@ -68,7 +68,7 @@ public class WithdrawMoney extends Transactions {
                     } else if (currentAccount.getAccountType() == 1) {
                         if (balance.isGreaterThanOrEqualTo(createMoney(0)) &&
                                 balance.subtract(amountWithdrawn).isGreaterThanOrEqualTo(createMoney(-100))) {
-                            boolean withdrawn = cashStorage.withdrawal(cashWithdrawn);
+                            boolean withdrawn = cashStorage.withdrawal("CAD", cashWithdrawn);
                             if (withdrawn) {
                                 currentAccount.decreaseCurrencyBalance(amountWithdrawn);
                                 validInput1 = true;

@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.InputMismatchException;
 
 import java.util.*;
-import java.util.Scanner;
+
 
 
 
@@ -21,7 +21,7 @@ public class BankManager implements Serializable {
     private static final long serialVersionUID = 474692929576172322L;
 
     private String bankName;
-    private Map<Integer, Integer> accountRequests = new HashMap<>();
+    private Map<Integer, Map<String, Integer>> accountRequests = new HashMap<>();
     private Map<Integer, Transactions> undoTransactionRequest = new HashMap<>();
     private List<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
@@ -92,13 +92,16 @@ public class BankManager implements Serializable {
         user.setPassword(newPassword);
     }
 
-    public void requestAccount(int userID, int accountType){
-        accountRequests.put(userID, accountType);
+    public void requestAccount(int userID, int accountType, String currency){
+        Map<String, Integer> value = new HashMap<>();
+        value.put(currency, accountType);
+        accountRequests.put(userID, value);
+
     }
 
-    public void createAccount(int userID, int accountType) {
+    public void createAccount(int userID, int accountType, String currency) {
 
-        Account newAccount = accountFactory.getAccount(accountType);
+        Account newAccount = accountFactory.getAccount(accountType, currency);
 
         addAccount(userID, newAccount);
         System.out.println("Created a new " + newAccount + " for User " + userID + ".");
@@ -116,7 +119,7 @@ public class BankManager implements Serializable {
         addAllAccountsList(newAccount);
     }
 
-    public Map<Integer, Integer> getAccountRequests(){
+    public Map<Integer, Map<String, Integer>> getAccountRequests(){
         return accountRequests;
     }
 
@@ -148,7 +151,7 @@ public class BankManager implements Serializable {
 
         }else if (t instanceof AccountToAccount){
 
-            int recipientID = ((AccountToAccount) t).getRecipientAccountID();
+            int recipientID = (t).getRecipientAccountID();
             Account recipientAccount = getOneAccount(recipientID);
             amountMoved = ((AccountToAccount) t).getAmountTransferred();
             currentAccount.increaseCurrencyBalance(amountMoved);
@@ -170,9 +173,8 @@ public class BankManager implements Serializable {
         boolean validInput1 = false;
         while (!validInput0) {
             try{
-            Scanner input0 = new Scanner(System.in);
-            System.out.println("\nPlease enter your User ID");
-            currentID = input0.nextInt();
+            Keypad keyPad = new Keypad();
+            currentID = keyPad.getIntInput("\nPlease enter your User ID");
             currentUser = checkUserID(currentID);
             if (currentUser == null) {
                 System.out.println("User does not exist. Please try again.");
@@ -180,9 +182,7 @@ public class BankManager implements Serializable {
                 validInput0 = true;
                 while (!validInput1) {
                     // check if password is correct.
-                    Scanner input1 = new Scanner(System.in);
-                    System.out.println("\nPlease enter your password");
-                    String pass = input1.nextLine();
+                    String pass = keyPad.getStringInput("\nPlease enter your password");
                     if (currentUser.getPassword().equals(pass)) {
                         System.out.println("Successfully Login!");
                         validInput1 = true;

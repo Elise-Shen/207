@@ -3,6 +3,8 @@ package Actions;
 import ATM.*;
 
 import java.time.*;
+import java.util.Currency;
+import java.util.Set;
 
 public class RequestAccount extends UserActions {
     private static final int CHEQUING = 1;
@@ -31,6 +33,7 @@ public class RequestAccount extends UserActions {
         }
         if(currentCount < LIMIT ) {
             int accountType = 0;
+            String accountCurrency = "";
             boolean isValid = false;
             String typeString = null;
             while (!isValid) {
@@ -44,6 +47,25 @@ public class RequestAccount extends UserActions {
                 } else {
                     System.out.println("Invalid input. Please try again!");
                 }
+            }
+            isValid = false;
+            while(!isValid){
+
+                Keypad keypad = new Keypad();
+                String currencyChoice = keypad.getStringInput("\nChoose the currency. \nMust follow ISO 4217 format");
+                Set<Currency> currencyCodes = Currency.getAvailableCurrencies();
+                try {
+                    if (currencyCodes.contains(Currency.getInstance(currencyChoice))) {
+                        accountCurrency = currencyChoice;
+                        isValid = true;
+                    } else {
+                        System.out.println("Invalid input. Please try again");
+                    }
+                }catch(IllegalArgumentException ex){
+                    ex.printStackTrace();
+                    System.out.println("Invalid input. Please try again");
+                }
+
             }
             switch (accountType) {
                 case CHEQUING:
@@ -63,7 +85,7 @@ public class RequestAccount extends UserActions {
             }
             if (accountType != 0) {
                 currentUser.incrementCount();
-                bankManager.requestAccount(getUserID(), accountType);
+                bankManager.requestAccount(getUserID(), accountType, accountCurrency);
                 System.out.println("\nRequested an " + typeString + " account.");
             } else {
                 System.out.println("Returning to previous page");
@@ -71,3 +93,5 @@ public class RequestAccount extends UserActions {
         }else{System.out.println("Reached Daily Account Request Limit");}
     }//end execute
 }
+
+//Add choice to choose currency type

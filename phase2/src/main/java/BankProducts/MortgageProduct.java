@@ -5,17 +5,17 @@ import Accounts.*;
 public abstract class MortgageProduct extends BankProduct{
 
     public MortgageProduct(int amount, int months, double rate) {
-        product_amount = amount;
+        product_amount = createMoney(amount);
         product_month = months;
         interest_rate = rate;
         setDateEnd(months);
 
     }
     public void giveLoan(Account account){
-        account.increaseBalance(product_amount);
+        account.increaseCurrencyBalance(product_amount);
     }
     public void returnloan(Account account){
-        account.decreaseBalance(product_amount*(1+product_month*interest_rate));
+        account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
     }
     @Override
     public int getProductType() {

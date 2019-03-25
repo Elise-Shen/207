@@ -5,8 +5,8 @@ public class Chequing extends AssetAccount {
     /**
      * Creates a Chequing Account.
      */
-    public Chequing() {
-        super();
+    public Chequing(String currency) {
+        super(currency);
     }
 
     @Override

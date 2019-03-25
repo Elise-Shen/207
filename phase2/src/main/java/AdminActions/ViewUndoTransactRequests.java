@@ -7,6 +7,7 @@ import Actions.Transactions;
 import java.util.*;
 
 public class ViewUndoTransactRequests extends AdminAction{
+    private final BankManager bankManager = getBankManager();
 
     public ViewUndoTransactRequests(BankManager bankManager){
         super(bankManager);
@@ -14,12 +15,11 @@ public class ViewUndoTransactRequests extends AdminAction{
 
     @Override
     public void execute() {
-        BankManager bankManager = getBankManager();
         Map<Integer, Transactions> undoRequests = bankManager.getUndoTransactionRequest();
         boolean exited = false;
         while(!exited){
             if(!undoRequests.isEmpty()){
-                int count = displayRequests(bankManager);
+                int count = displayUndoTransactionRequests();
                 boolean isValid = false;
                 System.out.println();
                 while (!isValid) {
@@ -28,7 +28,7 @@ public class ViewUndoTransactRequests extends AdminAction{
                         int choice = keyPad.getIntInput("Enter the number of the request you wish to " +
                                 "approve or enter 0 to exit");
                         if (choice > 0 && choice <= count) {
-                            handleRequests(bankManager, choice);
+                            handleUndoTransactionRequests(choice);
                             isValid = true;
                         }else if(choice == 0){
                             break;
@@ -52,7 +52,7 @@ public class ViewUndoTransactRequests extends AdminAction{
     /**
      * Display all the account creation requests.
      */
-    private int displayRequests(BankManager bankManager) {
+    private int displayUndoTransactionRequests() {
         Map<Integer, Transactions> undoRequests = bankManager.getUndoTransactionRequest();
         Iterator<Map.Entry<Integer, Transactions>> entries = undoRequests.entrySet().iterator();
         Map.Entry<Integer, Transactions> entry;
@@ -74,7 +74,7 @@ public class ViewUndoTransactRequests extends AdminAction{
     /**
      * Handles the account creation requests.
      */
-    private void handleRequests(BankManager bankManager, int choice) {
+    private void handleUndoTransactionRequests(int choice) {
         Map<Integer, Transactions> undoRequests = bankManager.getUndoTransactionRequest();
         Iterator<Map.Entry<Integer, Transactions>> entries = undoRequests.entrySet().iterator();
         Map.Entry<Integer, Transactions> entry;

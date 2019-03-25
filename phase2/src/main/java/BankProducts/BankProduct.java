@@ -6,11 +6,12 @@ import org.javamoney.moneta.Money;
 
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
+import javax.money.MonetaryAmount;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 public abstract class BankProduct implements Serializable{
-    public int product_amount ;// borrowed amount for each type of mortgage
+    public MonetaryAmount product_amount ;// borrowed amount for each type of mortgage
     public int product_month; // number of days borrowed
     public double interest_rate;
 
@@ -62,6 +63,11 @@ public abstract class BankProduct implements Serializable{
 
     public double getInterestRate(){return 0;};
     public int getProductType(){return 0;};
+
+    public MonetaryAmount createMoney(double amount){
+        CurrencyUnit currencyUnit = Monetary.getCurrency(Locale.getDefault());
+        return Money.of(amount, currencyUnit);
+    }
 
 
 

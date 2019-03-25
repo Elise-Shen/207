@@ -5,8 +5,8 @@ public class Saving extends AssetAccount {
     /**
      * Creates a Savings Account.
      */
-    public Saving() {
-        super();
+    public Saving(String currency) {
+        super(currency);
     }
 
     @Override

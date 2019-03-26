@@ -68,6 +68,13 @@ public class ATM_Machine {
 
     void run(){
         while (true) {
+            if (isMidnight()) {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    //
+                }
+            }
             addToSavingsAccounts();
             boolean isValid = false;
             while(!isValid){
@@ -98,13 +105,6 @@ public class ATM_Machine {
                         System.out.println("Data Saved");
                     }catch (IOException ex){ex.printStackTrace();}
                 }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
-                }
-                if (isMidnight()) {
-                    try {
-                        Thread.sleep(300);
-                    } catch (InterruptedException e) {
-                        //
-                    }
                 }
             }
     }
@@ -363,10 +363,17 @@ public class ATM_Machine {
     }
 
     /**
+     * Return if the current day is the beginning of the current month.
+     */
+    private boolean isStartOfMonth() {
+        LocalDate begin = LocalDate.now().withDayOfMonth(1);
+        return LocalDate.now().equals(begin);
+    }
+    /**
      * Call Manager to add interest to all savings accounts on the last day of the every month.
      */
     private void addToSavingsAccounts() {
-        if (isEndOfMonth() && !interestAdded) {
+        if (isStartOfMonth() && !interestAdded) {
             bankManager.addInterestToSavingsAccounts();
             interestAdded = true;
         }

@@ -91,27 +91,33 @@ public class ATM_Machine {
                 public void actionPerformed(ActionEvent e) {
                     //boolean isValid = false;
                     //while(!isValid){
-                    try {
-                        int choice = new Integer(screen.getUserInput());
-                        switch (choice) {
-                            case CUSTOMER:
-                                customerLogin();
-                                //isValid = true;
-                                break;
-                            case BANK_MANAGER:
-                                bankManagerLogin();
-                                //isValid = true;
-                                break;
-                            default:
-                                invalidInput();
-                                break;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                int choice = new Integer(screen.getUserInput());
+                                switch (choice) {
+                                    case CUSTOMER:
+                                        customerLogin();
+                                        //isValid = true;
+                                        break;
+                                    case BANK_MANAGER:
+                                        bankManagerLogin();
+                                        //isValid = true;
+                                        break;
+                                    default:
+                                        invalidInput();
+                                        break;
+                                }
+                                cashStorage.sendAlert(LocalDate.now().toString());
+                                try {
+                                    updateData();
+                                    System.out.println("Data Saved");
+                                } catch (IOException ex) { ex.printStackTrace(); }
+                            } catch (NumberFormatException ex) { invalidInput(); }
                         }
-                        cashStorage.sendAlert(LocalDate.now().toString());
-                        try {
-                            updateData();
-                            System.out.println("Data Saved");
-                        } catch (IOException ex) { ex.printStackTrace(); }
-                    } catch (NumberFormatException ex) { invalidInput(); }
+                    }).start();
+
                 }
             //}
             });

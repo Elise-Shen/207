@@ -32,66 +32,77 @@ public class RequestAccount extends UserActions {
             currentUser.resetCount();
         }
         if(currentCount < LIMIT ) {
-            int accountType = 0;
-            String accountCurrency = "";
-            boolean isValid = false;
-            String typeString = null;
-            while (!isValid) {
-
-                Keypad keyPad = new Keypad();
-                int typeChoice = keyPad.getIntInput("\nWhat type of account do you wish to create?" +
-                        "\n1 - Chequing\n2 - Savings\n3 - Credit\n4 - Line of Credit\n0 - Exit");
-                if (typeChoice <= 4 && typeChoice >= 0) {
-                    accountType = typeChoice;
-                    isValid = true;
-                } else {
-                    System.out.println("Invalid input. Please try again!");
-                }
-            }
-            isValid = false;
-            while(!isValid){
-
-                Keypad keypad = new Keypad();
-                String currencyChoice = keypad.getStringInput("\nChoose the currency. \nMust follow ISO 4217 format");
-                Set<Currency> currencyCodes = Currency.getAvailableCurrencies();
-                try {
-                    if (currencyCodes.contains(Currency.getInstance(currencyChoice))) {
-                        accountCurrency = currencyChoice;
-                        isValid = true;
-                    } else {
-                        System.out.println("Invalid input. Please try again");
-                    }
-                }catch(IllegalArgumentException ex){
-                    ex.printStackTrace();
-                    System.out.println("Invalid input. Please try again");
-                }
-
-            }
-            switch (accountType) {
-                case CHEQUING:
-                    typeString = "Chequing";
-                    break;
-                case SAVINGS:
-                    typeString = "Saving";
-                    break;
-                case CREDIT:
-                    typeString = "Credit";
-                    break;
-                case LINE_OF_CREDIT:
-                    typeString = "Line of Credit";
-                    break;
-                case 0:
-                    break;
-            }
+            int accountType = getAccountType();
             if (accountType != 0) {
+                String accountCurrency = getCurrency();
+                String typeString = getTypeString(accountType);
                 currentUser.incrementCount();
                 bankManager.requestAccount(getUserID(), accountType, accountCurrency);
                 System.out.println("\nRequested an " + typeString + " account.");
             } else {
                 System.out.println("Returning to previous page");
             }
-        }else{System.out.println("Reached Daily Account Request Limit");}
+        } else {System.out.println("Reached Daily Account Request Limit");}
     }//end execute
+
+    private int getAccountType() {
+        boolean isValid = false;
+        int typeChoice = 0;
+        while (!isValid) {
+            Keypad keyPad = new Keypad();
+            typeChoice = keyPad.getIntInput("\nWhat type of account do you wish to create?" +
+                    "\n1 - Chequing\n2 - Savings\n3 - Credit\n4 - Line of Credit\n0 - Exit");
+            if (typeChoice <= 4 && typeChoice >= 0) {
+                isValid = true;
+            } else {
+                System.out.println("Invalid input. Please try again!");
+            }
+        }
+        return typeChoice;
+    }
+
+    private String getCurrency() {
+        String accountCurrency = "";
+        boolean isValid = false;
+        while(!isValid){
+            Keypad keypad = new Keypad();
+            String currencyChoice = keypad.getStringInput("\nChoose the currency. \nMust follow ISO 4217 format");
+            Set<Currency> currencyCodes = Currency.getAvailableCurrencies();
+            try {
+                if (currencyCodes.contains(Currency.getInstance(currencyChoice))) {
+                    accountCurrency = currencyChoice;
+                    isValid = true;
+                } else {
+                    System.out.println("Invalid input. Please try again");
+                }
+            }catch(IllegalArgumentException ex){
+                ex.printStackTrace();
+                System.out.println("Invalid input. Please try again");
+            }
+        }
+        return accountCurrency;
+    }
+
+    private String getTypeString(int accountType) {
+        String typeString = null;
+        switch (accountType) {
+            case CHEQUING:
+                typeString = "Chequing";
+                break;
+            case SAVINGS:
+                typeString = "Saving";
+                break;
+            case CREDIT:
+                typeString = "Credit";
+                break;
+            case LINE_OF_CREDIT:
+                typeString = "Line of Credit";
+                break;
+            case 0:
+                break;
+        }
+        return typeString;
+    }
 }
 
 //Add choice to choose currency type

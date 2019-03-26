@@ -34,7 +34,5 @@ public class Main {
 */
         ATM_Machine atm = new ATM_Machine();
         atm.run();
-
-
     }
 }

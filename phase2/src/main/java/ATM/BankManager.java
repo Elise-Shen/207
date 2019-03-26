@@ -46,11 +46,11 @@ public class BankManager implements Serializable {
         //createUserExample(userNumExample);
     }
 
-    public void addAllAccountsList(Account a){
+    void addAllAccountsList(Account a){
         allAccounts.add(a);
     }
 
-    public String getBankName(){
+    String getBankName(){
         return this.bankName;
     }
 
@@ -248,12 +248,8 @@ public class BankManager implements Serializable {
         }
     }
 
+
     public void updateData(){
     }
-
-
-
-
-
 }
 

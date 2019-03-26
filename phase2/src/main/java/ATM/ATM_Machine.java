@@ -68,6 +68,7 @@ public class ATM_Machine {
 
     void run(){
         while (true) {
+            addToSavingsAccounts();
             boolean isValid = false;
             while(!isValid){
                 try {
@@ -87,27 +88,25 @@ public class ATM_Machine {
                             bankManagerLogin();
                             isValid = true;
                             break;
-                        default:
-                            System.out.println("Invalid input. Please try again");
-                            break;
+                         default:
+                             System.out.println("Invalid input. Please try again");
+                             break;
                     }
+                    cashStorage.sendAlert(LocalDate.now().toString());
+                    try {
+                        updateData();
+                        System.out.println("Data Saved");
+                    }catch (IOException ex){ex.printStackTrace();}
                 }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
-
-            }
-            addToSavingsAccounts();
-            cashStorage.sendAlert(LocalDate.now().toString());
-            try {
-                updateData();
-                System.out.println("Data Saved");
-            }catch (IOException ex){ex.printStackTrace();}
-            if (isMidnight()) {
-                try {
-                    Thread.sleep(300);
-                } catch (InterruptedException e) {
-                    //
+                }
+                if (isMidnight()) {
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        //
+                    }
                 }
             }
-        }
     }
 
     private void customerLogin(){
@@ -173,7 +172,6 @@ public class ATM_Machine {
      * Keeps running until use chooses to exit to the previous list of options
      */
     private void doActions(){
-
         boolean exited = false;
         while (!exited){
             try {
@@ -380,12 +378,12 @@ public class ATM_Machine {
     /**
      * Check if the current time is midnight.
      */
-    boolean isMidnight() {
+    private boolean isMidnight() {
         return LocalTime.now() == LocalTime.MIDNIGHT;
     }
 
     /**
-     * Updates serialization file data for bankmanager related to file.
+     * Updates serialization file data for BankManager related to file.
      * @throws IOException
      */
     private void updateData() throws  IOException{
@@ -418,7 +416,6 @@ public class ATM_Machine {
             //bankManager = new BankManager("TD Bank", "abc123");
         }
         return temp;
-
     }
 
 }

@@ -13,6 +13,11 @@ public class Screen extends JFrame{
 
     private JButton exitButton;
 
+    private JLabel inputOptions;
+    private JLabel inputMessage;
+    private JButton submitButton;
+    private JTextField userInput;
+
     public Screen(){
 
         createView();
@@ -28,6 +33,12 @@ public class Screen extends JFrame{
             }
         });
         add(exitButton);
+
+        add(userInput);
+        add(inputMessage);
+        add(submitButton);
+        add(inputOptions);
+
         setResizable(false);
 
         startUpPage();
@@ -44,8 +55,28 @@ public class Screen extends JFrame{
                 System.exit(0);
             }
         });
-        exitButton.setLocation(400, 400);
+        exitButton.setLocation(450, 400);
         exitButton.setSize(100, 25);
+
+        inputOptions = new JLabel();
+        inputOptions.setLocation(200, 0);
+        inputOptions.setSize(300, 200);
+        inputOptions.setVisible(false);
+
+        userInput = new JTextField(10);
+        userInput.setSize(200,30);
+        userInput.setLocation(150, 300);
+        userInput.setVisible(false);
+
+        inputMessage = new JLabel("Please enter your choice");
+        inputMessage.setLocation(200, 250);
+        inputMessage.setSize(300,50);
+        inputMessage.setVisible(false);
+
+        submitButton = new JButton("Submit");
+        submitButton.setLocation(400, 300);
+        submitButton.setSize(100, 25);
+        submitButton.setVisible(false);
     }
 
     private void startUpPage(){
@@ -58,22 +89,35 @@ public class Screen extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 startUp.setVisible(false);
+                inputOptions.setVisible(true);
+                userInput.setVisible(true);
+                inputMessage.setVisible(true);
+                submitButton.setVisible(true);
             }
         });
         timer.setRepeats(false);
         timer.start();
     }
 
-    private int loginPage(String message){
-        JLabel login = new JLabel(message);
-        login.setLocation(200, 100);
-        login.setSize(300,150);
-        JTextField userInput = new JTextField(10);
-        userInput.setLocation(200, 300);
-        add(login);
-        add(userInput);
-        return new Integer(userInput.getText());
+
+    public void setInputOptions(String text){
+        inputOptions.setText(text);
     }
+
+    public void setSubmitButton(ActionListener actionListener){
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = userInput.getText();
+            }
+        });
+    }
+
+    public String getUserInput(){
+        return userInput.getText();
+    }
+
+
 
     public static void main(String[] args) { new Screen().setVisible(true); }
 }

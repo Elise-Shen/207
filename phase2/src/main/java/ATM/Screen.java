@@ -63,8 +63,8 @@ public class Screen extends JFrame{
         inputOptions.setSize(300, 200);
         inputOptions.setVisible(false);
 
-        userInput = new JTextField(10);
-        userInput.setSize(200,30);
+        userInput = new JTextField();
+        userInput.setSize(200,25);
         userInput.setLocation(150, 300);
         userInput.setVisible(false);
 
@@ -89,16 +89,21 @@ public class Screen extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 startUp.setVisible(false);
-                inputOptions.setVisible(true);
-                userInput.setVisible(true);
-                inputMessage.setVisible(true);
-                submitButton.setVisible(true);
+                setUpPage();
             }
         });
         timer.setRepeats(false);
         timer.start();
     }
 
+    public void setUpPage(){
+        inputOptions.setVisible(true);
+        userInput.setText("");
+        userInput.setVisible(true);
+        inputMessage.setText("Please enter your choice");
+        inputMessage.setVisible(true);
+        submitButton.setVisible(true);
+    }
 
     public void setInputOptions(String text){
         inputOptions.setText(text);
@@ -108,8 +113,16 @@ public class Screen extends JFrame{
         submitButton.addActionListener(actionListener);
     }
 
+    public void setInputMessage(String text){
+        inputMessage.setText(text);
+    }
+
     public String getUserInput(){
         return userInput.getText();
+    }
+
+    public void initializeUserInput(){
+        userInput.setText("");
     }
 
 

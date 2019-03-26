@@ -98,11 +98,12 @@ public class Screen extends JFrame{
 
     public void setUpPage(){
         inputOptions.setVisible(true);
-        userInput.setText("");
+        initializeUserInput();
         userInput.setVisible(true);
-        inputMessage.setText("Please enter your choice");
+        initializeInputMessage();
         inputMessage.setVisible(true);
         submitButton.setVisible(true);
+        repaint();
     }
 
     public void setInputOptions(String text){
@@ -125,6 +126,9 @@ public class Screen extends JFrame{
         userInput.setText("");
     }
 
+    public void initializeInputMessage(){
+        inputMessage.setText("Please enter your choice");
+    }
 
 
     public static void main(String[] args) { new Screen().setVisible(true); }

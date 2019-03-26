@@ -354,13 +354,6 @@ public class ATM_Machine {
         return temp; //placeholder
     }
 
-    /**
-     * Return if the current day is the end of the current month.
-     */
-    private boolean isEndOfMonth() {
-        LocalDate end = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
-        return LocalDate.now().equals(end);
-    }
 
     /**
      * Return if the current day is the beginning of the current month.
@@ -377,7 +370,7 @@ public class ATM_Machine {
             bankManager.addInterestToSavingsAccounts();
             interestAdded = true;
         }
-        if (!isEndOfMonth()) {
+        if (!isStartOfMonth()) {
             interestAdded = false;
         }
     }

@@ -4,15 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Screen extends JFrame{
 
     private static final String TITLE = "ATM";
 
-    private JButton buttonExit;
-    private JLabel label;
+    private JButton exitButton;
 
-    private Screen(){
+    public Screen(){
 
         createView();
 
@@ -26,16 +27,16 @@ public class Screen extends JFrame{
                 System.exit(0);
             }
         });
-        add(buttonExit);
+        add(exitButton);
         setResizable(false);
 
-        run();
+        startUpPage();
     }
 
     private void createView(){
 
-        buttonExit = new JButton("Exit");
-        buttonExit.addActionListener(new ActionListener() {
+        exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,36 +44,36 @@ public class Screen extends JFrame{
                 System.exit(0);
             }
         });
-        buttonExit.setLocation(400, 400);
-        buttonExit.setSize(100, 25);
-    }
-
-    private void run(){
-        startUpPage();
-        loginPage();
+        exitButton.setLocation(400, 400);
+        exitButton.setSize(100, 25);
     }
 
     private void startUpPage(){
-        label = new JLabel("ATM starting Up ...");
-        label.setLocation(200,0);
-        label.setSize(150, 50);
-        add(label);
+        JLabel startUp = new JLabel("<html>ATM starting Up ...<br>" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "</html>");
+        startUp.setLocation(200,100);
+        startUp.setSize(150, 100);
+        add(startUp);
         Timer timer = new Timer(3000, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("ATM starting up ...");
-                label.setVisible(false);
-
+                startUp.setVisible(false);
             }
         });
         timer.setRepeats(false);
         timer.start();
     }
 
-    private void loginPage(){
-
+    private int loginPage(String message){
+        JLabel login = new JLabel(message);
+        login.setLocation(200, 100);
+        login.setSize(300,150);
+        JTextField userInput = new JTextField(10);
+        userInput.setLocation(200, 300);
+        add(login);
+        add(userInput);
+        return new Integer(userInput.getText());
     }
 
-    public static void main(String[] args) { new Screen().setVisible(true);; }
+    public static void main(String[] args) { new Screen().setVisible(true); }
 }

@@ -96,9 +96,11 @@ public class ATM_Machine {
                         switch (choice) {
                             case CUSTOMER:
                                 customerLogin();
+                                //isValid = true;
                                 break;
                             case BANK_MANAGER:
                                 bankManagerLogin();
+                                //isValid = true;
                                 break;
                             default:
                                 invalidInput();

@@ -11,13 +11,13 @@ public abstract class DebtAccount extends Account {
      */
     private MonetaryAmount maximalDebt;
 
+
     /**
      * Creates a Debt Account.
      */
     public DebtAccount(String currency) {
         super(currency);
         maximalDebt = Money.of(50000, getPrimaryCurrency());
-        setInterestRate(1.20);
     }
 
     @Override
@@ -36,7 +36,7 @@ public abstract class DebtAccount extends Account {
     }
 
     @Override
-    public MonetaryAmount getCurrencyBalance(){
+    public MonetaryAmount getCurrencyBalance() {
         MonetaryAmount currencyBalance = super.getCurrencyBalance();
         return currencyBalance.negate();
     }
@@ -52,3 +52,4 @@ public abstract class DebtAccount extends Account {
         return false;
     }
 }
+

@@ -236,7 +236,6 @@ public class BankManager implements Serializable {
         return name;
     }
 
-
     /**
      * Add interest to all savings accounts in this BankManager's account list.
      */
@@ -244,9 +243,10 @@ public class BankManager implements Serializable {
         for (Account a : allAccounts) {
             if (a != null) {
                 a.addInterest();
-             }
+            }
         }
     }
+
 
 
     public void updateData(){

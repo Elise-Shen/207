@@ -177,6 +177,8 @@ public class ATM_Machine {
 
     private void customerLogin(){
         while (!userAuthenticated){
+            screen.clearPage();
+            screen.startUpPage("\nWelcome to " + bankManager.getBankName() +"'s ATM!");
             System.out.println("\nWelcome to " + bankManager.getBankName() +"'s ATM!");
             currentUserID = bankManager.checkLogin();
             userAuthenticated = true;

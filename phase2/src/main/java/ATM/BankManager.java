@@ -1,7 +1,6 @@
 package ATM;
 
-import Accounts.Account;
-import Accounts.AccountFactory;
+import Accounts.*;
 import Actions.AccountToAccount;
 import Actions.DepositMoney;
 import Actions.Transactions;
@@ -45,6 +44,7 @@ public class BankManager implements Serializable {
         userArrayList.add(user2);
         //createUserExample(userNumExample);
     }
+
 
     void addAllAccountsList(Account a){
         allAccounts.add(a);
@@ -247,8 +247,14 @@ public class BankManager implements Serializable {
         }
     }
 
-
-
+    /**
+     * Return all the account types that has an interest rate tied to them.
+     */
+    public String getInterestAccounts() {
+        return "\nInterest Rate Table: \n" + SAVINGS + " - SavingsAccount: " + Saving.getInterestRate() +
+                "\n" + CREDIT + " - Credit: " + Credit.getInterestRate() +
+                "\n" + LINE_OF_CREDIT + " - Lin of Credit: " + LineOfCredit.getInterestRate();
+    }
     public void updateData(){
     }
 }

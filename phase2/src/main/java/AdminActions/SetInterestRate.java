@@ -20,7 +20,6 @@ public class SetInterestRate extends AdminAction{
         printInterestTable();
         int choice = getAccountChoice();
         double newRate = getNewInterestRate();
-
         switch (choice) {
             case 1:
                 Credit.setInterestRate(newRate);
@@ -31,15 +30,11 @@ public class SetInterestRate extends AdminAction{
             case 3:
                 Saving.setInterestRate(newRate);
         }
-
     }
 
-
     private void printInterestTable() {
-
-        System.out.println("\nInterest Rate Table: " + "\n1 - Credit: " + Credit.getInterestRate() +
-                 "\n2 - LineOfCredit: " + LineOfCredit.getInterestRate() +
-                 "\n3 - SavingsAccount: " + Saving.getInterestRate());
+        String message = getBankManager().getInterestAccounts();
+        System.out.println(message);
     }
 
     private int getAccountChoice() {

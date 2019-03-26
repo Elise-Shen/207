@@ -41,7 +41,7 @@ public class Screen extends JFrame{
 
         setResizable(false);
 
-        startUpPage();
+        startUpPage("<html>ATM starting Up ...<br>" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "</html>");
     }
 
     private void createView(){
@@ -79,10 +79,10 @@ public class Screen extends JFrame{
         submitButton.setVisible(false);
     }
 
-    private void startUpPage(){
-        JLabel startUp = new JLabel("<html>ATM starting Up ...<br>" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "</html>");
+    public void startUpPage(String text){
+        JLabel startUp = new JLabel(text);
         startUp.setLocation(200,100);
-        startUp.setSize(150, 100);
+        startUp.setSize(300, 100);
         add(startUp);
         Timer timer = new Timer(3000, new ActionListener() {
 
@@ -103,6 +103,14 @@ public class Screen extends JFrame{
         initializeInputMessage();
         inputMessage.setVisible(true);
         submitButton.setVisible(true);
+        repaint();
+    }
+
+    public void clearPage() {
+        inputOptions.setVisible(false);
+        userInput.setVisible(false);
+        inputMessage.setVisible(false);
+        submitButton.setVisible(false);
         repaint();
     }
 
@@ -129,7 +137,6 @@ public class Screen extends JFrame{
     public void initializeInputMessage(){
         inputMessage.setText("Please enter your choice");
     }
-
 
     public static void main(String[] args) { new Screen().setVisible(true); }
 }

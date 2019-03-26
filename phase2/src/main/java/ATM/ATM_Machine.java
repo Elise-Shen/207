@@ -75,7 +75,7 @@ public class ATM_Machine {
                     //
                 }
             }
-            addToSavingsAccounts();
+            addInterests();
             boolean isValid = false;
             while(!isValid){
                 try {
@@ -365,9 +365,9 @@ public class ATM_Machine {
     /**
      * Call Manager to add interest to all savings accounts on the last day of the every month.
      */
-    private void addToSavingsAccounts() {
+    private void addInterests() {
         if (isStartOfMonth() && !interestAdded) {
-            bankManager.addInterestToSavingsAccounts();
+            bankManager.addInterests();
             interestAdded = true;
         }
         if (!isStartOfMonth()) {

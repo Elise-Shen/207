@@ -4,6 +4,9 @@ package ATM;
 import Actions.*;
 import AdminActions.*;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -54,8 +57,13 @@ public class ATM_Machine {
      */
     private boolean interestAdded = false;
 
+    private Screen screen;
+
 
     public ATM_Machine(){
+
+        screen = new Screen();
+        screen.setVisible(true);
 
         userAuthenticated = false;
         bankManagerAuthenticated = false;
@@ -76,38 +84,83 @@ public class ATM_Machine {
                 }
             }
             addInterests();
-            boolean isValid = false;
-            while(!isValid){
-                try {
-                    String message = "\nATM Starting Up\n" +
-                            LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) +
-                            "\nAre you a Customer or a Bank Manager?" +
-                            "\n1 - Customer" +
-                            "\n2 - Bank Manager";
-                    Keypad keyPad = new Keypad();
-                    int choice = keyPad.getIntInput(message);
-                    switch (choice){
-                        case CUSTOMER:
-                            customerLogin();
-                            isValid = true;
-                            break;
-                        case BANK_MANAGER:
-                            bankManagerLogin();
-                            isValid = true;
-                            break;
-                         default:
-                             System.out.println("Invalid input. Please try again");
-                             break;
-                    }
-                    cashStorage.sendAlert(LocalDate.now().toString());
-                    try {
-                        updateData();
-                        System.out.println("Data Saved");
-                    }catch (IOException ex){ex.printStackTrace();}
-                }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
-                }
+
+            screen.setInputOptions("<html>Are you a Customer or a Bank Manager?<br>1 - Customer<br>2 - Bank Manager</html>");
+            screen.setSubmitButton(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    boolean isValid = false;
+                    while(!isValid){
+                        try {
+                            int choice = new Integer(screen.getUserInput());
+                            switch (choice){
+                                case CUSTOMER:
+                                    customerLogin();
+                                    isValid = true;
+                                    break;
+                                case BANK_MANAGER:
+                                    bankManagerLogin();
+                                    isValid = true;
+                                    break;
+                                default:
+                                    System.out.println("Invalid input. Please try again");
+                                    break;
+                            }
+                            cashStorage.sendAlert(LocalDate.now().toString());
+                            try {
+                                updateData();
+                                System.out.println("Data Saved");
+                            }catch (IOException ex){ex.printStackTrace();}
+                        }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
             }
-    }
+        }
+
+    });}}
+
+    /**
+     * void run(){
+     while (true) {
+     if (isMidnight()) {
+     try {
+     Thread.sleep(300);
+     } catch (InterruptedException e) {
+     //
+     }
+     }
+     addInterests();
+     boolean isValid = false;
+     while(!isValid){
+     try {
+     String message = "\nATM Starting Up\n" +
+     LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) +
+     "\nAre you a Customer or a Bank Manager?" +
+     "\n1 - Customer" +
+     "\n2 - Bank Manager";
+     Keypad keyPad = new Keypad();
+     int choice = keyPad.getIntInput(message);
+     switch (choice){
+     case CUSTOMER:
+     customerLogin();
+     isValid = true;
+     break;
+     case BANK_MANAGER:
+     bankManagerLogin();
+     isValid = true;
+     break;
+     default:
+     System.out.println("Invalid input. Please try again");
+     break;
+     }
+     cashStorage.sendAlert(LocalDate.now().toString());
+     try {
+     updateData();
+     System.out.println("Data Saved");
+     }catch (IOException ex){ex.printStackTrace();}
+     }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
+     }
+     }
+     }
+     */
 
     private void customerLogin(){
         while (!userAuthenticated){

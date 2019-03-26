@@ -75,7 +75,7 @@ public class ATM_Machine {
     }
 
     void run(){
-        while (true) {
+        //while (true) {
             if (isMidnight()) {
                 try {
                     Thread.sleep(300);
@@ -89,33 +89,42 @@ public class ATM_Machine {
             screen.setSubmitButton(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    boolean isValid = false;
-                    while(!isValid){
+                    //boolean isValid = false;
+                    //while(!isValid){
+                    try {
+                        int choice = new Integer(screen.getUserInput());
+                        switch (choice) {
+                            case CUSTOMER:
+                                customerLogin();
+                                break;
+                            case BANK_MANAGER:
+                                bankManagerLogin();
+                                break;
+                            default:
+                                invalidInput();
+                                break;
+                        }
+                        cashStorage.sendAlert(LocalDate.now().toString());
                         try {
-                            int choice = new Integer(screen.getUserInput());
-                            switch (choice){
-                                case CUSTOMER:
-                                    customerLogin();
-                                    isValid = true;
-                                    break;
-                                case BANK_MANAGER:
-                                    bankManagerLogin();
-                                    isValid = true;
-                                    break;
-                                default:
-                                    System.out.println("Invalid input. Please try again");
-                                    break;
-                            }
-                            cashStorage.sendAlert(LocalDate.now().toString());
-                            try {
-                                updateData();
-                                System.out.println("Data Saved");
-                            }catch (IOException ex){ex.printStackTrace();}
-                        }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
-            }
+                            updateData();
+                            System.out.println("Data Saved");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } catch (Exception ex) {
+                        invalidInput();
+                    }
+                }
+            //}
+            });
         }
+   // }
 
-    });}}
+    private void invalidInput(){
+        screen.setInputMessage("Invalid input. Please try again");
+        System.out.println("Invalid input. Please try again");
+        screen.initializeUserInput();
+    }
 
     /**
      * void run(){

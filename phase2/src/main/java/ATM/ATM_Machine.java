@@ -108,12 +108,8 @@ public class ATM_Machine {
                         try {
                             updateData();
                             System.out.println("Data Saved");
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    } catch (Exception ex) {
-                        invalidInput();
-                    }
+                        } catch (IOException ex) { ex.printStackTrace(); }
+                    } catch (NumberFormatException ex) { invalidInput(); }
                 }
             //}
             });

@@ -105,12 +105,7 @@ public class Screen extends JFrame{
     }
 
     public void setSubmitButton(ActionListener actionListener){
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = userInput.getText();
-            }
-        });
+        submitButton.addActionListener(actionListener);
     }
 
     public String getUserInput(){

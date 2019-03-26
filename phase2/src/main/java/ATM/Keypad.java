@@ -22,4 +22,14 @@ public class Keypad {
         System.out.println(promptedMessage);
         return input.nextLine();
     }
+
+    /**
+     * Return the integer input entered by the current user.
+     * @param promptedMessage the message prompted to the current user.
+     */
+    public double getDoubleInput(String promptedMessage) {
+        Scanner input = new Scanner(System.in);
+        System.out.println(promptedMessage);
+        return input.nextDouble();
+    }
 }

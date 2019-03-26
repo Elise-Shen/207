@@ -8,11 +8,16 @@ import javax.money.MonetaryAmount;
 public class Saving extends AssetAccount {
 
     /**
+     * Interest Rate
+     */
+    private static double interestRate;
+
+    /**
      * Creates a Savings Account.
      */
     public Saving(String currency) {
         super(currency);
-        setInterestRate(1.001);
+        interestRate = 0.001;
     }
 
     @Override
@@ -27,9 +32,14 @@ public class Saving extends AssetAccount {
 
     @Override
     public void addInterest(){
-        MonetaryAmount newBalance = getCurrencyBalance().multiply(getInterestRate());
+        MonetaryAmount newBalance = getCurrencyBalance().multiply(1 + interestRate);
         setCurrencyBalance(newBalance);
     }
+
+
+    public static void setInterestRate(double rate){interestRate = rate;}
+
+    public static double getInterestRate(){return interestRate;}
 
     @Override
     public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
@@ -44,4 +54,5 @@ public class Saving extends AssetAccount {
         return false;
     }
 }
+
 

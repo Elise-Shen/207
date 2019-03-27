@@ -21,15 +21,16 @@ public class SetInterestRate extends AdminAction{
         int choice = getAccountChoice();
         double newRate = getNewInterestRate();
         switch (choice) {
-            case 1:
-                Credit.setInterestRate(newRate);
-                break;
             case 2:
-                LineOfCredit.setInterestRate(newRate);
+                Saving.setInterestRate(newRate);
                 break;
             case 3:
-                Saving.setInterestRate(newRate);
+                Credit.setInterestRate(newRate);
+                break;
+            case 4:
+                LineOfCredit.setInterestRate(newRate);
         }
+        System.out.println("Set new interest rate " + newRate + " to " + getBankManager().getAccountName(choice));
     }
 
     private void printInterestTable() {
@@ -42,13 +43,13 @@ public class SetInterestRate extends AdminAction{
         Keypad keyPad = new Keypad();
         int choice = 0;
         while (!valid) {
-            String message = "Please type in an integer corresponding to one of the accounts displayed.";
+            String message = "Please type in an integer corresponding to one of the account types displayed.";
             int input = keyPad.getIntInput(message);
-            if (0 < input && input < 4) {
+            if (1 < input && input < 5) {
                 choice = input;
                 valid = true;
             } else {
-                System.out.println("Invalid.");
+                System.out.println("Invalid input. Please enter again.");
             }
         }
         return choice;

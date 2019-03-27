@@ -7,14 +7,13 @@ public class Credit extends DebtAccount {
     /**
      * Interest Rate
      */
-    private static double interestRate;
+    private static double interestRate = 0.20;
 
     /**
      * Creates a Credit Card Account.
      */
     public Credit(String currency) {
         super(currency);
-        interestRate = 0.20;
     }
 
     @Override

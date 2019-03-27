@@ -8,14 +8,13 @@ public class LineOfCredit extends DebtAccount {
     /**
      * Interest Rate
      */
-    private static double interestRate;
+    private static double interestRate = 0.004;
 
     /**
      * Creates a Line of Credit account.
      */
     public LineOfCredit(String currency) {
         super(currency);
-        interestRate = 0.004;
     }
 
     @Override

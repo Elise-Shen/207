@@ -12,7 +12,7 @@ public class ViewAccountRequests extends AdminAction {
         super(bankManager);
     }
     public void execute(){
-        Map<Integer, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
+        Map<List<Integer>, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
         boolean exited = false;
         while (!exited) {
             if (!accountRequests.isEmpty()) {
@@ -52,10 +52,10 @@ public class ViewAccountRequests extends AdminAction {
      * Display all the account creation requests.
      */
     private int displayAccountCreationRequests() {
-        Map<Integer, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
-        Iterator<Map.Entry<Integer, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
-        Map.Entry<Integer, Map<String, Integer>> entry;
-        Integer mapKey;
+        Map<List<Integer>, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
+        Iterator<Map.Entry<List<Integer>, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
+        Map.Entry<List<Integer>, Map<String, Integer>> entry;
+        List<Integer> mapKey;
         int count = 0;
         System.out.println("\nCurrent Requests");
         while (entries.hasNext()) {
@@ -64,7 +64,7 @@ public class ViewAccountRequests extends AdminAction {
             mapKey = entry.getKey();
             Map<String, Integer> value = accountRequests.get(mapKey);
             Integer accountType =value.get(mapIterator(value));
-            System.out.println("\n" + count + " - User " + mapKey + " requested a " +
+            System.out.println("\n" + count + " - User " + getUsers(mapKey) + " requested a " +
                     bankManager.getAccountName(accountType) + " account.");
             //keeps iterating until the last item
             //sets map-key to last item
@@ -73,9 +73,7 @@ public class ViewAccountRequests extends AdminAction {
     }
 
     /**
-     *
-     * @param map that stores Account's currency, and account type
-     * @return the map key, account currency
+     * Return the last mapKey.
      */
     private String mapIterator(Map<String, Integer> map){
         Iterator<Map.Entry<String, Integer>> entries = map.entrySet().iterator();
@@ -85,7 +83,6 @@ public class ViewAccountRequests extends AdminAction {
             entry = entries.next();
             mapKey = entry.getKey();
         }
-
         return mapKey;
     }
 
@@ -93,10 +90,10 @@ public class ViewAccountRequests extends AdminAction {
      * Handles the account creation requests.
      */
     private void handleAccountCreationRequests(int choice) {
-        Map<Integer, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
-        Iterator<Map.Entry<Integer, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
-        Map.Entry<Integer, Map<String, Integer>> entry;
-        Integer mapKey = 0;
+        Map<List<Integer>, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
+        Iterator<Map.Entry<List<Integer>, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
+        Map.Entry<List<Integer>, Map<String, Integer>> entry;
+        List<Integer> mapKey = null;
         int choiceCount = 0;
         while (entries.hasNext() && choiceCount != choice) {
             choiceCount++;
@@ -108,5 +105,16 @@ public class ViewAccountRequests extends AdminAction {
         int accountType = accountRequests.get(mapKey).get(currency);
         bankManager.createAccount(mapKey, accountType, currency);
         bankManager.getAccountRequests().remove(mapKey);
+    }
+
+    /**
+     * Return all the users requesting the same account.
+     */
+    private StringJoiner getUsers(List<Integer> userList) {
+        StringJoiner sj = new StringJoiner(", ");
+        for (Integer i : userList) {
+            sj.add(i.toString());
+        }
+        return sj;
     }
 }

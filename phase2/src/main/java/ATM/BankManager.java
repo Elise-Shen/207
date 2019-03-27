@@ -20,8 +20,9 @@ public class BankManager implements Serializable {
     private static final long serialVersionUID = 474692929576172322L;
 
     private String bankName;
-    private Map<Integer, Map<String, Integer>> accountRequests = new HashMap<>();
-    private Map<Integer, Transactions> undoTransactionRequest = new HashMap<>();
+    private Map<List<Integer>, Map<String, Integer>> accountRequests = new HashMap<>();
+    //private Map<Integer, Transactions> undoTransactionRequest = new HashMap<>();
+    private Map<Integer, List<Transactions>> undoTransactionRequest = new HashMap<>();
     private List<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
     //private List<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
@@ -84,7 +85,16 @@ public class BankManager implements Serializable {
         return temp;
     }
 
-    public String getPassword(){
+    /**
+     * Return the list of all users.
+     */
+    public List getUserList() {
+        return userArrayList;
+    }
+
+
+
+    String getPassword(){
         return this.password;
     }
 
@@ -92,19 +102,40 @@ public class BankManager implements Serializable {
         user.setPassword(newPassword);
     }
 
+    /**
+     * Add a new creating account request to the accountRequests list.
+     */
     public void requestAccount(int userID, int accountType, String currency){
         Map<String, Integer> value = new HashMap<>();
         value.put(currency, accountType);
-        accountRequests.put(userID, value);
-
+        List<Integer> user = new ArrayList<>();
+        user.add(userID);
+        accountRequests.put(user, value);
     }
 
-    public void createAccount(int userID, int accountType, String currency) {
+    /**
+     * Add a new creating joint account request to the accountRequests list.
+     */
+    public void requestAccount(int user1, int user2, int accountType, String currency) {
+        Map<String, Integer> value = new HashMap<>();
+        value.put(currency, accountType);
+        List<Integer> user = new ArrayList<>();
+        user.add(user1);
+        user.add(user2);
+        accountRequests.put(user, value);
+    }
 
+    /**
+     * Create a new account for the user with specified account type and currency type.
+     */
+    public void createAccount(List<Integer> userIDs, int accountType, String currency) {
+        StringJoiner sj = new StringJoiner(", ");
         Account newAccount = accountFactory.getAccount(accountType, currency);
-
-        addAccount(userID, newAccount);
-        System.out.println("Created a new " + newAccount + " for User " + userID + ".");
+        for (Integer i : userIDs) {
+            addAccount(i, newAccount);
+            sj.add(i.toString());
+        }
+        System.out.println("Created a new " + newAccount + " for User " + sj + ".");
     }
 
     /**
@@ -119,18 +150,29 @@ public class BankManager implements Serializable {
         addAllAccountsList(newAccount);
     }
 
-    public Map<Integer, Map<String, Integer>> getAccountRequests(){
+    public Map<List<Integer>, Map<String, Integer>> getAccountRequests(){
         return accountRequests;
     }
 
-    public Map<Integer, Transactions> getUndoTransactionRequest(){
+    //public Map<Integer, Transactions> getUndoTransactionRequest(){
+      //  return undoTransactionRequest;
+    //}
+    public Map<Integer, List<Transactions>> getUndoTransactionRequest() {
         return undoTransactionRequest;
     }
 
-    public void addUndoTransactionRequest(int userID, Transactions t){
-        undoTransactionRequest.put(userID, t);
-    }
+    //public void addUndoTransactionRequest(int userID, Transactions t) {
+    //    undoTransactionRequest.put(userID, t);}
 
+    public void addUndoTransactionRequest(int userID, Transactions t){
+        if (undoTransactionRequest.containsKey(userID)) {
+            undoTransactionRequest.get(userID).add(t);
+        } else {
+            ArrayList<Transactions> transactions = new ArrayList<>();
+            transactions.add(t);
+            undoTransactionRequest.put(userID, transactions);
+        }
+    }
 
     public void undoTransaction (Transactions t){
         // recentTransaction_to -> recentTransaction_from
@@ -252,7 +294,7 @@ public class BankManager implements Serializable {
     public String getInterestAccounts() {
         return "\nInterest Rate Table: \n" + SAVINGS + " - SavingsAccount: " + Saving.getInterestRate() +
                 "\n" + CREDIT + " - Credit: " + Credit.getInterestRate() +
-                "\n" + LINE_OF_CREDIT + " - Lin of Credit: " + LineOfCredit.getInterestRate();
+                "\n" + LINE_OF_CREDIT + " - Line of Credit: " + LineOfCredit.getInterestRate();
     }
     public void updateData(){
     }

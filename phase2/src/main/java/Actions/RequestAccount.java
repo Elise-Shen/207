@@ -25,25 +25,28 @@ public class RequestAccount extends UserActions {
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        int currentCount = currentUser.getCount();
         LocalTime currentTime = LocalTime.now();
         LocalTime countResetTime = LocalTime.MIDNIGHT;
         if(currentTime == countResetTime){
             currentUser.resetCount();
         }
-        if(currentCount < LIMIT ) {
+        if(currentUser.getCount() < LIMIT ) {
             int accountType = getAccountType();
+            String currency = getCurrency();
             if (accountType != 0) {
-                String accountCurrency = getCurrency();
-                String typeString = getTypeString(accountType);
+                if (getWhetherJoint() == 1) {
+                    int otherUser = getOtherUser(bankManager.getUserList().size());
+                    bankManager.getUser(otherUser).incrementCount();
+                    bankManager.requestAccount(getUserID(), otherUser, accountType, currency);
+                }
                 currentUser.incrementCount();
-                bankManager.requestAccount(getUserID(), accountType, accountCurrency);
-                System.out.println("\nRequested an " + typeString + " account.");
+                bankManager.requestAccount(getUserID(), accountType, currency);
+                System.out.println("\nRequested a " + getTypeString(accountType) + " account.");
             } else {
                 System.out.println("Returning to previous page");
             }
         } else {System.out.println("Reached Daily Account Request Limit");}
-    }//end execute
+    }
 
     private int getAccountType() {
         boolean isValid = false;
@@ -102,6 +105,40 @@ public class RequestAccount extends UserActions {
                 break;
         }
         return typeString;
+    }
+
+    private int getWhetherJoint() {
+        boolean isValid = false;
+        int typeChoice = 0;
+        while (!isValid) {
+            Keypad keyPad = new Keypad();
+            typeChoice = keyPad.getIntInput("\nDo you want to make it a joint account?\n" +
+                    "1 - Yes\n2 - No");
+            if (typeChoice <= 2 && typeChoice >= 1) {
+                isValid = true;
+            } else {
+                System.out.println("Invalid input. Please try again!");
+            }
+        }
+        return typeChoice;
+    }
+
+    private int getOtherUser(int maximumUserID) {
+        boolean isValid = false;
+        int userChoice;
+        int result = 0;
+        while (!isValid) {
+            Keypad keyPad = new Keypad();
+            userChoice = keyPad.getIntInput("\nPlease enter the ID of the user you wish to share this " +
+                    "account with.");
+            if (1 <= userChoice && userChoice <= maximumUserID && userChoice != getUserID()) {
+                result = userChoice;
+                isValid = true;
+            } else {
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+        return result;
     }
 }
 

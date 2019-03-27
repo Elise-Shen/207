@@ -10,14 +10,13 @@ public class Saving extends AssetAccount {
     /**
      * Interest Rate
      */
-    private static double interestRate;
+    private static double interestRate = 0.001;
 
     /**
      * Creates a Savings Account.
      */
     public Saving(String currency) {
         super(currency);
-        interestRate = 0.001;
     }
 
     @Override

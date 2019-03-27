@@ -89,8 +89,6 @@ public class ATM_Machine {
             screen.setSubmitButton(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //boolean isValid = false;
-                    //while(!isValid){
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -98,12 +96,12 @@ public class ATM_Machine {
                                 int choice = new Integer(screen.getUserInput());
                                 switch (choice) {
                                     case CUSTOMER:
+                                        screen.initializeInputMessage();
                                         customerLogin();
-                                        //isValid = true;
                                         break;
                                     case BANK_MANAGER:
+                                        screen.initializeInputMessage();
                                         bankManagerLogin();
-                                        //isValid = true;
                                         break;
                                     default:
                                         invalidInput();
@@ -191,7 +189,30 @@ public class ATM_Machine {
 
     private void bankManagerLogin(){
 
-        while (!bankManagerAuthenticated){
+        screen.setInputOptions("");
+        screen.setUpPage();
+        screen.setInputMessage("Please enter your password");
+        screen.setSubmitButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (bankManager.getPassword().equals(screen.getUserInput())){
+                            bankManagerAuthenticated = true;
+                            screen.initializeInputMessage();
+                            doAdminActions();
+                        }
+                        else{
+                            screen.setInputMessage("Wrong password. Please try again");
+                            screen.initializeUserInput();
+                            bankManagerAuthenticated = false;
+                        }
+                    }
+                }).start();
+            }
+        });
+        /**while (!bankManagerAuthenticated){
             Keypad keyPad = new Keypad();
             String input = keyPad.getStringInput("Please enter your password");
             if (bankManager.getPassword().equals(input)){
@@ -199,12 +220,39 @@ public class ATM_Machine {
             }
         }
         doAdminActions();
-        bankManagerAuthenticated = false;
+        bankManagerAuthenticated = false;*/
 
     }
 
     private void doAdminActions(){
-        boolean exited = false;
+
+        screen.setInputOptions("<html>Choose your action:<br>1 - View Account Creation Requests<br>2 - View Undo Transaction Requests<br>3 - Restock this ATM</html>");
+        screen.setUpPage();
+        screen.setSubmitButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            AdminAction currentAdminAction;
+                            int choice = new Integer(screen.getUserInput());
+                            switch (choice){
+                                case VIEW_ACCOUNT_REQUEST:
+                                case VIEW_UNDO_TRANSAC:
+                                case RESTOCK:
+                                    currentAdminAction = createAdminAction(choice);
+                                    currentAdminAction.execute();
+                                    break;
+                                default:
+                                    invalidInput();
+                            }
+                        }catch (NumberFormatException ex){invalidInput();}
+                    }
+                }).start();
+            }
+        });
+        /**boolean exited = false;
         AdminAction currentAdminAction;
         while(!exited) {
             try {
@@ -230,7 +278,7 @@ public class ATM_Machine {
                         System.out.println("Invalid input. Please try again");
                 }
             }catch (InputMismatchException ex){System.out.println("Invalid input. Please try again.");}
-        }
+        }*/
 
 
     }

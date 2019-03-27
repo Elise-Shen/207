@@ -102,9 +102,11 @@ public class Screen extends JFrame{
         userInput.setVisible(true);
         initializeInputMessage();
         inputMessage.setVisible(true);
+        submitButton.removeAll();
         submitButton.setVisible(true);
         repaint();
     }
+
 
     public void clearPage() {
         inputOptions.setVisible(false);

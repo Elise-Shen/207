@@ -150,7 +150,6 @@ public class BankManager implements Serializable {
             System.out.println("Removed $" + amountMoved + " from the account");
 
         }else if (t instanceof AccountToAccount){
-
             int recipientID = (t).getRecipientAccountID();
             Account recipientAccount = getOneAccount(recipientID);
             amountMoved = ((AccountToAccount) t).getAmountTransferred();

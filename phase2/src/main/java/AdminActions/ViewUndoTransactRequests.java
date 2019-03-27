@@ -25,7 +25,7 @@ public class ViewUndoTransactRequests extends AdminAction{
                 while (!isValid) {
                     try {
                         Keypad keyPad = new Keypad();
-                        int choice = keyPad.getIntInput("Enter the number of the request you wish to " +
+                        int choice = keyPad.getIntInput("Enter the number of requests you wish to " +
                                 "approve or enter 0 to exit");
                         if (choice > 0 && choice <= count) {
                             handleUndoTransactionRequests(choice);
@@ -78,14 +78,12 @@ public class ViewUndoTransactRequests extends AdminAction{
         Map<Integer, Transactions> undoRequests = bankManager.getUndoTransactionRequest();
         Iterator<Map.Entry<Integer, Transactions>> entries = undoRequests.entrySet().iterator();
         Map.Entry<Integer, Transactions> entry;
-        Integer mapKey=0;
-        int choiceCount = 0;
-        while (entries.hasNext() && choiceCount != choice) {
-            choiceCount++;
+        Integer mapKey;
+        for (int choiceCount = 0; choiceCount < choice; choiceCount++) {
             entry = entries.next();
             mapKey = entry.getKey();
+            bankManager.undoTransaction(undoRequests.get(mapKey));
+            bankManager.getUndoTransactionRequest().remove(mapKey);
         }
-        bankManager.undoTransaction(undoRequests.get(mapKey));
-        bankManager.getUndoTransactionRequest().remove(mapKey);
     }
 }

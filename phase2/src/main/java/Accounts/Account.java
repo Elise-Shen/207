@@ -43,7 +43,7 @@ public abstract class Account implements Serializable {
     /**
      * Owner's user ID
      */
-    private int ownerID;
+    private List<Integer> ownerID;
 
 
     /**
@@ -58,6 +58,7 @@ public abstract class Account implements Serializable {
 
         setPrimaryCurrency(currency);
         this.currencyBalance = Money.of(0, this.primaryCurrency);
+        ownerID = new ArrayList<>();
     }
 
     public void setPrimaryCurrency(String unit){
@@ -146,11 +147,15 @@ public abstract class Account implements Serializable {
     public abstract int getAccountType();
 
     public void setOwnerID(int i){
-        ownerID = i;
+        ownerID.add(i);
     }
 
-    public int getOwnerID(){
-        return ownerID;
+    public StringJoiner getOwnerID(){
+        StringJoiner sj = new StringJoiner(", ");
+        for (Integer id : ownerID) {
+            sj.add(id.toString());
+        }
+        return sj;
     }
 
     /**

@@ -21,7 +21,6 @@ public class BankManager implements Serializable {
 
     private String bankName;
     private Map<List<Integer>, Map<String, Integer>> accountRequests = new HashMap<>();
-    //private Map<Integer, Transactions> undoTransactionRequest = new HashMap<>();
     private Map<Integer, List<Transactions>> undoTransactionRequest = new HashMap<>();
     private List<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
@@ -154,15 +153,9 @@ public class BankManager implements Serializable {
         return accountRequests;
     }
 
-    //public Map<Integer, Transactions> getUndoTransactionRequest(){
-      //  return undoTransactionRequest;
-    //}
     public Map<Integer, List<Transactions>> getUndoTransactionRequest() {
         return undoTransactionRequest;
     }
-
-    //public void addUndoTransactionRequest(int userID, Transactions t) {
-    //    undoTransactionRequest.put(userID, t);}
 
     public void addUndoTransactionRequest(int userID, Transactions t){
         if (undoTransactionRequest.containsKey(userID)) {

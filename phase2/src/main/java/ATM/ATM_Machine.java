@@ -4,13 +4,11 @@ package ATM;
 import Actions.*;
 import AdminActions.*;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ATM_Machine {
 
@@ -57,25 +55,62 @@ public class ATM_Machine {
      */
     private boolean interestAdded = false;
 
-    private Screen screen;
+    /**
+     * The current date when this ATM is running.
+     */
+    private LocalDate currentDate = LocalDate.now();
+
 
 
     public ATM_Machine(){
-
-        screen = new Screen();
-        screen.setVisible(true);
 
         userAuthenticated = false;
         bankManagerAuthenticated = false;
         currentUserID = 0;
         cashStorage = new CashStorage();
         //bankManager = new BankManager("TD Bank", "abc123");
-        bankManager = getBankManager("phase2/Bankmanager.ser");
+        bankManager = getBankManager("phase2/Bankmanager2.ser");
 
     }
 
+    public BankManager getATMBankManager(){
+        return bankManager;
+    }
+
     void run(){
-        //while (true) {
+        while (true) {
+            boolean isValid = false;
+            System.out.println("\nATM Starting Up");
+            System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            System.out.println("\nAre you a Customer or a Bank Manager?");
+            System.out.println("\n1 - Customer");
+            System.out.println("2 - Bank Manager");
+            while(!isValid){
+                try {
+                    Scanner bmOrCustomer = new Scanner(System.in);
+                    int choice = bmOrCustomer.nextInt();
+                    switch (choice){
+                        case CUSTOMER:
+                            customerLogin();
+                            isValid = true;
+                            break;
+                        case BANK_MANAGER:
+                            bankManagerLogin();
+                            isValid = true;
+                            break;
+                        default:
+                            System.out.println("Invalid input. Please try again");
+                            break;
+                    }
+                }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
+
+            }
+            addInterests();
+            cashStorage.sendAlert(currentDate.toString());
+            try {
+                updateData();
+                System.out.println("Data Saved");
+            }catch (IOException ex){ex.printStackTrace();}
             if (isMidnight()) {
                 try {
                     Thread.sleep(300);
@@ -83,100 +118,11 @@ public class ATM_Machine {
                     //
                 }
             }
-            addInterests();
-
-            screen.setInputOptions("<html>Are you a Customer or a Bank Manager?<br>1 - Customer<br>2 - Bank Manager</html>");
-            screen.setSubmitButton(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                int choice = new Integer(screen.getUserInput());
-                                switch (choice) {
-                                    case CUSTOMER:
-                                        screen.initializeInputMessage();
-                                        customerLogin();
-                                        break;
-                                    case BANK_MANAGER:
-                                        screen.initializeInputMessage();
-                                        bankManagerLogin();
-                                        break;
-                                    default:
-                                        invalidInput();
-                                        break;
-                                }
-                                cashStorage.sendAlert(LocalDate.now().toString());
-                                try {
-                                    updateData();
-                                    System.out.println("Data Saved");
-                                } catch (IOException ex) { ex.printStackTrace(); }
-                            } catch (NumberFormatException ex) { invalidInput(); }
-                        }
-                    }).start();
-
-                }
-            //}
-            });
         }
-   // }
-
-    private void invalidInput(){
-        screen.setInputMessage("Invalid input. Please try again");
-        System.out.println("Invalid input. Please try again");
-        screen.initializeUserInput();
     }
-
-    /**
-     * void run(){
-     while (true) {
-     if (isMidnight()) {
-     try {
-     Thread.sleep(300);
-     } catch (InterruptedException e) {
-     //
-     }
-     }
-     addInterests();
-     boolean isValid = false;
-     while(!isValid){
-     try {
-     String message = "\nATM Starting Up\n" +
-     LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) +
-     "\nAre you a Customer or a Bank Manager?" +
-     "\n1 - Customer" +
-     "\n2 - Bank Manager";
-     Keypad keyPad = new Keypad();
-     int choice = keyPad.getIntInput(message);
-     switch (choice){
-     case CUSTOMER:
-     customerLogin();
-     isValid = true;
-     break;
-     case BANK_MANAGER:
-     bankManagerLogin();
-     isValid = true;
-     break;
-     default:
-     System.out.println("Invalid input. Please try again");
-     break;
-     }
-     cashStorage.sendAlert(LocalDate.now().toString());
-     try {
-     updateData();
-     System.out.println("Data Saved");
-     }catch (IOException ex){ex.printStackTrace();}
-     }catch(InputMismatchException ex){System.out.println("Invalid input. Please try again");}
-     }
-     }
-     }
-     */
 
     private void customerLogin(){
         while (!userAuthenticated){
-            screen.clearPage();
-            screen.startUpPage("\nWelcome to " + bankManager.getBankName() +"'s ATM!");
             System.out.println("\nWelcome to " + bankManager.getBankName() +"'s ATM!");
             currentUserID = bankManager.checkLogin();
             userAuthenticated = true;
@@ -187,82 +133,44 @@ public class ATM_Machine {
         System.out.println("\nGoodBye!");
     }
 
-    private void bankManagerLogin(){
+    public boolean userLogin(String userID, String password){
+        if(bankManager.authenticateUser(userID, password)){
+            currentUserID = Integer.parseInt(userID);
+            System.out.println("Current UserID is: " + currentUserID);
+            return true;
+        }else{
+            System.out.println("Something went wrong!");
+            return false;
+        }
+    }
 
-        screen.setInputOptions("");
-        screen.setUpPage();
-        screen.setInputMessage("Please enter your password");
-        screen.setSubmitButton(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (bankManager.getPassword().equals(screen.getUserInput())){
-                            bankManagerAuthenticated = true;
-                            screen.initializeInputMessage();
-                            doAdminActions();
-                        }
-                        else{
-                            screen.setInputMessage("Wrong password. Please try again");
-                            screen.initializeUserInput();
-                            bankManagerAuthenticated = false;
-                        }
-                    }
-                }).start();
-            }
-        });
-        /**while (!bankManagerAuthenticated){
-            Keypad keyPad = new Keypad();
-            String input = keyPad.getStringInput("Please enter your password");
+    private void bankManagerLogin(){
+        Scanner pass = new Scanner(System.in);
+        while (!bankManagerAuthenticated){
+            System.out.println("Please enter your password");
+            String input = pass.nextLine();
             if (bankManager.getPassword().equals(input)){
                 bankManagerAuthenticated = true;
             }
         }
         doAdminActions();
-        bankManagerAuthenticated = false;*/
+        bankManagerAuthenticated = false;
 
     }
 
     private void doAdminActions(){
-
-        screen.setInputOptions("<html>Choose your action:<br>1 - View Account Creation Requests<br>2 - View Undo Transaction Requests<br>3 - Restock this ATM</html>");
-        screen.setUpPage();
-        screen.setSubmitButton(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            AdminAction currentAdminAction;
-                            int choice = new Integer(screen.getUserInput());
-                            switch (choice){
-                                case VIEW_ACCOUNT_REQUEST:
-                                case VIEW_UNDO_TRANSAC:
-                                case RESTOCK:
-                                    currentAdminAction = createAdminAction(choice);
-                                    currentAdminAction.execute();
-                                    break;
-                                default:
-                                    invalidInput();
-                            }
-                        }catch (NumberFormatException ex){invalidInput();}
-                    }
-                }).start();
-            }
-        });
-        /**boolean exited = false;
+        boolean exited = false;
         AdminAction currentAdminAction;
         while(!exited) {
             try {
-                String message = "\nChoose your action" +
-                        "\n1 - View Account Creation Requests" +
-                        "\n2 - View Undo Transaction Requests" +
-                        "\n3 - Restock this ATM" +
-                        "\n0 - Exit";
-                Keypad keyPad = new Keypad();
-                int choice = keyPad.getIntInput(message);
+                Scanner input = new Scanner(System.in);
+                System.out.println("\nChoose your action");
+                System.out.println("\n1 - View Account Creation Requests");
+                System.out.println("2 - View Undo Transaction Requests");
+                System.out.println("3 - Restock this ATM");
+                System.out.println("0 - Exit");
+                int choice = input.nextInt();
+
                 switch (choice){
                     case VIEW_ACCOUNT_REQUEST:
                     case VIEW_UNDO_TRANSAC:
@@ -278,7 +186,7 @@ public class ATM_Machine {
                         System.out.println("Invalid input. Please try again");
                 }
             }catch (InputMismatchException ex){System.out.println("Invalid input. Please try again.");}
-        }*/
+        }
 
 
     }
@@ -288,15 +196,17 @@ public class ATM_Machine {
      * Keeps running until use chooses to exit to the previous list of options
      */
     private void doActions(){
+
         boolean exited = false;
         while (!exited){
             try {
-                String message = "\nUser Action or Transaction?" +
-                        "\n1 - User Action" +
-                        "\n2 - Transaction" +
-                        "\n0 - Exit";
-                Keypad keyPad = new Keypad();
-                int actionChoice = keyPad.getIntInput(message);
+                Scanner input = new Scanner(System.in);
+                System.out.println("\nUser Action or Transaction?");
+                System.out.println("1 - User Action");
+                System.out.println("2 - Transaction");
+                System.out.println("0 - Exit");
+                int actionChoice = input.nextInt();
+
                 switch (actionChoice) {
                     case USER_ACTION:
                         doUserAction();
@@ -325,18 +235,19 @@ public class ATM_Machine {
         UserActions currentAction;
         while (!exited) { //keeps running until user wants to go back to the previous options
             try {
-                String message = "Choose your Action" +
-                        "\n1 - View Balance Summary" +
-                        "\n2 - View Previous Transactions" +
-                        "\n3 - Net Total" +
-                        "\n4 - Change Password" +
-                        "\n5 - View Date of Account Creation" +
-                        "\n6 - Request New Account" +
-                        "\n7 - View Account Summary" +
-                        "\n8 - Set Primary Account" +
-                        "\n0 - Return to previous page";
-                Keypad keyPad = new Keypad();
-                int userChoice = keyPad.getIntInput(message);
+                Scanner input = new Scanner(System.in);
+                System.out.println("Choose your Action");
+                System.out.println("1 - View Balance Summary");
+                System.out.println("2 - View Previous Transactions");
+                System.out.println("3 - Net Total");
+                System.out.println("4 - Change Password");
+                System.out.println("5 - View Date of Account Creation");
+                System.out.println("6 - Request New Account");
+                System.out.println("7 - View Account Summary");
+                System.out.println("8 - Set Primary Account");
+                System.out.println("0 - Return to previous page");
+                int userChoice = input.nextInt();
+
                 switch (userChoice) {
                     case BALANCE:
                     case PREVIOUS_TRANSACTION:
@@ -368,14 +279,14 @@ public class ATM_Machine {
         Transactions currentTransaction;
         while(!exited){
             try {
-                String message = "\nChoose your transaction" +
-                        "\n1 - Deposit" +
-                        "\n2 - Withdrawal" +
-                        "\n3 - Pay Bills" +
-                        "\n4 - Transfer Money" +
-                        "\n0 - EXIT";
-                Keypad keyPad = new Keypad();
-                int transactionChoice = keyPad.getIntInput(message);
+                Scanner input = new Scanner(System.in);
+                System.out.println("\nChoose your transaction");
+                System.out.println("1 - Deposit");
+                System.out.println("2 - Withdrawal");
+                System.out.println("3 - Pay Bills"); //to non-user accounts
+                System.out.println("4 - Transfer Money");//user-user transactions. can be between the same user
+                System.out.println("0 - EXIT");
+                int transactionChoice = input.nextInt();
 
                 switch (transactionChoice) {
                     case DEPOSIT:
@@ -470,14 +381,14 @@ public class ATM_Machine {
         return temp; //placeholder
     }
 
-
     /**
-     * Return if the current day is the beginning of the current month.
+     * Return if the current day is the end of the current month.
      */
     private boolean isStartOfMonth() {
         LocalDate begin = LocalDate.now().withDayOfMonth(1);
         return LocalDate.now().equals(begin);
     }
+
     /**
      * Call Manager to add interest to all savings accounts on the last day of the every month.
      */
@@ -494,16 +405,16 @@ public class ATM_Machine {
     /**
      * Check if the current time is midnight.
      */
-    private boolean isMidnight() {
+    boolean isMidnight() {
         return LocalTime.now() == LocalTime.MIDNIGHT;
     }
 
     /**
-     * Updates serialization file data for BankManager related to file.
+     * Updates serialization file data for bankmanager related to file.
      * @throws IOException
      */
     private void updateData() throws  IOException{
-        String filePath = "phase2/Bankmanager.ser";
+        String filePath = "phase2/Bankmanager2.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
@@ -532,6 +443,7 @@ public class ATM_Machine {
             //bankManager = new BankManager("TD Bank", "abc123");
         }
         return temp;
+
     }
 
 }

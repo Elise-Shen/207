@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserMainMenuController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="650.0" minHeight="10.0" percentHeight="30.0" prefHeight="478.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="480.0" minHeight="0.0" percentHeight="20.0" prefHeight="198.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="281.0" minHeight="0.0" percentHeight="20.0" prefHeight="186.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="501.0" minHeight="10.0" percentHeight="30.0" prefHeight="501.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#userActionButton" prefHeight="119.0" prefWidth="274.0" text="User Actions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#transactionButton" prefHeight="126.0" prefWidth="279.0" text="Transactions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#backToUserLogin" prefHeight="65.0" prefWidth="161.0" text="Exit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -5,6 +5,7 @@ import Actions.AccountToAccount;
 import Actions.DepositMoney;
 import Actions.Transactions;
 import Actions.WithdrawMoney;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.money.MonetaryAmount;
 import java.io.*;
@@ -230,6 +231,19 @@ public class BankManager implements Serializable {
         return currentID;
     }
 
+    boolean authenticateUser(String userInput, String password){
+        User currentUser;
+        if(StringUtils.isNumeric(userInput)){
+                currentUser = getUser(Integer.parseInt(userInput));
+                if(currentUser == null){
+                    return false;
+                }
+                System.out.println("Authenticated: "+currentUser.getPassword().equals(password));
+                return currentUser.getPassword().equals(password);
+        }
+        return false;
+    }
+
     /**
      * Used for part 2
      * @param t transaction
@@ -289,7 +303,9 @@ public class BankManager implements Serializable {
                 "\n" + CREDIT + " - Credit: " + Credit.getInterestRate() +
                 "\n" + LINE_OF_CREDIT + " - Line of Credit: " + LineOfCredit.getInterestRate();
     }
-    public void updateData(){
+
+    public String toString(){
+        return bankName;
     }
 }
 

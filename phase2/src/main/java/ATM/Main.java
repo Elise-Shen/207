@@ -41,6 +41,7 @@ public class Main extends Application {
         Scene scene = new Scene(mainLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
+        atm.updateData();
     }
 
     public static void showNewBorderPane(String filename) throws Exception{
@@ -48,6 +49,8 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource(filename));
         BorderPane userLogin = loader.load();
         mainLayout.setCenter(userLogin);
+        atm.updateData();
+
     }
 
     public static void main(String[] args) {

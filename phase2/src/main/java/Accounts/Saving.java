@@ -1,9 +1,12 @@
 package Accounts;
 
+import BankProducts.BankProduct;
 import org.javamoney.moneta.Money;
 
 import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Saving extends AssetAccount {
 
@@ -11,6 +14,8 @@ public class Saving extends AssetAccount {
      * Interest Rate
      */
     private static double interestRate = 0.001;
+
+    public List<BankProduct> bankProducts = new ArrayList<>();
 
     /**
      * Creates a Savings Account.

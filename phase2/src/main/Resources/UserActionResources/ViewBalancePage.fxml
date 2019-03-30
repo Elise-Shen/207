@@ -24,17 +24,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ChoiceBox fx:id="accountChoiceBox" prefHeight="31.0" prefWidth="338.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </ChoiceBox>
                   <Label prefHeight="21.0" prefWidth="70.0" text="Accounts:" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#viewAccountButton" prefHeight="31.0" prefWidth="76.0" text="Go" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="accountComboBox" onAction="#viewAccountButton" prefHeight="31.0" prefWidth="335.0" promptText="Choose an account" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </top>
@@ -71,7 +66,7 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="previousTransLabel" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Label fx:id="previousTransLabel" prefHeight="59.0" prefWidth="471.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="100.0" />
                      </GridPane.margin>

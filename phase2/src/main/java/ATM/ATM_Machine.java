@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ATM_Machine {
+public class ATM_Machine implements Serializable{
 
     private static final int CUSTOMER = 1;
     private static final int BANK_MANAGER = 2;
@@ -68,8 +68,8 @@ public class ATM_Machine {
         bankManagerAuthenticated = false;
         currentUserID = 0;
         cashStorage = new CashStorage();
-        //bankManager = new BankManager("TD Bank", "abc123");
-        bankManager = getBankManager("phase2/Bankmanager.ser");
+        bankManager = new BankManager("TD Bank", "abc123");
+        //bankManager = getBankManager("phase2/Bankmanager.ser");
 
     }
 
@@ -79,6 +79,10 @@ public class ATM_Machine {
 
     public int getCurrentUserID(){
         return currentUserID;
+    }
+
+    public CashStorage getCashStorage(){
+        return cashStorage;
     }
 
     void run(){
@@ -428,6 +432,9 @@ public class ATM_Machine {
         output.close();
     }
 
+    /*
+    Used for console testing
+     */
     private BankManager getBankManager(String filePath){
         BankManager temp = null;
         try {

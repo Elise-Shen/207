@@ -9,14 +9,17 @@ public abstract class UserActions implements Serializable {
 
     private int userID;
     private BankManager bankManager;
+    private BankProductEmployee bpe;
 
     public UserActions(int userID, BankManager bm){
         this.userID = userID;
         bankManager = bm;
     }
+    public UserAction(int userID, BankProductEmployee bpe){
+
+    }
 
     public int getUserID(){
-
         return userID;
     }
 

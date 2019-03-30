@@ -14,19 +14,23 @@ public class BankProductsEmployee implements Serializable {
 
     private BankManager bm;
     private String password;
-    private Map<List<Integer>, Map<String, Integer>> productRequests = new HashMap<>();
+    private Map<List<Integer>, Map<Integer, Integer>> productRequests = new HashMap<List<Integer>, Map<Integer, Integer>>();
 
     public BankProductsEmployee(BankManager bm, String password){
         this.bm = bm;
         this.password = password;
     }
 
-    public void requestAccount(int userID, int accountID, int productType){
-        Map<String, Integer> value = new HashMap<>();
-        value.put(currency, accountType);
+    public void requestProducts(int userID, int accountID, int productType){
+        Map<Integer, Integer> value = new HashMap<>();
+        value.put(accountID, productType);
         List<Integer> user = new ArrayList<>();
         user.add(userID);
         productRequests.put(user, value);
+    }
+
+    public void createProduct(){
+
     }
 
     public String getPassword() { return password; }
@@ -38,8 +42,8 @@ public class BankProductsEmployee implements Serializable {
                 List<BankProduct> allProducts = ((Saving) a).getBankProducts();
                 for (BankProduct p: allProducts){
                     if (!p.getIsFinshed() && p.getDateEnd().equals(localDate)){
-                        if (p instanceof InvestmentProduct) { p.returnRevenue();}
-                        else { p.returnLoan();}
+                        if (p instanceof InvestmentProduct) { ((InvestmentProduct)p).returnRevenue();}
+                        else { ((MortgageProduct)p).returnloan();}
                     }
                 }
             }

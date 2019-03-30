@@ -14,11 +14,11 @@ public abstract class InvestmentProduct extends BankProduct{
         risk = r;
         setDateEnd(months);
     }
-    public void do_investment(Account account){
-        account.increaseCurrencyBalance(product_amount);
+    public void do_investment(){
+        this.account.increaseCurrencyBalance(product_amount);
     }
-    public void returnRevenue(Account account){
-        account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
+    public void returnRevenue(){
+        this.account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
     }
 
     @Override

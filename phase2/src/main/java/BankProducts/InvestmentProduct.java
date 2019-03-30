@@ -6,7 +6,8 @@ import java.util.Random;
 public abstract class InvestmentProduct extends BankProduct{
     private double risk;
 
-    public InvestmentProduct(int amount, int months, double rate,double r) {
+    public InvestmentProduct(int amount, int months, double rate,double r, Account account) {
+        super(account);
         product_amount = createMoney(amount);
         product_month = months;
         interest_rate = rate;
@@ -17,13 +18,11 @@ public abstract class InvestmentProduct extends BankProduct{
         account.increaseCurrencyBalance(product_amount);
     }
     public void return_revenue(Account account){
-        //account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
+        account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
     }
 
     @Override
-    public int getProductType() {
-        return 0;
-    }
+    public abstract int getProductType();
 
     @Override
     public double getInterestRate(){return interest_rate;}

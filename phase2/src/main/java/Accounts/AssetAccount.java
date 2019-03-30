@@ -1,7 +1,7 @@
 package Accounts;
 
-public class AssetAccount extends Account {
 
+public abstract class AssetAccount extends Account {
     /**
      * Creates an Asset Account.
      */
@@ -10,12 +10,8 @@ public class AssetAccount extends Account {
     }
 
     @Override
-    public int getAccountType() {
-        return 0;
-    }
+    public abstract int getAccountType();
 
     @Override
-    public String toString() {
-        return null;
-    }
+    public abstract String toString();
 }

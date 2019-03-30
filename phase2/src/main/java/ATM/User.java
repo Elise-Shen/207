@@ -19,11 +19,12 @@ public class User implements Serializable {
     private String password;
     private BankManager bankManager;
 
+    private boolean isEmployee;
 
 
     private int accountRequestCount = 0;
 
-    public User (int userID, String password, BankManager bm){
+    public User (int userID, String password, BankManager bm, boolean isEmployee){
         this.userID = userID;
         this.password = password;
         this.bankManager = bm;
@@ -31,6 +32,7 @@ public class User implements Serializable {
         account1.setOwnerID(this.userID);
         accounts.add(account1);
         this.bankManager.addAllAccountsList(account1);
+        this.isEmployee = false;
     }
 // getter and setter
 

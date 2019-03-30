@@ -14,12 +14,11 @@ public class ConfirmBoxController implements Initializable {
 
     private static boolean confirmed = false;
     private static Stage window;
-    @FXML
-    private BorderPane confirmBox;
 
     public static Stage getWindow(){
-        return window;
+        return  window;
     }
+
 
     public void confirmButton(){
         confirmed = true;

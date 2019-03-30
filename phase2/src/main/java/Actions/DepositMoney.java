@@ -32,6 +32,8 @@ public class DepositMoney extends Transactions {
 
     private double amountDeposited;
 
+    private Account currentAccount;
+
     /**
      * Create an instance of DepositMoney action.
      * @param userID the ID of the current user
@@ -45,12 +47,13 @@ public class DepositMoney extends Transactions {
 
     /**
      * Deposit money into the chosen account of current user, if applicable.
+     * Only used for system console version
      */
     @Override
     public void execute() {
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        Account currentAccount = null;
+        currentAccount = null;
         boolean validInput = false;
         int accountChoice;
         Keypad keyPad = new Keypad();
@@ -72,7 +75,7 @@ public class DepositMoney extends Transactions {
         boolean validInput1 = false;
         while (!validInput1) {
 
-            List<String[]> deposits = readFromCSV("deposits.txt");
+            List<String[]> deposits = readFromCSV("phase2/deposits.txt");
             String[] lastLine = null;
             // let's print all the deposits read from CSV file
             for (String[] s : deposits) {
@@ -106,7 +109,39 @@ public class DepositMoney extends Transactions {
         }
     }
 
-    private static List<String[]> readFromCSV(String fileName) {
+    public void checkDeposit(List<String[]>deposit, Account account){
+        currentAccount = account;
+        System.out.println(currentAccount.getOwnerID() + ", " + currentAccount);
+        String[] lastLine = null;
+        // let's print all the deposits read from CSV file
+        for (String[] s : deposit) {
+            lastLine = s;
+        }
+        if (lastLine[0].equalsIgnoreCase("Cash")) {
+            depositType = "Cash";
+            int numFive = Integer.valueOf(lastLine[1]);
+            int numTen = Integer.valueOf(lastLine[2]);
+            int numTwenty = Integer.valueOf(lastLine[3]);
+            int numFifty = Integer.valueOf(lastLine[4]);
+            amountDeposited = numFive * 5 + numTen * 10 + numTwenty * 20 + numFifty * 50;
+            currentAccount.increaseCurrencyBalance(currentAccount.createMoney(amountDeposited));
+            String cu = currentAccount.getPrimaryCurrency().toString();
+            cashStorage.addBills(cu, 5, numFive);
+            cashStorage.addBills(cu, 10, numTen);
+            cashStorage.addBills(cu, 20, numTwenty);
+            cashStorage.addBills(cu, 50, numFifty);
+        } else if (lastLine[0].equalsIgnoreCase("Cheque")) {
+            depositType = "Cheque";
+            amountDeposited = Integer.valueOf(lastLine[1]);
+            currentAccount.increaseCurrencyBalance(currentAccount.createMoney(amountDeposited));
+        } else {
+            System.out.println("Invalid input.Please enter again in deposits.txt.");
+        }
+
+
+    }
+
+    public List<String[]> readFromCSV(String fileName) {
         List<String[]> deposits = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
@@ -132,7 +167,7 @@ public class DepositMoney extends Transactions {
     }
 
     public MonetaryAmount getAmountDeposited(){
-        return createMoney(amountDeposited);
+        return currentAccount.createMoney(amountDeposited);
     }
 
     @Override

@@ -21,6 +21,18 @@ public class LowRiskInvestment extends InvestmentProduct {
         }
         setInterestRate(rate);
         setRisk(x);
+        super(amount, 1,0, 0);
+        Double min = 0.0; //  Set To Your Desired Min Value
+        Double max = 10.0; //    Set To Your Desired Max Value
+        double rate = 0.0;
+        double x = (Math.random() * ((max - min) + 1)) + min;
+        if (0<=x && x<7){
+            rate = 0.03;
+        }else{
+            rate = 0.04;
+        }
+        setInterestRate(rate);
+        setRisk(x);
 
     }
     @Override

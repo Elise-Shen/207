@@ -2,6 +2,8 @@ package Actions;
 
 import ATM.*;
 import Accounts.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 
@@ -10,9 +12,14 @@ public class ViewAccount extends UserActions {
 
     private Account currentAccount;
     private User currentUser;
+    private static ObservableList<Account> allAccounts = FXCollections.observableArrayList();
 
-    ViewAccount(int currentId, BankManager bankManager){
+    public ViewAccount(int currentId, BankManager bankManager){
         super(currentId, bankManager);
+    }
+
+    public ObservableList<Account> getAllAccounts(){
+        return allAccounts;
     }
 
     /**
@@ -39,9 +46,10 @@ public class ViewAccount extends UserActions {
         return currentAccount;
     }
 
-    static void printAccounts(List<Account> currentUserAccounts) {
+    public static void printAccounts(List<Account> currentUserAccounts) {
         for (Account a : currentUserAccounts) {
             if(a != null){
+                allAccounts.add(a);
                 System.out.println(a.getAccountID() + " - " + a);
             }
         }

@@ -48,6 +48,11 @@
                   <Image url="https://www.td.com/us/en/personal-banking/images/TDB_white_tcm371-253851.png" />
                </image>
             </ImageView>
+            <Label fx:id="dateTimeLabel" contentDisplay="CENTER" prefHeight="45.0" prefWidth="603.0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </top>

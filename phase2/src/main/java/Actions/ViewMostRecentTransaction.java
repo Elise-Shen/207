@@ -5,9 +5,7 @@ import ATM.Keypad;
 import Accounts.*;
 
 import java.time.LocalDate;
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 
 public class ViewMostRecentTransaction extends ViewAccount {
@@ -63,5 +61,20 @@ public class ViewMostRecentTransaction extends ViewAccount {
         int recipientID = t.getRecipientAccountID();
         Account recipient = bankManager.getOneAccount(recipientID);
         return recipient instanceof Credit;
+    }
+
+    public Map<LocalDate, Transactions> viewMostRecentTransaction(Map<LocalDate, Transactions> transactionHistory){
+        Map<LocalDate, Transactions> temp = new LinkedHashMap<>();
+        Iterator<Map.Entry<LocalDate, Transactions>> entries = transactionHistory.entrySet().iterator();
+        Map.Entry<LocalDate, Transactions> entry;
+        LocalDate mapKey = null;
+        while(entries.hasNext()){
+            entry = entries.next();
+            mapKey = entry.getKey();
+            //keeps iterating until the last item
+            //sets map-key to last item
+        }
+        temp.put(mapKey, transactionHistory.get(mapKey));
+        return temp;
     }
 }

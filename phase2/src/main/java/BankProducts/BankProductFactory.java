@@ -4,7 +4,7 @@ import Accounts.*;
 
 import java.io.Serializable;
 public class BankProductFactory implements Serializable {
-    
+
     public BankProduct getBankProduct(int productType, int amount, int months,Account account) {
         if (productType == 1) {
             return new LongTermMortgage(amount, months,account);

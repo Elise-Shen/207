@@ -17,7 +17,7 @@ public abstract class InvestmentProduct extends BankProduct{
     public void do_investment(Account account){
         account.increaseCurrencyBalance(product_amount);
     }
-    public void return_revenue(Account account){
+    public void returnRevenue(Account account){
         account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
     }
 

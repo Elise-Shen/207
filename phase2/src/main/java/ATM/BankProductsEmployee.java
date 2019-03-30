@@ -41,7 +41,7 @@ public class BankProductsEmployee implements Serializable {
             if (a instanceof Saving) {
                 List<BankProduct> allProducts = ((Saving) a).getBankProducts();
                 for (BankProduct p: allProducts){
-                    if (!p.getIsFinshed() && p.getDateEnd().equals(localDate)){
+                    if (!p.getIsFinished() && p.getDateEnd().equals(localDate)){
                         if (p instanceof InvestmentProduct) { ((InvestmentProduct)p).returnRevenue();}
                         else { ((MortgageProduct)p).returnloan();}
                     }

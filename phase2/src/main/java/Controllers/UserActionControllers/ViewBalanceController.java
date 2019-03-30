@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
@@ -39,8 +40,9 @@ public class ViewBalanceController implements Initializable {
     private int currentUserID;
     private BankManager bankManager;
 
+
     @FXML
-    private ChoiceBox<Account> accountChoiceBox;
+    private ComboBox<Account> accountComboBox;
     @FXML
     private GridPane accountInfoPane;
     @FXML
@@ -53,6 +55,7 @@ public class ViewBalanceController implements Initializable {
     private Button undoTransactionButton;
 
     public void goToUserActionList() throws Exception{
+        accountComboBox.getItems().clear();
         main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
@@ -71,31 +74,35 @@ public class ViewBalanceController implements Initializable {
     }
 
     public void viewAccountButton(){
-        Account choice = accountChoiceBox.getValue();
+            Account choice = accountComboBox.getValue();
         accountInfoPane.setVisible(true);
-        dateLabel.setText(choice.getDateOfCreation().toString());
-        accountBalanceLabel.setText(choice.getCurrencyBalance().toString());
+        try {
+            dateLabel.setText(choice.getDateOfCreation().toString());
+            accountBalanceLabel.setText(choice.getCurrencyBalance().toString());
 
-        ViewMostRecentTransaction mostRecentTransaction = new ViewMostRecentTransaction(currentUserID, bankManager);
+            ViewMostRecentTransaction mostRecentTransaction = new ViewMostRecentTransaction(currentUserID, bankManager);
 
-        Map<LocalDate, Transactions> recent = mostRecentTransaction.viewMostRecentTransaction(choice.getTransactionsList());
-        Iterator<Map.Entry<LocalDate, Transactions>> entries = recent.entrySet().iterator();
-        Map.Entry<LocalDate, Transactions> entry;
-        LocalDate mapKey = null;
-        while(entries.hasNext()){
-            entry = entries.next();
-            mapKey = entry.getKey();
-            //keeps iterating until the last item
-            //sets map-key to last item
-        }
-        LocalDate date = mapKey;
-        Transactions transactions = recent.get(mapKey);
-        if (transactions != null) {
-            previousTransLabel.setText("Most recent transaction is " + transactions + " on " + date);
-            undoTransactionButton.setVisible(true);
-        }else{
-            previousTransLabel.setText("No recent transactions");
-            undoTransactionButton.setVisible(false);
+            Map<LocalDate, Transactions> recent = mostRecentTransaction.viewMostRecentTransaction(choice.getTransactionsList());
+            Iterator<Map.Entry<LocalDate, Transactions>> entries = recent.entrySet().iterator();
+            Map.Entry<LocalDate, Transactions> entry;
+            LocalDate mapKey = null;
+            while (entries.hasNext()) {
+                entry = entries.next();
+                mapKey = entry.getKey();
+                //keeps iterating until the last item
+                //sets map-key to last item
+            }
+            LocalDate date = mapKey;
+            Transactions transactions = recent.get(mapKey);
+            if (transactions != null) {
+                previousTransLabel.setText("Most recent transaction is " + transactions + " on " + date);
+                undoTransactionButton.setVisible(true);
+            } else {
+                previousTransLabel.setText("No recent transactions");
+                undoTransactionButton.setVisible(false);
+            }
+        }catch (Exception ex){
+            System.out.println("Nothing's going wrong");
         }
 
     }
@@ -110,7 +117,7 @@ public class ViewBalanceController implements Initializable {
         ViewAccount viewAccount = new ViewAccount(currentUserID, bankManager);
         viewAccount.printAccounts(currentUser.getAccountList());
         ObservableList<Account> allAccounts = viewAccount.getAllAccounts();
-        accountChoiceBox.setItems(allAccounts);
+        accountComboBox.setItems(allAccounts);
         accountInfoPane.setVisible(false);
         undoTransactionButton.setVisible(false);
 

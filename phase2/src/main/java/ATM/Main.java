@@ -1,6 +1,8 @@
 package ATM;
 
 import Controllers.Helpers.ConfirmBoxController;
+import Controllers.Helpers.DepositedMessageController;
+import Controllers.TransactionControllers.DepositController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -59,7 +61,6 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource(filename));
         BorderPane confirmBox = loader.load();
-        //mainLayout.setCenter(confirmBox);
         Stage window = ConfirmBoxController.getWindow();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Warning");
@@ -67,7 +68,6 @@ public class Main extends Application {
         Scene scene = new Scene(confirmBox);
         window.setScene(scene);
         window.showAndWait();
-
     }
 
     public static void main(String[] args) {
@@ -92,6 +92,7 @@ public class Main extends Application {
         //ATM_Machine atm = new ATM_Machine();
         //atm.run();
         atm = new ATM_Machine();
+        //atm.run();
         launch(args);
     }
 

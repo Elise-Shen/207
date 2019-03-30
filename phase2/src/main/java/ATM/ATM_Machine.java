@@ -81,6 +81,10 @@ public class ATM_Machine {
         return currentUserID;
     }
 
+    public CashStorage getCashStorage(){
+        return cashStorage;
+    }
+
     void run(){
         while (true) {
             boolean isValid = false;

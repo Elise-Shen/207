@@ -231,7 +231,7 @@ public class BankManager implements Serializable {
         return currentID;
     }
 
-    boolean authenticateUser(String userInput, String password){
+    public boolean authenticateUser(String userInput, String password){
         User currentUser;
         if(StringUtils.isNumeric(userInput)){
                 currentUser = getUser(Integer.parseInt(userInput));

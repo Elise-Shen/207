@@ -77,6 +77,10 @@ public class ATM_Machine {
         return bankManager;
     }
 
+    public int getCurrentUserID(){
+        return currentUserID;
+    }
+
     void run(){
         while (true) {
             boolean isValid = false;

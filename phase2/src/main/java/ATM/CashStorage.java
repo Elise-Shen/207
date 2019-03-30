@@ -124,5 +124,12 @@ public class CashStorage implements Serializable {
             cs.setToMaxStock();
         }
     }
+
+    /**
+     * Return the cash storage.
+     */
+    public Map<String, CurrencyStorage> getCashStorage() {
+        return this.cashStorage;
+    }
 }
 

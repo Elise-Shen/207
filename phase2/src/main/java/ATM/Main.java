@@ -1,10 +1,12 @@
 package ATM;
 
+import Controllers.Helpers.ConfirmBoxController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.javamoney.moneta.FastMoney;
 import org.javamoney.moneta.Money;
@@ -47,9 +49,24 @@ public class Main extends Application {
     public static void showNewBorderPane(String filename) throws Exception{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource(filename));
-        BorderPane userLogin = loader.load();
-        mainLayout.setCenter(userLogin);
+        BorderPane page = loader.load();
+        mainLayout.setCenter(page);
         atm.updateData();
+
+    }
+
+    public static void showConfirmBox(String filename)throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource(filename));
+        BorderPane confirmBox = loader.load();
+        //mainLayout.setCenter(confirmBox);
+        Stage window = ConfirmBoxController.getWindow();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Warning");
+        window.setMinWidth(250);
+        Scene scene = new Scene(confirmBox);
+        window.setScene(scene);
+        window.showAndWait();
 
     }
 

@@ -3,6 +3,7 @@ package Controllers;
 
 
 import ATM.Main;
+import Controllers.Helpers.ConfirmBoxController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,7 +39,12 @@ public class StartUpController implements Initializable {
 
     @FXML
     public void loadUserLogin() throws Exception{
-        main.showNewBorderPane("/UserLoginPage.fxml");
+        main.showConfirmBox("/HelperBoxes/ConfirmBox.fxml");
+        if (ConfirmBoxController.getConfirm()) {
+            main.showNewBorderPane("/UserLoginPage.fxml");
+        }//else{
+           // main.showMainView();
+        //}
     }
 
     public void loadBankManagerLogin() throws Exception{

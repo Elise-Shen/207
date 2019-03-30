@@ -24,13 +24,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#balanceButton" prefHeight="100.0" prefWidth="200.0" text="View Balance" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#balanceButton" prefHeight="100.0" prefWidth="200.0" text="View Balance" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Button mnemonicParsing="false" onAction="#accountSummaryButton" prefHeight="100.0" prefWidth="200.0" text="Summary" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" onAction="#netTotalButton" prefHeight="100.0" prefWidth="200.0" text="Net Total" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#requestAccountButton" prefHeight="100.0" prefWidth="200.0" text="Request New Account" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#setPrimAccountButton" prefHeight="100.0" prefWidth="200.0" text="Set Primary Account" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" onAction="#changePasswordButton" prefHeight="100.0" prefWidth="200.0" text="Change Password" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#goToUserMainMenu" prefHeight="55.0" prefWidth="170.0" text="Back" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#transactionHistoryButton" prefHeight="100.0" prefWidth="200.0" text="Transaction History" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

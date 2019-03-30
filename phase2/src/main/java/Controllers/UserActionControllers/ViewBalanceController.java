@@ -9,6 +9,7 @@ import Actions.Transactions;
 import Actions.UserActions;
 import Actions.ViewAccount;
 import Actions.ViewMostRecentTransaction;
+import Controllers.Helpers.ConfirmBoxController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -47,9 +49,25 @@ public class ViewBalanceController implements Initializable {
     private Label accountBalanceLabel;
     @FXML
     private Label previousTransLabel;
+    @FXML
+    private Button undoTransactionButton;
 
     public void goToUserActionList() throws Exception{
         main.showNewBorderPane("/UserActionsPage.fxml");
+    }
+
+    /**
+     * not dones yet
+     * @throws Exception
+     */
+    public void undoTransactionPressed() throws Exception{
+        main.showConfirmBox("/HelperBoxes/ConfirmBox.fxml");
+        if(ConfirmBoxController.getConfirm()){
+            //send request
+        }else{
+
+        }
+
     }
 
     public void viewAccountButton(){
@@ -74,8 +92,10 @@ public class ViewBalanceController implements Initializable {
         Transactions transactions = recent.get(mapKey);
         if (transactions != null) {
             previousTransLabel.setText("Most recent transaction is " + transactions + " on " + date);
+            undoTransactionButton.setVisible(true);
         }else{
             previousTransLabel.setText("No recent transactions");
+            undoTransactionButton.setVisible(false);
         }
 
     }
@@ -92,6 +112,7 @@ public class ViewBalanceController implements Initializable {
         ObservableList<Account> allAccounts = viewAccount.getAllAccounts();
         accountChoiceBox.setItems(allAccounts);
         accountInfoPane.setVisible(false);
+        undoTransactionButton.setVisible(false);
 
 
 

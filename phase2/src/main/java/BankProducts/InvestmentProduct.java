@@ -6,7 +6,8 @@ import java.util.Random;
 public abstract class InvestmentProduct extends BankProduct{
     private double risk;
 
-    public InvestmentProduct(int amount, int months, double rate,double r) {
+    public InvestmentProduct(int amount, int months, double rate,double r, Account account) {
+        super(account);
         product_amount = createMoney(amount);
         product_month = months;
         interest_rate = rate;

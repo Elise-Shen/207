@@ -15,7 +15,7 @@ public abstract class MortgageProduct extends BankProduct{
     public void giveLoan(){
         this.account.increaseCurrencyBalance(product_amount);
     }
-    public void returnLoan(){
+    public void returnloan(){
         this.account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
     }
     @Override

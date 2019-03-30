@@ -10,6 +10,7 @@ import javax.money.MonetaryAmount;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
+import Accounts.*;
 public abstract class BankProduct implements Serializable{
     public MonetaryAmount product_amount ;// borrowed amount for each type of mortgage
     public int product_month; // number of days borrowed
@@ -27,24 +28,28 @@ public abstract class BankProduct implements Serializable{
      * The total number of product created
      */
     private static int numProduct;
-    private Map<LocalDate, Transactions> listOfTransactions = new LinkedHashMap<>();
     private int ownerID;
+    protected Account account;
 
-    public BankProduct(){
+
+    public BankProduct(Account account){
         increaseNumProduct();
         this.productID = numProduct;
         this.dateCreation = LocalDate.now();
+        this.account = account;
     }
     public void setDateEnd (int product_month){
         dateEnd = dateCreation.plusMonths(product_month);
     }
+    public LocalDate getDateCreation() {
+        return this.dateCreation;
+    }
+    public LocalDate getDateEnd(){return dateEnd;}
     public void increaseNumProduct(){
         numProduct += 1;
     }
 
-    public Map<LocalDate, Transactions> getTransactionsList(){
-        return listOfTransactions;
-    }
+
     public int getProductID() {
         return productID;
     }
@@ -56,10 +61,7 @@ public abstract class BankProduct implements Serializable{
         return ownerID;
     }
 
-    public LocalDate getDateCreation() {
-        return this.dateCreation;
-    }
-    public LocalDate getDateEnd(){return dateEnd;}
+
 
     public double getInterestRate(){return 0;};
     public int getProductType(){return 0;};

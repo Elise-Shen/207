@@ -21,9 +21,7 @@ public abstract class InvestmentProduct extends BankProduct{
     }
 
     @Override
-    public int getProductType() {
-        return 0;
-    }
+    public abstract int getProductType();
 
     @Override
     public double getInterestRate(){return interest_rate;}

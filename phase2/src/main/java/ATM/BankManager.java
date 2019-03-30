@@ -39,8 +39,8 @@ public class BankManager implements Serializable {
         this.password = password;
 
         // create 3 users for testing purpose
-        User user1 = new User(1, "abc123", this);
-        User user2 = new User(2, "abc123", this);
+        User user1 = new User(1, "abc123", this, false);
+        User user2 = new User(2, "abc123", this, false);
         userArrayList.add(user1);
         userArrayList.add(user2);
         //createUserExample(userNumExample);

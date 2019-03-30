@@ -9,7 +9,7 @@ import java.util.TreeMap;
 /**
  * The storage of one type of currency.
  */
-class CurrencyStorage implements Serializable {
+public class CurrencyStorage implements Serializable {
 
     /**
      * The storage of one type of currency.
@@ -44,14 +44,14 @@ class CurrencyStorage implements Serializable {
     /**
      * Set the maximum storage.
      */
-    void setMaxStock(int maxStock) {
+    public void setMaxStock(int maxStock) {
         MAX_STOCK = maxStock;
     }
 
     /**
      * Return the maximum storage.
      */
-    int getMaxStock() {
+    public int getMaxStock() {
         return MAX_STOCK;
     }
 
@@ -148,7 +148,7 @@ class CurrencyStorage implements Serializable {
     /**
      * Return the amount of money stored in this Currency Storage.
      */
-    private int getTotalStorage() {
+    public int getTotalStorage() {
         Iterator<Map.Entry<Integer, Integer>> entries = currencyStorage.entrySet().iterator();
         Map.Entry<Integer, Integer> entry;
         int amount = 0;

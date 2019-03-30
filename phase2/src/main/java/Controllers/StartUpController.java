@@ -42,9 +42,7 @@ public class StartUpController implements Initializable {
         main.showConfirmBox("/HelperBoxes/ConfirmBox.fxml");
         if (ConfirmBoxController.getConfirm()) {
             main.showNewBorderPane("/UserLoginPage.fxml");
-        }//else{
-           // main.showMainView();
-        //}
+        }
     }
 
     public void loadBankManagerLogin() throws Exception{

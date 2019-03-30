@@ -23,8 +23,8 @@ public class UserMainMenuController implements Initializable {
     }
 
     @FXML
-    public void transactionButton(){
-
+    public void transactionButton() throws Exception{
+        main.showNewBorderPane("/TransactionPage.fxml");
     }
 
     @Override

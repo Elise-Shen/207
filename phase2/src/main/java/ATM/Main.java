@@ -78,35 +78,17 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        /*CurrencyUnit usd = Monetary.getCurrency("USD");
-        CurrencyUnit cad = Monetary.getCurrency(Locale.getDefault());
-        System.out.println(usd.getDefaultFractionDigits() + " " + usd.getNumericCode());
-        MonetaryAmount amt = Monetary.getDefaultAmountFactory().setCurrency(usd).setNumber(200.03).create();
-        Money usdMoney = Money.of(1.00, usd);
-
-        Money cadMoney = Money.of(0, cad);
-        Money added = Money.of(1000, cad);
-        cadMoney = cadMoney.add(added);
-        System.out.println(cadMoney);
-
-        CurrencyConversion conversionCAD = MonetaryConversions.getConversion(cad);
-
-        MonetaryAmount converted = usdMoney.with(conversionCAD);
-
-        System.out.println(converted.toString());
-*/
-        //ATM_Machine atm = new ATM_Machine();
-        //atm.run();
         atm = readATM("ATM.ser");
-        //atm.run();
+
         launch(args);
     }
 
     private static void updateData() throws Exception{
-        String filePath = "ATM.ser";
+        String filePath = "phase2/ATM.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
+
 
         // serialize the Map
         output.writeObject(atm);

@@ -32,10 +32,6 @@ public class AdminMenuController implements Initializable {
         Main.showNewBorderPane("/AdminActionResources/ViewAccountRequests.fxml");
     }
 
-    public void viewProductsRequestsButton() throws Exception{
-        Main.showNewBorderPane("/AdminActionResources/ViewProductsRequestsPage.fxml");
-    }
-
     public void viewUndoTransactButton() throws Exception{
         Main.showNewBorderPane("/AdminActionResources/ViewUndoTransactPage.fxml");
     }

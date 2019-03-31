@@ -29,6 +29,6 @@ public class RestockATMController implements Initializable {
         atm.getCashStorage().setToMaxStock();
         String localCurrency = Monetary.getCurrency(Locale.getDefault()).toString();
         int localCashStorage = atm.getCashStorage().getCashStorage().get(localCurrency).getTotalStorage();
-        newCashStorage.setText("Currenct local currency storage: " + String.valueOf(localCashStorage));
+        newCashStorage.setText("Current local currency storage: " + localCashStorage);
     }
 }

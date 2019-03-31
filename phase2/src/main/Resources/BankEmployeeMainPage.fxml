@@ -6,9 +6,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.BankEmployeeMainPageController"
-            prefHeight="960.0" prefWidth="1440.0">
-
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BankEmployeeMainPageController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="707.0" minWidth="10.0" prefWidth="389.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1163.0" minWidth="10.0" prefWidth="616.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1163.0" minWidth="10.0" prefWidth="466.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="465.0" minHeight="10.0" prefHeight="395.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="379.0" minHeight="0.0" prefHeight="145.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="524.0" minHeight="38.0" prefHeight="135.0" />
+            <RowConstraints maxHeight="832.0" minHeight="255.0" prefHeight="255.0" />
+        </rowConstraints>
+         <children>
+             <Button mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="172.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+             <Button mnemonicParsing="false" onAction="#loginPressed" prefHeight="30.0" prefWidth="200.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <PasswordField fx:id="passwordField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>

@@ -50,12 +50,9 @@ public class ViewAccountRequestsController implements Initializable {
         int accountType = accountRequests.get(mapKey).get(firstKey);
         bankManager.createAccount(mapKey, accountType, firstKey);
         bankManager.getAccountRequests().remove(mapKey);
-        try {
-            requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + "account for user(s)" +
-                    getUsers(mapKey));
-        } catch (NullPointerException e){
-            //
-        }
+        System.out.println("created");
+        requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + "account for user(s)" +
+                getUsers(mapKey));
     }
 
 
@@ -75,7 +72,7 @@ public class ViewAccountRequestsController implements Initializable {
         List<Integer> mapKey;
         int count = 0;
         StringBuilder sb = new StringBuilder();
-        sb.append("Current Requests");
+        sb.append("Current Requests:");
         while (entries.hasNext()) {
             count++;
             entry = entries.next();
@@ -88,6 +85,7 @@ public class ViewAccountRequestsController implements Initializable {
 
             choices.add(String.valueOf(count));
         }
+        requestChoiceBox.setItems(choices);
         return sb.toString();
     }
 

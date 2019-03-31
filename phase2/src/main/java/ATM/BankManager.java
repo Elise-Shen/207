@@ -5,8 +5,6 @@ import Actions.AccountToAccount;
 import Actions.DepositMoney;
 import Actions.Transactions;
 import Actions.WithdrawMoney;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.money.MonetaryAmount;
@@ -31,8 +29,6 @@ public class BankManager implements Serializable {
     private List<Account> allAccounts = new ArrayList<>();
     private String password;
 
-    private static ObservableList<User> allUsers = FXCollections.observableArrayList();
-
     private final int CHEQUING = 1;
     private final int SAVINGS = 2;
     private final int CREDIT = 3;
@@ -48,14 +44,6 @@ public class BankManager implements Serializable {
         userArrayList.add(user1);
         userArrayList.add(user2);
         //createUserExample(userNumExample);
-    }
-
-    public void readUserList(){
-        allUsers.addAll(userArrayList);
-    }
-
-    public ObservableList<User> getAllUsers(){
-        return allUsers;
     }
 
 
@@ -307,13 +295,16 @@ public class BankManager implements Serializable {
         }
     }
 
+
     /**
-     * Return all the account types that has an interest rate tied to them.
+     * Return the list of account types that has an interest rate tied to them.
      */
-    public String getInterestAccounts() {
-        return "\nInterest Rate Table: \n" + SAVINGS + " - SavingsAccount: " + Saving.getInterestRate() +
-                "\n" + CREDIT + " - Credit: " + Credit.getInterestRate() +
-                "\n" + LINE_OF_CREDIT + " - Line of Credit: " + LineOfCredit.getInterestRate();
+    public Map<String, Double> getInterestAccountList() {
+        Map<String, Double> map = new HashMap<>();
+        map.put("Saving", Saving.getInterestRate());
+        map.put("Credit", Credit.getInterestRate());
+        map.put("LineOfCredit", LineOfCredit.getInterestRate());
+        return map;
     }
 
     public String toString(){

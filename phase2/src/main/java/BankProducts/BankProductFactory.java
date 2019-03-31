@@ -4,6 +4,11 @@ import Accounts.*;
 
 import java.io.Serializable;
 public class BankProductFactory implements Serializable {
+    /*
+    Create different type of Bank Product by given type
+
+    
+     */
 
     public BankProduct getBankProduct(int productType, int amount, int months,Account account) {
         if (productType == 1) {

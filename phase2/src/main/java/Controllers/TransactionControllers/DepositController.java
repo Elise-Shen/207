@@ -49,6 +49,7 @@ public class DepositController implements Initializable {
         amountDeposited = deposit.getAmountDeposited();
         System.out.println(amountDeposited);
         depositChoiceBox.getItems().clear();
+        bankManager.getUser(currentUserID).addTransactions(deposit);
         main.showNewBorderPane("/HelperBoxes/DepositMessageBox.fxml");
     }
 

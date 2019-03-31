@@ -59,6 +59,7 @@ public class PayBillsController implements Initializable {
                 }
                 recipientCombo.getItems().clear();
                 payBillCombo.getItems().clear();
+                currentUser.addTransactions(payBills);
                 main.showNewBorderPane("/HelperBoxes/PaidBillBox.fxml");
             }
         }

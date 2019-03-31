@@ -26,6 +26,6 @@ public class ReachRequestLimitController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         window = new Stage();
-        labelMessage.setText("Reached Daily Account Request Limit!");
+        labelMessage.setText("Reached Daily Request Limit!");
     }
 }

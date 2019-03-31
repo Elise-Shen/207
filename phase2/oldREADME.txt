@@ -1,3 +1,9 @@
+=======================================================================================================================
+
+    This README is written for Phase 1, please see Phase2README.txt for updated instructions
+
+=======================================================================================================================
+
 How to run this program:
 As a customer:(for instructions for BankManager, skip to line 56)
 1. Run Main.java in ATM folder

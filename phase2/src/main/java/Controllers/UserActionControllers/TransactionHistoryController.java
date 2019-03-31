@@ -53,55 +53,30 @@ public class TransactionHistoryController implements Initializable {
         currentUser.readTransactions();
         ObservableList<Transactions> allTransactions = currentUser.getTransactionsObservableList();
 
-        dateTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Transactions, LocalDate>, ObservableValue<LocalDate>>() {
-            @Override
-            public ObservableValue<LocalDate> call(TableColumn.CellDataFeatures<Transactions, LocalDate> data) {
-                LocalDate value = data.getValue().getDate();
-                return new ReadOnlyObjectWrapper<>(value);
-            }
+        dateTableColumn.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getDate()));
+
+        transactionsTableColumn.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()));
+
+        accountIDTableColumn.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getCurrentAccountID()));
+
+        accountTableColumn.setCellValueFactory(data -> {
+            int currentAccountID = data.getValue().getCurrentAccountID();
+            return new ReadOnlyObjectWrapper<>(data.getValue().getBankManager().getOneAccount(currentAccountID));
         });
 
-        transactionsTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Transactions, Transactions>, ObservableValue<Transactions>>() {
-            @Override
-            public ObservableValue<Transactions> call(TableColumn.CellDataFeatures<Transactions, Transactions> data) {
-                Transactions value = data.getValue();
-                return new ReadOnlyObjectWrapper<>(value);
+        amountTableColumn.setCellValueFactory(data ->{
+            Transactions temp = data.getValue();
+            MonetaryAmount value = null;
+            if(temp instanceof DepositMoney) {
+                value = ((DepositMoney) temp).getAmountDeposited();
+            }else if (temp instanceof AccountToAccount){
+                value = ((AccountToAccount)temp).getAmountTransferred();
+            }else if(temp instanceof WithdrawMoney){
+                value = ((WithdrawMoney)temp).getAmountWithdrawn();
+            }else if(temp instanceof PayBills){
+                value = ((PayBills)temp).getAmountPaid();
             }
-        });
-
-        accountIDTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Transactions, Integer>, ObservableValue<Integer>>() {
-            @Override
-            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Transactions, Integer> data) {
-                Integer value = data.getValue().getCurrentAccountID();
-                return new ReadOnlyObjectWrapper<>(value);
-            }
-        });
-
-        accountTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Transactions, Account>, ObservableValue<Account>>() {
-            @Override
-            public ObservableValue<Account> call(TableColumn.CellDataFeatures<Transactions, Account> data) {
-                int currentAccountID = data.getValue().getCurrentAccountID();
-                Account value = data.getValue().getBankManager().getOneAccount(currentAccountID);
-                return new ReadOnlyObjectWrapper<>(value);
-            }
-        });
-
-        amountTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Transactions, MonetaryAmount>, ObservableValue<MonetaryAmount>>() {
-            @Override
-            public ObservableValue<MonetaryAmount> call(TableColumn.CellDataFeatures<Transactions, MonetaryAmount> data) {
-                Transactions temp = data.getValue();
-                MonetaryAmount value = null;
-                if(temp instanceof DepositMoney) {
-                    value = ((DepositMoney) temp).getAmountDeposited();
-                }else if (temp instanceof AccountToAccount){
-                    value = ((AccountToAccount)temp).getAmountTransferred();
-                }else if(temp instanceof WithdrawMoney){
-                    value = ((WithdrawMoney)temp).getAmountWithdrawn();
-                }else if(temp instanceof PayBills){
-                    value = ((PayBills)temp).getAmountPaid();
-                }
-                return new ReadOnlyObjectWrapper<>(value);
-            }
+            return new ReadOnlyObjectWrapper<>(value);
         });
 
         transactionTable.setItems(allTransactions);

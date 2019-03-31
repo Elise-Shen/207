@@ -2,6 +2,7 @@ package ATM;
 
 import Controllers.Helpers.ConfirmBoxController;
 import Controllers.Helpers.NotEnoughMoneyController;
+import Controllers.Helpers.ReachRequestLimitController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -135,4 +136,16 @@ public class Main extends Application {
     }
 
 
+    public void showReachRequestLimit() throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/HelperBoxes/ReachRequestLimitPage.fxml"));
+        BorderPane confirmBox = loader.load();
+        Stage window = ReachRequestLimitController.getWindow();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Warning");
+        window.setMinWidth(250);
+        Scene scene = new Scene(confirmBox);
+        window.setScene(scene);
+        window.showAndWait();
+    }
 }

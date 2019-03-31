@@ -15,6 +15,7 @@ public class ViewAccount extends UserActions {
     private static ObservableList<Account> allAccounts = FXCollections.observableArrayList();
     private static ObservableList<Account> depositAccounts = FXCollections.observableArrayList();
     private static ObservableList<Account> transferOutAccounts = FXCollections.observableArrayList();
+    private static ObservableList<Account> savingAccounts = FXCollections.observableArrayList();
 
     public ViewAccount(int currentId, BankManager bankManager){
         super(currentId, bankManager);
@@ -29,6 +30,10 @@ public class ViewAccount extends UserActions {
     }
 
     public ObservableList<Account> getTransferOutAccounts(){
+        return transferOutAccounts;
+    }
+
+    public ObservableList<Account> getSavingAccounts(){
         return transferOutAccounts;
     }
 
@@ -78,6 +83,15 @@ public class ViewAccount extends UserActions {
         for (Account a : currentUserAccounts) {
             if(a != null && !(a.getAccountType() == 3)){
                 transferOutAccounts.add(a);
+                System.out.println(a.getAccountID() + " - " + a);
+            }
+        }
+    }
+
+    public static void printSavingAccounts(List<Account> currentUserAccounts){
+        for (Account a : currentUserAccounts) {
+            if(a != null && (a.getAccountType() == 2)){
+                savingAccounts.add(a);
                 System.out.println(a.getAccountID() + " - " + a);
             }
         }

@@ -15,10 +15,13 @@ public abstract class InvestmentProduct extends BankProduct{
         setDateEnd(months);
     }
     public void do_investment(){
-        this.account.increaseCurrencyBalance(product_amount);
+        boolean status = this.account.decreaseCurrencyBalance(product_amount);
+        if (status == false){
+            System.out.println("Aware! Your balance in this account is negative!");
+        }
     }
     public void returnRevenue(){
-        this.account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
+        this.account.increaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
         is_finish = true;
     }
 

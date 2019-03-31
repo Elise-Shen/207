@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.UserActionControllers.AccountSummaryController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserActionControllers.AccountSummaryController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="summaryTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="accountCol" editable="false" prefWidth="351.0" text="Account" />
+                  <TableColumn fx:id="idCol" prefWidth="213.0" text="Account ID" />
+                <TableColumn fx:id="balanceCol" prefWidth="233.0" text="Balance" />
+              </columns>
+            </TableView>
+         </center>
+         <bottom>
+            <Button mnemonicParsing="false" onAction="#toUserActionsList" prefHeight="63.0" prefWidth="152.0" text="Back" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </bottom>
+      </BorderPane>
+   </center>
 </BorderPane>

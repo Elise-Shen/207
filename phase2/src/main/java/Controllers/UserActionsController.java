@@ -24,17 +24,16 @@ public class UserActionsController implements Initializable {
     }
 
     public void netTotalButton()throws Exception{
-        if(currentUser.getCount() == 0) {
-            main.showNewBorderPane("/UserActionResources/NetTotalPage.fxml");
-        }else{
-            main.showReachRequestLimit();
-        }
+        main.showNewBorderPane("/UserActionResources/NetTotalPage.fxml");
 
     }
 
     public void requestAccountButton()throws Exception{
-        if(currentUser.getCount() == 0)
-        main.showNewBorderPane("/UserActionResources/RequestAccountPage.fxml");
+        if(currentUser.getCount() == 0) {
+            main.showNewBorderPane("/UserActionResources/RequestAccountPage.fxml");
+        }else{
+            main.showReachRequestLimit();
+        }
 
     }
 

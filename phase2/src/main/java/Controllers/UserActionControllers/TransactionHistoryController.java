@@ -118,11 +118,7 @@ public class TransactionHistoryController implements Initializable {
                 return new ReadOnlyObjectWrapper<>(value);
             }
         });
-        //currentUser.readAllAccounts(currentUser.getAccountList());
+
         transactionTable.setItems(allTransactions);
-        //transactionTable.getColumns().addAll(dateTableColumn, transactionsTableColumn, accountIDTableColumn, accountTableColumn, amountTableColumn);
-
-
-        //transactionTable.setItems(allTransactions);
     }
 }

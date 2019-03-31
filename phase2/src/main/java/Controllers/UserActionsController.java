@@ -1,6 +1,8 @@
 package Controllers;
 
+import ATM.BankManager;
 import ATM.Main;
+import ATM.User;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -9,6 +11,7 @@ import java.util.ResourceBundle;
 public class UserActionsController implements Initializable {
 
     private Main main;
+    private User currentUser;
 
     public void goToUserMainMenu() throws Exception{
         main.showNewBorderPane("/UserMainMenuPage.fxml");
@@ -21,11 +24,16 @@ public class UserActionsController implements Initializable {
     }
 
     public void netTotalButton()throws Exception{
-        main.showNewBorderPane("/UserActionResources/NetTotalPage.fxml");
+        if(currentUser.getCount() == 0) {
+            main.showNewBorderPane("/UserActionResources/NetTotalPage.fxml");
+        }else{
+            main.showReachRequestLimit();
+        }
 
     }
 
     public void requestAccountButton()throws Exception{
+        if(currentUser.getCount() == 0)
         main.showNewBorderPane("/UserActionResources/RequestAccountPage.fxml");
 
     }
@@ -55,6 +63,9 @@ public class UserActionsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        int currentUserID = main.getCurrentATM().getCurrentUserID();
+        BankManager bankManager = main.getCurrentATM().getATMBankManager();
+        currentUser = bankManager.getUser(currentUserID);
 
     }
 }

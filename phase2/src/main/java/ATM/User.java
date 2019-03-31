@@ -31,8 +31,8 @@ public class User implements Serializable {
     private boolean isEmployee;
 
 
-    private int accountRequestCount = 0;
-    private int productRequestCount = 0;
+    private static int accountRequestCount;
+    private int productRequestCount;
 
     public User (int userID, String password, BankManager bm, boolean isEmployee){
         this.userID = userID;

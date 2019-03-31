@@ -6,14 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="960" prefWidth="1440" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserActionControllers.BankProductController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="848.0" minWidth="10.0" prefWidth="258.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="848.0" minWidth="10.0" prefWidth="596.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="715.0" minWidth="10.0" prefWidth="597.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="848.0" minWidth="10.0" prefWidth="275.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="848.0" minWidth="10.0" prefWidth="649.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="715.0" minWidth="10.0" prefWidth="517.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="594.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
@@ -25,7 +24,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#longTermMortgage" prefHeight="100.0" prefWidth="200.0" text="Long Term Mortgage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <Button mnemonicParsing="false" onAction="#shortTermMortgage" prefHeight="100.0" prefWidth="200.0" text="Short Term Mortgage" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <Button mnemonicParsing="false" onAction="#highRiskInvestment" prefHeight="100.0" prefWidth="200.0" text="High Risk Investment" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Button mnemonicParsing="false" onAction="#highRiskInvestment" prefHeight="100.0" prefWidth="200.0" text="High Risk Investment" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#lowRiskInvestment" prefHeight="100.0" prefWidth="200.0" text="Low Risk Investment" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
             <TextField fx:id="productAmount" promptText="Please input an integer" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <TextField fx:id="productLength" prefHeight="31.0" promptText="Please input an integer" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP" />

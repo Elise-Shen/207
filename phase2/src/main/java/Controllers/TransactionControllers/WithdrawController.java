@@ -38,6 +38,7 @@ public class WithdrawController implements Initializable {
     }
 
     public void goToTransactionList() throws Exception{
+        withdrawChoice.getItems().clear();
         main.showNewBorderPane("/TransactionPage.fxml");
     }
 

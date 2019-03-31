@@ -41,10 +41,6 @@ public class ViewUndoTransactRequestsController implements Initializable {
         Main.showNewBorderPane("/AdminMainPage.fxml");
     }
 
-    public void chooseUser(){
-
-    }
-
     public void deleteSelection(){
         ObservableList<Transactions> selectedTransaction;
         selectedTransaction = undoTransacReq.getSelectionModel().getSelectedItems();

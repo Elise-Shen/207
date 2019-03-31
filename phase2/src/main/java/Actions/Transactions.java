@@ -7,6 +7,7 @@ import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Locale;
 
 public abstract class Transactions implements Serializable{
@@ -15,11 +16,17 @@ public abstract class Transactions implements Serializable{
 
     private int userID;
     private BankManager bankManager;
+    private LocalDate date;
+
     public Transactions(int userID, BankManager bm){
         this.userID = userID;
         bankManager = bm;
+        this.date = LocalDate.now();
     }
 
+    public LocalDate getDate(){
+        return date;
+    }
     public int getUserID(){
         return userID;
     }

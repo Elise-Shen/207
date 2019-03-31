@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="960" prefWidth="1440" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserActionControllers.BankProductController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="848.0" minWidth="10.0" prefWidth="275.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="848.0" minWidth="10.0" prefWidth="649.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="715.0" minWidth="10.0" prefWidth="517.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="594.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="604.0" minHeight="0.0" prefHeight="282.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="604.0" minHeight="0.0" prefHeight="183.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="604.0" minHeight="0.0" prefHeight="160.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="470.0" minHeight="10.0" prefHeight="278.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#longTermMortgage" prefHeight="100.0" prefWidth="200.0" text="Long Term Mortgage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Button mnemonicParsing="false" onAction="#shortTermMortgage" prefHeight="100.0" prefWidth="200.0" text="Short Term Mortgage" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Button mnemonicParsing="false" onAction="#highRiskInvestment" prefHeight="100.0" prefWidth="200.0" text="High Risk Investment" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#lowRiskInvestment" prefHeight="100.0" prefWidth="200.0" text="Low Risk Investment" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <TextField fx:id="productAmount" promptText="Please input an integer" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <TextField fx:id="productLength" prefHeight="31.0" promptText="Please input an integer" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+            <ComboBox fx:id="accountCombo" prefHeight="31.0" prefWidth="520.0" promptText="Choose Account" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label fx:id="lengthLabel" text="How many month would you like to hold your mortgage?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+            <Label fx:id="amountLabel" text="How much money would you like to put into the bank product?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+            <Button mnemonicParsing="false" onAction="#submitButton" prefHeight="50.0" prefWidth="100.0" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="longTermWarning" text="Time length for Long Term Mortgage need to be longer than 12 month. Please try again!" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Label fx:id="shortTermWarning" text="Time length for Short Term Mortgage cannot exceed 12 month. Please try again!" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#goToUserActionList" prefHeight="50.0" prefWidth="100.0" text="Back" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Label fx:id="sucessLable" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

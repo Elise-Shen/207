@@ -3,10 +3,9 @@ package Controllers.Helpers;
 import ATM.ATM_Machine;
 import ATM.BankManager;
 import ATM.Main;
-import ATM.User;
 import Accounts.Account;
-import Actions.DepositMoney;
 import Controllers.TransactionControllers.DepositController;
+import Controllers.TransactionControllers.WithdrawController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,26 +14,26 @@ import javax.money.MonetaryAmount;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DepositedMessageController implements Initializable {
+public class WithdrawnBoxController implements Initializable {
+
     private Main main;
 
-
     @FXML
-    private Label depositAmount;
+    private Label withdrawAccount;
     @FXML
-    private Label depositAccount;
+    private Label withdrawAmount;
 
-    public void okPressed() throws Exception{
+    public void okPressed()throws Exception{
         main.showNewBorderPane("/TransactionPage.fxml");
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Account account = DepositController.depositChoice;
-        MonetaryAmount amount = DepositController.amountDeposited;
-        depositAccount.setText(account.toString());
-        depositAmount.setText(amount.toString());
+        Account account = WithdrawController.withdrawAccount;
+        MonetaryAmount amount = WithdrawController.amountWithdrawn;
+        withdrawAccount.setText(account.toString());
+        withdrawAmount.setText(amount.toString());
 
     }
 }

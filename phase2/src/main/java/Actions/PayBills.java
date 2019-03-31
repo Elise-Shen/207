@@ -21,6 +21,7 @@ public class PayBills extends Transactions{
     public PayBills(int currentId, BankManager bankManager){
         super(currentId,bankManager);
     }
+
     @Override
     public void execute(){
         BankManager bankManager = getBankManager();
@@ -59,6 +60,7 @@ public class PayBills extends Transactions{
 
     public boolean executePayBill(Account account, int amount){
         currentAccount = account;
+        currentAccountID = currentAccount.getAccountID();
         amountPaid = currentAccount.createMoney(amount);
         return account.decreaseCurrencyBalance(amountPaid);
     }

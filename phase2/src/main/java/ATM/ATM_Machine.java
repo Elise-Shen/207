@@ -154,6 +154,15 @@ public class ATM_Machine implements Serializable{
         }
     }
 
+    public boolean managerLogin(String password) {
+        if (this.bankManager.getPassword().equals(password)) {
+            return true;
+        } else {
+            System.out.println("Wrong password.");
+            return false;
+        }
+    }
+
     private void bankManagerLogin(){
         Scanner pass = new Scanner(System.in);
         while (!bankManagerAuthenticated){
@@ -166,6 +175,15 @@ public class ATM_Machine implements Serializable{
         doAdminActions();
         bankManagerAuthenticated = false;
 
+    }
+
+    public boolean bankProductEmployeeLogin(String password) {
+        if (this.bankProductsEmployee.getPassword().equals(password)) {
+            return true;
+        } else {
+            System.out.println("Wrong password.");
+            return false;
+        }
     }
 
     private void doAdminActions(){
@@ -459,5 +477,8 @@ public class ATM_Machine implements Serializable{
 
     }
 
+    public BankProductsEmployee getBankProductsEmployee() {
+        return bankProductsEmployee;
+    }
 }
 

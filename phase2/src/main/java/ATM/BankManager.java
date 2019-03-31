@@ -12,6 +12,8 @@ import java.io.*;
 import java.util.InputMismatchException;
 
 import java.util.*;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 
 
@@ -33,6 +35,8 @@ public class BankManager implements Serializable {
     private final int SAVINGS = 2;
     private final int CREDIT = 3;
     private final int LINE_OF_CREDIT = 4;
+
+    private static ObservableList<User> allUsers = FXCollections.observableArrayList();
 
     public BankManager(String bankName, String password){
         this.bankName = bankName;
@@ -295,17 +299,28 @@ public class BankManager implements Serializable {
         }
     }
 
+
     /**
-     * Return all the account types that has an interest rate tied to them.
+     * Return the list of account types that has an interest rate tied to them.
      */
-    public String getInterestAccounts() {
-        return "\nInterest Rate Table: \n" + SAVINGS + " - SavingsAccount: " + Saving.getInterestRate() +
-                "\n" + CREDIT + " - Credit: " + Credit.getInterestRate() +
-                "\n" + LINE_OF_CREDIT + " - Line of Credit: " + LineOfCredit.getInterestRate();
+    public Map<String, Double> getInterestAccountList() {
+        Map<String, Double> map = new HashMap<>();
+        map.put("Saving", Saving.getInterestRate());
+        map.put("Credit", Credit.getInterestRate());
+        map.put("LineOfCredit", LineOfCredit.getInterestRate());
+        return map;
     }
 
     public String toString(){
         return bankName;
+    }
+
+    public void readUserList(){
+        allUsers.addAll(userArrayList);
+    }
+
+    public ObservableList<User> getAllUsers(){
+        return allUsers;
     }
 }
 

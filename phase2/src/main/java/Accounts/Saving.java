@@ -15,7 +15,7 @@ public class Saving extends AssetAccount {
      */
     private static double interestRate = 0.001;
 
-    public List<BankProduct> bankProducts = new ArrayList<>();
+    private List<BankProduct> bankProducts = new ArrayList<>();
 
     /**
      * Creates a Savings Account.
@@ -48,6 +48,8 @@ public class Saving extends AssetAccount {
     public List<BankProduct> getBankProducts() { return bankProducts; }
 
     public void addBankProducts(BankProduct bankProduct){ bankProducts.add(bankProduct);}
+
+    public void removeLastBankProducts(){ bankProducts.remove(bankProducts.size()-1);}
 
     @Override
     public boolean decreaseCurrencyBalance(MonetaryAmount amount) {

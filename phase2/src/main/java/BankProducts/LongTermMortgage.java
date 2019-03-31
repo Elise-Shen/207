@@ -3,6 +3,8 @@ import Accounts.*;
 
 public class LongTermMortgage extends MortgageProduct {
 
+    private final int MINTERM = 12;
+
     public LongTermMortgage(int amount, int months, Account account){
         super(amount, months, 0.06,account);// interest rate for each term
     }
@@ -10,8 +12,7 @@ public class LongTermMortgage extends MortgageProduct {
     public int getProductType() {
         return 1;
     }
+
     @Override
-    public double getInterestRate(){return 0.06;};
-
-
+    public int getLimit(){ return MINTERM; }
 }

@@ -30,7 +30,7 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="depositAccount" prefHeight="45.0" prefWidth="225.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="depositAccount" prefHeight="45.0" prefWidth="353.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="25.0" />
                </font>
@@ -49,6 +49,9 @@
                <font>
                   <Font size="25.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
             </Label>
          </children>
       </GridPane>

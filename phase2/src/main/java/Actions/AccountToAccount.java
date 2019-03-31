@@ -15,7 +15,9 @@ public class AccountToAccount extends Transactions {
     // ask user to input 2 account numbers
     private int currentAccountID;
     private int recipientAccountID;
-    private int amountTransferred;
+    private MonetaryAmount amountTransferred;
+    private Account currentAccount;
+    private Account recipientAccount;
 
     public AccountToAccount(int currentId, BankManager bankManager) {
         super(currentId, bankManager);
@@ -51,7 +53,7 @@ public class AccountToAccount extends Transactions {
 
 
         int amount = keyPad.getIntInput("\nType in the amount of money to transfer");
-        amountTransferred = amount;
+        amountTransferred = createMoney(amount);
         if (account_from.decreaseCurrencyBalance(createMoney(amount))) {
             // increase, decrease amount
             account_to.increaseCurrencyBalance(createMoney(amount));
@@ -61,6 +63,21 @@ public class AccountToAccount extends Transactions {
         } else {
             System.out.println("Transaction failed.");
         }
+
+    }
+
+    public boolean executeTransfer(Account to, Account from, MonetaryAmount amount){
+        amountTransferred = amount;
+        currentAccount = from;
+        recipientAccount = to;
+        currentAccountID = from.getAccountID();
+        recipientAccountID = to.getAccountID();
+        MonetaryAmount amountConverted =  HelperMethods.exchangeCurrency(amountTransferred, recipientAccount.getPrimaryCurrency());
+        if(currentAccount.decreaseCurrencyBalance(amountTransferred)){
+            recipientAccount.increaseCurrencyBalance(amountConverted);
+            return true;
+        }
+        return false;
 
     }
 
@@ -75,7 +92,15 @@ public class AccountToAccount extends Transactions {
     }
 
     public MonetaryAmount getAmountTransferred() {
-        return createMoney(amountTransferred);
+        return amountTransferred;
+    }
+
+    public Account getCurrentAccount() {
+        return currentAccount;
+    }
+
+    public Account getRecipientAccount(){
+        return recipientAccount;
     }
 
     @Override

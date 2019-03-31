@@ -19,7 +19,7 @@ public class Chequing extends AssetAccount {
 
     @Override
     public String toString(){
-        return "Chequing";
+        return "Account ID " + getAccountID() + ": Chequing";
     }
 
     @Override

@@ -1,5 +1,7 @@
 package Accounts;
 import Actions.Transactions;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import org.javamoney.moneta.Money;
 
 import javax.money.CurrencyUnit;
@@ -39,6 +41,8 @@ public abstract class Account implements Serializable {
      * The transaction record of this account.
      */
     private Map<LocalDate, Transactions> listOfTransactions = new LinkedHashMap<>();
+
+    private static ObservableMap<LocalDate, Transactions> observableListOfTransactions = FXCollections.observableHashMap();
 
     /**
      * Owner's user ID
@@ -83,6 +87,14 @@ public abstract class Account implements Serializable {
      */
     public Map<LocalDate, Transactions> getTransactionsList(){
         return listOfTransactions;
+    }
+
+    public ObservableMap<LocalDate, Transactions> getObservableListOfTransactions(){
+        return observableListOfTransactions;
+    }
+
+    public static void readListOfTransactions(Map<LocalDate, Transactions> map){
+        observableListOfTransactions.putAll(map);
     }
 
     /**

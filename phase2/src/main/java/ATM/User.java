@@ -5,6 +5,7 @@ import Accounts.Chequing;
 import Actions.Transactions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 
 import java.io.Serializable;
 import java.util.*;
@@ -15,8 +16,11 @@ public class User implements Serializable {
 
     private int userID;
     // transRecord: Map Date to an ArrayList
-    private Map <LocalDate, Transactions> transRecord = new LinkedHashMap <>();
+    private List<Transactions> transRecord = new ArrayList<>();
+    private static ObservableList<Transactions> observableTransRecord = FXCollections.observableArrayList();
+
     private List<Account> accounts = new ArrayList<>();
+    private static ObservableList<Account> observableAccounts = FXCollections.observableArrayList();
     private Account primaryAccount;
     private String password;
     private BankManager bankManager;
@@ -27,8 +31,8 @@ public class User implements Serializable {
     private boolean isEmployee;
 
 
-    private int accountRequestCount = 0;
-    private int productRequestCount = 0;
+    private int accountRequestCount;
+    private int productRequestCount;
 
     public User (int userID, String password, BankManager bm, boolean isEmployee){
         this.userID = userID;
@@ -42,6 +46,14 @@ public class User implements Serializable {
         previousPayees.add("Water");
     }
 // getter and setter
+
+    public ObservableList<Account> getObservableAccounts(){
+        return observableAccounts;
+    }
+
+    public void readAllAccounts(){
+        observableAccounts.addAll(accounts);
+    }
 
 
     public int getUserID(){
@@ -95,11 +107,19 @@ public class User implements Serializable {
      */
     public void addTransactions(Transactions t){
 
-        transRecord.put(LocalDate.now(), t);
+        transRecord.add(t);
 
     }
-    public Map<LocalDate, Transactions> getTransactionsList(){
+    public List<Transactions> getTransactionsList(){
         return transRecord;
+    }
+
+    public void readTransactions(){
+        observableTransRecord.addAll(transRecord);
+    }
+
+    public ObservableList<Transactions> getTransactionsObservableList(){
+        return observableTransRecord;
     }
 
     /**
@@ -144,7 +164,6 @@ public class User implements Serializable {
     public List<String> getPreviousPayees(){
         return previousPayees;
     }
-    /////////////
 
     public void product_incrementCount(){
         productRequestCount += 1;
@@ -156,6 +175,10 @@ public class User implements Serializable {
 
     public int product_getCount(){
         return productRequestCount;
+    }
+
+    public String toString(){
+        return "User ID: "+userID;
     }
 }
 

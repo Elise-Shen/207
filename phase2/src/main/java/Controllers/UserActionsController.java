@@ -30,6 +30,10 @@ public class UserActionsController implements Initializable {
 
     }
 
+    public void requestProductBotton() throws Exception {
+        main.showNewBorderPane("/UserActionResources/BankProductPage.fxml");
+    }
+
     public void setPrimAccountButton() throws Exception{
         main.showNewBorderPane("/UserActionResources/SetPrimAccountPage.fxml");
 

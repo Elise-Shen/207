@@ -106,13 +106,13 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        atm = readATM("ATM.ser");
+        atm = readATM("phase2/ATM.ser");
 
         launch(args);
     }
 
     private static void updateData() throws Exception{
-        String filePath = "ATM.ser";
+        String filePath = "phase2/ATM.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);

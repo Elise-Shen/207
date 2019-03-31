@@ -29,7 +29,7 @@ public class AdminMenuController implements Initializable {
     }
 
     public void viewAccountRequestsButton()throws Exception{
-        main.showNewBorderPane("/AdminActionResources/ViewAccountRequestsPage.fxml");
+        main.showNewBorderPane("/AdminActionResources/ViewAccountRequests.fxml");
     }
 
     public void viewProductsRequestsButton() throws Exception{

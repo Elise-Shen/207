@@ -29,8 +29,6 @@ import java.util.ResourceBundle;
 
 public class StartUpController implements Initializable {
 
-    private Main main;
-
     @FXML
     private BorderPane rootPane;
 
@@ -39,11 +37,15 @@ public class StartUpController implements Initializable {
 
     @FXML
     public void loadUserLogin() throws Exception{
-        main.showNewBorderPane("/UserLoginPage.fxml");
+        Main.showNewBorderPane("/UserLoginPage.fxml");
     }
 
     public void loadBankManagerLogin() throws Exception{
-        main.showNewBorderPane("/BankManagerLoginPage.fxml");
+        Main.showNewBorderPane("/BankManagerLoginPage.fxml");
+    }
+
+    public void bankEmployeeLogin()throws Exception{
+        Main.showNewBorderPane("/BankEmployeeMainPage.fxml");
     }
 
     private void initClock(){

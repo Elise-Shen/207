@@ -28,7 +28,7 @@
             <Button mnemonicParsing="false" onAction="#lowRiskInvestment" prefHeight="100.0" prefWidth="200.0" text="Low Risk Investment" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
             <TextField fx:id="productAmount" promptText="Please input an integer" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <TextField fx:id="productLength" prefHeight="31.0" promptText="Please input an integer" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-            <ComboBox fx:id="accountCombo" prefHeight="31.0" prefWidth="520.0" promptText="Choose Account" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <ComboBox fx:id="accountCombo" prefHeight="31.0" prefWidth="520.0" promptText="Choose Account" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Label fx:id="lengthLabel" text="How many month would you like to hold your mortgage?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
             <Label fx:id="amountLabel" text="How much money would you like to put into the bank product?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
             <Button mnemonicParsing="false" onAction="#submitButton" prefHeight="50.0" prefWidth="100.0" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />

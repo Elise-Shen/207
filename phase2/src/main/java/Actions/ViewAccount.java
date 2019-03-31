@@ -62,7 +62,7 @@ public class ViewAccount extends UserActions {
 
     public static void printDepositAccounts(List<Account> currentUserAccounts) {
         for (Account a : currentUserAccounts) {
-            if(a != null && !(a.getAccountType() == 3 || a.getAccountType()== 4)){
+            if(a != null && !(a.getAccountType() == 3 || a.getAccountType()== 4 || a.getAccountType() == 5)){
                 depositAccounts.add(a);
                 System.out.println(a.getAccountID() + " - " + a);
             }

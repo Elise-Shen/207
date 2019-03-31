@@ -19,7 +19,6 @@ import javax.money.convert.CurrencyConversion;
 import javax.money.convert.MonetaryConversions;
 import java.net.URL;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class NetTotalController implements Initializable {

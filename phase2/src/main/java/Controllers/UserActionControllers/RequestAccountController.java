@@ -1,18 +1,15 @@
 package Controllers.UserActionControllers;
 
 import ATM.*;
-import Accounts.Account;
 import Controllers.Helpers.ConfirmBoxController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 
 import javax.money.CurrencyUnit;
 import java.net.URL;
-import java.util.Currency;
 import java.util.ResourceBundle;
 
 public class RequestAccountController implements Initializable {

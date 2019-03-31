@@ -27,15 +27,13 @@ public class NetTotalController implements Initializable {
     @FXML
     private Label NetTotalLabel;
 
-    private Main main;
-
     public void goToUserActionList() throws Exception{
-        main.showNewBorderPane("/UserActionsPage.fxml");
+        Main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         BankManager bankManager = atm.getATMBankManager();
         int userID = atm.getCurrentUserID();
         User currentUser = bankManager.getUser(userID);

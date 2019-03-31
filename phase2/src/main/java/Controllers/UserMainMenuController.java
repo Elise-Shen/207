@@ -10,21 +10,19 @@ import java.util.concurrent.ExecutionException;
 
 public class UserMainMenuController implements Initializable {
 
-    private Main main;
-
     @FXML
     public void backToUserLogin() throws Exception{
-        main.showNewBorderPane("/UserLoginPage.fxml");
+        Main.showNewBorderPane("/UserLoginPage.fxml");
     }
 
     @FXML
     public void userActionButton() throws Exception {
-        main.showNewBorderPane("/UserActionsPage.fxml");
+        Main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
     @FXML
     public void transactionButton() throws Exception{
-        main.showNewBorderPane("/TransactionPage.fxml");
+        Main.showNewBorderPane("/TransactionPage.fxml");
     }
 
     @Override

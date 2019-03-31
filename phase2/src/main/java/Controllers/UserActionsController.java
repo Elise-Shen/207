@@ -11,15 +11,12 @@ import java.util.ResourceBundle;
 public class UserActionsController implements Initializable {
     private User currentUser;
 
-    private Main main;
     public void goToUserMainMenu() throws Exception{
         Main.showNewBorderPane("/UserMainMenuPage.fxml");
     }
 
     public void changePasswordButton()throws Exception{
         Main.showNewBorderPane("/UserActionResources/ChangePasswordPage.fxml");
-        //done
-
     }
 
     public void netTotalButton()throws Exception{
@@ -31,7 +28,7 @@ public class UserActionsController implements Initializable {
         if(currentUser.getCount() == 0) {
             Main.showNewBorderPane("/UserActionResources/RequestAccountPage.fxml");
         }else{
-            main.showReachRequestLimit();
+            Main.showReachRequestLimit();
         }
     }
 

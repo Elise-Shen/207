@@ -21,20 +21,19 @@ public class UserLoginController implements Initializable {
     @FXML
     private PasswordField passwordField;
 
-    private Main main;
 
     @FXML
     public void goBack() throws  Exception{
-        main.showMainView();
+        Main.showMainView();
     }
 
     @FXML
     public void loginButtonPressed() throws  Exception{
         String userID = text.getText();
         String password = passwordField.getText();
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         if(atm.userLogin(userID, password)){
-            main.showNewBorderPane("/UserMainMenuPage.fxml");
+            Main.showNewBorderPane("/UserMainMenuPage.fxml");
         }
 
 

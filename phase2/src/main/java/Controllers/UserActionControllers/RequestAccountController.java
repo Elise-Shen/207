@@ -16,7 +16,6 @@ import java.util.Currency;
 import java.util.ResourceBundle;
 
 public class RequestAccountController implements Initializable {
-    private Main main;
 
     @FXML
     private ComboBox<String> isJointAccount;
@@ -42,7 +41,7 @@ public class RequestAccountController implements Initializable {
         jointUser.getItems().clear();
         accountType.getItems().clear();
         isJointAccount.getItems().clear();
-        main.showNewBorderPane("/UserActionsPage.fxml");
+        Main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
     public void isJoint(){
@@ -68,7 +67,7 @@ public class RequestAccountController implements Initializable {
     }
 
     public void requestButton()throws Exception{
-        main.showConfirmBox();
+        Main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()) {
             joint = isJointAccount.getValue().equals("True");
             type = accountType.getValue();
@@ -116,7 +115,7 @@ public class RequestAccountController implements Initializable {
                 currentUser.incrementCount();
             }
 
-            main.showNewBorderPane("/HelperBoxes/RequestedAccountBox.fxml");
+            Main.showNewBorderPane("/HelperBoxes/RequestedAccountBox.fxml");
         }
     }
 
@@ -143,7 +142,7 @@ public class RequestAccountController implements Initializable {
         selectCurrency.setItems(currencies);
 
 
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUserID = atm.getCurrentUserID();
         currentUser = bankManager.getUser(currentUserID);

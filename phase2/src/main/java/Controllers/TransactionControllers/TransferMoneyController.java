@@ -15,7 +15,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TransferMoneyController implements Initializable {
-    private Main main;
     private BankManager bankManager;
     private int currentUserID;
 
@@ -37,11 +36,11 @@ public class TransferMoneyController implements Initializable {
         transferOut.getItems().clear();
         transferIn.getItems().clear();
         transferUser.getItems().clear();
-        main.showNewBorderPane("/TransactionPage.fxml");
+        Main.showNewBorderPane("/TransactionPage.fxml");
     }
 
     public void transferMoneyButton()throws Exception{
-        main.showConfirmBox();
+        Main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()) {
             from = transferOut.getValue();
             to = transferIn.getValue();
@@ -55,13 +54,13 @@ public class TransferMoneyController implements Initializable {
                 from.addTransaction(transfer);
                 to.addTransaction(transfer);
                 bankManager.getUser(currentUserID).addTransactions(transfer);
-                main.showNewBorderPane("/HelperBoxes/TransferredBox.fxml");
+                Main.showNewBorderPane("/HelperBoxes/TransferredBox.fxml");
                 transferUser.getItems().clear();
                 transferOut.getItems().clear();
                 transferIn.getItems().clear();
 
             }else{
-                main.showNotEnoughMoney();
+                Main.showNotEnoughMoney();
             }
         }
     }
@@ -84,7 +83,7 @@ public class TransferMoneyController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUserID = atm.getCurrentUserID();
         User currentUser = bankManager.getUser(currentUserID);

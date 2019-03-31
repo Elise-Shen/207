@@ -8,6 +8,6 @@ public class StudentLoan extends DebtAccount {
 
     @Override
     public String toString() {
-        return "Student Loan";
+        return "Account ID " + getAccountID() + ": Student Loan";
     }
 }

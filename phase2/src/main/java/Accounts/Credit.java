@@ -23,7 +23,7 @@ public class Credit extends DebtAccount {
 
     @Override
     public String toString() {
-        return "Credit";
+        return "Account ID " + getAccountID() + ": Credit";
     }
 
     @Override

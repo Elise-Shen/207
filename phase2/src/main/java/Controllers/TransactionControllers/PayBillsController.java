@@ -7,7 +7,7 @@ import Accounts.Account;
 import Actions.PayBills;
 import Actions.ViewAccount;
 import Controllers.Helpers.ConfirmBoxController;
-import Controllers.Helpers.NotEnoughMoneyController;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PayBillsController implements Initializable {
-    private Main main;
     private BankManager bankManager;
     private int currentUserID;
     private PayBills payBills;
@@ -39,11 +38,11 @@ public class PayBillsController implements Initializable {
     public void goToTransactionList() throws Exception{
         recipientCombo.getItems().clear();
         payBillCombo.getItems().clear();
-        main.showNewBorderPane("/TransactionPage.fxml");
+        Main.showNewBorderPane("/TransactionPage.fxml");
     }
 
     public void payBills() throws Exception{
-        main.showConfirmBox();
+        Main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()) {
             accountChoice = payBillCombo.getValue();
             amountChoice = Integer.parseInt(amountCombo.getValue());
@@ -52,7 +51,7 @@ public class PayBillsController implements Initializable {
             payBills = new PayBills(currentUserID, bankManager);
             boolean enoughMoney = payBills.executePayBill(accountChoice, amountChoice);
             if (!enoughMoney) {
-                main.showNotEnoughMoney();
+                Main.showNotEnoughMoney();
             } else {
                 if(!currentUser.getPreviousPayees().contains(recipient)) {
                     currentUser.addPayee(recipient);
@@ -60,14 +59,14 @@ public class PayBillsController implements Initializable {
                 recipientCombo.getItems().clear();
                 payBillCombo.getItems().clear();
                 currentUser.addTransactions(payBills);
-                main.showNewBorderPane("/HelperBoxes/PaidBillBox.fxml");
+                Main.showNewBorderPane("/HelperBoxes/PaidBillBox.fxml");
             }
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUserID = atm.getCurrentUserID();
         currentUser = bankManager.getUser(currentUserID);

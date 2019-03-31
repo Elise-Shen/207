@@ -19,7 +19,7 @@ public class LineOfCredit extends DebtAccount {
 
     @Override
     public String toString() {
-        return "Line of Credit";
+        return "Account ID " + getAccountID() + ": Line of Credit";
     }
 
     @Override

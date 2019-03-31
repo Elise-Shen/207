@@ -19,8 +19,7 @@ public abstract class MortgageProduct extends BankProduct{
         boolean status = this.account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
         if (status == false){
             System.out.println("Aware! Your balance in this account is negative!");
-        }
-        is_finish=true;
+        } else { is_finish=true; }
     }
     @Override
     public int getProductType() {

@@ -30,3 +30,4 @@ public abstract class MortgageProduct extends BankProduct{
     public double getInterestRate(){return interest_rate;}
 
 }
+

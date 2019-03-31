@@ -30,7 +30,7 @@
                         <Font size="25.0" />
                     </font>
                 </Label>
-                <Label fx:id="withdrawAccount" prefHeight="45.0" prefWidth="225.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Label fx:id="withdrawAccount" prefHeight="84.0" prefWidth="348.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <font>
                         <Font size="25.0" />
                     </font>
@@ -40,7 +40,7 @@
                         <Font size="30.0" />
                     </font>
                 </Button>
-                <Label fx:id="withdrawAmount" prefHeight="45.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                <Label fx:id="withdrawAmount" prefHeight="74.0" prefWidth="267.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                     <font>
                         <Font size="25.0" />
                     </font>

@@ -18,7 +18,7 @@ public abstract class Account implements Serializable {
     /**
      * The total number of accounts created.
      */
-    static int numAccount;
+    public static int numAccount;
 
     /**
      * The balance of this account.

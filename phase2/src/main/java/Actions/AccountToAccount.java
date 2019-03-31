@@ -105,8 +105,8 @@ public class AccountToAccount extends Transactions {
 
     @Override
     public String toString() {
-        return "Transfer $" + amountTransferred + "from account " +
-                currentAccountID + " to account " + recipientAccountID;
+        return "Transfer of " + amountTransferred + " from User " + currentAccount.getOwnerID() +"'s " +
+                currentAccount + " account  to User " +recipientAccount.getOwnerID()+"'s " + recipientAccount;
     }
 }
 

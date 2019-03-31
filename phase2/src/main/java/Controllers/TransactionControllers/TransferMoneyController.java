@@ -40,7 +40,7 @@ public class TransferMoneyController implements Initializable {
         main.showNewBorderPane("/TransactionPage.fxml");
     }
 
-    public void transferButton()throws Exception{
+    public void transferMoneyButton()throws Exception{
         main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()) {
             from = transferOut.getValue();
@@ -54,6 +54,7 @@ public class TransferMoneyController implements Initializable {
             if(enoughMoney){
                 from.addTransaction(transfer);
                 to.addTransaction(transfer);
+                bankManager.getUser(currentUserID).addTransactions(transfer);
                 main.showNewBorderPane("/HelperBoxes/TransferredBox.fxml");
                 transferUser.getItems().clear();
                 transferOut.getItems().clear();

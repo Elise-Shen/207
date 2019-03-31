@@ -52,6 +52,7 @@ public class WithdrawController implements Initializable {
             if (enoughMoney) {
                 withdrawAccount.addTransaction(withdrawMoney);
                 amountWithdrawn = withdrawMoney.getAmountWithdrawn();
+                bankManager.getUser(currentUserID).addTransactions(withdrawMoney);
                 main.showNewBorderPane("/HelperBoxes/WithdrawnBox.fxml");
 
             } else {

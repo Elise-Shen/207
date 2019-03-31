@@ -44,7 +44,7 @@ public class RequestProduct extends UserActions {
         if (type==LONGTERMMORTGAGE || type==SHORTTERMMORTGAGE) {
             while (!isValid) {
                 Keypad keypad = new Keypad();
-                length = keypad.getIntInput("\nHow many money would you like to hold your mortgage?"
+                length = keypad.getIntInput("\nHow many month would you like to hold your mortgage?"
                         + "\n please input an integer");
                 if (type == LONGTERMMORTGAGE){
                     if (length > MORTGAGEBOUNDARY){ isValid = true;}
@@ -74,7 +74,8 @@ public class RequestProduct extends UserActions {
         while (!isValid) {
             Keypad keyPad = new Keypad();
             typeChoice = keyPad.getIntInput("\nWhat type of bank product do you wish to create?" +
-                    "\n1 - Long Term Mortgage \n2 - Short Term Mortgage\n3 - High Risk Investment\n4 - Low Risk Investment\n0 - Exit");
+                    "\n1 - Long Term Mortgage \n2 - Short Term Mortgage\n3 - High Risk Investment" +
+                    "\n4 - Low Risk Investment\n0 - Exit");
             if (typeChoice <= 4 && typeChoice >= 0) {
                 isValid = true;
             } else {

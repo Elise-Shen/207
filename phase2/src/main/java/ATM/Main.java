@@ -49,7 +49,7 @@ public class Main extends Application {
         updateData();
     }
 
-    public static void showNewBorderPane(String file    name) throws Exception{
+    public static void showNewBorderPane(String filename) throws Exception{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource(filename));
         BorderPane page = loader.load();

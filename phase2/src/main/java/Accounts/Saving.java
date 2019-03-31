@@ -45,6 +45,10 @@ public class Saving extends AssetAccount {
 
     public static double getInterestRate(){return interestRate;}
 
+    public List<BankProduct> getBankProducts() { return bankProducts; }
+
+    public void addBankProducts(BankProduct bankProduct){ bankProducts.add(bankProduct);}
+
     @Override
     public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
         MonetaryAmount currencyBalance = getCurrencyBalance();

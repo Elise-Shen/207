@@ -63,7 +63,8 @@ public class ViewAccountRequests extends AdminAction {
             entry = entries.next();
             mapKey = entry.getKey();
             Map<String, Integer> value = accountRequests.get(mapKey);
-            Integer accountType =value.get(mapIterator(value));
+            String firstKey = ((NavigableMap<String, Integer>) value).firstEntry().getKey();
+            Integer accountType =value.get(firstKey);
             System.out.println("\n" + count + " - User " + getUsers(mapKey) + " requested a " +
                     bankManager.getAccountName(accountType) + " account.");
             //keeps iterating until the last item
@@ -72,19 +73,6 @@ public class ViewAccountRequests extends AdminAction {
         return count;
     }
 
-    /**
-     * Return the last mapKey.
-     */
-    private String mapIterator(Map<String, Integer> map){
-        Iterator<Map.Entry<String, Integer>> entries = map.entrySet().iterator();
-        Map.Entry<String, Integer> entry;
-        String mapKey = "";
-        while (entries.hasNext()){
-            entry = entries.next();
-            mapKey = entry.getKey();
-        }
-        return mapKey;
-    }
 
     /**
      * Handles the account creation requests.
@@ -101,9 +89,9 @@ public class ViewAccountRequests extends AdminAction {
             mapKey = entry.getKey();
         }
         Map<String, Integer> value = accountRequests.get(mapKey);
-        String currency = mapIterator(value);
-        int accountType = accountRequests.get(mapKey).get(currency);
-        bankManager.createAccount(mapKey, accountType, currency);
+        String firstKey = ((NavigableMap<String, Integer>) value).firstEntry().getKey();
+        int accountType = accountRequests.get(mapKey).get(firstKey);
+        bankManager.createAccount(mapKey, accountType, firstKey);
         bankManager.getAccountRequests().remove(mapKey);
     }
 

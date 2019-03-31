@@ -1,6 +1,7 @@
 package AdminActions;
 
 import ATM.BankManager;
+import ATM.BankProductsEmployee;
 
 import java.io.Serializable;
 
@@ -10,9 +11,13 @@ public abstract class AdminAction implements Serializable {
 
     private BankManager bankManager;
 
+    private BankProductsEmployee bankProductsEmployee;
+
     public AdminAction(BankManager bankManager){
         this.bankManager = bankManager;
     }
+
+    public AdminAction(BankProductsEmployee bankProductsEmployee){this.bankProductsEmployee = bankProductsEmployee;}
 
     public abstract void execute();
 

@@ -15,6 +15,7 @@ public abstract class BankProduct implements Serializable{
     public MonetaryAmount product_amount ;// borrowed amount for each type of mortgage
     public int product_month; // number of days borrowed
     public double interest_rate;
+    public boolean is_finish = false;
 
     private final int productID;
     private final LocalDate dateCreation;
@@ -38,16 +39,23 @@ public abstract class BankProduct implements Serializable{
         this.dateCreation = LocalDate.now();
         this.account = account;
     }
+
+
     public void setDateEnd (int product_month){
         dateEnd = dateCreation.plusMonths(product_month);
     }
+
     public LocalDate getDateCreation() {
         return this.dateCreation;
     }
+
     public LocalDate getDateEnd(){return dateEnd;}
+
     public void increaseNumProduct(){
         numProduct += 1;
     }
+
+    public boolean getIsFinished(){return is_finish;}
 
 
     public int getProductID() {
@@ -70,6 +78,22 @@ public abstract class BankProduct implements Serializable{
         CurrencyUnit currencyUnit = Monetary.getCurrency(Locale.getDefault());
         return Money.of(amount, currencyUnit);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

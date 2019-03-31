@@ -5,6 +5,7 @@ import ATM.BankManager;
 import ATM.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -21,6 +22,7 @@ public class UserLoginController implements Initializable {
     @FXML
     private PasswordField passwordField;
 
+    @FXML private Label wrongPasswordLabel;
 
     @FXML
     public void goBack() throws  Exception{
@@ -34,6 +36,8 @@ public class UserLoginController implements Initializable {
         ATM_Machine atm = Main.getCurrentATM();
         if(atm.userLogin(userID, password)){
             Main.showNewBorderPane("/UserMainMenuPage.fxml");
+        }else{
+            wrongPasswordLabel.setVisible(true);
         }
 
 
@@ -44,6 +48,7 @@ public class UserLoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        wrongPasswordLabel.setVisible(false);
 
     }
 }

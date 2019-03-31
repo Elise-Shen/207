@@ -69,8 +69,8 @@ public class ViewProductRequests extends AdminAction {
             int productAmount = productStat.get(2);
             int productLength = productStat.get(3);
             System.out.println("\n" + count + " - User " + mapKey + " requested a " +
-                    bankProductsEmployee.getProductName(productType) + "in account " + accountID + "with amount " +
-                    productAmount + "duration " + productLength + "month.");
+                    bankProductsEmployee.getProductName(productType) + " in account " + accountID + " with amount " +
+                    productAmount + " duration " + productLength + " month.");
             //keeps iterating until the last item
             //sets map-key to last item
         }

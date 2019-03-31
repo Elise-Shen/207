@@ -52,12 +52,12 @@ public class BuyForeignCurrencyController implements Initializable {
                 int amount = getAmount(lastLine);
                 if (cashStorage.withdrawal(localCurrency, amount)) {
                     int i = 0;
-                    while (i < lastLine.length && lastLine[i+2] != null) {
+                    while ((i + 2) < lastLine.length && lastLine[i+2] != null) {
                         cashStorage.addBills(lastLine[0], Integer.valueOf(lastLine[i+1]), Integer.valueOf(lastLine[i+2]));
                         i++;
                     }
                     result.setText("Used local currency " + convertTo.toString() + " to purchase foreign currency " + lastLine[0]
-                            + amount);
+                            + " " + amount);
                 }
             } else {
                 result.setText("Transaction failed.");
@@ -96,14 +96,10 @@ public class BuyForeignCurrencyController implements Initializable {
     private boolean enoughLocalCurrency(CashStorage cs, String currencyType, int amount) {
         String localCurrency = Monetary.getCurrency(Locale.getDefault()).toString();
         CurrencyConversion conversion = MonetaryConversions.getConversion(localCurrency);
-        MonetaryAmount converted = Money.of(amount, currencyType).with(conversion);
-        this.convertTo = converted;
+        MonetaryAmount convertTo = Money.of(amount, currencyType).with(conversion);
+        this.convertTo = convertTo;
         MonetaryAmount localStorage = Money.of(cs.getCashStorage().get(localCurrency).getTotalStorage(), localCurrency);
-        if (!cs.getCashStorage().containsKey(currencyType)) {
-            return false;
-        } else {
-            return converted.isGreaterThan(localStorage);
-        }
+        return convertTo.isLessThanOrEqualTo(localStorage);
     }
 
     /**
@@ -112,7 +108,7 @@ public class BuyForeignCurrencyController implements Initializable {
     private int getAmount(String[] line) {
         int amount = 0;
         int i = 0;
-        while (i < line.length && line[i+2] != null) {
+        while ((i + 2) < line.length && line[i+2] != null) {
             amount += Integer.valueOf(line[i+1]) * Integer.valueOf(line[i+2]);
             i++;
         }

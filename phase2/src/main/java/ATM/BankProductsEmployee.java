@@ -31,26 +31,44 @@ public class BankProductsEmployee implements Serializable {
         return productRequests;
     }
 
+    /**
+     * store the info needed to create new product
+     * @param userID
+     * @param accountID
+     * @param productType
+     * @param productAmount
+     * @param productLength
+     */
     public void requestProducts(int userID, int accountID, int productType, int productAmount, int productLength){
         List<Integer> productStat = new ArrayList<>();
         productStat.add(accountID);
         productStat.add(productType);
         productStat.add(productAmount);
         productStat.add(productLength);
+        // a map that map user ID to the info needed to create a new product
         productRequests.put(userID, productStat);
     }
 
+    /**
+     * create product with given info
+     * @param mapKey
+     * @param accountID
+     * @param productType
+     * @param productAmount
+     * @param productLength
+     */
     public void createProduct(int mapKey, int accountID, int productType, int productAmount, int productLength){
         boolean isValid;
         Account account = bm.getOneAccount(accountID);
         BankProduct bankProduct = bankProductFactory.getBankProduct(productType, productAmount, productLength, account);
         ((Saving)account).addBankProducts(bankProduct);
-
+        //Determine create mortgage or investment product
         if (productType == LONGTERMMORTGAGE || productType == SHORTTERMMORTGAGE){
             ((MortgageProduct)bankProduct).giveLoan();
             isValid = true;
         } else {isValid = ((InvestmentProduct)bankProduct).doInvestment();}
 
+        // give user feedback of their action
         if (isValid) {
             System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey).getUserID() +
                 " in account " + accountID + ".");
@@ -64,6 +82,10 @@ public class BankProductsEmployee implements Serializable {
 
     public String getPassword() { return password; }
 
+    /**
+     * update the date info for mortage and investment, which will affect the give back loan/revenue
+     * @param localDate
+     */
     public void updateSaving(LocalDate localDate) {
         List<Account> allAccounts = bm.getAllAccounts();
         for (Account a : allAccounts) {
@@ -86,7 +108,7 @@ public class BankProductsEmployee implements Serializable {
                 name = "Long Term Mortgage";
                 break;
             case SHORTTERMMORTGAGE:
-                name = "Short Term Mortgage";
+                 name = "Short Term Mortgage";
                 break;
             case HIGHRISKINVESTMENT:
                 name = "High Risk Investment";

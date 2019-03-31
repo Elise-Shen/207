@@ -420,7 +420,7 @@ public class ATM_Machine implements Serializable{
     /**
      * Call Manager to add interest to all savings accounts on the last day of the every month.
      */
-    private void addInterests() {
+    public void addInterests() {
         if (isStartOfMonth() && !interestAdded) {
             bankManager.addInterests();
             interestAdded = true;

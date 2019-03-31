@@ -1,4 +1,4 @@
 package Controllers.AdminActionControllers;
 
-public class ViewProductsRequestsController {
+public class ViewProductButtonController {
 }

@@ -27,8 +27,5 @@ public class HighRiskInvestment extends InvestmentProduct {
         setRisk(x);
 
     }
-    @Override
-    public int getProductType() {
-        return 3;
-    }
+
 }

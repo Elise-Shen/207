@@ -45,8 +45,12 @@ public class BankProductsEmployee implements Serializable {
         BankProduct bankProduct = bankProductFactory.getBankProduct(productType, productAmount, productLength, account);
         ((Saving)account).addBankProducts(bankProduct);
 
-        System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey) +
-                "in account " + accountID + ".");
+        if (productType == LONGTERMMORTGAGE || productType == SHORTTERMMORTGAGE){
+            ((MortgageProduct)bankProduct).giveLoan();
+        } else {((InvestmentProduct)bankProduct).do_investment();}
+
+        System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey).getUserID() +
+                " in account " + accountID + ".");
     }
 
     public User getUser(int userID){ return(bm.getUser(userID)); }

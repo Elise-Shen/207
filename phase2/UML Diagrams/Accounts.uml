@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Accounts</OriginalElement>
+  <nodes>
+    <node x="415.36458333333337" y="0.0">Accounts.Account</node>
+    <node x="983.0" y="1095.5">Accounts.StudentLoan</node>
+    <node x="891.1354166666666" y="784.0">Accounts.DebtAccount</node>
+    <node x="746.0" y="1051.0">Accounts.Credit</node>
+    <node x="265.6354166666667" y="828.5">Accounts.AssetAccount</node>
+    <node x="1185.0" y="1051.0">Accounts.LineOfCredit</node>
+    <node x="0.0" y="1073.5">Accounts.Chequing</node>
+    <node x="373.0" y="996.0">Accounts.Saving</node>
+    <node x="0.0" y="1313.0">Accounts.AccountFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Accounts.StudentLoan" target="Accounts.DebtAccount">
+      <point x="0.0" y="-36.5" />
+      <point x="1074.0" y="971.0" />
+      <point x="1067.6354166666665" y="971.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="Accounts.LineOfCredit" target="Accounts.DebtAccount">
+      <point x="0.0" y="-81.0" />
+      <point x="1293.5" y="971.0" />
+      <point x="1185.3020833333335" y="971.0" />
+      <point x="117.66666666666674" y="81.0" />
+    </edge>
+    <edge source="Accounts.DebtAccount" target="Accounts.Account">
+      <point x="0.0" y="-81.0" />
+      <point x="1067.6354166666665" y="759.0" />
+      <point x="773.8645833333334" y="759.0" />
+      <point x="119.5" y="367.0" />
+    </edge>
+    <edge source="Accounts.Saving" target="Accounts.AssetAccount">
+      <point x="0.0" y="-136.0" />
+      <point x="549.5" y="971.0" />
+      <point x="402.1354166666667" y="971.0" />
+      <point x="45.5" y="36.5" />
+    </edge>
+    <edge source="Accounts.AssetAccount" target="Accounts.Account">
+      <point x="0.0" y="-36.5" />
+      <point x="356.6354166666667" y="759.0" />
+      <point x="534.8645833333334" y="759.0" />
+      <point x="-119.5" y="367.0" />
+    </edge>
+    <edge source="Accounts.Credit" target="Accounts.DebtAccount">
+      <point x="0.0" y="-81.0" />
+      <point x="854.5" y="971.0" />
+      <point x="949.96875" y="971.0" />
+      <point x="-117.66666666666663" y="81.0" />
+    </edge>
+    <edge source="Accounts.Chequing" target="Accounts.AssetAccount">
+      <point x="0.0" y="-58.5" />
+      <point x="176.5" y="971.0" />
+      <point x="311.1354166666667" y="971.0" />
+      <point x="-45.5" y="36.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="286.5" y="1033.0" />
+  <SelectedNodes>
+    <node>Accounts.Saving</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>BankProducts</OriginalElement>
+  <nodes>
+    <node x="438.25" y="79.0">BankProducts.MortgageProduct</node>
+    <node x="88.5" y="79.0">BankProducts.InvestmentProduct</node>
+    <node x="279.875" y="0.0">BankProducts.BankProduct</node>
+    <node x="519.0" y="158.0">BankProducts.ShortTermMortgage</node>
+    <node x="344.0" y="158.0">BankProducts.LongTermMortgage</node>
+    <node x="0.0" y="158.0">BankProducts.HighRiskInvestment</node>
+    <node x="174.0" y="158.0">BankProducts.LowRiskInvestment</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="BankProducts.MortgageProduct" target="BankProducts.BankProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="509.25" y="54.0" />
+      <point x="366.875" y="54.0" />
+      <point x="29.0" y="14.5" />
+    </edge>
+    <edge source="BankProducts.LongTermMortgage" target="BankProducts.MortgageProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="421.5" y="133.0" />
+      <point x="473.75" y="133.0" />
+      <point x="-35.5" y="14.5" />
+    </edge>
+    <edge source="BankProducts.LowRiskInvestment" target="BankProducts.InvestmentProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="249.0" y="133.0" />
+      <point x="200.25" y="133.0" />
+      <point x="37.25" y="14.5" />
+    </edge>
+    <edge source="BankProducts.InvestmentProduct" target="BankProducts.BankProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="163.0" y="54.0" />
+      <point x="308.875" y="54.0" />
+      <point x="-29.0" y="14.5" />
+    </edge>
+    <edge source="BankProducts.HighRiskInvestment" target="BankProducts.InvestmentProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="77.0" y="133.0" />
+      <point x="125.75" y="133.0" />
+      <point x="-37.25" y="14.5" />
+    </edge>
+    <edge source="BankProducts.ShortTermMortgage" target="BankProducts.MortgageProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="597.0" y="133.0" />
+      <point x="544.75" y="133.0" />
+      <point x="35.5" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="338.0" y="371.5" />
+  <SelectedNodes>
+    <node>BankProducts.MortgageProduct</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

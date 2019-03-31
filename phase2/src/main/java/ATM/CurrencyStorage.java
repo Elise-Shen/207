@@ -172,4 +172,11 @@ public class CurrencyStorage implements Serializable {
             currencyStorage.put(denomination, MAX_STOCK);
         }
     }
+
+    /**
+     * Return the currency storage.
+     */
+    public Map<Integer, Integer> getCurrencyStorage() {
+        return this.currencyStorage;
+    }
 }

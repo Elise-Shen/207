@@ -17,6 +17,11 @@ public class TransactionsController implements Initializable {
         Main.showNewBorderPane("/UserMainMenuPage.fxml");
     }
 
+    /**
+     * Deposits directly to the primary accounts
+     * @throws Exception
+     */
+
     public void quickDeposit()throws Exception{
         ATM_Machine tempATM = Main.getCurrentATM();
         BankManager bankManager = tempATM.getATMBankManager();

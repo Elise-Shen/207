@@ -111,6 +111,7 @@ public class DepositMoney extends Transactions {
 
     public void checkDeposit(List<String[]>deposit, Account account){
         currentAccount = account;
+        currentAccountID = currentAccount.getAccountID();
         System.out.println(currentAccount.getOwnerID() + ", " + currentAccount);
         String[] lastLine = null;
         // let's print all the deposits read from CSV file
@@ -172,7 +173,7 @@ public class DepositMoney extends Transactions {
 
     @Override
     public String toString() {
-        return "Deposit " + depositType + " of amount $" + amountDeposited + " to Asset account " + currentAccountID;
+        return "Deposit " + depositType + " of " + amountDeposited /*+ " to Asset account " + currentAccountID*/;
     }
 }
 

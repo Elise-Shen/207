@@ -22,6 +22,8 @@ public class WithdrawMoney extends Transactions {
      */
     private CashStorage cashStorage;
 
+    private Account currentAccount;
+
     /**
      * Construct a WithdrawMoney action instance.
      */
@@ -63,8 +65,17 @@ public class WithdrawMoney extends Transactions {
         }
     }
 
-    public void executeWithdraw(int amount){
-        getBankManager().getOneAccount(currentAccountID).createMoney(amount);
+    public boolean executeWithdraw(Account account, int amount){
+        currentAccount = account;
+        currentAccountID = currentAccount.getAccountID();
+        amountWithdrawn = currentAccount.createMoney(amount);
+        return currentAccount.decreaseCurrencyBalance(amountWithdrawn);
+
+
+    }
+
+    public Account getCurrentAccount(){
+        return currentAccount;
     }
 
 
@@ -79,7 +90,7 @@ public class WithdrawMoney extends Transactions {
 
     @Override
     public String toString() {
-        return "Withdrawal $" + amountWithdrawn + "from account " + currentAccountID;
+        return "Withdrawal of " + amountWithdrawn /*+ "from account " + currentAccountID*/;
     }
 }
 

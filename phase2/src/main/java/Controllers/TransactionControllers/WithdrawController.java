@@ -7,12 +7,14 @@ import ATM.User;
 import Accounts.Account;
 import Actions.ViewAccount;
 import Actions.WithdrawMoney;
+import Controllers.Helpers.ConfirmBoxController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
+import javax.money.MonetaryAmount;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,7 +30,8 @@ public class WithdrawController implements Initializable {
     private ComboBox<Account> withdrawChoice;
 
     private WithdrawMoney withdrawMoney;
-    private Account withdrawAccount;
+    public static Account withdrawAccount;
+    public static MonetaryAmount amountWithdrawn;
 
     public String getWithdrawAmountText(){
         return withdrawAmountLabel.getText();
@@ -38,15 +41,23 @@ public class WithdrawController implements Initializable {
         main.showNewBorderPane("/TransactionPage.fxml");
     }
 
-    public void withdrawButton(){
-        int amount = Integer.parseInt(getWithdrawAmountText());
-        withdrawAccount = withdrawChoice.getValue();
+    public void withdrawButton()throws Exception{
+        main.showConfirmBox();
+        if(ConfirmBoxController.getConfirm()) {
+            int amount = Integer.parseInt(getWithdrawAmountText());
+            withdrawAccount = withdrawChoice.getValue();
 
-        withdrawMoney = new WithdrawMoney(currentUserID, bankManager, cashStorage);
+            withdrawMoney = new WithdrawMoney(currentUserID, bankManager, cashStorage);
+            boolean enoughMoney = withdrawMoney.executeWithdraw(withdrawAccount, amount);
+            if (enoughMoney) {
+                withdrawAccount.addTransaction(withdrawMoney);
+                amountWithdrawn = withdrawMoney.getAmountWithdrawn();
+                main.showNewBorderPane("/HelperBoxes/WithdrawnBox.fxml");
 
-
-        withdrawAccount.addTransaction(withdrawMoney);
-
+            } else {
+                main.showNotEnoughMoney();
+            }
+        }
 
     }
 

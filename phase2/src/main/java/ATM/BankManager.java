@@ -12,6 +12,8 @@ import java.io.*;
 import java.util.InputMismatchException;
 
 import java.util.*;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 
 
@@ -33,6 +35,8 @@ public class BankManager implements Serializable {
     private final int SAVINGS = 2;
     private final int CREDIT = 3;
     private final int LINE_OF_CREDIT = 4;
+
+    private static ObservableList<User> allUsers = FXCollections.observableArrayList();
 
     public BankManager(String bankName, String password){
         this.bankName = bankName;
@@ -309,6 +313,14 @@ public class BankManager implements Serializable {
 
     public String toString(){
         return bankName;
+    }
+
+    public void readUserList(){
+        allUsers.addAll(userArrayList);
+    }
+
+    public ObservableList<User> getAllUsers(){
+        return allUsers;
     }
 }
 

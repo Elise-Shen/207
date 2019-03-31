@@ -14,9 +14,6 @@ public class BankManagerLoginController implements Initializable {
 
 
     @FXML
-    private TextField text;
-
-    @FXML
     private PasswordField passwordField;
 
     private Main main;

@@ -26,6 +26,7 @@ public class RequestProduct extends UserActions {
 
         if(currentUser.product_getCount() < LIMIT ) {
             int productType = getProductType();
+
             int productAmount = getProductAmount();
             int puductLength = getProductLength(productType);
             currentUser.product_incrementCount();

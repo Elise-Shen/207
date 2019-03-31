@@ -3,26 +3,25 @@ package AdminActions;
 import ATM.BankProductsEmployee;
 import ATM.Keypad;
 
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-/**
+import java.util.*;
+
 public class ViewProductRequests extends AdminAction {
+
+    private Map<Integer, List<Integer>> productRequests;
 
     private final BankProductsEmployee bankProductsEmployee = getBankProductsEmployee();
 
     public ViewProductRequests(BankProductsEmployee bankProductsEmployee) {
         super(bankProductsEmployee);
+        productRequests = bankProductsEmployee.getProductRequests();
     }
 
     @Override
     public void execute() {
-        Map<Integer, Map<Integer, Map<Integer, List<Integer>>>> productRequests = bankProductsEmployee.getProductRequests();
         boolean exited = false;
         while (!exited) {
             if (!productRequests.isEmpty()) {
-                int count = displayProductCreationRequests(productRequests);
+                int count = displayProductCreationRequests();
                 boolean isValid = false;
                 while (!isValid) {
                     try {
@@ -30,7 +29,7 @@ public class ViewProductRequests extends AdminAction {
                         int choice = keyPad.getIntInput("Enter the number of the request you wish to " +
                                 "approve or enter 0 to exit");
                         if (choice > 0 && choice <= count) {
-                            handleAccountCreationRequests(choice);
+                            handleProductCreationRequests(choice);
                             isValid = true;
                         } else if (choice == 0) {
                             break;
@@ -46,7 +45,7 @@ public class ViewProductRequests extends AdminAction {
             exited = true;
         }//while loop end
 
-        if (accountRequests.isEmpty()) {
+        if (productRequests.isEmpty()) {
             System.out.println("\nThere are no account requests at the moment");
         } else {
             System.out.println("Exited");
@@ -54,9 +53,9 @@ public class ViewProductRequests extends AdminAction {
     }
 
 
-    private int displayProductCreationRequests(Map<Integer, Map<Integer, Map<Integer, List<Integer>>>> productRequests) {
-        Iterator<Map.Entry<Integer, Map<Integer, Map<Integer, List<Integer>>>>> entries = productRequests.entrySet().iterator();
-        Map.Entry<Integer, Map<Integer, Map<Integer, List<Integer>>>> entry;
+    private int displayProductCreationRequests() {
+        Iterator<Map.Entry<Integer, List<Integer>>> entries = productRequests.entrySet().iterator();
+        Map.Entry<Integer, List<Integer>> entry;
         Integer mapKey;
         int count = 0;
         System.out.println("\nCurrent Requests");
@@ -64,40 +63,38 @@ public class ViewProductRequests extends AdminAction {
             count++;
             entry = entries.next();
             mapKey = entry.getKey();
-            Map<Integer, Map<Integer, List<Integer>>> accountToProduct = productRequests.get(mapKey);
-            Integer accountID = accountToProductIterator(accountToProduct);
-            Map<Integer, List<Integer>> product = accountToProduct.get(accountID);
-            Integer productType = productIterator(product);
-            List<Integer> productStat = product.get(productType);
+            List<Integer> productStat = productRequests.get(mapKey);
+            int accountID = productStat.get(0);
+            int productType = productStat.get(1);
+            int productAmount = productStat.get(2);
+            int productLength = productStat.get(3);
             System.out.println("\n" + count + " - User " + mapKey + " requested a " +
-                    bankProductsEmployee.getAccountName(productType) + "in account " + accountID + "with amount " +
-                    productStat.get(0) + "duration " + productStat.get(1) + "month.");
+                    bankProductsEmployee.getProductName(productType) + "in account " + accountID + "with amount " +
+                    productAmount + "duration " + productLength + "month.");
             //keeps iterating until the last item
             //sets map-key to last item
         }
         return count;
     }
 
-    private Integer accountToProductIterator(Map<Integer, Map<Integer, List<Integer>>> map){
-        Iterator<Map.Entry<Integer, Map<Integer, List<Integer>>>> entries = map.entrySet().iterator();
-        Map.Entry<Integer, Map<Integer, List<Integer>>> entry;
-        Integer mapKey = 0;
-        while (entries.hasNext()){
-            entry = entries.next();
-            mapKey = entry.getKey();
-        }
-        return mapKey;
-    }
 
-    private Integer productIterator(Map<Integer, List<Integer>> map){
-        Iterator<Map.Entry<Integer, List<Integer>>> entries = map.entrySet().iterator();
+    private void handleProductCreationRequests(int choice) {
+        Iterator<Map.Entry<Integer, List<Integer>>> entries = productRequests.entrySet().iterator();
         Map.Entry<Integer, List<Integer>> entry;
         Integer mapKey = 0;
-        while (entries.hasNext()){
+        int choiceCount = 0;
+        while (entries.hasNext() && choiceCount != choice) {
+            choiceCount++;
             entry = entries.next();
             mapKey = entry.getKey();
         }
-        return mapKey;
+        List<Integer> productStat = productRequests.get(mapKey);
+        int accountID = productStat.get(0);
+        int productType = productStat.get(1);
+        int productAmount = productStat.get(2);
+        int productLength = productStat.get(3);
+        bankProductsEmployee.createProduct(mapKey, accountID, productType, productAmount, productLength);
+        productRequests.remove(mapKey);
     }
 
-}**/
+}

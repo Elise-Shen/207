@@ -52,7 +52,7 @@ public class ViewUndoTransactRequests extends AdminAction{
     /**
      * Display all the account creation requests.
      */
-    int displayUndoTransactionRequests() {
+    private int displayUndoTransactionRequests() {
         Map<Integer, List<Transactions>> undoRequests = bankManager.getUndoTransactionRequest();
         Iterator<Map.Entry<Integer, List<Transactions>>> entries = undoRequests.entrySet().iterator();
         Map.Entry<Integer, List<Transactions>> entry;

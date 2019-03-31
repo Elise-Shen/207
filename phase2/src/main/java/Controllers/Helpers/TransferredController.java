@@ -1,7 +1,9 @@
-package Controllers.TransactionControllers;
+package Controllers.Helpers;
 
 import ATM.Main;
+import ATM.User;
 import Accounts.Account;
+import Controllers.TransactionControllers.TransferMoneyController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -29,9 +31,10 @@ public class TransferredController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
          Account from = TransferMoneyController.from;
          Account to = TransferMoneyController.to;
+         User otherUser = TransferMoneyController.toUser;
          MonetaryAmount transferredAmount = TransferMoneyController.amountTransferred;
          transferAmount.setText(transferredAmount.toString());
-         recipientAccount.setText(to.toString());
+         recipientAccount.setText(otherUser.toString() +": "+ to.toString());
          transferAccount.setText(from.toString());
 
     }

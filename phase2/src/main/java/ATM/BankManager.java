@@ -5,6 +5,8 @@ import Actions.AccountToAccount;
 import Actions.DepositMoney;
 import Actions.Transactions;
 import Actions.WithdrawMoney;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.money.MonetaryAmount;
@@ -29,6 +31,8 @@ public class BankManager implements Serializable {
     private List<Account> allAccounts = new ArrayList<>();
     private String password;
 
+    private static ObservableList<User> allUsers = FXCollections.observableArrayList();
+
     private final int CHEQUING = 1;
     private final int SAVINGS = 2;
     private final int CREDIT = 3;
@@ -44,6 +48,14 @@ public class BankManager implements Serializable {
         userArrayList.add(user1);
         userArrayList.add(user2);
         //createUserExample(userNumExample);
+    }
+
+    public void readUserList(){
+        allUsers.addAll(userArrayList);
+    }
+
+    public ObservableList<User> getAllUsers(){
+        return allUsers;
     }
 
 

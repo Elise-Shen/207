@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TransactionControllers.TransferMoneyController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -27,7 +26,7 @@
                <children>
                   <ComboBox fx:id="transferOut" prefHeight="31.0" prefWidth="454.0" promptText="Select Account to Transfer Out From" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets bottom="50.0" />
+                        <Insets bottom="150.0" />
                      </GridPane.margin>
                   </ComboBox>
                   <ComboBox fx:id="transferIn" prefHeight="31.0" prefWidth="454.0" promptText="Select Account to Transfer To" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -43,6 +42,11 @@
                   <ComboBox fx:id="transferAmount" editable="true" prefHeight="31.0" prefWidth="454.0" promptText="Select Amount to Transfer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets top="200.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="transferUser" onAction="#loadOutAccounts" prefHeight="31.0" prefWidth="456.0" promptText="Select User ID to Transfer To" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="50.0" />
                      </GridPane.margin>
                   </ComboBox>
                </children>

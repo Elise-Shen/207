@@ -25,14 +25,18 @@ public class TransferMoneyController implements Initializable {
     private ComboBox<Account> transferIn;
     @FXML
     private ComboBox<String> transferAmount;
+    @FXML
+    private ComboBox<User> transferUser;
 
     public static MonetaryAmount amountTransferred;
     public static Account from;
     public static Account to;
+    public static User toUser;
 
     public void toTransactionList() throws Exception{
         transferOut.getItems().clear();
         transferIn.getItems().clear();
+        transferUser.getItems().clear();
         main.showNewBorderPane("/TransactionPage.fxml");
     }
 
@@ -41,28 +45,39 @@ public class TransferMoneyController implements Initializable {
         if(ConfirmBoxController.getConfirm()) {
             from = transferOut.getValue();
             to = transferIn.getValue();
-
+            toUser = transferUser.getValue();
             AccountToAccount transfer = new AccountToAccount(currentUserID, bankManager);
 
             amountTransferred = from.createMoney(Integer.parseInt(transferAmount.getValue()));
 
-            boolean enoughMoney = transfer.executeTransfer(from, to, amountTransferred);
+            boolean enoughMoney = transfer.executeTransfer(to, from, amountTransferred);
             if(enoughMoney){
                 from.addTransaction(transfer);
                 to.addTransaction(transfer);
+                main.showNewBorderPane("/HelperBoxes/TransferredBox.fxml");
+                transferUser.getItems().clear();
                 transferOut.getItems().clear();
                 transferIn.getItems().clear();
-                main.showNewBorderPane("/HelperBoxes/TransferredBox.fxml");
-
 
             }else{
                 main.showNotEnoughMoney();
             }
-
-
-
-
         }
+    }
+
+    public void loadOutAccounts(){
+        transferIn.getItems().clear();
+        try {
+            toUser = transferUser.getValue();
+            ViewAccount viewOtherUserAccount = new ViewAccount(toUser.getUserID(), bankManager);
+            viewOtherUserAccount.printAccounts(toUser.getAccountList());
+
+            ObservableList<Account> allAccounts = viewOtherUserAccount.getAllAccounts();
+            transferIn.setItems(allAccounts);
+        }catch (NullPointerException ex){
+            System.out.println("False Alarm");
+        }
+
     }
 
     @Override
@@ -74,11 +89,11 @@ public class TransferMoneyController implements Initializable {
         User currentUser = bankManager.getUser(currentUserID);
         ViewAccount viewAccount = new ViewAccount(currentUserID, bankManager);
         viewAccount.printTransferableOutAccounts(currentUser.getAccountList());
-        viewAccount.printAccounts(currentUser.getAccountList());
+        bankManager.readUserList();
+        ObservableList<User> allUsers = bankManager.getAllUsers();
         ObservableList<Account> allTranserableOutAccounts = viewAccount.getTransferOutAccounts();
-        ObservableList<Account> allAccounts = viewAccount.getAllAccounts();
-        transferIn.setItems(allTranserableOutAccounts);
-        transferOut.setItems(allAccounts);
+        transferOut.setItems(allTranserableOutAccounts);
+        transferUser.setItems(allUsers);
 
     }
 }

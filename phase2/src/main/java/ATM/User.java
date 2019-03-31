@@ -144,7 +144,6 @@ public class User implements Serializable {
     public List<String> getPreviousPayees(){
         return previousPayees;
     }
-    /////////////
 
     public void product_incrementCount(){
         productRequestCount += 1;
@@ -156,6 +155,10 @@ public class User implements Serializable {
 
     public int product_getCount(){
         return productRequestCount;
+    }
+
+    public String toString(){
+        return "User ID: "+userID;
     }
 }
 

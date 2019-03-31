@@ -6,37 +6,29 @@ import ATM.Main;
 import ATM.User;
 import Accounts.Account;
 import Actions.Transactions;
-import Actions.UserActions;
+
 import Actions.ViewAccount;
 import Actions.ViewMostRecentTransaction;
 import Controllers.Helpers.ConfirmBoxController;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.util.Duration;
-import sun.awt.image.ImageWatched;
 
-import javax.jws.soap.SOAPBinding;
-import javax.swing.text.View;
 import java.net.URL;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Iterator;
-import java.util.LinkedHashMap;
+
 import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ViewBalanceController implements Initializable {
-    private Main main;
     private int currentUserID;
     private BankManager bankManager;
 
@@ -56,7 +48,7 @@ public class ViewBalanceController implements Initializable {
 
     public void goToUserActionList() throws Exception{
         accountComboBox.getItems().clear();
-        main.showNewBorderPane("/UserActionsPage.fxml");
+        Main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
     /**
@@ -64,7 +56,7 @@ public class ViewBalanceController implements Initializable {
      * @throws Exception
      */
     public void undoTransactionPressed() throws Exception{
-        main.showConfirmBox();
+        Main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()){
             //send request
         }else{
@@ -110,7 +102,7 @@ public class ViewBalanceController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUserID = atm.getCurrentUserID();
         User currentUser = bankManager.getUser(currentUserID);

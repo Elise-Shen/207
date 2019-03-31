@@ -6,13 +6,9 @@ import ATM.Main;
 import ATM.User;
 import Accounts.Account;
 import Actions.*;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -25,7 +21,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TransactionHistoryController implements Initializable {
-    private Main main;
     private BankManager bankManager;
     private User currentUser;
 
@@ -47,12 +42,12 @@ public class TransactionHistoryController implements Initializable {
 
     public void toUserActionsList()throws Exception{
         transactionTable.getItems().clear();
-        main.showNewBorderPane("/UserActionsPage.fxml");
+        Main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUser = bankManager.getUser(atm.getCurrentUserID());
         currentUser.readTransactions();

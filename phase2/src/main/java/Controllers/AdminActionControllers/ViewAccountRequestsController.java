@@ -16,8 +16,6 @@ import ATM.BankManager;
 
 public class ViewAccountRequestsController implements Initializable {
 
-    private Main main;
-
     @FXML
     private ChoiceBox<String> requestChoiceBox;
 
@@ -29,14 +27,14 @@ public class ViewAccountRequestsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         String text = getAccountRequests(atm.getATMBankManager());
         accountRequests.setText(text);
     }
 
     public void okPressed() {
-        Integer choice = Integer.valueOf(requestChoiceBox.getValue());
-        BankManager bankManager = main.getCurrentATM().getATMBankManager();
+        int choice = Integer.valueOf(requestChoiceBox.getValue());
+        BankManager bankManager = Main.getCurrentATM().getATMBankManager();
         Map<List<Integer>, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
         Iterator<Map.Entry<List<Integer>, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
         Map.Entry<List<Integer>, Map<String, Integer>> entry;
@@ -52,15 +50,18 @@ public class ViewAccountRequestsController implements Initializable {
         int accountType = accountRequests.get(mapKey).get(firstKey);
         bankManager.createAccount(mapKey, accountType, firstKey);
         bankManager.getAccountRequests().remove(mapKey);
-
-        requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + "account for user(s)" +
-                getUsers(mapKey));
+        try {
+            requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + "account for user(s)" +
+                    getUsers(mapKey));
+        } catch (NullPointerException e){
+            //
+        }
     }
 
 
     public void goBack() throws Exception {
         requestChoiceBox.getItems().clear();
-        main.showNewBorderPane("/AdminMainPage.fxml");
+        Main.showNewBorderPane("/AdminMainPage.fxml");
     }
 
     /**

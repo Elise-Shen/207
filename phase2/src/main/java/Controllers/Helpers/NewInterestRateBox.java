@@ -13,14 +13,12 @@ import java.util.ResourceBundle;
 
 public class NewInterestRateBox implements Initializable {
 
-    private Main main;
-
     @FXML
     private Label newTable;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         Map<String, Double> interestAccounts = atm.getATMBankManager().getInterestAccountList();
         StringBuilder table = new StringBuilder();
         table.append("Interest Rate table: \n");
@@ -36,7 +34,7 @@ public class NewInterestRateBox implements Initializable {
     }
 
     public void okPressed() throws Exception{
-        main.showNewBorderPane("/AdminActionResources/SetInterestRatePage.fxml");
+        Main.showNewBorderPane("/AdminActionResources/SetInterestRatePage.fxml");
     }
 
 }

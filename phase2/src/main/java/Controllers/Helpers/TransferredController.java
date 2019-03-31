@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TransferredController implements Initializable {
-    private Main main;
 
     @FXML
     private Label transferAmount;
@@ -23,7 +22,7 @@ public class TransferredController implements Initializable {
     private Label transferAccount;
 
     public void okPressed()throws Exception{
-        main.showNewBorderPane("/TransactionPage.fxml");
+        Main.showNewBorderPane("/TransactionPage.fxml");
     }
 
 

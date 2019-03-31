@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 
 public class SetInterestRateController implements Initializable {
 
-    private Main main;
 
     @FXML
     private ChoiceBox<String> accountTypeChoiceBox;
@@ -32,7 +31,7 @@ public class SetInterestRateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         ObservableList<String> choices = FXCollections.observableArrayList();
         Map<String, Double> interestAccounts = atm.getATMBankManager().getInterestAccountList();
         StringBuilder table = new StringBuilder();
@@ -60,11 +59,11 @@ public class SetInterestRateController implements Initializable {
         } catch (Exception e) {
             //
         }
-        main.showNewBorderPane("/HelperBoxes/NewInterestRateBox.fxml");
+        Main.showNewBorderPane("/HelperBoxes/NewInterestRateBox.fxml");
     }
 
     public void goBack() throws Exception{
-        main.showNewBorderPane("/AdminMainPage.fxml");
+        Main.showNewBorderPane("/AdminMainPage.fxml");
     }
 
     private void setInterestRate(String account, double newRate) {

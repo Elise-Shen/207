@@ -1,11 +1,7 @@
 package Controllers.Helpers;
 
-import ATM.ATM_Machine;
-import ATM.BankManager;
 import ATM.Main;
-import ATM.User;
 import Accounts.Account;
-import Actions.DepositMoney;
 import Controllers.TransactionControllers.DepositController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +12,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DepositedMessageController implements Initializable {
-    private Main main;
 
 
     @FXML
@@ -25,7 +20,7 @@ public class DepositedMessageController implements Initializable {
     private Label depositAccount;
 
     public void okPressed() throws Exception{
-        main.showNewBorderPane("/TransactionPage.fxml");
+        Main.showNewBorderPane("/TransactionPage.fxml");
     }
 
 

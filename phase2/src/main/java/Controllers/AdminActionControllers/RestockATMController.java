@@ -12,8 +12,6 @@ import java.util.ResourceBundle;
 
 public class RestockATMController implements Initializable {
 
-    private Main main;
-
     @FXML
     private Label newCashStorage;
 
@@ -23,11 +21,11 @@ public class RestockATMController implements Initializable {
     }
 
     public void goBack() throws Exception{
-        main.showNewBorderPane("/AdminMainPage.fxml");
+        Main.showNewBorderPane("/AdminMainPage.fxml");
     }
 
     public void restockButtonPressed() {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         atm.getCashStorage().setToMaxStock();
         String localCurrency = Monetary.getCurrency(Locale.getDefault()).toString();
         int localCashStorage = atm.getCashStorage().getCashStorage().get(localCurrency).getTotalStorage();

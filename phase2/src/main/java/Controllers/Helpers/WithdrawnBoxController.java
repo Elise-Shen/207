@@ -1,10 +1,8 @@
 package Controllers.Helpers;
 
-import ATM.ATM_Machine;
-import ATM.BankManager;
 import ATM.Main;
 import Accounts.Account;
-import Controllers.TransactionControllers.DepositController;
+
 import Controllers.TransactionControllers.WithdrawController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class WithdrawnBoxController implements Initializable {
 
-    private Main main;
+    private Main Main;
 
     @FXML
     private Label withdrawAccount;
@@ -24,7 +22,7 @@ public class WithdrawnBoxController implements Initializable {
     private Label withdrawAmount;
 
     public void okPressed()throws Exception{
-        main.showNewBorderPane("/TransactionPage.fxml");
+        Main.showNewBorderPane("/TransactionPage.fxml");
     }
 
 

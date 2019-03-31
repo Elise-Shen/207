@@ -14,17 +14,21 @@ public class RequestProduct extends UserActions {
     @Override
     public void execute(){
         BankProductsEmployee bankProductsEmployee = getBankProductsEmployee();
+
         User currentUser = bankProductsEmployee.getUser(getUserID());
+
+
         LocalTime currentTime = LocalTime.now();
         LocalTime countResetTime = LocalTime.MIDNIGHT;
         if(currentTime == countResetTime){
-            currentUser.resetCount();
+            currentUser.product_resetCount();
         }
-        if(currentUser.getCount() < LIMIT ) {
 
+        if(currentUser.product_getCount() < LIMIT ) {
             int productType = getProductType();
             int productAmount = getProductAmount();
             int puductLength = getProductLength(productType);
+            currentUser.product_incrementCount();
             bankProductsEmployee.requestProducts(getUserID(),getAccountID(),productType,productAmount,puductLength);
         }else {System.out.println("Reached Daily Account Request Limit");}
     }

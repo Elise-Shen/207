@@ -23,6 +23,7 @@ public class User implements Serializable {
 
 
     private int accountRequestCount = 0;
+    private int productRequestCount = 0;
 
     public User (int userID, String password, BankManager bm, boolean isEmployee){
         this.userID = userID;
@@ -116,6 +117,19 @@ public class User implements Serializable {
 
     public int getCount(){
         return accountRequestCount;
+    }
+    /////////////
+
+    public void product_incrementCount(){
+        productRequestCount += 1;
+    }
+
+    public void product_resetCount(){
+        productRequestCount = 0;
+    }
+
+    public int product_getCount(){
+        return productRequestCount;
     }
 }
 

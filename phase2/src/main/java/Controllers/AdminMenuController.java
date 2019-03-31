@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 public class AdminMenuController implements Initializable {
 
-    private Main main;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -17,26 +17,26 @@ public class AdminMenuController implements Initializable {
 
     @FXML
     public void backToBankManagerLogin() throws Exception{
-        main.showNewBorderPane("/BankManagerLoginPage.fxml");
+        Main.showNewBorderPane("/BankManagerLoginPage.fxml");
     }
 
     public void restockATMButton()throws Exception{
-        main.showNewBorderPane("/AdminActionResources/RestockATMPage.fxml");
+        Main.showNewBorderPane("/AdminActionResources/RestockATMPage.fxml");
     }
 
     public void setInterestRateButton()throws Exception{
-        main.showNewBorderPane("/AdminActionResources/SetInterestRatePage.fxml");
+        Main.showNewBorderPane("/AdminActionResources/SetInterestRatePage.fxml");
     }
 
     public void viewAccountRequestsButton()throws Exception{
-        main.showNewBorderPane("/AdminActionResources/ViewAccountRequestsPage.fxml");
+        Main.showNewBorderPane("/AdminActionResources/ViewAccountRequests.fxml");
     }
 
     public void viewProductsRequestsButton() throws Exception{
-        main.showNewBorderPane("/AdminActionResources/ViewProductsRequestsPage.fxml");
+        Main.showNewBorderPane("/AdminActionResources/ViewProductsRequestsPage.fxml");
     }
 
     public void viewUndoTransactButton() throws Exception{
-        main.showNewBorderPane("/AdminActionResources/ViewUndoTransactPage.fxml");
+        Main.showNewBorderPane("/AdminActionResources/ViewUndoTransactPage.fxml");
     }
 }

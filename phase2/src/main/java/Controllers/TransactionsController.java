@@ -8,26 +8,26 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TransactionsController implements Initializable {
-    private Main main;
+
 
     public void goToUserMenu() throws Exception{
-        main.showNewBorderPane("/UserMainMenuPage.fxml");
+        Main.showNewBorderPane("/UserMainMenuPage.fxml");
     }
 
     public void depositButton() throws  Exception{
-        main.showNewBorderPane("/Transactions/DepositPage.fxml");
+        Main.showNewBorderPane("/Transactions/DepositPage.fxml");
     }
 
     public void withdrawButton() throws Exception{
-        main.showNewBorderPane("/Transactions/WithdrawPage.fxml");
+        Main.showNewBorderPane("/Transactions/WithdrawPage.fxml");
     }
 
     public void payBillsButton()throws Exception{
-        main.showNewBorderPane("/Transactions/PayBillsPage.fxml");
+        Main.showNewBorderPane("/Transactions/PayBillsPage.fxml");
     }
 
     public void transferMoneyButton()throws Exception{
-        main.showNewBorderPane("/Transactions/TransferMoneyPage.fxml");
+        Main.showNewBorderPane("/Transactions/TransferMoneyPage.fxml");
     }
 
 

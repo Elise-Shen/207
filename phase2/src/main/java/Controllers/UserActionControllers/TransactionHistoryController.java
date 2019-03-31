@@ -29,9 +29,7 @@ public class TransactionHistoryController implements Initializable {
     private BankManager bankManager;
     private User currentUser;
 
-    public void toUserActionsList()throws Exception{
-        main.showNewBorderPane("/UserActionsPage.fxml");
-    }
+
 
     @FXML
     private TableView<Transactions> transactionTable;
@@ -47,6 +45,11 @@ public class TransactionHistoryController implements Initializable {
     private TableColumn<Transactions, MonetaryAmount> amountTableColumn;
 
 
+    public void toUserActionsList()throws Exception{
+        transactionTable.getItems().clear();
+        main.showNewBorderPane("/UserActionsPage.fxml");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ATM_Machine atm = main.getCurrentATM();
@@ -54,19 +57,6 @@ public class TransactionHistoryController implements Initializable {
         currentUser = bankManager.getUser(atm.getCurrentUserID());
         currentUser.readTransactions();
         ObservableList<Transactions> allTransactions = currentUser.getTransactionsObservableList();
-        ObservableList<LocalDate> keys = FXCollections.observableArrayList();
-
-        /*allTransactions.addListener((MapChangeListener.Change<? extends LocalDate, ? extends Transactions> change) -> {
-            boolean removed = change.wasRemoved();
-            if (removed != change.wasAdded()) {
-                // no put for existing key
-                if (removed) {
-                    keys.remove(change.getKey());
-                } else {
-                    keys.add(change.getKey());
-                }
-            }
-        }); */
 
         dateTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Transactions, LocalDate>, ObservableValue<LocalDate>>() {
             @Override

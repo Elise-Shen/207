@@ -29,29 +29,20 @@ import java.util.ResourceBundle;
 
 public class StartUpController implements Initializable {
 
-    private Main main;
-
-    @FXML
-    private BorderPane rootPane;
-
     @FXML
     private Label dateTimeLabel;
 
     @FXML
     public void loadUserLogin() throws Exception{
-        main.showNewBorderPane("/UserLoginPage.fxml");
+        Main.showNewBorderPane("/UserLoginPage.fxml");
     }
 
     public void loadBankManagerLogin() throws Exception{
-        main.showNewBorderPane("/BankManagerLoginPage.fxml");
+        Main.showNewBorderPane("/BankManagerLoginPage.fxml");
     }
 
     private void initClock(){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            /*int second = LocalDateTime.now().getSecond();
-            int minute = LocalDateTime.now().getMinute();
-            int hour = LocalDateTime.now().getHour();
-            currentTimeLabel.setText(hour + ":" + minute + ":" + second);*/
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             dateTimeLabel.setText(LocalDateTime.now().format(formatter));
         }), new KeyFrame(Duration.seconds(1)));

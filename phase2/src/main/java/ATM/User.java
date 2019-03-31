@@ -31,7 +31,7 @@ public class User implements Serializable {
     private boolean isEmployee;
 
 
-    private static int accountRequestCount;
+    private int accountRequestCount;
     private int productRequestCount;
 
     public User (int userID, String password, BankManager bm, boolean isEmployee){
@@ -51,10 +51,8 @@ public class User implements Serializable {
         return observableAccounts;
     }
 
-    public static void readAllAccounts(List<Account> list){
-        for(Account a: list){
-            observableAccounts.add(a);
-        }
+    public void readAllAccounts(){
+        observableAccounts.addAll(accounts);
     }
 
 

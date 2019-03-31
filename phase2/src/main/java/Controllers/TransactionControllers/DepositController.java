@@ -44,7 +44,7 @@ public class DepositController implements Initializable {
         depositChoice = depositChoiceBox.getValue();
         System.out.println(depositChoice + ", " + depositChoice.getAccountID() + ", "+ depositChoice.getOwnerID());
         deposit = new DepositMoney(currentUserID, bankManager, cashStorage);
-        List<String[]>deposits = deposit.readFromCSV("phase2/deposits.txt");
+        List<String[]>deposits = deposit.readFromCSV("deposits.txt");
         deposit.checkDeposit(deposits, depositChoice);
         depositChoice.addTransaction(deposit);
         amountDeposited = deposit.getAmountDeposited();

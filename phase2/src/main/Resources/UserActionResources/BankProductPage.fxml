@@ -6,7 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="960" prefWidth="1440" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserActionControllers.BankProductController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
@@ -36,7 +35,7 @@
             <Label fx:id="longTermWarning" text="Time length for Long Term Mortgage need to be longer than 12 month. Please try again!" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <Label fx:id="shortTermWarning" text="Time length for Short Term Mortgage cannot exceed 12 month. Please try again!" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#goToUserActionList" prefHeight="50.0" prefWidth="100.0" text="Back" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <Label fx:id="sucessLable" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <Label fx:id="sucessLable" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </center>

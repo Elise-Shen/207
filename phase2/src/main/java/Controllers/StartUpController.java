@@ -37,6 +37,10 @@ public class StartUpController implements Initializable {
         Main.showNewBorderPane("/UserLoginPage.fxml");
     }
 
+    public void createUserButton(){
+
+    }
+
     public void loadBankManagerLogin() throws Exception{
         Main.showNewBorderPane("/BankManagerLoginPage.fxml");
     }
@@ -53,6 +57,7 @@ public class StartUpController implements Initializable {
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+
     }
 
     @Override

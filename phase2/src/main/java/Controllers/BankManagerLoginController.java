@@ -16,18 +16,17 @@ public class BankManagerLoginController implements Initializable {
     @FXML
     private PasswordField passwordField;
 
-    private Main main;
 
     public void goBack() throws  Exception{
-        main.showMainView();
+        Main.showMainView();
     }
 
     @FXML
     public void loginPressed() throws  Exception{
         String password = passwordField.getText();
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         if(atm.managerLogin(password)){
-            main.showNewBorderPane("/AdminMainPage.fxml");
+            Main.showNewBorderPane("/AdminMainPage.fxml");
         }
     }
 

@@ -109,6 +109,11 @@ public class DepositMoney extends Transactions {
         }
     }
 
+    /**
+     * Checks if deposit is valid and changes values of related objects
+     * @param deposit
+     * @param account
+     */
     public void checkDeposit(List<String[]>deposit, Account account){
         currentAccount = account;
         currentAccountID = currentAccount.getAccountID();

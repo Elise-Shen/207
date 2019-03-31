@@ -1,9 +1,7 @@
 package ATM;
 
-import Controllers.Helpers.ConfirmBoxController;
-import Controllers.Helpers.CreatedAccountController;
-import Controllers.Helpers.NotEnoughMoneyController;
-import Controllers.Helpers.ReachRequestLimitController;
+import Controllers.Helpers.*;
+import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -48,6 +46,20 @@ public class Main extends Application {
         mainLayout.setCenter(page);
         updateData();
 
+    }
+
+    public static void showQuickDeposit()throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/HelperBoxes/QuickDepositBox.fxml"));
+        BorderPane confirmBox = loader.load();
+        Stage window = QuickDepositController.getWindow();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Warning");
+        window.setMinWidth(250);
+        Scene scene = new Scene(confirmBox);
+        window.setScene(scene);
+        window.showAndWait();
+        updateData();
     }
 
     public static void showConfirmBox()throws Exception{

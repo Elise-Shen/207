@@ -25,7 +25,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TransactionHistoryController implements Initializable {
-    private Main main;
     private BankManager bankManager;
     private User currentUser;
 
@@ -47,12 +46,12 @@ public class TransactionHistoryController implements Initializable {
 
     public void toUserActionsList()throws Exception{
         transactionTable.getItems().clear();
-        main.showNewBorderPane("/UserActionsPage.fxml");
+        Main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUser = bankManager.getUser(atm.getCurrentUserID());
         currentUser.readTransactions();

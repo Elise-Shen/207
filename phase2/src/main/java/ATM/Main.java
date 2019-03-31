@@ -136,7 +136,7 @@ public class Main extends Application {
     }
 
 
-    public void showReachRequestLimit() throws Exception {
+    public static void showReachRequestLimit() throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("/HelperBoxes/ReachRequestLimit.fxml"));
         BorderPane confirmBox = loader.load();

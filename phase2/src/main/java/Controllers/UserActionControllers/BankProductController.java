@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 
 public class BankProductController implements Initializable {
 
-    private Main main;
     private int currentUserID;
     private User currentUser;
     private BankManager bankManager;
@@ -68,7 +67,7 @@ public class BankProductController implements Initializable {
     }
 
     public void goToUserActionList() throws Exception{
-        main.showNewBorderPane("/UserActionsPage.fxml");
+        Main.showNewBorderPane("/UserActionsPage.fxml");
     }
 
     public void submitButton() throws Exception{
@@ -99,14 +98,14 @@ public class BankProductController implements Initializable {
                         productType,amount,length);
                 sucessLable.setText("User " + currentUserID + " request a " +
                         bankProductsEmployee.getProductName(productType) + " on account " + accountID + " with amount " + amount);
-            }else { main.showReachRequestLimit();}
+            }else { Main.showReachRequestLimit();}
         } catch (NumberFormatException e){}
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         bankProductsEmployee = atm.getBankProductsEmployee();
         currentUserID = atm.getCurrentUserID();

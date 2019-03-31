@@ -50,6 +50,7 @@ public class ATM_Machine implements Serializable{
     private CashStorage cashStorage;
     private BankManager bankManager;
     private BankProductsEmployee bankProductsEmployee;
+    private User bankEmployee;
 
     /**
      * Indicates whether the interest is added to all savings account at the end of every month.
@@ -71,8 +72,13 @@ public class ATM_Machine implements Serializable{
         cashStorage = new CashStorage();
         bankManager = new BankManager("TD Bank", "abc123");
         bankProductsEmployee = new BankProductsEmployee(bankManager, "abc123");
+        bankEmployee = new User(3,"abc123",bankManager,true);
         //bankManager = getBankManager("phase2/Bankmanager.ser");
 
+    }
+
+    public User getBankEmployee(){
+        return bankEmployee;
     }
 
     public BankManager getATMBankManager(){

@@ -1,3 +1,4 @@
 Currency, Cashtype1, amount1, CashType2, amount2, CashType3, amount3, CashType4, amount4
+Currency needs to follow proper format
 Example:
 CAD, 50, 5, 20, 5, 10, 5, 5, 5

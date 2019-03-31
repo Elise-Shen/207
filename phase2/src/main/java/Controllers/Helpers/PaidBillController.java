@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 public class PaidBillController implements Initializable {
 
     private Main main;
-    private BankManager bankManager;
-    private int currentUserID;
 
     @FXML
     private Label paidAmount;
@@ -35,9 +33,6 @@ public class PaidBillController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ATM_Machine atm = main.getCurrentATM();
-        bankManager = atm.getATMBankManager();
-        currentUserID = atm.getCurrentUserID();
         Account account = PayBillsController.accountChoice;
         MonetaryAmount amount = account.createMoney(PayBillsController.amountChoice);
         paidAccount.setText(account.toString());

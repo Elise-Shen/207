@@ -34,7 +34,7 @@
                   <Insets bottom="100.0" right="10.0" />
                </GridPane.margin>
             </ComboBox>
-            <ComboBox fx:id="recipitentCombo" editable="true" prefHeight="31.0" prefWidth="212.0" promptText="Choose Recipitent" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <ComboBox fx:id="recipientCombo" editable="true" prefHeight="31.0" prefWidth="212.0" promptText="Choose Recipitent" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="100.0" right="10.0" top="190.0" />
                </GridPane.margin>

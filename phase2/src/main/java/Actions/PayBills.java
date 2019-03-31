@@ -59,7 +59,7 @@ public class PayBills extends Transactions{
 
     public boolean executePayBill(Account account, int amount){
         currentAccount = account;
-        amountPaid = account.createMoney(amount);
+        amountPaid = currentAccount.createMoney(amount);
         return account.decreaseCurrencyBalance(amountPaid);
     }
 

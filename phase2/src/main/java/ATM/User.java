@@ -3,6 +3,8 @@ package ATM;
 import Accounts.Account;
 import Accounts.Chequing;
 import Actions.Transactions;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.Serializable;
 import java.util.*;
@@ -19,6 +21,9 @@ public class User implements Serializable {
     private String password;
     private BankManager bankManager;
 
+    private List<String> previousPayees = new ArrayList<>();
+    private static ObservableList<String> prevPayees = FXCollections.observableArrayList();
+
     private boolean isEmployee;
 
 
@@ -33,6 +38,7 @@ public class User implements Serializable {
         accounts.add(account1);
         this.bankManager.addAllAccountsList(account1);
         this.isEmployee = false;
+        previousPayees.add("Water");
     }
 // getter and setter
 
@@ -116,6 +122,26 @@ public class User implements Serializable {
 
     public int getCount(){
         return accountRequestCount;
+    }
+
+    public void addPayee(String payee){
+        previousPayees.add(payee);
+    }
+
+    public static void readPayees(List<String> list){
+        for(String a : list){
+            if(!a.equals("")){
+                prevPayees.add(a);
+            }
+        }
+    }
+
+    public static ObservableList<String> getPrevPayees(){
+        return prevPayees;
+    }
+
+    public List<String> getPreviousPayees(){
+        return previousPayees;
     }
 }
 

@@ -23,25 +23,36 @@ public class PayBillsController implements Initializable {
     @FXML
     private ComboBox<Account> payBillCombo;
     @FXML
-    private ComboBox<String> recipitentCombo;
+    private ComboBox<String> recipientCombo;
     @FXML
     private ComboBox<String> amountCombo;
 
+    private User currentUser;
+
+    public static int amountChoice;
+
+    public static Account accountChoice;
+
+    public static String recipient;
+
     public void goToTransactionList() throws Exception{
+        recipientCombo.getItems().clear();
         payBillCombo.getItems().clear();
         main.showNewBorderPane("/TransactionPage.fxml");
     }
 
     public void payBills() throws Exception{
-        Account accountChoice = payBillCombo.getValue();
-        int amountChoice = Integer.parseInt(amountCombo.getValue());
-        String recipitent = recipitentCombo.getValue();
+        accountChoice = payBillCombo.getValue();
+        amountChoice = Integer.parseInt(amountCombo.getValue());
+        recipient = recipientCombo.getValue();
 
         payBills = new PayBills(currentUserID, bankManager);
         boolean enoughMoney = payBills.executePayBill(accountChoice,amountChoice);
         if(!enoughMoney){
             main.showNotEnoughMoney();
         }
+        currentUser.addPayee(recipient);
+        main.showNewBorderPane("/HelperBoxes/PaidBillBox.fxml");
     }
 
     @Override
@@ -49,10 +60,17 @@ public class PayBillsController implements Initializable {
         ATM_Machine atm = main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUserID = atm.getCurrentUserID();
-        User currentUser = bankManager.getUser(currentUserID);
+        currentUser = bankManager.getUser(currentUserID);
         ViewAccount viewAccount = new ViewAccount(currentUserID, bankManager);
         viewAccount.printDepositAccounts(currentUser.getAccountList());
         ObservableList<Account> allDepositAccounts = viewAccount.getDepositAccounts();
         payBillCombo.setItems(allDepositAccounts);
+        try {
+            currentUser.readPayees(currentUser.getPreviousPayees());
+            ObservableList<String> previousPayees = currentUser.getPrevPayees();
+            recipientCombo.setItems(previousPayees);
+        }catch (NullPointerException ex){
+            System.out.println("No previous payees");
+        }
     }
 }

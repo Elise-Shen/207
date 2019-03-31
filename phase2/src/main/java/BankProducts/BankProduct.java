@@ -75,8 +75,7 @@ public abstract class BankProduct implements Serializable{
     public int getProductType(){return 0;};
 
     public MonetaryAmount createMoney(double amount){
-        CurrencyUnit currencyUnit = Monetary.getCurrency(Locale.getDefault());
-        return Money.of(amount, currencyUnit);
+        return account.createMoney(amount);
     }
 
 

@@ -9,61 +9,56 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserActionsController implements Initializable {
-
-    private Main main;
     private User currentUser;
 
     public void goToUserMainMenu() throws Exception{
-        main.showNewBorderPane("/UserMainMenuPage.fxml");
+        Main.showNewBorderPane("/UserMainMenuPage.fxml");
     }
 
     public void changePasswordButton()throws Exception{
-        main.showNewBorderPane("/UserActionResources/ChangePasswordPage.fxml");
-        //done
-
+        Main.showNewBorderPane("/UserActionResources/ChangePasswordPage.fxml");
     }
 
     public void netTotalButton()throws Exception{
-        main.showNewBorderPane("/UserActionResources/NetTotalPage.fxml");
+        Main.showNewBorderPane("/UserActionResources/NetTotalPage.fxml");
 
     }
 
     public void requestAccountButton()throws Exception{
         if(currentUser.getCount() == 0) {
-            main.showNewBorderPane("/UserActionResources/RequestAccountPage.fxml");
+            Main.showNewBorderPane("/UserActionResources/RequestAccountPage.fxml");
         }else{
-            main.showReachRequestLimit();
+            Main.showReachRequestLimit();
         }
-
     }
 
     public void requestProductButton() throws Exception {
-        main.showNewBorderPane("/UserActionResources/BankProductPage.fxml");
+        Main.showNewBorderPane("/UserActionResources/BankProductPage.fxml");
     }
 
     public void setPrimAccountButton() throws Exception{
-        main.showNewBorderPane("/UserActionResources/SetPrimAccountPage.fxml");
+        Main.showNewBorderPane("/UserActionResources/SetPrimAccountPage.fxml");
 
     }
 
     public void accountSummaryButton() throws Exception{
-        main.showNewBorderPane("/UserActionResources/AccountSummaryPage.fxml");
+        Main.showNewBorderPane("/UserActionResources/AccountSummaryPage.fxml");
 
     }
 
     public void transactionHistoryButton() throws Exception{
-        main.showNewBorderPane("/UserActionResources/TransactionHistory.fxml");
+        Main.showNewBorderPane("/UserActionResources/TransactionHistory.fxml");
     }
 
     public void balanceButton() throws Exception{
-        main.showNewBorderPane("/UserActionResources/ViewBalancePage.fxml");
+        Main.showNewBorderPane("/UserActionResources/ViewBalancePage.fxml");
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int currentUserID = main.getCurrentATM().getCurrentUserID();
-        BankManager bankManager = main.getCurrentATM().getATMBankManager();
+        int currentUserID = Main.getCurrentATM().getCurrentUserID();
+        BankManager bankManager = Main.getCurrentATM().getATMBankManager();
         currentUser = bankManager.getUser(currentUserID);
 
     }

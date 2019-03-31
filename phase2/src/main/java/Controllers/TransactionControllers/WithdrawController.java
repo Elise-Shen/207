@@ -19,7 +19,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WithdrawController implements Initializable {
-    private Main main;
     private BankManager bankManager;
     private int currentUserID;
     private CashStorage cashStorage;
@@ -39,11 +38,11 @@ public class WithdrawController implements Initializable {
 
     public void goToTransactionList() throws Exception{
         withdrawChoice.getItems().clear();
-        main.showNewBorderPane("/TransactionPage.fxml");
+        Main.showNewBorderPane("/TransactionPage.fxml");
     }
 
     public void withdrawButton()throws Exception{
-        main.showConfirmBox();
+        Main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()) {
             int amount = Integer.parseInt(getWithdrawAmountText());
             withdrawAccount = withdrawChoice.getValue();
@@ -54,10 +53,10 @@ public class WithdrawController implements Initializable {
                 withdrawAccount.addTransaction(withdrawMoney);
                 amountWithdrawn = withdrawMoney.getAmountWithdrawn();
                 bankManager.getUser(currentUserID).addTransactions(withdrawMoney);
-                main.showNewBorderPane("/HelperBoxes/WithdrawnBox.fxml");
+                Main.showNewBorderPane("/HelperBoxes/WithdrawnBox.fxml");
 
             } else {
-                main.showNotEnoughMoney();
+                Main.showNotEnoughMoney();
             }
         }
 
@@ -99,7 +98,7 @@ public class WithdrawController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         withdrawAmountLabel.setText("");
 
-        ATM_Machine atm = main.getCurrentATM();
+        ATM_Machine atm = Main.getCurrentATM();
         bankManager = atm.getATMBankManager();
         currentUserID = atm.getCurrentUserID();
         User currentUser = bankManager.getUser(currentUserID);

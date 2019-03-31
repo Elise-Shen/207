@@ -5,29 +5,26 @@ import ATM.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import sun.security.util.Password;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BankManagerLoginController implements Initializable {
-
+public class BankEmployeeMainPageController implements Initializable {
 
     @FXML
     private PasswordField passwordField;
 
-
-    public void goBack() throws  Exception{
-        Main.showMainView();
-    }
-
-    @FXML
-    public void loginPressed() throws  Exception{
+    public void loginPressed() throws Exception{
         String password = passwordField.getText();
         ATM_Machine atm = Main.getCurrentATM();
-        if(atm.managerLogin(password)){
-            Main.showNewBorderPane("/AdminMainPage.fxml");
+        if (atm.bankProductEmployeeLogin(password)){
+            Main.showNewBorderPane("/BankProductAdminMainPage.fxml");
         }
+    }
+
+    public void goBack() throws Exception{
+        Main.showMainView();
     }
 
     @Override

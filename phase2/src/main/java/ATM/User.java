@@ -2,6 +2,7 @@ package ATM;
 
 import Accounts.Account;
 import Accounts.Chequing;
+import Accounts.Saving;
 import Actions.Transactions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,8 +40,11 @@ public class User implements Serializable {
         this.password = password;
         this.bankManager = bm;
         Account account1 = new Chequing("CAD");
+        Account account2 = new Saving("CAD");
+        account2.setOwnerID(this.userID);
         account1.setOwnerID(this.userID);
         accounts.add(account1);
+        accounts.add(account2);
         this.bankManager.addAllAccountsList(account1);
         this.isEmployee = false;
         previousPayees.add("Water");

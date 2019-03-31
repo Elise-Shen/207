@@ -32,6 +32,7 @@
             <Button mnemonicParsing="false" onAction="#changePasswordButton" prefHeight="100.0" prefWidth="200.0" text="Change Password" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#goToUserMainMenu" prefHeight="55.0" prefWidth="170.0" text="Back" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <Button mnemonicParsing="false" onAction="#transactionHistoryButton" prefHeight="100.0" prefWidth="200.0" text="Transaction History" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#requestProductBotton" prefHeight="100.0" prefWidth="200.0" text="Request Bank Product" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </center>

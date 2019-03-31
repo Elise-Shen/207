@@ -91,16 +91,19 @@ public class BankProductController implements Initializable {
                     isValid = false;
                 }
             }
-            if(isValid && currentUser.product_getCount()<1) {
-                currentUser.product_incrementCount();
-                int accountID = accountCombo.getValue().getAccountID();
-                bankProductsEmployee.requestProducts(currentUserID,accountCombo.getValue().getAccountID(),
-                        productType,amount,length);
-                sucessLable.setText("User " + currentUserID + " request a " +
-                        bankProductsEmployee.getProductName(productType) + " on account " + accountID + " with amount " + amount);
-            }else { Main.showReachRequestLimit();}
-        } catch (NumberFormatException e){}
-
+            if (isValid) {
+                if (currentUser.product_getCount() < 1) {
+                    currentUser.product_incrementCount();
+                    int accountID = accountCombo.getValue().getAccountID();
+                    bankProductsEmployee.requestProducts(currentUserID, accountID, productType, amount, length);
+                    sucessLable.setText("User " + currentUserID + " request a " +
+                            bankProductsEmployee.getProductName(productType) + " on account " + accountID + " with amount " + amount);
+                } else {
+                    Main.showReachRequestLimit();
+                }
+            }
+        } catch (NumberFormatException e) {
+        }
     }
 
     @Override
@@ -124,4 +127,3 @@ public class BankProductController implements Initializable {
         }
     }
 }
-

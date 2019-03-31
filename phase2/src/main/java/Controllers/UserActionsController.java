@@ -30,7 +30,7 @@ public class UserActionsController implements Initializable {
 
     }
 
-    public void requestProductBotton() throws Exception {
+    public void requestProductButton() throws Exception {
         main.showNewBorderPane("/UserActionResources/BankProductPage.fxml");
     }
 

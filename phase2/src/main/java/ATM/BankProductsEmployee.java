@@ -41,16 +41,23 @@ public class BankProductsEmployee implements Serializable {
     }
 
     public void createProduct(int mapKey, int accountID, int productType, int productAmount, int productLength){
+        boolean isValid;
         Account account = bm.getOneAccount(accountID);
         BankProduct bankProduct = bankProductFactory.getBankProduct(productType, productAmount, productLength, account);
         ((Saving)account).addBankProducts(bankProduct);
 
         if (productType == LONGTERMMORTGAGE || productType == SHORTTERMMORTGAGE){
             ((MortgageProduct)bankProduct).giveLoan();
-        } else {((InvestmentProduct)bankProduct).do_investment();}
+            isValid = true;
+        } else {isValid = ((InvestmentProduct)bankProduct).doInvestment();}
 
-        System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey).getUserID() +
+        if (isValid) {
+            System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey).getUserID() +
                 " in account " + accountID + ".");
+        } else {
+            ((Saving)account).removeLastBankProducts();
+            System.out.println("Fail to create a new investment.");
+        }
     }
 
     public User getUser(int userID){ return(bm.getUser(userID)); }

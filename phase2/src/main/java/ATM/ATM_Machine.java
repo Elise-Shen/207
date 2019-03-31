@@ -177,6 +177,15 @@ public class ATM_Machine implements Serializable{
 
     }
 
+    public boolean bankProductEmployeeLogin(String password) {
+        if (this.bankProductsEmployee.getPassword().equals(password)) {
+            return true;
+        } else {
+            System.out.println("Wrong password.");
+            return false;
+        }
+    }
+
     private void doAdminActions(){
         boolean exited = false;
         AdminAction currentAdminAction;

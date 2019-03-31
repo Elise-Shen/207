@@ -14,7 +14,7 @@ public class BankProductsEmployee implements Serializable {
 
     private BankManager bm;
     private String password;
-    private Map<Integer, Map<Integer, Map<Integer, List<Integer>>>> productRequests = new HashMap<Integer, Map<Integer, Map<Integer, List<Integer>>>>();
+    private Map<Integer, List<Integer>> productRequests = new HashMap<Integer, List<Integer>>();
     private BankProductFactory bankProductFactory= new BankProductFactory();
 
     private final int LONGTERMMORTGAGE = 1;
@@ -27,23 +27,26 @@ public class BankProductsEmployee implements Serializable {
         this.password = password;
     }
 
-    public Map<Integer, Map<Integer, Map<Integer, List<Integer>>>> getProductRequests() {
+    public Map<Integer, List<Integer>> getProductRequests() {
         return productRequests;
     }
 
     public void requestProducts(int userID, int accountID, int productType, int productAmount, int productLength){
         List<Integer> productStat = new ArrayList<>();
+        productStat.add(accountID);
+        productStat.add(productType);
         productStat.add(productAmount);
         productStat.add(productLength);
-        Map<Integer, List<Integer>> product = new HashMap<>();
-        product.put(productType, productStat);
-        Map<Integer, Map<Integer, List<Integer>>> accountToProduct = new HashMap<>();
-        accountToProduct.put(accountID, product);
-        productRequests.put(userID, accountToProduct);
+        productRequests.put(userID, productStat);
     }
 
-    public void createProduct(){
+    public void createProduct(int mapKey, int accountID, int productType, int productAmount, int productLength){
+        Account account = bm.getOneAccount(accountID);
+        BankProduct bankProduct = bankProductFactory.getBankProduct(productType, productAmount, productLength, account);
+        ((Saving)account).addBankProducts(bankProduct);
 
+        System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey) +
+                "in account " + accountID + ".");
     }
 
     public User getUser(int userID){ return(bm.getUser(userID)); }
@@ -65,7 +68,7 @@ public class BankProductsEmployee implements Serializable {
         }
     }
 
-    public String getAccountName(Integer productType) {
+    public String getProductName(Integer productType) {
         String name= "";
         switch (productType){
             case LONGTERMMORTGAGE:

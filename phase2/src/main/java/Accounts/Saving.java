@@ -49,6 +49,8 @@ public class Saving extends AssetAccount {
 
     public void addBankProducts(BankProduct bankProduct){ bankProducts.add(bankProduct);}
 
+    public void removeLastBankProducts(){ bankProducts.remove(bankProducts.size()-1);}
+
     @Override
     public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
         MonetaryAmount currencyBalance = getCurrencyBalance();

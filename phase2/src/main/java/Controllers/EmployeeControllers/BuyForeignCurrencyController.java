@@ -36,7 +36,7 @@ public class BuyForeignCurrencyController implements Initializable {
     }
 
     public void goBack() throws Exception {
-        Main.showNewBorderPane("/EmployeeMainMenu.fxml");
+        Main.showNewBorderPane("/EmployeeActionPage.fxml");
     }
 
     public void okPressed() {
@@ -52,10 +52,11 @@ public class BuyForeignCurrencyController implements Initializable {
                 int amount = getAmount(lastLine);
                 if (cashStorage.withdrawal(localCurrency, amount)) {
                     int i = 0;
-                    while (lastLine[i] != null) {
+                    while (i < lastLine.length && lastLine[i+2] != null) {
                         cashStorage.addBills(lastLine[0], Integer.valueOf(lastLine[i+1]), Integer.valueOf(lastLine[i+2]));
+                        i++;
                     }
-                    result.setText("Used local currency " + convertTo.toString() + " to purchase foreign currency " + lastLine[1]
+                    result.setText("Used local currency " + convertTo.toString() + " to purchase foreign currency " + lastLine[0]
                             + amount);
                 }
             } else {
@@ -64,10 +65,12 @@ public class BuyForeignCurrencyController implements Initializable {
         } catch (IllegalArgumentException e) {
             //
         }
-
     }
 
 
+    /**
+     * Get information from the text file.
+     */
     private static List<String[]> readFromCSV(String fileName) {
         List<String[]> deposits = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
@@ -103,11 +106,15 @@ public class BuyForeignCurrencyController implements Initializable {
         }
     }
 
+    /**
+     * Return the amount given a list of strings.
+     */
     private int getAmount(String[] line) {
         int amount = 0;
         int i = 0;
-        while (line[i] != null) {
+        while (i < line.length && line[i+2] != null) {
             amount += Integer.valueOf(line[i+1]) * Integer.valueOf(line[i+2]);
+            i++;
         }
         return amount;
     }

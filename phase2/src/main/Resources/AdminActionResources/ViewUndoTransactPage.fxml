@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminActionControllers.ViewUndoTransactRequestsController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -24,9 +23,6 @@
               </columns>
             </TableView>
          </center>
-         <top>
-            <ComboBox onAction="#chooseUser" prefHeight="31.0" prefWidth="513.0" promptText="Choose UserID" BorderPane.alignment="CENTER" />
-         </top>
          <bottom>
             <GridPane prefHeight="81.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
               <columnConstraints>

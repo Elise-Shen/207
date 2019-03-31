@@ -43,6 +43,7 @@ public class BankProductController implements Initializable {
     public void longTermMortgage() throws Exception{
         productType = 1;
         productLength.clear();
+        accountCombo.getItems().clear();
         productLength.setPromptText("Please input an integer");
         productLength.setEditable(true);
     }

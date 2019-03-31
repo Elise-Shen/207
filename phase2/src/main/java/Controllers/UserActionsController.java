@@ -31,7 +31,7 @@ public class UserActionsController implements Initializable {
         if(currentUser.getCount() == 0) {
             Main.showNewBorderPane("/UserActionResources/RequestAccountPage.fxml");
         }else{
-            main.showReachRequestLimit();
+            Main.showReachRequestLimit();
         }
     }
 

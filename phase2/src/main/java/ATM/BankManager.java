@@ -106,7 +106,7 @@ public class BankManager implements Serializable {
      * Add a new creating account request to the accountRequests list.
      */
     public void requestAccount(int userID, int accountType, String currency){
-        Map<String, Integer> value = new HashMap<>();
+        Map<String, Integer> value = new TreeMap<>();
         value.put(currency, accountType);
         List<Integer> user = new ArrayList<>();
         user.add(userID);
@@ -117,7 +117,7 @@ public class BankManager implements Serializable {
      * Add a new creating joint account request to the accountRequests list.
      */
     public void requestAccount(int user1, int user2, int accountType, String currency) {
-        Map<String, Integer> value = new HashMap<>();
+        Map<String, Integer> value = new TreeMap<>();
         value.put(currency, accountType);
         List<Integer> user = new ArrayList<>();
         user.add(user1);

@@ -35,6 +35,7 @@ public class DepositController implements Initializable {
     private ChoiceBox<Account> depositChoiceBox;
 
     public void goToTransactionList()throws Exception{
+        depositChoiceBox.getItems().clear();
         main.showNewBorderPane("/TransactionPage.fxml");
     }
 

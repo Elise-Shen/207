@@ -56,6 +56,10 @@ public class BankManager implements Serializable {
         //createUserExample(userNumExample);
     }
 
+    /**
+     * create a new user and add it to user array list
+     * @return
+     */
     public User createUser(){
         int numUsers = userArrayList.size();
         User newUser = new User(numUsers+1, "abc123", this, false);
@@ -63,6 +67,10 @@ public class BankManager implements Serializable {
         return newUser;
     }
 
+    /**
+     * add account to account array
+     * @param a
+     */
     void addAllAccountsList(Account a){
         allAccounts.add(a);
     }
@@ -89,6 +97,12 @@ public class BankManager implements Serializable {
     public List<Account> getAllAccounts(){
         return allAccounts;
     }
+
+    /**
+     * find the account with given id
+     * @param id
+     * @return
+     */
 
     public Account getOneAccount(int id){
         Account temp = null;

@@ -2,19 +2,19 @@ package AdminActions;
 import ATM.BankManager;
 import Accounts.*;
 import ATM.Keypad;
-
+/*
 public class SetInterestRate extends AdminAction{
 
     /**
      * Constructs a SetInterestRate Instance.
-     */
+     *
     public SetInterestRate (BankManager bankManager) {
         super(bankManager);
     }
 
     /**
      * Set the interest rate of different types of account.
-     */
+     *
     @Override
     public void execute() {
         printInterestTable();
@@ -61,4 +61,4 @@ public class SetInterestRate extends AdminAction{
         return keyPad.getDoubleInput(message);
     }
 
-}
+}*/

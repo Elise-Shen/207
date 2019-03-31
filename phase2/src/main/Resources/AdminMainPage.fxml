@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminMenuController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="704.5540466308594" minWidth="10.0" prefWidth="294.8233337402344" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="841.2391204833984" minWidth="10.0" prefWidth="429.1766662597656" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="794.218994140625" minWidth="10.0" prefWidth="420.4595947265625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="782.04248046875" minWidth="10.0" prefWidth="299.5404052734375" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="418.612060546875" minHeight="10.0" prefHeight="352.5919494628906" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="430.9873352050781" minHeight="10.0" prefHeight="327.4080505371094" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="279.41552734375" minHeight="10.0" prefHeight="279.41552734375" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#restockATMButton" prefHeight="100.0" prefWidth="297.0" text="Restock ATM" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#setInterestRateButton" prefHeight="100.0" prefWidth="300.0" text="Set Interest Rate" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#viewAccountRequestsButton" prefHeight="100.0" prefWidth="300.0" text="View Account Requests" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#viewProductsRequestsButton" prefHeight="114.0" prefWidth="300.0" text="View Create Product Requests" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#viewUndoTransactButton" prefHeight="100.0" prefWidth="300.0" text="View Undo Transaction Requests" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#backToBankManagerLogin" prefHeight="100.0" prefWidth="200.0" text="Back" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

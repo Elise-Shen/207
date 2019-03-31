@@ -2,6 +2,7 @@ package Controllers.UserActionControllers;
 
 import ATM.*;
 import Accounts.Account;
+import Accounts.Saving;
 import Actions.ViewAccount;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -45,8 +46,6 @@ public class BankProductController implements Initializable {
         productLength.clear();
         productLength.setPromptText("Please input an integer");
         productLength.setEditable(true);
-        longTermWarning.setVisible(false);
-        shortTermWarning.setVisible(false);
     }
 
     public void shortTermMortgage() throws Exception {
@@ -54,24 +53,18 @@ public class BankProductController implements Initializable {
         productLength.clear();
         productLength.setPromptText("Please input an integer");
         productLength.setEditable(true);
-        longTermWarning.setVisible(false);
-        shortTermWarning.setVisible(false);
     }
 
     public void highRiskInvestment() throws Exception {
         productType = 3;
         productLength.setText("0");
         productLength.setEditable(false);
-        longTermWarning.setVisible(false);
-        shortTermWarning.setVisible(false);
     }
 
     public void lowRiskInvestment() throws Exception {
         productType = 4;
         productLength.setText("0");
         productLength.setEditable(false);
-        longTermWarning.setVisible(false);
-        shortTermWarning.setVisible(false);
     }
 
     public void goToUserActionList() throws Exception{
@@ -80,21 +73,26 @@ public class BankProductController implements Initializable {
 
     public void submitButton() throws Exception{
         try{
+            boolean isValid = true;
+            longTermWarning.setVisible(false);
+            shortTermWarning.setVisible(false);
             amount = new Integer(productAmount.getText());
             length = new Integer(productLength.getText());
             if (productType == 1){
                 if (length <= 12){
                     productLength.clear();
                     longTermWarning.setVisible(true);
+                    isValid = false;
                 }
             }
-            if (productType == 2){
+            else if (productType == 2){
                 if (length > 12){
                     productLength.clear();
                     shortTermWarning.setVisible(true);
+                    isValid = false;
                 }
             }
-            if(currentUser.product_getCount()<1) {
+            if(isValid && currentUser.product_getCount()<1) {
                 currentUser.product_incrementCount();
                 int accountID = accountCombo.getValue().getAccountID();
                 bankProductsEmployee.requestProducts(currentUserID,accountCombo.getValue().getAccountID(),

@@ -34,7 +34,7 @@ public class ViewAccount extends UserActions {
     }
 
     public ObservableList<Account> getSavingAccounts(){
-        return transferOutAccounts;
+        return savingAccounts;
     }
 
     /**

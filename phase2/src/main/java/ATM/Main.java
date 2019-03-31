@@ -97,13 +97,13 @@ public class Main extends Application {
 */
         //ATM_Machine atm = new ATM_Machine();
         //atm.run();
-        atm = readATM("phase2/ATM.ser");
+        atm = readATM("ATM.ser");
         //atm.run();
         launch(args);
     }
 
     private static void updateData() throws Exception{
-        String filePath = "phase2/ATM.ser";
+        String filePath = "ATM.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
@@ -138,7 +138,7 @@ public class Main extends Application {
 
     public void showReachRequestLimit() throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/HelperBoxes/ReachRequestLimitPage.fxml"));
+        loader.setLocation(Main.class.getResource("/HelperBoxes/ReachRequestLimit.fxml"));
         BorderPane confirmBox = loader.load();
         Stage window = ReachRequestLimitController.getWindow();
         window.initModality(Modality.APPLICATION_MODAL);

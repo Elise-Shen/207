@@ -46,6 +46,7 @@ public class User implements Serializable {
         accounts.add(account1);
         accounts.add(account2);
         this.bankManager.addAllAccountsList(account1);
+        this.bankManager.addAllAccountsList(account2);
         this.isEmployee = false;
         previousPayees.add("Water");
         this.isEmployee = isEmployee;

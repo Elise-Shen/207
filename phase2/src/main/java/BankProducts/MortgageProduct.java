@@ -15,10 +15,10 @@ public abstract class MortgageProduct extends BankProduct{
     public void giveLoan(){
         this.account.increaseCurrencyBalance(product_amount);
     }
-    public void returnloan(){
+    public void returnLoan(){
         boolean status = this.account.decreaseCurrencyBalance(product_amount.multiply(1+product_month*interest_rate));
         if (status == false){
-            System.out.println("Aware! Your balance in this account is negative!");
+            System.out.println("Aware! Your balance in this account is not enough!");
         } else { is_finish=true; }
     }
     @Override
@@ -28,5 +28,7 @@ public abstract class MortgageProduct extends BankProduct{
 
     @Override
     public double getInterestRate(){return interest_rate;}
+
+    public abstract int getLimit();
 
 }

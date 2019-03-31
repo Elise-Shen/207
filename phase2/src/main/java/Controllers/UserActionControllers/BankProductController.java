@@ -33,6 +33,8 @@ public class BankProductController implements Initializable {
     private Label longTermWarning;
     @FXML
     private Label shortTermWarning;
+    @FXML
+    private Label sucessLable;
 
     private int productType;
     private int amount;
@@ -72,6 +74,10 @@ public class BankProductController implements Initializable {
         shortTermWarning.setVisible(false);
     }
 
+    public void goToUserActionList() throws Exception{
+        main.showNewBorderPane("/UserActionsPage.fxml");
+    }
+
     public void submitButton() throws Exception{
         try{
             amount = new Integer(productAmount.getText());
@@ -90,7 +96,11 @@ public class BankProductController implements Initializable {
             }
             if(currentUser.product_getCount()<1) {
                 currentUser.product_incrementCount();
-                bankProductsEmployee.requestProducts(currentUserID,accountCombo.getValue().getAccountID(),productType,amount,length);
+                int accountID = accountCombo.getValue().getAccountID();
+                bankProductsEmployee.requestProducts(currentUserID,accountCombo.getValue().getAccountID(),
+                        productType,amount,length);
+                sucessLable.setText("User " + currentUserID + " request a " +
+                        bankProductsEmployee.getProductName(productType) + " on account " + accountID + " with amount " + amount);
             }else { main.showReachRequestLimit();}
         } catch (NumberFormatException e){}
 

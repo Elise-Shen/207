@@ -63,6 +63,10 @@ public class WithdrawMoney extends Transactions {
         }
     }
 
+    public void executeWithdraw(int amount){
+        getBankManager().getOneAccount(currentAccountID).createMoney(amount);
+    }
+
 
     @Override
     public int getCurrentAccountID() {

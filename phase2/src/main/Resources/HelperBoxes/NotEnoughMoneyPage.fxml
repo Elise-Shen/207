@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Helpers.NotEnoughMoneyController">
+   <center>
+      <Label fx:id="labelMessage" prefHeight="109.0" prefWidth="284.0" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </center>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#notEnoughOkPressed" prefHeight="50.0" prefWidth="100.0" text="Ok" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

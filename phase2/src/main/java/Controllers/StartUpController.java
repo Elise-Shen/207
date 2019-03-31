@@ -39,10 +39,7 @@ public class StartUpController implements Initializable {
 
     @FXML
     public void loadUserLogin() throws Exception{
-        main.showConfirmBox("/HelperBoxes/ConfirmBox.fxml");
-        if (ConfirmBoxController.getConfirm()) {
-            main.showNewBorderPane("/UserLoginPage.fxml");
-        }
+        main.showNewBorderPane("/UserLoginPage.fxml");
     }
 
     public void loadBankManagerLogin() throws Exception{

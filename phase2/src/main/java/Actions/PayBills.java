@@ -14,8 +14,9 @@ import java.util.Locale;
 
 public class PayBills extends Transactions{
     private int currentAccountID;
-    private int amountPaid;
+    private MonetaryAmount amountPaid;
     private String recipientID;
+    private Account currentAccount;
 
     public PayBills(int currentId, BankManager bankManager){
         super(currentId,bankManager);
@@ -24,7 +25,7 @@ public class PayBills extends Transactions{
     public void execute(){
         BankManager bankManager = getBankManager();
         User currentUser = bankManager.getUser(getUserID());
-        Account account = null;
+        currentAccount = null;
         int accountID = 0;
         List<Account> currentUserAccounts = bankManager.getAccountArrayList(currentUser);//want to return a list of all accounts
         Keypad keyPad = new Keypad();
@@ -32,18 +33,18 @@ public class PayBills extends Transactions{
         boolean isValid = false;
         while(!isValid) {
             accountID = keyPad.getIntInput("\nType in the ID of the account you want to use to pay bill.");
-            account = currentUser.getAccount(accountID);
-            if(account != null){
+            currentAccount = currentUser.getAccount(accountID);
+            if(currentAccount != null){
                 currentAccountID = accountID;
                 isValid = true;
             }else{System.out.println("Try Again");}
         }
         recipientID = keyPad.getStringInput("\nType in the ID of the non-user account that you want to pay the bill to.");
 
-        amountPaid = keyPad.getIntInput("\nType in the amount of bill");
+        amountPaid = currentAccount.createMoney(keyPad.getIntInput("\nType in the amount of bill"));
         // reduce the balance of the account
 
-        boolean valid = account.decreaseCurrencyBalance(createMoney(amountPaid));
+        boolean valid = currentAccount.decreaseCurrencyBalance(amountPaid);
         if (valid) {
             String result = "A bill of $" + amountPaid + " is paid from user account " + accountID +
                     " to non-user account " + recipientID;
@@ -55,6 +56,17 @@ public class PayBills extends Transactions{
 
 
     }
+
+    public boolean executePayBill(Account account, int amount){
+        currentAccount = account;
+        amountPaid = account.createMoney(amount);
+        return account.decreaseCurrencyBalance(amountPaid);
+    }
+
+    public MonetaryAmount getAmountPaid(){
+        return amountPaid;
+    }
+
 
     @Override
     public int getCurrentAccountID() {

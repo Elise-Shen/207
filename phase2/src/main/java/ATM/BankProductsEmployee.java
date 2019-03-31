@@ -14,24 +14,39 @@ public class BankProductsEmployee implements Serializable {
 
     private BankManager bm;
     private String password;
-    private Map<List<Integer>, Map<Integer, Integer>> productRequests = new HashMap<List<Integer>, Map<Integer, Integer>>();
+    private Map<Integer, Map<Integer, Map<Integer, List<Integer>>>> productRequests = new HashMap<Integer, Map<Integer, Map<Integer, List<Integer>>>>();
+    private BankProductFactory bankProductFactory= new BankProductFactory();
+
+    private final int LONGTERMMORTGAGE = 1;
+    private final int SHORTTERMMORTGAGE = 2;
+    private final int HIGHRISKINVESTMENT = 3;
+    private final int LOWRISKINVESTMENT = 4;
 
     public BankProductsEmployee(BankManager bm, String password){
         this.bm = bm;
         this.password = password;
     }
 
-    public void requestProducts(int userID, int accountID, int productType){
-        Map<Integer, Integer> value = new HashMap<>();
-        value.put(accountID, productType);
-        List<Integer> user = new ArrayList<>();
-        user.add(userID);
-        productRequests.put(user, value);
+    public Map<Integer, Map<Integer, Map<Integer, List<Integer>>>> getProductRequests() {
+        return productRequests;
+    }
+
+    public void requestProducts(int userID, int accountID, int productType, int productAmount, int productLength){
+        List<Integer> productStat = new ArrayList<>();
+        productStat.add(productAmount);
+        productStat.add(productLength);
+        Map<Integer, List<Integer>> product = new HashMap<>();
+        product.put(productType, productStat);
+        Map<Integer, Map<Integer, List<Integer>>> accountToProduct = new HashMap<>();
+        accountToProduct.put(accountID, product);
+        productRequests.put(userID, accountToProduct);
     }
 
     public void createProduct(){
 
     }
+
+    public User getUser(int userID){ return(bm.getUser(userID)); }
 
     public String getPassword() { return password; }
 
@@ -48,5 +63,24 @@ public class BankProductsEmployee implements Serializable {
                 }
             }
         }
+    }
+
+    public String getAccountName(Integer productType) {
+        String name= "";
+        switch (productType){
+            case LONGTERMMORTGAGE:
+                name = "LongTermMortgage";
+                break;
+            case SHORTTERMMORTGAGE:
+                name = "ShortTermMortgage";
+                break;
+            case HIGHRISKINVESTMENT:
+                name = "HighRiskInvestment";
+                break;
+            case LOWRISKINVESTMENT:
+                name = "LowRiskInvestment";
+                break;
+        }
+        return name;
     }
 }

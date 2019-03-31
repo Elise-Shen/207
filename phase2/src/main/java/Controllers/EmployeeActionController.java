@@ -9,27 +9,28 @@ import java.util.ResourceBundle;
 
 public class EmployeeActionController implements Initializable {
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
     @FXML
-    public void backToUserLogin() throws Exception{
-        Main.showNewBorderPane("/UserLoginPage.fxml");
+    public void goBack() throws Exception {
+        Main.showNewBorderPane("/EmployeeMainMenuPage.fxml");
     }
 
     @FXML
-    public void userActionButton() throws Exception {
-        Main.showNewBorderPane("/UserActionsPage.fxml");
+    public void buyForeignCurrency() throws Exception {
+        Main.showNewBorderPane("/EmployeeActionResources/BuyForeignCurrencyPage.fxml");
     }
 
     @FXML
-    public void transactionButton() throws Exception{
-        Main.showNewBorderPane("/TransactionPage.fxml");
+    public void setCurrencyMaxStock() throws Exception {
+        Main.showNewBorderPane("/EmployeeActionResources/SetMaxStock.fxml");
     }
 
     @FXML
-    public void employeeActionButton() throws Exception {
-        Main.showNewBorderPane("/EmployeeActionPage.fxml");
+    public void viewCashStorage() throws Exception {
+        Main.showNewBorderPane("/EmployeeActionResources/ViewCashStorage.fxml");
     }
 }

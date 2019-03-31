@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javax.xml.soap.Text;
@@ -28,6 +29,10 @@ public class BankProductController implements Initializable {
     private TextField productLength;
     @FXML
     private ComboBox<Account> accountCombo;
+    @FXML
+    private Label longTermWarning;
+    @FXML
+    private Label shortTermWarning;
 
     private int productType;
     private int amount;
@@ -38,6 +43,8 @@ public class BankProductController implements Initializable {
         productLength.clear();
         productLength.setPromptText("Please input an integer");
         productLength.setEditable(true);
+        longTermWarning.setVisible(false);
+        shortTermWarning.setVisible(false);
     }
 
     public void shortTermMortgage() throws Exception {
@@ -45,24 +52,42 @@ public class BankProductController implements Initializable {
         productLength.clear();
         productLength.setPromptText("Please input an integer");
         productLength.setEditable(true);
+        longTermWarning.setVisible(false);
+        shortTermWarning.setVisible(false);
     }
 
     public void highRiskInvestment() throws Exception {
         productType = 3;
         productLength.setText("0");
         productLength.setEditable(false);
+        longTermWarning.setVisible(false);
+        shortTermWarning.setVisible(false);
     }
 
     public void lowRiskInvestment() throws Exception {
         productType = 4;
         productLength.setText("0");
         productLength.setEditable(false);
+        longTermWarning.setVisible(false);
+        shortTermWarning.setVisible(false);
     }
 
     public void submitButton() throws Exception{
         try{
             amount = new Integer(productAmount.getText());
             length = new Integer(productLength.getText());
+            if (productType == 1){
+                if (length <= 12){
+                    productLength.clear();
+                    longTermWarning.setVisible(true);
+                }
+            }
+            if (productType == 2){
+                if (length > 12){
+                    productLength.clear();
+                    shortTermWarning.setVisible(true);
+                }
+            }
             if(currentUser.product_getCount()<1) {
                 currentUser.product_incrementCount();
                 bankProductsEmployee.requestProducts(currentUserID,accountCombo.getValue().getAccountID(),productType,amount,length);
@@ -82,6 +107,8 @@ public class BankProductController implements Initializable {
         viewAccount.printSavingAccounts(currentUser.getAccountList());
         ObservableList<Account> allSavingAccounts = viewAccount.getSavingAccounts();
         accountCombo.setItems(allSavingAccounts);
+        longTermWarning.setVisible(false);
+        shortTermWarning.setVisible(false);
 
         LocalTime currentTime = LocalTime.now();
         LocalTime countResetTime = LocalTime.MIDNIGHT;

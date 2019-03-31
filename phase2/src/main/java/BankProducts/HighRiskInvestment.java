@@ -18,10 +18,8 @@ public class HighRiskInvestment extends InvestmentProduct {
         double x = (Math.random() * ((max - min) + 1)) + min;
         if (0<=x && x<3){
             rate = 0.2;
-        }else if (3<=x && x< 6 ){
-            rate = 0.03;
         }else{
-            rate = -0.1;
+            rate = 0.01;
         }
         setInterestRate(rate);
         setRisk(x);

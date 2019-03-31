@@ -6,6 +6,7 @@ import ATM.User;
 import Accounts.Account;
 import Actions.PayBills;
 import Actions.ViewAccount;
+import Controllers.Helpers.ConfirmBoxController;
 import Controllers.Helpers.NotEnoughMoneyController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -42,17 +43,25 @@ public class PayBillsController implements Initializable {
     }
 
     public void payBills() throws Exception{
-        accountChoice = payBillCombo.getValue();
-        amountChoice = Integer.parseInt(amountCombo.getValue());
-        recipient = recipientCombo.getValue();
+        main.showConfirmBox();
+        if(ConfirmBoxController.getConfirm()) {
+            accountChoice = payBillCombo.getValue();
+            amountChoice = Integer.parseInt(amountCombo.getValue());
+            recipient = recipientCombo.getValue();
 
-        payBills = new PayBills(currentUserID, bankManager);
-        boolean enoughMoney = payBills.executePayBill(accountChoice,amountChoice);
-        if(!enoughMoney){
-            main.showNotEnoughMoney();
+            payBills = new PayBills(currentUserID, bankManager);
+            boolean enoughMoney = payBills.executePayBill(accountChoice, amountChoice);
+            if (!enoughMoney) {
+                main.showNotEnoughMoney();
+            } else {
+                if(!currentUser.getPreviousPayees().contains(recipient)) {
+                    currentUser.addPayee(recipient);
+                }
+                recipientCombo.getItems().clear();
+                payBillCombo.getItems().clear();
+                main.showNewBorderPane("/HelperBoxes/PaidBillBox.fxml");
+            }
         }
-        currentUser.addPayee(recipient);
-        main.showNewBorderPane("/HelperBoxes/PaidBillBox.fxml");
     }
 
     @Override

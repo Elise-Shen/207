@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**
 public class ViewProductRequests extends AdminAction {
 
     private final BankProductsEmployee bankProductsEmployee = getBankProductsEmployee();
@@ -100,4 +100,4 @@ public class ViewProductRequests extends AdminAction {
         return mapKey;
     }
 
-}
+}**/

@@ -64,7 +64,7 @@ public class ViewBalanceController implements Initializable {
      * @throws Exception
      */
     public void undoTransactionPressed() throws Exception{
-        main.showConfirmBox("/HelperBoxes/ConfirmBox.fxml");
+        main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()){
             //send request
         }else{

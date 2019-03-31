@@ -12,7 +12,11 @@ public class UserActionsController implements Initializable {
     private User currentUser;
 
     public void goToUserMainMenu() throws Exception{
-        Main.showNewBorderPane("/UserMainMenuPage.fxml");
+        if (currentUser.isEmployee()) {
+            Main.showNewBorderPane("/EmployeeMainMenuPage.fxml");
+        } else {
+            Main.showNewBorderPane("/UserMainMenuPage.fxml");
+        }
     }
 
     public void changePasswordButton()throws Exception{

@@ -92,13 +92,11 @@ public class BankProductController implements Initializable {
                     isValid = false;
                 }
             }
-            System.out.println(currentUser.product_getCount());
             if(isValid && currentUser.product_getCount()<1) {
                 currentUser.product_incrementCount();
                 int accountID = accountCombo.getValue().getAccountID();
                 bankProductsEmployee.requestProducts(currentUserID,accountCombo.getValue().getAccountID(),
                         productType,amount,length);
-                System.out.println("Success");
                 sucessLable.setText("User " + currentUserID + " request a " +
                         bankProductsEmployee.getProductName(productType) + " on account " + accountID + " with amount " + amount);
             }else { main.showReachRequestLimit();}

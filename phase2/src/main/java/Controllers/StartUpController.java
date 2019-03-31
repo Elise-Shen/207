@@ -43,7 +43,6 @@ public class StartUpController implements Initializable {
 
     public void bankEmployeeLogin()throws Exception{
         Main.showNewBorderPane("/BankEmployeeMainPage.fxml");
-        Main.showNewBorderPane("/BankManagerLoginPage.fxml");
     }
 
     private void initClock(){

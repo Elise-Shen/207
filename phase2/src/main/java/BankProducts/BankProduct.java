@@ -40,40 +40,33 @@ public abstract class BankProduct implements Serializable{
         this.account = account;
     }
 
-
+    /*
+    set the date the product ends
+     */
     public void setDateEnd (int product_month){
         dateEnd = dateCreation.plusMonths(product_month);
     }
-
-    public LocalDate getDateCreation() {
-        return this.dateCreation;
-    }
-
+    /*
+    get the date the proudct ends
+     */
     public LocalDate getDateEnd(){return dateEnd;}
 
+    /*
+    increase the number of product created
+     */
     public void increaseNumProduct(){
         numProduct += 1;
     }
 
+    /*
+    check if the product has ended
+     */
+
     public boolean getIsFinished(){return is_finish;}
 
-
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setOwnerID(int i){
-        ownerID = i;
-    }
-    public int getOwnerID(){
-        return ownerID;
-    }
-
-
-
-    public double getInterestRate(){return 0;};
-    public int getProductType(){return 0;};
-
+    /*
+    create moneey of the currency type, prepare for furture usage
+     */
     public MonetaryAmount createMoney(double amount){
         return account.createMoney(amount);
     }

@@ -4,12 +4,14 @@ import Accounts.*;
 /**
  * random a num between 0-10
  * 0-3 interest rate 20%
- * 3-6 interest rate 3%
- * 6-10 interest rate -10%
+ * 3-6 interest rate 0.1%
  * with fixed month - 1 month
  */
 
 public class HighRiskInvestment extends InvestmentProduct {
+    /*
+    use a random variable to calculate risk
+     */
     public HighRiskInvestment(int amount,Account account){
         super(amount, 1,0, 0,account);
         Double min = 0.0; //  Set To Your Desired Min Value
@@ -25,8 +27,5 @@ public class HighRiskInvestment extends InvestmentProduct {
         setRisk(x);
 
     }
-    @Override
-    public int getProductType() {
-        return 3;
-    }
+
 }

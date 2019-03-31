@@ -36,7 +36,7 @@ public class RequestProduct extends UserActions {
             int puductLength = getProductLength(productType);
             currentUser.product_incrementCount();
             bankProductsEmployee.requestProducts(getUserID(),getAccountID(),productType,productAmount,puductLength);
-        }else {System.out.println("Reached Daily Account Request Limit");}
+        }else {System.out.println("Reached Daily Product Request Limit");}
     }
     public int getProductLength(int type){
         boolean isValid = false;

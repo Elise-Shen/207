@@ -9,6 +9,9 @@ import Accounts.*;
  */
 
 public class LowRiskInvestment extends InvestmentProduct {
+    /*
+    use a random variable to calculate risk
+     */
     public LowRiskInvestment(int amount,Account account){
         super(amount, 1,0, 0,account);
         Double min = 0.0; //  Set To Your Desired Min Value
@@ -22,11 +25,6 @@ public class LowRiskInvestment extends InvestmentProduct {
         }
         setInterestRate(rate);
         setRisk(x);
-
-
     }
-    @Override
-    public int getProductType() {
-        return 4;
-    }
+
 }

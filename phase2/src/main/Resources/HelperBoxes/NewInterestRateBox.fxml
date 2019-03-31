@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.Helpers.NewInterestRateBox"
-            prefHeight="960.0" prefWidth="1440.0">
 
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Helpers.NewInterestRateBox">
+   <center>
+      <GridPane prefHeight="924.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1119.2156372070312" minWidth="10.0" prefWidth="336.08343505859375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1119.2156372070312" minWidth="10.0" prefWidth="804.4608154296875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="708.7227783203125" minWidth="10.0" prefWidth="335.5391845703125" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="713.8318481445312" minHeight="10.0" prefHeight="610.0808715820312" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="470.9781799316406" minHeight="10.0" prefHeight="349.91912841796875" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="newTable" alignment="CENTER" prefHeight="470.0" prefWidth="647.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#okPressed" prefHeight="80.0" prefWidth="200.0" text="OK" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>

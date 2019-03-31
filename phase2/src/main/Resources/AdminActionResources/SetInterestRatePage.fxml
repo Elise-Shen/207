@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.AdminActionControllers.SetInterestRateController"
-            prefHeight="960.0" prefWidth="1440.0">
 
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminActionControllers.SetInterestRateController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.7852783203125" minWidth="10.0" prefWidth="425.7852783203125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="932.3112182617188" minWidth="10.0" prefWidth="456.2320556640625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="815.52783203125" minWidth="10.0" prefWidth="242.7679443359375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="815.52783203125" minWidth="10.0" prefWidth="317.99822998046875" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="567.3712463378906" minHeight="10.0" prefHeight="567.3712463378906" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="310.64605712890625" minHeight="10.0" prefHeight="114.62875366210938" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="349.73883056640625" minHeight="10.0" prefHeight="277.2457275390625" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="interestTable" alignment="CENTER" prefHeight="500.0" prefWidth="349.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label prefHeight="50.0" prefWidth="227.0" text="Account Type:" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="accountTypeChoiceBox" prefHeight="50.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="newInterestRate" prefHeight="50.0" prefWidth="242.0" promptText="New interest rate..." GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#okPressed" prefHeight="50.0" prefWidth="116.0" text="OK" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="50.0" prefWidth="116.0" text="Back" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>EmployeeActions</OriginalElement>
+  <nodes>
+    <node x="311.0" y="112.0">EmployeeActions.SetCurrencyMaxStock</node>
+    <node x="758.0" y="123.0">EmployeeActions.ViewCashStorage</node>
+    <node x="536.0" y="134.0">EmployeeActions.ViewCurrencyMaxStock</node>
+    <node x="0.0" y="101.0">EmployeeActions.BuyForeignCurrency</node>
+    <node x="453.75" y="0.0">EmployeeActions.EmployeeAction</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="EmployeeActions.ViewCashStorage" target="EmployeeActions.EmployeeAction">
+      <point x="0.0" y="-48.0" />
+      <point x="928.5" y="71.0" />
+      <point x="578.875" y="71.0" />
+      <point x="53.625" y="25.5" />
+    </edge>
+    <edge source="EmployeeActions.BuyForeignCurrency" target="EmployeeActions.EmployeeAction">
+      <point x="0.0" y="-70.0" />
+      <point x="145.5" y="71.0" />
+      <point x="471.625" y="71.0" />
+      <point x="-53.625" y="25.5" />
+    </edge>
+    <edge source="EmployeeActions.ViewCurrencyMaxStock" target="EmployeeActions.EmployeeAction">
+      <point x="0.0" y="-37.0" />
+      <point x="637.0" y="81.0" />
+      <point x="543.125" y="81.0" />
+      <point x="17.875" y="25.5" />
+    </edge>
+    <edge source="EmployeeActions.SetCurrencyMaxStock" target="EmployeeActions.EmployeeAction">
+      <point x="0.0" y="-59.0" />
+      <point x="413.5" y="81.0" />
+      <point x="507.375" y="81.0" />
+      <point x="-17.875" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="417.0" y="60.5" />
+  <SelectedNodes>
+    <node>EmployeeActions.EmployeeAction</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

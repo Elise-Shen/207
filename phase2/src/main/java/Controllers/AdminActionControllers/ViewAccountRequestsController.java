@@ -33,7 +33,7 @@ public class ViewAccountRequestsController implements Initializable {
     }
 
     public void okPressed() {
-        Integer choice = Integer.valueOf(requestChoiceBox.getValue());
+        int choice = Integer.valueOf(requestChoiceBox.getValue());
         BankManager bankManager = Main.getCurrentATM().getATMBankManager();
         Map<List<Integer>, Map<String, Integer>> accountRequests = bankManager.getAccountRequests();
         Iterator<Map.Entry<List<Integer>, Map<String, Integer>>> entries = accountRequests.entrySet().iterator();
@@ -50,9 +50,12 @@ public class ViewAccountRequestsController implements Initializable {
         int accountType = accountRequests.get(mapKey).get(firstKey);
         bankManager.createAccount(mapKey, accountType, firstKey);
         bankManager.getAccountRequests().remove(mapKey);
-
-        requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + "account for user(s)" +
-                getUsers(mapKey));
+        try {
+            requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + "account for user(s)" +
+                    getUsers(mapKey));
+        } catch (NullPointerException e){
+            //
+        }
     }
 
 

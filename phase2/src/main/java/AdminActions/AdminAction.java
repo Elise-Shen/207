@@ -28,4 +28,6 @@ public abstract class AdminAction implements Serializable {
     public BankManager getBankManager(){
         return this.bankManager;
     }
+
+    public BankProductsEmployee getBankProductsEmployee() { return this.bankProductsEmployee; }
 }

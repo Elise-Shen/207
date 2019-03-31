@@ -66,8 +66,7 @@ public class BankProductController implements Initializable {
             if(currentUser.product_getCount()<1) {
                 currentUser.product_incrementCount();
                 bankProductsEmployee.requestProducts(currentUserID,accountCombo.getValue().getAccountID(),productType,amount,length);
-            }else { //main.showReachRequestLimit();
-                }
+            }else { main.showReachRequestLimit();}
         } catch (NumberFormatException e){}
 
     }

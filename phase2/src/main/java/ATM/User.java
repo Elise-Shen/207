@@ -43,6 +43,7 @@ public class User implements Serializable {
         Account account2 = new Saving("CAD");
         account2.setOwnerID(this.userID);
         account1.setOwnerID(this.userID);
+        setPrimaryAccount(account1);
         accounts.add(account1);
         accounts.add(account2);
         this.bankManager.addAllAccountsList(account1);

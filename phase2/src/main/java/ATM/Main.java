@@ -1,9 +1,7 @@
 package ATM;
 
-import Controllers.Helpers.ConfirmBoxController;
-import Controllers.Helpers.CreatedAccountController;
-import Controllers.Helpers.NotEnoughMoneyController;
-import Controllers.Helpers.ReachRequestLimitController;
+import Controllers.Helpers.*;
+import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -50,6 +48,20 @@ public class Main extends Application {
 
     }
 
+    public static void showQuickDeposit()throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/HelperBoxes/QuickDepositBox.fxml"));
+        BorderPane confirmBox = loader.load();
+        Stage window = QuickDepositController.getWindow();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Warning");
+        window.setMinWidth(250);
+        Scene scene = new Scene(confirmBox);
+        window.setScene(scene);
+        window.showAndWait();
+        updateData();
+    }
+
     public static void showConfirmBox()throws Exception{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("/HelperBoxes/ConfirmBox.fxml"));
@@ -94,13 +106,13 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        atm = readATM("ATM.ser");
+        atm = readATM("phase2/ATM.ser");
 
         launch(args);
     }
 
     private static void updateData() throws Exception{
-        String filePath = "ATM.ser";
+        String filePath = "phase2/ATM.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);

@@ -65,7 +65,7 @@ public class BankProductsEmployee implements Serializable {
                 for (BankProduct p: allProducts){
                     if (!p.getIsFinished() && p.getDateEnd().equals(localDate)){
                         if (p instanceof InvestmentProduct) { ((InvestmentProduct)p).returnRevenue();}
-                        else { ((MortgageProduct)p).returnloan();}
+                        else { ((MortgageProduct)p).returnLoan();}
                     }
                 }
             }

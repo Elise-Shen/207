@@ -1,6 +1,7 @@
 package ATM;
 
 import Controllers.Helpers.ConfirmBoxController;
+import Controllers.Helpers.CreatedAccountController;
 import Controllers.Helpers.NotEnoughMoneyController;
 import Controllers.Helpers.ReachRequestLimitController;
 import javafx.application.Application;
@@ -74,17 +75,32 @@ public class Main extends Application {
         Scene scene = new Scene(confirmBox);
         window.setScene(scene);
         window.showAndWait();
+        updateData();
+    }
+
+    public static void showCreatedUser()throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/HelperBoxes/CreatedAccountBox.fxml"));
+        BorderPane confirmBox = loader.load();
+        Stage window = CreatedAccountController.getWindow();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Message");
+        window.setMinWidth(250);
+        Scene scene = new Scene(confirmBox);
+        window.setScene(scene);
+        window.showAndWait();
+        updateData();
     }
 
     public static void main(String[] args) {
 
-        atm = readATM("ATM.ser");
+        atm = readATM("phase2/ATM.ser");
 
         launch(args);
     }
 
     private static void updateData() throws Exception{
-        String filePath = "phase2/ATM.ser";
+        String filePath = "ATM.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
@@ -129,5 +145,6 @@ public class Main extends Application {
         Scene scene = new Scene(confirmBox);
         window.setScene(scene);
         window.showAndWait();
+        updateData();
     }
 }

@@ -50,10 +50,11 @@ public class BankManager implements Serializable {
         //createUserExample(userNumExample);
     }
 
-    public void createUser(){
+    public User createUser(){
         int numUsers = userArrayList.size();
         User newUser = new User(numUsers+1, "abc123", this, false);
         userArrayList.add(newUser);
+        return newUser;
     }
 
 

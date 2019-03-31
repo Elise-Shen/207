@@ -50,8 +50,7 @@ public class ViewAccountRequestsController implements Initializable {
         int accountType = accountRequests.get(mapKey).get(firstKey);
         bankManager.createAccount(mapKey, accountType, firstKey);
         bankManager.getAccountRequests().remove(mapKey);
-        System.out.println("created");
-        requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + "account for user(s)" +
+        requestedAccount.setText("Created a(n) " + bankManager.getAccountName(accountType) + " account for user(s) " +
                 getUsers(mapKey));
     }
 

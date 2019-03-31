@@ -4,6 +4,7 @@ package Controllers;
 
 import ATM.ATM_Machine;
 import ATM.Main;
+import ATM.User;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,13 +27,16 @@ public class StartUpController implements Initializable {
     @FXML
     private Label dateTimeLabel;
 
+    public static User newUser;
+
     @FXML
     public void loadUserLogin() throws Exception{
         Main.showNewBorderPane("/UserLoginPage.fxml");
     }
 
-    public void createUserButton(){
-
+    public void createUserButton()throws Exception{
+        newUser = Main.getCurrentATM().getATMBankManager().createUser();
+        Main.showCreatedUser();
     }
 
     public void loadBankManagerLogin() throws Exception{

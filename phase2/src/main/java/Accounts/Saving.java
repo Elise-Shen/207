@@ -15,7 +15,7 @@ public class Saving extends AssetAccount {
      */
     private static double interestRate = 0.001;
 
-    public List<BankProduct> bankProducts = new ArrayList<>();
+    private List<BankProduct> bankProducts = new ArrayList<>();
 
     /**
      * Creates a Savings Account.

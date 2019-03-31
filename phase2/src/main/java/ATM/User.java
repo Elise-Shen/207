@@ -46,8 +46,10 @@ public class User implements Serializable {
         accounts.add(account1);
         accounts.add(account2);
         this.bankManager.addAllAccountsList(account1);
+        this.bankManager.addAllAccountsList(account2);
         this.isEmployee = false;
         previousPayees.add("Water");
+        this.isEmployee = isEmployee;
     }
 // getter and setter
 
@@ -184,5 +186,7 @@ public class User implements Serializable {
     public String toString(){
         return "User ID: "+userID;
     }
+
+    public boolean isEmployee() {return this.isEmployee;}
 }
 

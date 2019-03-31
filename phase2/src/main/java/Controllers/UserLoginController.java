@@ -35,7 +35,11 @@ public class UserLoginController implements Initializable {
         String password = passwordField.getText();
         ATM_Machine atm = Main.getCurrentATM();
         if(atm.userLogin(userID, password)){
-            Main.showNewBorderPane("/UserMainMenuPage.fxml");
+            if (atm.getATMBankManager().getUser(Integer.valueOf(userID)).isEmployee()) {
+                Main.showNewBorderPane("/EmployeeMainMenuPage.fxml");
+            } else {
+                Main.showNewBorderPane("/UserMainMenuPage.fxml");
+            }
         }else{
             wrongPasswordLabel.setVisible(true);
         }

@@ -32,3 +32,4 @@ public abstract class MortgageProduct extends BankProduct{
     public abstract int getLimit();
 
 }
+

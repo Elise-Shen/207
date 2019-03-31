@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -61,6 +62,7 @@ public class StartUpController implements Initializable {
                 //
             }
             atm.addInterests();
+            atm.getBankProductsEmployee().updateSaving(LocalDate.now());
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();

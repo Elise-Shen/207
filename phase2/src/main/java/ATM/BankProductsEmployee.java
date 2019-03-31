@@ -83,16 +83,16 @@ public class BankProductsEmployee implements Serializable {
         String name= "";
         switch (productType){
             case LONGTERMMORTGAGE:
-                name = "LongTermMortgage";
+                name = "Long Term Mortgage";
                 break;
             case SHORTTERMMORTGAGE:
-                name = "ShortTermMortgage";
+                name = "Short Term Mortgage";
                 break;
             case HIGHRISKINVESTMENT:
-                name = "HighRiskInvestment";
+                name = "High Risk Investment";
                 break;
             case LOWRISKINVESTMENT:
-                name = "LowRiskInvestment";
+                name = "Low Risk Investment";
                 break;
         }
         return name;

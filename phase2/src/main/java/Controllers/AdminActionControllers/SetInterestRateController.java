@@ -43,7 +43,7 @@ public class SetInterestRateController implements Initializable {
             entry = entries.next();
             mapKey = entry.getKey();
             choices.add(mapKey);
-            table.append(mapKey).append(" - ").append(interestAccounts.get(mapKey)).append("\n");
+            table.append(mapKey).append(" - ").append(interestAccounts.get(mapKey)*100).append('%').append("\n");
         }
         interestTable.setText(table.toString());
         accountTypeChoiceBox.setItems(choices);

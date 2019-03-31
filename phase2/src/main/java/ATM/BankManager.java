@@ -49,8 +49,10 @@ public class BankManager implements Serializable {
         // create 3 users for testing purpose
         User user1 = new User(1, "abc123", this, false);
         User user2 = new User(2, "abc123", this, false);
+        User user3 = new User(3, "abc123", this, true);
         userArrayList.add(user1);
         userArrayList.add(user2);
+        userArrayList.add(user3);
         //createUserExample(userNumExample);
     }
 

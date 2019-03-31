@@ -5,6 +5,7 @@ import Actions.AccountToAccount;
 import Actions.DepositMoney;
 import Actions.Transactions;
 import Actions.WithdrawMoney;
+import javafx.collections.ObservableMap;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.money.MonetaryAmount;
@@ -12,6 +13,8 @@ import java.io.*;
 import java.util.InputMismatchException;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 
@@ -25,9 +28,10 @@ public class BankManager implements Serializable {
     private String bankName;
     private Map<List<Integer>, Map<String, Integer>> accountRequests = new HashMap<>();
     private Map<Integer, List<Transactions>> undoTransactionRequest = new HashMap<>();
+    private static ObservableList<Transactions> observableUndoTransacRequest = FXCollections.observableArrayList();
+
     private List<User>  userArrayList = new ArrayList<>();
     private AccountFactory accountFactory = new AccountFactory();
-    //private List<Transactions> listOfTransactions = new ArrayList<>(); //for part 2
     private List<Account> allAccounts = new ArrayList<>();
     private String password;
 
@@ -56,7 +60,6 @@ public class BankManager implements Serializable {
         userArrayList.add(newUser);
         return newUser;
     }
-
 
     void addAllAccountsList(Account a){
         allAccounts.add(a);
@@ -169,6 +172,13 @@ public class BankManager implements Serializable {
         return undoTransactionRequest;
     }
 
+    public ObservableList<Transactions> getObservableUndoTransacRequest(){
+        List<Transactions> requests= undoTransactionRequest.
+                values().stream().flatMap(List::stream).collect(Collectors.toList());
+        observableUndoTransacRequest.addAll(requests);
+        return observableUndoTransacRequest;
+    }
+
     public void addUndoTransactionRequest(int userID, Transactions t){
         if (undoTransactionRequest.containsKey(userID)) {
             undoTransactionRequest.get(userID).add(t);
@@ -185,7 +195,7 @@ public class BankManager implements Serializable {
         // this 2 variables are updated in every transaction
         MonetaryAmount amountMoved;
         // search user
-        Account currentAccount = getOneAccount(t.getCurrentAccountID());
+        Account currentAccount = t.getCurrentAccount();
         // get recent transaction of this user
         if(t instanceof WithdrawMoney){
             amountMoved = ((WithdrawMoney) t).getAmountWithdrawn();
@@ -197,8 +207,8 @@ public class BankManager implements Serializable {
             System.out.println("Removed $" + amountMoved + " from the account");
 
         }else if (t instanceof AccountToAccount){
-            int recipientID = (t).getRecipientAccountID();
-            Account recipientAccount = getOneAccount(recipientID);
+            //int recipientID = (t).getRecipientAccountID();
+            Account recipientAccount = ((AccountToAccount) t).getRecipientAccount();
             amountMoved = ((AccountToAccount) t).getAmountTransferred();
             currentAccount.increaseCurrencyBalance(amountMoved);
             recipientAccount.decreaseCurrencyBalance(amountMoved);

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminActionControllers.ViewUndoTransactRequestsController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="undoTransacReq" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                  <TableColumn fx:id="dateCol" prefWidth="279.0" text="Date" />
+                  <TableColumn fx:id="userIDCol" prefWidth="192.0" text="UserID" />
+                <TableColumn fx:id="accountIdCol" prefWidth="143.0" text="AccountID" />
+                  <TableColumn fx:id="accountCol" prefWidth="332.0" text="Account" />
+                  <TableColumn fx:id="transactionCol" prefWidth="314.0" text="Transaction" />
+                  <TableColumn fx:id="amountCol" prefWidth="169.0" text="Amount" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <ComboBox onAction="#chooseUser" prefHeight="31.0" prefWidth="513.0" promptText="Choose UserID" BorderPane.alignment="CENTER" />
+         </top>
+         <bottom>
+            <GridPane prefHeight="81.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#toAdminActions" prefHeight="90.0" prefWidth="190.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#deleteSelection" prefHeight="74.0" prefWidth="215.0" text="Delete" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </bottom>
+      </BorderPane>
+   </center>
+</BorderPane>

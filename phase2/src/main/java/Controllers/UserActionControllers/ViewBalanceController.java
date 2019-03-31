@@ -46,6 +46,8 @@ public class ViewBalanceController implements Initializable {
     @FXML
     private Button undoTransactionButton;
 
+    private Transactions previousTransaction;
+
     public void goToUserActionList() throws Exception{
         accountComboBox.getItems().clear();
         Main.showNewBorderPane("/UserActionsPage.fxml");
@@ -58,9 +60,7 @@ public class ViewBalanceController implements Initializable {
     public void undoTransactionPressed() throws Exception{
         Main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()){
-            //send request
-        }else{
-
+            bankManager.addUndoTransactionRequest(currentUserID, previousTransaction);
         }
 
     }
@@ -85,9 +85,9 @@ public class ViewBalanceController implements Initializable {
                 //sets map-key to last item
             }
             LocalDate date = mapKey;
-            Transactions transactions = recent.get(mapKey);
-            if (transactions != null) {
-                previousTransLabel.setText("Most recent transaction is " + transactions + " on " + date);
+            previousTransaction = recent.get(mapKey);
+            if (previousTransaction != null) {
+                previousTransLabel.setText("Most recent transaction is " + previousTransaction + " on " + date);
                 undoTransactionButton.setVisible(true);
             } else {
                 previousTransLabel.setText("No recent transactions");

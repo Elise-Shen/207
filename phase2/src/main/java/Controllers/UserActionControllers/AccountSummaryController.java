@@ -41,12 +41,8 @@ public class AccountSummaryController implements Initializable {
         currentUser.readAllAccounts();
         ObservableList<Account> allAccounts = currentUser.getObservableAccounts();
 
-        accountCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Account, Account>, ObservableValue<Account>>() {
-            @Override
-            public ObservableValue<Account> call(TableColumn.CellDataFeatures<Account, Account> data) {
-                return new ReadOnlyObjectWrapper<>(data.getValue());
-            }
-        });
+
+        accountCol.setCellValueFactory(tableCol -> new ReadOnlyObjectWrapper<>(tableCol.getValue()));
 
         idCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Account, Integer>, ObservableValue<Integer>>() {
             @Override

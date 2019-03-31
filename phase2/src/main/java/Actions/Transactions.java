@@ -35,6 +35,9 @@ public abstract class Transactions implements Serializable{
     public BankManager getBankManager(){
         return bankManager;
     }
+    public Account getCurrentAccount(){
+        return bankManager.getOneAccount(getCurrentAccountID());
+    }
 
 
     public abstract void execute();

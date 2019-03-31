@@ -61,7 +61,7 @@ public class Saving extends AssetAccount {
             MonetaryAmount newBalance = currencyBalance.subtract(amount);
             setCurrencyBalance(newBalance);
         }
-        return false;
+        return true;
     }
 }
 

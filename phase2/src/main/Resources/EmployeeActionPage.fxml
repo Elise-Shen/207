@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.EmployeeActionController"
-            prefHeight="960.0" prefWidth="1440.0">
 
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeActionController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="461.5296325683594" minWidth="10.0" prefWidth="292.9578857421875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0421142578125" minWidth="10.0" prefWidth="423.0421142578125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0267333984375" minWidth="10.0" prefWidth="445.091796875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.512451171875" minWidth="10.0" prefWidth="278.908203125" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="489.2160339355469" minHeight="10.0" prefHeight="435.8508605957031" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="426.86041259765625" minHeight="10.0" prefHeight="216.24664306640625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="259.75335693359375" minHeight="10.0" prefHeight="259.75335693359375" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#buyForeignCurrency" prefHeight="100.0" prefWidth="300.0" text="Buy Foreign Actions" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#setCurrencyMaxStock" prefHeight="100.0" prefWidth="300.0" text="Set Currency Maximum Storage" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#viewCashStorage" prefHeight="100.0" prefWidth="300.0" text="View Cash Storage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="100.0" prefWidth="300.0" text="Back" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>

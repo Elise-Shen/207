@@ -100,7 +100,7 @@ public class Main extends Application {
     }
 
     private static void updateData() throws Exception{
-        String filePath = "phase2/ATM.ser";
+        String filePath = "ATM.ser";
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);

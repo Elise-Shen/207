@@ -7,6 +7,11 @@ import ATM.User;
 import java.time.LocalTime;
 
 public class RequestProduct extends UserActions {
+    private static final int LONGTERMMORTGAGE = 1;
+    private static final int SHORTTERMMORTGAGE = 2;
+
+    private static final int MORTGAGEBOUNDARY = 12;
+
     private static final int LIMIT = 1;
     public RequestProduct(int userID, BankProductsEmployee bpe, int accountID){
         super(userID,bpe,accountID);
@@ -34,19 +39,30 @@ public class RequestProduct extends UserActions {
         }else {System.out.println("Reached Daily Account Request Limit");}
     }
     public int getProductLength(int type){
-
+        boolean isValid = false;
         int length = 0;
-        if (type==1 || type==2){
-            Keypad keypad = new Keypad();
-            length = keypad.getIntInput("\nHow long would you like to hold your mortgage?"
-                    + "\n please input an integer");
+        if (type==LONGTERMMORTGAGE || type==SHORTTERMMORTGAGE) {
+            while (!isValid) {
+                Keypad keypad = new Keypad();
+                length = keypad.getIntInput("\nHow many money would you like to hold your mortgage?"
+                        + "\n please input an integer");
+                if (type == LONGTERMMORTGAGE){
+                    if (length > MORTGAGEBOUNDARY){ isValid = true;}
+                    else {System.out.println("Time length for Long Term Mortgage need to be longer than 12 month. " +
+                            "Please try again!");}
+                }else{
+                    if (length <= MORTGAGEBOUNDARY){ isValid = true;}
+                    else {System.out.println("Time length for Short Term Mortgage cannot exceed 12 month. " +
+                            "Please try again!");}
+                }
+            }
         }
         return length;
     }
 
     public int getProductAmount(){
         Keypad keypad = new Keypad();
-        int amount = 0;
+        int amount;
         amount = keypad.getIntInput("\nHow much money would you like to put into the bank product?"
         + "\n please input an integer");
         return amount;
@@ -58,7 +74,7 @@ public class RequestProduct extends UserActions {
         while (!isValid) {
             Keypad keyPad = new Keypad();
             typeChoice = keyPad.getIntInput("\nWhat type of bank product do you wish to create?" +
-                    "\n1 - Long Term Mortgage \n2 - Short Term Mortgage\n3 - High Rist Investment\n4 - Low Risk Investment\n0 - Exit");
+                    "\n1 - Long Term Mortgage \n2 - Short Term Mortgage\n3 - High Risk Investment\n4 - Low Risk Investment\n0 - Exit");
             if (typeChoice <= 4 && typeChoice >= 0) {
                 isValid = true;
             } else {

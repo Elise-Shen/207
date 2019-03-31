@@ -41,12 +41,23 @@ public class BankProductsEmployee implements Serializable {
     }
 
     public void createProduct(int mapKey, int accountID, int productType, int productAmount, int productLength){
+        boolean isValid;
         Account account = bm.getOneAccount(accountID);
         BankProduct bankProduct = bankProductFactory.getBankProduct(productType, productAmount, productLength, account);
         ((Saving)account).addBankProducts(bankProduct);
 
-        System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey) +
-                "in account " + accountID + ".");
+        if (productType == LONGTERMMORTGAGE || productType == SHORTTERMMORTGAGE){
+            ((MortgageProduct)bankProduct).giveLoan();
+            isValid = true;
+        } else {isValid = ((InvestmentProduct)bankProduct).doInvestment();}
+
+        if (isValid) {
+            System.out.println("Created a new " + getProductName(productType) + " for User " + bm.getUser(mapKey).getUserID() +
+                " in account " + accountID + ".");
+        } else {
+            ((Saving)account).removeLastBankProducts();
+            System.out.println("Fail to create a new investment.");
+        }
     }
 
     public User getUser(int userID){ return(bm.getUser(userID)); }
@@ -61,7 +72,7 @@ public class BankProductsEmployee implements Serializable {
                 for (BankProduct p: allProducts){
                     if (!p.getIsFinished() && p.getDateEnd().equals(localDate)){
                         if (p instanceof InvestmentProduct) { ((InvestmentProduct)p).returnRevenue();}
-                        else { ((MortgageProduct)p).returnloan();}
+                        else { ((MortgageProduct)p).returnLoan();}
                     }
                 }
             }

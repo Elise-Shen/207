@@ -1,3 +1,9 @@
+Major changelist for Phase 2:
+- Added a GUI
+- Added foreign currencies
+- Added Bank Product (Mortgages and Investments)
+
+
 How to run this program:
 
 1. Run the Main.java in the ATM folder
@@ -28,6 +34,22 @@ As a customer/user:
         - Transfer money to another account
 
 
+As a bank employee:
+    A bank employee will login like a normal user but will also have an extra option "Employee Actions" in the main menu in addition to User Actions and Transactions like a customer/user.
+        An example employee has been set up with UserID: 3 Password: abc123
+
+    See Customer/User documentation above for User Actions and Transactions
+
+    Employee Actions:
+        - Buy Foreign Currency
+            Enter the amount of foreign currency to purchase in ForeignCurrencyPurchase.txt the click "Purchase"
+        - Set Currency Maximum Storage
+            Allows the employee to set the max stock of the ATM for when the ATM gets restocked by the Bank Manager.
+            Limited to the local currency.
+        - View Cash Storage
+            Displays the amount of each bill in stock
+
+
 As the Bank Manager:
         After selecting Bank Manager on the main menu, it will prompt the user for the Password. (Defaulted to 'abc123')
         There are 4 menu choices for the Bank Manager:
@@ -51,3 +73,5 @@ As Bank Product Employee:
 
     View Product Request
         Similar to Manager's account creation request, this will display all current requests and can select the request to approve.
+
+

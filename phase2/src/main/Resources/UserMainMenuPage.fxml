@@ -23,12 +23,12 @@
           <RowConstraints maxHeight="501.0" minHeight="10.0" percentHeight="30.0" prefHeight="376.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#userActionButton" prefHeight="100.0" prefWidth="250.0" text="User Actions" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#userActionButton" prefHeight="100.0" prefWidth="354.0" text="User Actions" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="34.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#transactionButton" prefHeight="100.0" prefWidth="250.0" text="Transactions" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#transactionButton" prefHeight="100.0" prefWidth="299.0" text="Transactions" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font size="34.0" />
                </font>

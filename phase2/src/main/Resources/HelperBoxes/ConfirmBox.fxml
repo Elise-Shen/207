@@ -10,7 +10,7 @@
 
 <BorderPane fx:id="confirmBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Helpers.ConfirmBoxController">
    <top>
-      <Label prefHeight="115.0" prefWidth="222.0" text="Are you sure?" BorderPane.alignment="CENTER">
+      <Label prefHeight="115.0" prefWidth="263.0" text="Are you sure?" BorderPane.alignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>

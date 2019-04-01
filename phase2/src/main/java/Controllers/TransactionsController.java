@@ -29,7 +29,7 @@ public class TransactionsController implements Initializable {
         User currentUser = bankManager.getUser(currentUserID);
         CashStorage cashStorage = tempATM.getCashStorage();
         quickDeposit = new DepositMoney(currentUserID, bankManager, cashStorage);
-        List<String[]> deposits = quickDeposit.readFromCSV("phase2/deposits.txt");
+        List<String[]> deposits = quickDeposit.readFromCSV("deposits.txt");
         quickDeposit.checkDeposit(deposits, currentUser.getPrimaryAccount());
         currentUser.addTransactions(quickDeposit);
         currentUser.getPrimaryAccount().addTransaction(quickDeposit);

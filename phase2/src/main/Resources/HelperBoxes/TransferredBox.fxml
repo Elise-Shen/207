@@ -13,8 +13,6 @@
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -22,43 +20,22 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="45.0" prefWidth="444.0" text="Transferred from" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                    </GridPane.margin>
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Label>
-                <Label fx:id="recipientAccount" prefHeight="45.0" prefWidth="462.0" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Label>
-                <Button mnemonicParsing="false" onAction="#okPressed" prefHeight="62.0" prefWidth="150.0" text="Ok" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                <Button mnemonicParsing="false" onAction="#okPressed" prefHeight="62.0" prefWidth="150.0" text="Ok" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Button>
-                <Label fx:id="transferAmount" prefHeight="45.0" prefWidth="383.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Label>
-                <Label text="to " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-                </Label>
-                <Label fx:id="transferAccount" prefHeight="56.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label fx:id="transferAccount" prefHeight="56.0" prefWidth="279.0" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets top="200.0" />
                     </GridPane.margin>
                     <font>
                         <Font size="25.0" />
+                    </font>
+                </Label>
+                <Label fx:id="result" alignment="CENTER" prefHeight="128.0" prefWidth="1343.0" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="17.0" />
                     </font>
                 </Label>
             </children>

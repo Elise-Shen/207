@@ -15,11 +15,7 @@ import java.util.ResourceBundle;
 public class TransferredController implements Initializable {
 
     @FXML
-    private Label transferAmount;
-    @FXML
-    private Label recipientAccount;
-    @FXML
-    private Label transferAccount;
+    private Label result;
 
     public void okPressed()throws Exception{
         Main.showNewBorderPane("/TransactionPage.fxml");
@@ -28,13 +24,11 @@ public class TransferredController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-         Account from = TransferMoneyController.from;
-         Account to = TransferMoneyController.to;
-         User otherUser = TransferMoneyController.toUser;
-         MonetaryAmount transferredAmount = TransferMoneyController.amountTransferred;
-         transferAmount.setText(transferredAmount.toString());
-         recipientAccount.setText(otherUser.toString() +": "+ to.toString());
-         transferAccount.setText(from.toString());
+        Account from = TransferMoneyController.from;
+        Account to = TransferMoneyController.to;
+        User otherUser = TransferMoneyController.toUser;
+        MonetaryAmount transferredAmount = TransferMoneyController.amountTransferred;
+        result.setText("Transferred " + transferredAmount + " from " + from + " to " + otherUser + "'s " + to);
 
     }
 }

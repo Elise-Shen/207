@@ -21,12 +21,7 @@ public class Chequing extends AssetAccount {
     public String toString(){
         return "Account ID " + getAccountID() + ": Chequing";
     }
-
-    @Override
-    public void decreaseBalance(double money) {
-        balance -= money;
-    }
-
+    
     @Override
     public boolean decreaseCurrencyBalance(MonetaryAmount amount) {
         MonetaryAmount currencyBalance = getCurrencyBalance();

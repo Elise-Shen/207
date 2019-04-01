@@ -2,6 +2,7 @@ Major changelist for Phase 2:
 - Added a GUI
 - Added foreign currencies
 - Added Bank Product (Mortgages and Investments)
+- Bank Manager can approve any transaction undo request from the list
 
 
 How to run this program:

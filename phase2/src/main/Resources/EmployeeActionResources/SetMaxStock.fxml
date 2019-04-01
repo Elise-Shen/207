@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.EmployeeControllers.SetMaximumStorageController"
-            prefHeight="960.0" prefWidth="1440.0">
 
+<BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeControllers.SetMaximumStorageController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="537.89306640625" minWidth="10.0" prefWidth="503.6018371582031" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="918.7792816162109" minWidth="10.0" prefWidth="419.594970703125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="536.0193481445312" minWidth="10.0" prefWidth="517.405029296875" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="506.9248962402344" minHeight="10.0" prefHeight="441.11376953125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="393.4812316894531" minHeight="10.0" prefHeight="69.88623046875" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="520.8486862182617" minHeight="10.0" prefHeight="331.3231201171875" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="238.67120361328125" minHeight="10.0" prefHeight="125.6768798828125" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ComboBox fx:id="selectCurrency" prefHeight="39.0" prefWidth="378.0" promptText="Select Currency" visibleRowCount="15" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <TextField fx:id="text" promptText="New Maximum Stock" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </TextField>
+            <Label fx:id="result" alignment="CENTER" prefHeight="284.0" prefWidth="527.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="61.0" prefWidth="250.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#okPressed" prefHeight="54.0" prefWidth="130.0" text="OK" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>

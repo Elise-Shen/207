@@ -45,23 +45,23 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Account Balance" GridPane.rowIndex="1">
+                  <Label text="Account Balance" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Date of Creation">
+                  <Label text="Date of Creation" GridPane.halignment="CENTER">
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>
                   </Label>
                   <Label text="Previous Transaction" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="dateLabel" prefHeight="30.0" prefWidth="200.0" GridPane.halignment="CENTER">
+                  <Label fx:id="dateLabel" prefHeight="30.0" prefWidth="200.0" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="accountBalanceLabel" prefHeight="30.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Label fx:id="accountBalanceLabel" prefHeight="30.0" prefWidth="200.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="50.0" />
                      </GridPane.margin>
@@ -71,17 +71,15 @@
                         <Insets right="100.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="undoTransactionButton" mnemonicParsing="false" onAction="#undoTransactionPressed" prefHeight="55.0" prefWidth="151.0" text="Undo Transaction?" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Button fx:id="undoTransactionButton" mnemonicParsing="false" onAction="#undoTransactionPressed" prefHeight="55.0" prefWidth="151.0" text="Undo Transaction?" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets right="100.0" />
                      </GridPane.margin>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#goToUserActionList" prefHeight="58.0" prefWidth="191.0" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                </children>
             </GridPane>
          </center>
-         <bottom>
-            <Button mnemonicParsing="false" onAction="#goToUserActionList" prefHeight="58.0" prefWidth="191.0" text="Back" BorderPane.alignment="CENTER" />
-         </bottom>
       </BorderPane>
    </center>
 </BorderPane>

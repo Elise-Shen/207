@@ -12,8 +12,9 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="721.0" minWidth="10.0" prefWidth="721.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="474.0" minWidth="10.0" prefWidth="364.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="355.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -34,12 +35,12 @@
                   <Insets right="110.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#confirmDepositButton" prefHeight="75.0" prefWidth="135.0" text="Deposit" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#confirmDepositButton" prefHeight="50.0" prefWidth="150.0" text="Deposit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remember to Enter Vales in Deposits.txt" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remember to Enter Values in Deposits.txt" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="150.0" right="10.0" />
                </GridPane.margin>
@@ -47,7 +48,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" onAction="#goToTransactionList" prefHeight="80.0" prefWidth="183.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#goToTransactionList" prefHeight="50.0" prefWidth="150.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <font>
                   <Font size="25.0" />
                </font>

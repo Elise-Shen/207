@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserActionControllers.RequestAccountController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -31,7 +30,12 @@
                   <ComboBox fx:id="accountType" prefHeight="31.0" prefWidth="230.0" promptText="Select Type of Account" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                   <ComboBox fx:id="jointUser" prefHeight="31.0" prefWidth="217.0" promptText="Select Other User" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <ComboBox fx:id="selectCurrency" prefHeight="31.0" prefWidth="202.0" promptText="Select Currency" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#requestButton" prefHeight="100.0" prefWidth="200.0" text="Request" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                  <Button mnemonicParsing="false" onAction="#requestButton" prefHeight="69.0" prefWidth="184.0" text="Request" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToUserActionsList" prefHeight="69.0" prefWidth="184.0" text="Back" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -39,13 +43,6 @@
                </children>
             </GridPane>
          </center>
-         <bottom>
-            <Button mnemonicParsing="false" onAction="#goToUserActionsList" prefHeight="69.0" prefWidth="184.0" text="Back" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-         </bottom>
       </BorderPane>
    </center>
 </BorderPane>

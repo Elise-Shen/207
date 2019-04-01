@@ -22,7 +22,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label prefHeight="45.0" prefWidth="133.0" text="Withdrawn" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Label contentDisplay="CENTER" prefHeight="45.0" prefWidth="244.0" text="Withdrawn" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                     </GridPane.margin>

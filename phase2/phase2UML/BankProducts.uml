@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>BankProducts</OriginalElement>
+  <nodes>
+    <node x="652.5" y="456.5">BankProducts.MortgageProduct</node>
+    <node x="79.00000000000006" y="434.0">BankProducts.InvestmentProduct</node>
+    <node x="399.75000000000006" y="0.0">BankProducts.BankProduct</node>
+    <node x="0.0" y="791.0">BankProducts.BankProductFactory</node>
+    <node x="524.0" y="648.0">BankProducts.ShortTermMortgage</node>
+    <node x="811.0" y="648.0">BankProducts.LongTermMortgage</node>
+    <node x="0.0" y="671.0">BankProducts.LowRiskInvestment</node>
+    <node x="260.00000000000006" y="671.0">BankProducts.HighRiskInvestment</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="BankProducts.MortgageProduct" target="BankProducts.BankProduct">
+      <point x="0.0" y="-59.5" />
+      <point x="800.5" y="409.0" />
+      <point x="606.7500000000001" y="409.0" />
+      <point x="69.0" y="192.0" />
+    </edge>
+    <edge source="BankProducts.LongTermMortgage" target="BankProducts.MortgageProduct">
+      <point x="0.0" y="-49.0" />
+      <point x="943.5" y="623.0" />
+      <point x="874.5" y="623.0" />
+      <point x="74.0" y="59.5" />
+    </edge>
+    <edge source="BankProducts.LowRiskInvestment" target="BankProducts.InvestmentProduct">
+      <point x="0.0" y="-26.0" />
+      <point x="120.0" y="623.0" />
+      <point x="165.00000000000006" y="623.0" />
+      <point x="-86.0" y="82.0" />
+    </edge>
+    <edge source="BankProducts.InvestmentProduct" target="BankProducts.BankProduct">
+      <point x="0.0" y="-82.0" />
+      <point x="251.00000000000006" y="409.0" />
+      <point x="468.75000000000006" y="409.0" />
+      <point x="-69.0" y="192.0" />
+    </edge>
+    <edge source="BankProducts.HighRiskInvestment" target="BankProducts.InvestmentProduct">
+      <point x="0.0" y="-26.0" />
+      <point x="382.00000000000006" y="623.0" />
+      <point x="337.00000000000006" y="623.0" />
+      <point x="86.0" y="82.0" />
+    </edge>
+    <edge source="BankProducts.ShortTermMortgage" target="BankProducts.MortgageProduct">
+      <point x="-5.6843418860808015E-14" y="-49.0" />
+      <point x="657.5" y="623.0" />
+      <point x="726.5" y="623.0" />
+      <point x="-74.0" y="59.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7555040556199305" x="538.0" y="421.5" />
+  <SelectedNodes>
+    <node>BankProducts.HighRiskInvestment</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

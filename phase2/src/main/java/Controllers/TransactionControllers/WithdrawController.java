@@ -45,21 +45,30 @@ public class WithdrawController implements Initializable {
         Main.showConfirmBox();
         if(ConfirmBoxController.getConfirm()) {
             int amount = Integer.parseInt(getWithdrawAmountText());
-            withdrawAccount = withdrawChoice.getValue();
+            if (amount % 5 == 0) {
+                withdrawAccount = withdrawChoice.getValue();
 
-            withdrawMoney = new WithdrawMoney(currentUserID, bankManager, cashStorage);
-            boolean enoughMoney = withdrawMoney.executeWithdraw(withdrawAccount, amount);
-            if (enoughMoney) {
-                withdrawAccount.addTransaction(withdrawMoney);
-                amountWithdrawn = withdrawMoney.getAmountWithdrawn();
-                bankManager.getUser(currentUserID).addTransactions(withdrawMoney);
-                Main.showNewBorderPane("/HelperBoxes/WithdrawnBox.fxml");
+                withdrawMoney = new WithdrawMoney(currentUserID, bankManager, cashStorage);
+                boolean enoughMoney = withdrawMoney.executeWithdraw(withdrawAccount, amount);
+                if (enoughMoney) {
+                    withdrawAccount.addTransaction(withdrawMoney);
+                    amountWithdrawn = withdrawMoney.getAmountWithdrawn();
+                    bankManager.getUser(currentUserID).addTransactions(withdrawMoney);
+                    Main.showNewBorderPane("/HelperBoxes/WithdrawnBox.fxml");
 
-            } else {
-                Main.showNotEnoughMoney();
-            }
+                } else {
+                    Main.showNotEnoughMoney();
+                }
+            }else{
+                withdrawAmountLabel.setText("");
+                Main.showMultipleOfFive();
+        }
         }
 
+    }
+
+    public void backSpace(){
+        withdrawAmountLabel.setText(getWithdrawAmountText().substring(0, getWithdrawAmountText().length()-1));
     }
 
     public void oneB(){

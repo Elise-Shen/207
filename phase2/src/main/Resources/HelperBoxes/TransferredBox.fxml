@@ -22,7 +22,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label prefHeight="45.0" prefWidth="132.0" text="Transferred" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Label alignment="CENTER" prefHeight="45.0" prefWidth="444.0" text="Transferred from" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                     </GridPane.margin>
@@ -40,7 +40,7 @@
                         <Font size="30.0" />
                     </font>
                 </Button>
-                <Label fx:id="transferAmount" prefHeight="45.0" prefWidth="128.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                <Label fx:id="transferAmount" prefHeight="45.0" prefWidth="383.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                     <font>
                         <Font size="25.0" />
                     </font>
@@ -52,14 +52,6 @@
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
-                </Label>
-                <Label prefHeight="45.0" prefWidth="67.0" text="From" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets left="20.0" right="20.0" top="200.0" />
-                    </GridPane.margin>
-                    <font>
-                        <Font size="25.0" />
-                    </font>
                 </Label>
                 <Label fx:id="transferAccount" prefHeight="56.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <GridPane.margin>

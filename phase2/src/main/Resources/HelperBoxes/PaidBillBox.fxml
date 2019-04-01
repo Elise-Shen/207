@@ -58,12 +58,12 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="paidAccount" prefHeight="56.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="paidAccount" prefHeight="56.0" prefWidth="482.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets top="200.0" />
                </GridPane.margin>
                <font>
-                  <Font size="25.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
             </children>

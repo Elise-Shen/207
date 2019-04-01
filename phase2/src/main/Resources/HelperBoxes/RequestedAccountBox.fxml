@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="960.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Helpers.RequestedAccountController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
@@ -36,7 +35,7 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="doubleUser" prefHeight="74.0" prefWidth="163.0" text="Requested a joint" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label fx:id="doubleUser" prefHeight="74.0" prefWidth="216.0" text="Requested a joint" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="20.0" />
                </font>

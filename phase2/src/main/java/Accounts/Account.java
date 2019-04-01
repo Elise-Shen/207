@@ -42,7 +42,6 @@ public abstract class Account implements Serializable {
      */
     private Map<LocalDate, Transactions> listOfTransactions = new LinkedHashMap<>();
 
-    private static ObservableMap<LocalDate, Transactions> observableListOfTransactions = FXCollections.observableHashMap();
 
     /**
      * Owner's user ID
@@ -89,14 +88,6 @@ public abstract class Account implements Serializable {
         return listOfTransactions;
     }
 
-    public ObservableMap<LocalDate, Transactions> getObservableListOfTransactions(){
-        return observableListOfTransactions;
-    }
-
-    public static void readListOfTransactions(Map<LocalDate, Transactions> map){
-        observableListOfTransactions.putAll(map);
-    }
-
     /**
      * Return the balance of this account.
      */
@@ -123,24 +114,6 @@ public abstract class Account implements Serializable {
 
     void setCurrencyBalance(MonetaryAmount money) {
         this.currencyBalance = money;
-    }
-
-    /**
-     * Increase the balance of this account.
-     *
-     * @param money the amount of money added to the balance.
-     */
-    public void increaseBalance(double money) {
-        this.balance += money;
-    }
-
-    /**
-     * Decrease the balance of this account.
-     *
-     * @param money the amount of money reduced from the balance.
-     */
-    public void decreaseBalance(double money) {
-        this.balance -= money;
     }
 
     /**

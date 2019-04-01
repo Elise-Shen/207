@@ -62,6 +62,20 @@ public class Main extends Application {
         updateData();
     }
 
+    public static void showMultipleOfFive()throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/HelperBoxes/MultpleOfFive.fxml"));
+        BorderPane confirmBox = loader.load();
+        Stage window = MultipleOfFiveController.getWindow();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Warning");
+        window.setMinWidth(250);
+        Scene scene = new Scene(confirmBox);
+        window.setScene(scene);
+        window.showAndWait();
+        updateData();
+    }
+
     public static void showConfirmBox()throws Exception{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("/HelperBoxes/ConfirmBox.fxml"));

@@ -31,7 +31,7 @@ public class ChangePasswordController implements Initializable {
         ATM_Machine atm = Main.getCurrentATM();
         BankManager bankManager = atm.getATMBankManager();
         User currentUser = bankManager.getUser(atm.getCurrentUserID());
-        if(currentUser.getPassword().equals(currentPassword) && newPassword.equals(newPasswordAgain)){
+        if(currentUser.getPassword().equals(currentPassword) && newPassword.equals(newPasswordAgain) && !newPassword.isEmpty()){
             bankManager.setPassword(currentUser, newPasswordAgain);
             System.out.println("New Password: " + newPasswordAgain);
         }

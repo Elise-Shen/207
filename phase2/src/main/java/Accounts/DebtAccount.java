@@ -31,11 +31,6 @@ public abstract class DebtAccount extends Account {
     }
 
     @Override
-    public double getBalance() {
-        return 0 - balance;
-    }
-
-    @Override
     public MonetaryAmount getCurrencyBalance() {
         MonetaryAmount currencyBalance = super.getCurrencyBalance();
         return currencyBalance.negate();

@@ -94,7 +94,7 @@ public class BankProductController implements Initializable {
                 }
             }
             else if (productType == 3 || productType == 4){
-                if (accountCombo.getValue().getBalance() < amount) {
+                if (accountCombo.getValue().getCurrencyBalance().isLessThan(accountCombo.getValue().createMoney(amount))) {
                     productAmount.clear();
                     Main.showNotEnoughMoney();
                     isValid = false;

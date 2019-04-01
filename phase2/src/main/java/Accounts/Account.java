@@ -88,13 +88,6 @@ public abstract class Account implements Serializable {
         return listOfTransactions;
     }
 
-    /**
-     * Return the balance of this account.
-     */
-    public double getBalance() {
-        return this.balance;
-    }
-
     public MonetaryAmount createMoney(double amount){
         return Money.of(amount, primaryCurrency);
     }

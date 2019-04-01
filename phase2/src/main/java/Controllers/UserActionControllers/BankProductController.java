@@ -74,6 +74,7 @@ public class BankProductController implements Initializable {
     public void submitButton() throws Exception{
         try{
             boolean isValid = true;
+            sucessLable.setText("");
             longTermWarning.setVisible(false);
             shortTermWarning.setVisible(false);
             amount = new Integer(productAmount.getText());
@@ -89,6 +90,13 @@ public class BankProductController implements Initializable {
                 if (length > 12){
                     productLength.clear();
                     shortTermWarning.setVisible(true);
+                    isValid = false;
+                }
+            }
+            else if (productType == 3 || productType == 4){
+                if (accountCombo.getValue().getBalance() < amount) {
+                    productAmount.clear();
+                    Main.showNotEnoughMoney();
                     isValid = false;
                 }
             }

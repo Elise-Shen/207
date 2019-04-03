@@ -3,15 +3,15 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="1023.0">ATM.Main</node>
-    <node x="0.0" y="0.0">ATM.ATM_Machine</node>
-    <node x="736.0" y="0.0">ATM.User</node>
-    <node x="1123.0" y="0.0">ATM.CashStorage</node>
-    <node x="316.0" y="0.0">ATM.BankManager</node>
+    <node x="0.0" y="1019.0">ATM.Main</node>
+    <node x="514.0" y="0.0">ATM.User</node>
+    <node x="300.0" y="1019.0">ATM.CashStorage</node>
+    <node x="0.0" y="0.0">ATM.BankManager</node>
+    <node x="997.0" y="0.0">ATM.ATM_Machine</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="539.0" y="1582.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="824.0" y="479.5" />
   <SelectedNodes>
     <node>ATM.User</node>
   </SelectedNodes>

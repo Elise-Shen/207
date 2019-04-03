@@ -1,36 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>AdminActions</OriginalElement>
-  <nodes>
-    <node x="0.0" y="179.5">AdminActions.ViewUndoTransactRequests</node>
-    <node x="214.0" y="179.5">AdminActions.ViewAccountRequests</node>
-    <node x="175.0" y="0.0">AdminActions.AdminAction</node>
-    <node x="399.0" y="168.0">AdminActions.RestockATM</node>
-  </nodes>
+  <OriginalElement />
+  <nodes />
   <notes />
-  <edges>
-    <edge source="AdminActions.RestockATM" target="AdminActions.AdminAction">
-      <point x="0.0" y="-37.0" />
-      <point x="500.0" y="143.0" />
-      <point x="377.5" y="143.0" />
-      <point x="81.0" y="59.0" />
-    </edge>
-    <edge source="AdminActions.ViewAccountRequests" target="AdminActions.AdminAction">
-      <point x="0.0" y="-25.5" />
-      <point x="0.0" y="59.0" />
-    </edge>
-    <edge source="AdminActions.ViewUndoTransactRequests" target="AdminActions.AdminAction">
-      <point x="0.0" y="-25.5" />
-      <point x="97.0" y="143.0" />
-      <point x="215.5" y="143.0" />
-      <point x="-81.0" y="59.0" />
-    </edge>
-  </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="257.0" y="127.0" />
-  <SelectedNodes>
-    <node>AdminActions.RestockATM</node>
-  </SelectedNodes>
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="824.0" y="479.5" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Methods</Category>
